@@ -1,0 +1,1 @@
+que duro g
