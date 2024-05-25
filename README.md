@@ -28,3 +28,8 @@ Los prestamos personales es un tipo de credito **no asegurado** que ofrecen los 
 Si la persona desea tener un prestamos por 1000000 de colones:
 
 
+
+### Cuentas bancarias y gestion de ahorro:
+
+La personas pueden tener cuentas bancarias las cuales pueden ser en dolares o colones, dichas pueden poseer un maximo de dos cuentas bancarias. Estas estan destinadas a la gestion de sus ahorros, donde que se utilizaran para obtener certificados de deposito a plazo. Los certificados de deposito a plazo son certificados que dan el banco gracias al ingreso de ahorros de parte de la persona, estos certificados se basan en un pago de interes que se le dara a la persona por el ingreso de sus ahorros por un plazo de tiempo definido. El banco da una tasa de interes para ahorros en colones y en dolares. 
+
