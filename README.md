@@ -81,7 +81,7 @@ La tabla clientes contendrá la información de cada cliente por separado. Esta 
 | cuenta_colones    | INT              | Cuenta en colones                            |
 | cuenta_dolares    | INT              | Cuenta en dólares                            |
 | cdp               | INT              | Certificado de Depósito a Plazo (CDP)        |
-
+'''sql
 CREATE TABLE clientes (
     cedula INT PRIMARY KEY,
     nombre VARCHAR(50),
@@ -90,7 +90,7 @@ CREATE TABLE clientes (
     cuenta_dolares INT,
     cdp INT
 );
-Explicación
+'''
 
 ## Referencias
 
