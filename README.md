@@ -60,16 +60,6 @@ La personas pueden tener cuentas bancarias las cuales pueden ser en dólares o c
 
 Para el correcto funcionamiento del programa, es necesario establecer una base de datos corrupta y eficiente, que tenga la cantidad justa de tablas relacionadas, para que la posterior inserción, modificación y deleción de información sea de forma sencilla e intuitiva. Por ello, es importante plantear desde etapas tempranas la estructura de dicha base de datos, con el fin de optimizar los algoritmos a implementar. Por ello, se definirán las tablas pertenecientes a la base de datos del sistema bancario.
 
-#### Banco:
-
-Esta tabla contiene la información del banco, donde existen las siguientes filas:
-- Nombre del banco
-- Tipo de cambio
-- Préstamos Personales
-- Préstamos Prendarios
-- Cuenta de ahorros
-- CDP
-En las filas de Préstamos, cuenta de ahorros y CDP se tendrán subtablas, donde se almacenará la información asociada a las tasas de interés y los plazos.
 #### Tabla Clientes:
 La tabla clientes contendrá la información de cada cliente por separado. Esta almacenará el número de cédula que será la llave primaria y el nombre completo del cliente.
 
