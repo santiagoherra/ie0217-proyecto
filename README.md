@@ -112,6 +112,7 @@ Ahora, se presenta la descripción de la tabla de préstamos. De nuevo, cada pr�
 | **Columna**          | **Tipo de Dato** | **Descripción**                                                  |
 |----------------------|------------------|------------------------------------------------------------------|
 | prestamo_id          | INT              | Número único que identifica el préstamo (llave primaria)         |
+| tipo                 | VARCHAR(10)      | Tipo de préstamo, ya sea prendario o personal                    |
 | denominacion         | VARCHAR(10)      | Denominación de la moneda del préstamo (colones/dólares)         |
 | monto_total          | DECIMAL(9, 2)    | Monto total del préstamo                                         |
 | plazo_meses          | INT              | Plazo del préstamo en meses                                      |
@@ -122,6 +123,7 @@ Ahora, se presenta la descripción de la tabla de préstamos. De nuevo, cada pr�
 CREATE TABLE prestamos (
     prestamo_id INT PRIMARY KEY,
     denominacion VARCHAR(10),
+    tipo VARCHAR(10),
     monto_total DECIMAL(9, 2),
     plazo_meses INT,
     cuota_mensual INT,
