@@ -56,10 +56,10 @@ A continuación, se muestran la tabla de valores con las opciones que puede sele
 
 La personas pueden tener cuentas bancarias las cuales pueden ser en dólares o colones, dichas pueden poseer un máximo de dos cuentas bancarias. Estas están destinadas a la gestión de sus ahorros, donde que se utilizarán para obtener certificados de depósito a plazo. Los certificados de depósito a plazo son certificados que dan el banco gracias al ingreso de ahorros de parte de la persona, estos certificados se basan en un pago de interés que se le dará a la persona por el ingreso de sus ahorros por un plazo de tiempo definido. El banco da una tasa de interés para ahorros en colones y en dólares. 
 
-### Certificados de Depósito a plazos:
+## Certificados de Depósito a plazos:
 
 
-### Base de datos:
+## Base de datos:
 
 Para el correcto funcionamiento del programa, es necesario establecer una base de datos corrupta y eficiente, que tenga la cantidad justa de tablas relacionadas, para que la posterior inserción, modificación y deleción de información sea de forma sencilla e intuitiva. Por ello, es importante plantear desde etapas tempranas la estructura de dicha base de datos, con el fin de optimizar los algoritmos a implementar. Por ello, se definirán las tablas pertenecientes a la base de datos del sistema bancario, no sin antes resaltar una serie de características claves del sistema a trabajar:
 -Cada cliente puede tener únicamente una cuenta en colones y una cuenta en dólares, por ello, se prefiere que la llave foránea a la cuenta se encuentre en la tabla de clientes. Esto con el fin de que se puede asociar una cuenta a múltiples clientes.
@@ -68,7 +68,7 @@ Para el correcto funcionamiento del programa, es necesario establecer una base d
 - Los CDPs se pueden caracterizar por el monto del depósito, el plazo y la tasa de intereses.
 - El número de cédula se usará como llave primaria, puesto que es única para cada persona. 
 
-#### Tabla Clientes:
+### Tabla Clientes:
 La tabla clientes contendrá la información de cada cliente por separado. Esta almacenará el número de cédula que será la llave primaria y el nombre completo del cliente.
 
 | **Columna**       | **Tipo de Dato** | **Descripción**                              |
@@ -95,7 +95,7 @@ CREATE TABLE clientes (
 
 Los enteros de cuenta_colones, cuenta_dolares y cdp hacen referencia al número de cuenta o número de certificado, que es un número único. 
 
-#### Tabla Cuentas:
+### Tabla Cuentas:
 Las cuentas incluirán el número de cuenta que será la llave primaria, el balance de la cuenta, que será un DECIMAL(9,2) para almacenar un máximo de centésimas de colón o de dolar. Por otra parte, tendrá un Tasa decimal(2,2) que contendrá la tasa de interés de ahorro de la cuenta. Se tendrá un varchar que represente la denominación que maneja la cuenta. Por último, se tendrá una llave foránea que apunte al clienteLa tabla se observa a continuación:
 
 | **Columna**   | **Tipo de Dato** | **Descripción**                            |
@@ -114,14 +114,14 @@ CREATE TABLE cuentas (
 );
 ```
 
-#### Tabla Préstamos:
-Ahora, se presenta la descripción de la tabla de préstamos. De nuevo, cada préstamo tendrá una id única, siendo un número entero que corresponde al número de préstamo. Existirá una fila que contenga un varchar que hace referencia a la denominación, ya sea colones o dólares. Contendrá un DECIMAL(9,2) que hace referencia al monto total del préstamo. Además, existirá una fila que contengan un INT, que referencien el plazo en meses y un DECIMAL(2,2) que haga referencia a la tasa del descuento. Por último, contendrá un INT que será la llave foránea que referenciará al usuario que solicitó el préstamo, esto puesto que un cliente puede tener varios préstamos asociados. 
+### Tabla Préstamos:
+Ahora, se presenta la descripción de la tabla de préstamos. De nuevo, cada préstamo tendrá una id única, siendo un número entero que corresponde al número de préstamo. Existirá una fila que contenga un varchar que hace referencia a la denominación, ya sea colones o dólares. Contendrá un DECIMAL(9,2) que hace referencia al monto total del préstamo. Además, existirá una fila que contengan un INT, que referencien el plazo en meses y un DECIMAL(2,2) que haga referencia a la tasa del descuento. Aparte, es necesario un VARCHAR que referPor último, contendrá un INT que será la llave foránea que referenciará al usuario que solicitó el préstamo, esto puesto que un cliente puede tener varios préstamos asociados. 
 
 | **Columna**          | **Tipo de Dato** | **Descripción**                                                  |
 |----------------------|------------------|------------------------------------------------------------------|
 | prestamo_id          | INT              | Número único que identifica el préstamo (llave primaria)         |
-| tipo                 | VARCHAR(10)      | Tipo de préstamo, ya sea prendario o personal                    |
-| denominacion         | VARCHAR(10)      | Denominación de la moneda del préstamo (colones/dólares)         |
+| tipo                 | VARCHAR(11)      | Tipo de préstamo, ya sea prendario, hipotecario o personal       |
+| denominacion         | VARCHAR(8)      | Denominación de la moneda del préstamo (colones/dólares)         |
 | monto_total          | DECIMAL(9, 2)    | Monto total del préstamo                                         |
 | plazo_meses          | INT              | Plazo del préstamo en meses                                      |
 | tasa                 | DECIMAL(2, 2)    | Tasa de interés de ahorro de la cuenta                           |
@@ -130,22 +130,22 @@ Ahora, se presenta la descripción de la tabla de préstamos. De nuevo, cada pr�
 ```sql
 CREATE TABLE prestamos (
     prestamo_id INT PRIMARY KEY,
-    denominacion VARCHAR(10),
+    denominacion VARCHAR(8),
     tipo VARCHAR(10),
     monto_total DECIMAL(9, 2),
     plazo_meses INT,
     cuota_mensual INT,
     cliente_id INT,
-    FOREIGN KEY (cliente_id) REFERENCES clientes(cliente_id)
+    FOREIGN KEY (cliente) REFERENCES clientes(cedula)
 );
 ```
-#### Tabla CDP:
+### Tabla CDP:
 Por último, se presenta la descripción de la tabla de certificados de depósito a plazos. Esta tabla contendrá un identificador único siendo la llave primaria de tipo INT. Se necesitará de un VARCHAR que haga referencia a la denominación, ya sea colones o dólares. Posteriormente, se tendrá un decimal(2,2) que haga referencia a la tasa. Además, se tendrá un int que haga referencia al plazo en meses. Por último, es necesario un DECIMAL(9,2) que se refiera al monto del depósito original. Ahora, como cada cliente puede tener varios CDPs de forma simultánea, se necesitará una llave foránea que referencia al número de cédula del cliente que lo solicitó. 
 
 | **Columna**       | **Tipo de Dato** | **Descripción**                                             |
 |-------------------|------------------|-------------------------------------------------------------|
 | cdp_id            | INT              | Identificador único del CDP (llave primaria)                |
-| denominacion      | VARCHAR(10)      | Denominación de la moneda del CDP (colones/dólares)         |
+| denominacion      | VARCHAR(8)      | Denominación de la moneda del CDP (colones/dólares)         |
 | tasa              | DECIMAL(2, 2)    | Tasa de interés del CDP                                     |
 | plazo_meses       | INT              | Plazo en meses del CDP                                      |
 | monto_deposito    | DECIMAL(9, 2)    | Monto del depósito original del CDP                         |
@@ -154,12 +154,12 @@ Por último, se presenta la descripción de la tabla de certificados de depósit
 ```sql
 CREATE TABLE certificados_de_deposito (
     cdp_id INT PRIMARY KEY,
-    denominacion VARCHAR(10),
+    denominacion VARCHAR(8),
     tasa DECIMAL(2, 2),
     plazo_meses INT,
     monto_deposito DECIMAL(9, 2),
     cliente_cedula CHAR(9),
-    FOREIGN KEY (cliente_cedula) REFERENCES clientes(cedula)
+    FOREIGN KEY (cliente) REFERENCES clientes(cedula)
 );
 ```
 
