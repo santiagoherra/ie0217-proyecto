@@ -58,7 +58,39 @@ La personas pueden tener cuentas bancarias las cuales pueden ser en dólares o c
 
 ### Base de datos:
 
-Para el correcto funcionamiento del programa, es necesario establecer una base de datos corrupta y eficiente, que tenga la cantidad justa de tablas relacionadas, para que la posterior inserción, modificación y deleción de información sea de forma sencilla e intuitiva. En primer lugar, el número de identificación de un cliente será el número de cédula, puesto que es único para cada persona. Esto evita los posibles problemas de colisión que podrían existir con un Hash. Posteriormente, la tabla contendrá la información del usuario, siendo el núermo de cédula, el nombre, primer apellido, la cuenta en dólares, la cuenta en colones, los CDP y los préstamos asociados a cada persona. Continuando, la cuenta tendrá el número de cédula del usuario como llave foránea que apunte hacia la llave primaria de los usuarios. La cuenta además, almacenará un VARCHAR asociado al tipo de moneda, ya sea colones o dólares. Además, esta cuenta tendrá asociada una tasa de interés, la frecuencia de composición y el saldo mínimo requerido. Estos tipos de datos se asocian con las tablas tanto para la cuenta en dólares o colones. Posteriormente 
+Para el correcto funcionamiento del programa, es necesario establecer una base de datos corrupta y eficiente, que tenga la cantidad justa de tablas relacionadas, para que la posterior inserción, modificación y deleción de información sea de forma sencilla e intuitiva. Por ello, es importante plantear desde etapas tempranas la estructura de dicha base de datos, con el fin de optimizar los algoritmos a implementar. Por ello, se definirán las tablas pertenecientes a la base de datos del sistema bancario.
+
+#### Banco:
+
+Esta tabla contiene la información del banco, donde existen las siguientes filas:
+- Nombre del banco
+- Tipo de cambio
+- Préstamos Personales
+- Préstamos Prendarios
+- Cuenta de ahorros
+- CDP
+En las filas de Préstamos, cuenta de ahorros y CDP se tendrán subtablas, donde se almacenará la información asociada a las tasas de interés y los plazos.
+#### Clientes:
+La tabla clientes contendrá la información de cada cliente por separado. Esta almacenará el número de cédula que será la llave primaria y el nombre completo del cliente.
+
+| **Columna**       | **Tipo de Dato** | **Descripción**                              |
+|-------------------|------------------|----------------------------------------------|
+| cedula            | INT              | Número de cédula (llave primaria)            |
+| nombre            | VARCHAR(50)      | Nombre del cliente                           |
+| apellido          | VARCHAR(50)      | Apellido del cliente                         |
+| cuenta_colones    | INT              | Cuenta en colones                            |
+| cuenta_dolares    | INT              | Cuenta en dólares                            |
+| cdp               | INT              | Certificado de Depósito a Plazo (CDP)        |
+
+CREATE TABLE clientes (
+    cedula INT PRIMARY KEY,
+    nombre VARCHAR(50),
+    apellido VARCHAR(50),
+    cuenta_colones INT,
+    cuenta_dolares INT,
+    cdp INT
+);
+Explicación
 
 ## Referencias
 
