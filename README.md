@@ -52,6 +52,9 @@ A continuación, se muestran la tabla de valores con las opciones que puede sele
 
 **Nota, esto sería para el caso en que se soliciten cinco millones de colones o su equivalente en dólares.**
 
+### Préstamos Hipotecários:
+
+
 ### Cuentas bancarias y gestión de ahorro:
 
 La personas pueden tener cuentas bancarias las cuales pueden ser en dólares o colones, dichas pueden poseer un máximo de dos cuentas bancarias. Estas están destinadas a la gestión de sus ahorros, donde que se utilizarán para obtener certificados de depósito a plazo. Los certificados de depósito a plazo son certificados que dan el banco gracias al ingreso de ahorros de parte de la persona, estos certificados se basan en un pago de interés que se le dará a la persona por el ingreso de sus ahorros por un plazo de tiempo definido. El banco da una tasa de interés para ahorros en colones y en dólares. 
