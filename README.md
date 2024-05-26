@@ -56,6 +56,10 @@ A continuación, se muestran la tabla de valores con las opciones que puede sele
 
 La personas pueden tener cuentas bancarias las cuales pueden ser en dólares o colones, dichas pueden poseer un máximo de dos cuentas bancarias. Estas están destinadas a la gestión de sus ahorros, donde que se utilizarán para obtener certificados de depósito a plazo. Los certificados de depósito a plazo son certificados que dan el banco gracias al ingreso de ahorros de parte de la persona, estos certificados se basan en un pago de interés que se le dará a la persona por el ingreso de sus ahorros por un plazo de tiempo definido. El banco da una tasa de interés para ahorros en colones y en dólares. 
 
+### Base de datos:
+
+Para el correcto funcionamiento del programa, es necesario establecer una base de datos corrupta y eficiente, que tenga la cantidad justa de tablas relacionadas, para que la posterior inserción, modificación y deleción de información sea de forma sencilla e intuitiva. En primer lugar, el número de identificación de un cliente será el número de cédula, puesto que es único para cada persona. Esto evita los posibles problemas de colisión que podrían existir con un Hash. Posteriormente, la tabla contendrá la información del usuario, siendo el núermo de cédula, el nombre, primer apellido, la cuenta en dólares, la cuenta en colones, los CDP y los préstamos asociados a cada persona. Continuando, la cuenta tendrá el número de cédula del usuario como llave foránea que apunte hacia la llave primaria de los usuarios. La cuenta además, almacenará un VARCHAR asociado al tipo de moneda, ya sea colones o dólares. Además, esta cuenta tendrá asociada una tasa de interés, la frecuencia de composición y el saldo mínimo requerido. Estos tipos de datos se asocian con las tablas tanto para la cuenta en dólares o colones. Posteriormente 
+
 ## Referencias
 
 [1] “¿Qué es un préstamo prendario?: Características y ejemplos”. Santander Consumer Finance. Accedido el 24 de mayo de 2024. [En línea]. Disponible: https://www.santanderconsumer.es/blog/post/que-es-un-prestamo-prendario-caracteristicas-y-ejemplos
