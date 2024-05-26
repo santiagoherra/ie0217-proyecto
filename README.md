@@ -96,19 +96,21 @@ CREATE TABLE clientes (
 Los enteros de cuenta_colones, cuenta_dolares y cdp hacen referencia al número de cuenta o número de certificado, que es un número único. 
 
 #### Cuentas:
-Las cuentas incluirán el número de cuenta que será la llave primaria, el balance de la cuenta, que será un DECIMAL(9,2) para almacenar un máximo de centésimas de colón o de dolar. Por otra parte, tendrá un Tasa decimal(2,2) que contendrá la tasa de interés de ahorro de la cuenta. La tabla se observa a continuación:
+Las cuentas incluirán el número de cuenta que será la llave primaria, el balance de la cuenta, que será un DECIMAL(9,2) para almacenar un máximo de centésimas de colón o de dolar. Por otra parte, tendrá un Tasa decimal(2,2) que contendrá la tasa de interés de ahorro de la cuenta. Por último, se tendrá un varchar que represente la denominación que maneja la cuenta. La tabla se observa a continuación:
 
 | **Columna**   | **Tipo de Dato** | **Descripción**                           |
 |---------------|------------------|-------------------------------------------|
 | numero_cuenta | INT              | Número de cuenta (llave primaria)         |
 | balance       | DECIMAL(9, 2)    | Balance de la cuenta                      |
 | tasa          | DECIMAL(2, 2)    | Tasa de interés de ahorro de la cuenta    |
+| denominacion  | VARCHAR(10)      | Denominación de la moneda (colones/dólares)   |
 
 ```sql
 CREATE TABLE cuentas (
     numero_cuenta INT PRIMARY KEY,
     balance DECIMAL(9, 2),
-    tasa DECIMAL(2, 2)
+    tasa DECIMAL(2, 2),
+    denominacion VARCHAR(10)
 );
 ```
 ## Referencias
