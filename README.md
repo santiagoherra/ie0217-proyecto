@@ -93,6 +93,24 @@ CREATE TABLE clientes (
 );
 ```
 
+Los enteros de cuenta_colones, cuenta_dolares y cdp hacen referencia al número de cuenta o número de certificado, que es un número único. 
+
+#### Cuentas:
+Las cuentas incluirán el número de cuenta que será la llave primaria, el balance de la cuenta, que será un DECIMAL(9,2) para almacenar un máximo de centésimas de colón o de dolar. Por otra parte, tendrá un Tasa decimal(2,2) que contendrá la tasa de interés de ahorro de la cuenta. La tabla se observa a continuación:
+
+| **Columna**   | **Tipo de Dato** | **Descripción**                           |
+|---------------|------------------|-------------------------------------------|
+| numero_cuenta | INT              | Número de cuenta (llave primaria)         |
+| balance       | DECIMAL(9, 2)    | Balance de la cuenta                      |
+| tasa          | DECIMAL(2, 2)    | Tasa de interés de ahorro de la cuenta    |
+
+```sql
+CREATE TABLE cuentas (
+    numero_cuenta INT PRIMARY KEY,
+    balance DECIMAL(9, 2),
+    tasa DECIMAL(2, 2)
+);
+```
 ## Referencias
 
 [1] “¿Qué es un préstamo prendario?: Características y ejemplos”. Santander Consumer Finance. Accedido el 24 de mayo de 2024. [En línea]. Disponible: https://www.santanderconsumer.es/blog/post/que-es-un-prestamo-prendario-caracteristicas-y-ejemplos
