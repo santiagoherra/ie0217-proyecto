@@ -3,7 +3,7 @@
 ## Prof. Esteban Badilla
 ### Integrantes:
 * Santiago Herra Castro C1721
-* Jose
+* José Ignacio Sáenz Díaz C27032
 * Kevin Jiménez Acuña C13876
 
 ## Descripción de proyecto.
