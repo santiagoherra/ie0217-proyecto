@@ -70,7 +70,7 @@ Esta tabla contiene la información del banco, donde existen las siguientes fila
 - Cuenta de ahorros
 - CDP
 En las filas de Préstamos, cuenta de ahorros y CDP se tendrán subtablas, donde se almacenará la información asociada a las tasas de interés y los plazos.
-#### Clientes:
+#### Tabla Clientes:
 La tabla clientes contendrá la información de cada cliente por separado. Esta almacenará el número de cédula que será la llave primaria y el nombre completo del cliente.
 
 | **Columna**       | **Tipo de Dato** | **Descripción**                              |
@@ -84,26 +84,30 @@ La tabla clientes contendrá la información de cada cliente por separado. Esta 
 
 ```sql
 CREATE TABLE clientes (
-    cedula INT PRIMARY KEY,
+    cedula CHAR(9) PRIMARY KEY,
     nombre VARCHAR(50),
     apellido VARCHAR(50),
     cuenta_colones INT,
     cuenta_dolares INT,
-    cdp INT
+    cdp INT,
+    CHECK (cedula NOT LIKE '%[^0-9]%'),
+    FOREIGN KEY (cuenta_colones) REFERENCES cuentas(numero_cuenta)
+    FOREIGN KEY (cuenta_dolares) REFERENCES cuentas(numero_cuenta)
+    FOREIGN KEY (cdp) REFERENCES cuentas(numero_cuenta)
 );
 ```
 
 Los enteros de cuenta_colones, cuenta_dolares y cdp hacen referencia al número de cuenta o número de certificado, que es un número único. 
 
-#### Cuentas:
-Las cuentas incluirán el número de cuenta que será la llave primaria, el balance de la cuenta, que será un DECIMAL(9,2) para almacenar un máximo de centésimas de colón o de dolar. Por otra parte, tendrá un Tasa decimal(2,2) que contendrá la tasa de interés de ahorro de la cuenta. Por último, se tendrá un varchar que represente la denominación que maneja la cuenta. La tabla se observa a continuación:
+#### Tabla Cuentas:
+Las cuentas incluirán el número de cuenta que será la llave primaria, el balance de la cuenta, que será un DECIMAL(9,2) para almacenar un máximo de centésimas de colón o de dolar. Por otra parte, tendrá un Tasa decimal(2,2) que contendrá la tasa de interés de ahorro de la cuenta. Se tendrá un varchar que represente la denominación que maneja la cuenta. Por último, se tendrá una llave foránea que apunte al clienteLa tabla se observa a continuación:
 
-| **Columna**   | **Tipo de Dato** | **Descripción**                           |
-|---------------|------------------|-------------------------------------------|
-| numero_cuenta | INT              | Número de cuenta (llave primaria)         |
-| balance       | DECIMAL(9, 2)    | Balance de la cuenta                      |
-| tasa          | DECIMAL(2, 2)    | Tasa de interés de ahorro de la cuenta    |
-| denominacion  | VARCHAR(10)      | Denominación de la moneda (colones/dólares)   |
+| **Columna**   | **Tipo de Dato** | **Descripción**                            |
+|---------------|------------------|--------------------------------------------|
+| numero_cuenta | INT              | Número de cuenta (llave primaria)          |
+| balance       | DECIMAL(9, 2)    | Balance de la cuenta                       |
+| tasa          | DECIMAL(2, 2)    | Tasa de interés de ahorro de la cuenta     |
+| denominacion  | VARCHAR(10)      | Denominación de la moneda (colones/dólares)|
 
 ```sql
 CREATE TABLE cuentas (
@@ -113,6 +117,32 @@ CREATE TABLE cuentas (
     denominacion VARCHAR(10)
 );
 ```
+
+#### Tabla Préstamos:
+Ahora, se presenta la descripción de la tabla de préstamos. De nuevo, cada préstamo tendrá una id única, siendo un número entero que corresponde al número de préstamo. Existirá una fila que contenga un varchar que hace referencia a la denominación, ya sea colones o dólares. Contendrá un DECIMAL(9,2) que hace referencia al monto total del préstamo. Además, existirán filas que contengan enteros, que referencien el plazo en meses y las cuotas mensuales pagadas. Por último, contendrá un INT que será la llave foránea que referenciará al usuario que solicitó el préstamo, esto puesto que un cliente puede tener varios préstamos asociados. 
+
+| **Columna**          | **Tipo de Dato** | **Descripción**                                                  |
+|----------------------|------------------|------------------------------------------------------------------|
+| prestamo_id          | INT              | Número único que identifica el préstamo (llave primaria)         |
+| denominacion         | VARCHAR(10)      | Denominación de la moneda del préstamo (colones/dólares)         |
+| monto_total          | DECIMAL(9, 2)    | Monto total del préstamo                                         |
+| plazo_meses          | INT              | Plazo del préstamo en meses                                      |
+| cuota_mensual        | INT              | Cuota mensual del préstamo                                       |
+| cliente_id           | INT              | Llave foránea que referencia al cliente que solicitó el préstamo |
+
+```sql
+CREATE TABLE prestamos (
+    prestamo_id INT PRIMARY KEY,
+    denominacion VARCHAR(10),
+    monto_total DECIMAL(9, 2),
+    plazo_meses INT,
+    cuota_mensual INT,
+    cliente_id INT,
+    FOREIGN KEY (cliente_id) REFERENCES clientes(cliente_id)
+);
+```
+#### Tabla CDP:
+Por último, se presenta la descripción de la tabla de certificados de depósito a plazos. 
 ## Referencias
 
 [1] “¿Qué es un préstamo prendario?: Características y ejemplos”. Santander Consumer Finance. Accedido el 24 de mayo de 2024. [En línea]. Disponible: https://www.santanderconsumer.es/blog/post/que-es-un-prestamo-prendario-caracteristicas-y-ejemplos
