@@ -57,7 +57,12 @@ Un préstamo hipotecario hace referencia a un préstamo que se da con el fin de 
 -Durante los primeros dos años enteros del préstamo, la tasa es fija de un 12%.
 -Durante el resto del plazo, la tasa se calculará según la siguiente ecuación, con piso 12%:
 $$ tasa = TBP + 6,50% $$
-Esto implica, que la tasa variable se calcula según la Tasa Básica Pasiva o TBP, brindada por el Banco Central que varía según las condiciones del mercado. A esta tasa, se le debe de sumar el 6,5%, lo que se conoce como el margen. No obstante por la seguridad del prestamista, se establece un piso, que es que no importa que tanto caiga la TBP, el valor menor que puede tener la tasa es del 12%. Para el proyecto, tomando en cuenta los datos de Costa Rica, brindados por el Banco Central, el valor de la TBP ponderado anual es de 5,00% y la desviación estándar asociada a este promedio es del 0,21%.
+Esto implica, que la tasa variable se calcula según la Tasa Básica Pasiva o TBP, brindada por el Banco Central que varía según las condiciones del mercado. A esta tasa, se le debe de sumar el 6,5%, lo que se conoce como el margen. No obstante por la seguridad del prestamista, se establece un piso, que es que no importa que tanto caiga la TBP, el valor menor que puede tener la tasa es del 12%. Para el proyecto, tomando en cuenta los datos de Costa Rica, brindados por el Banco Central, el valor de la TBP ponderado desde el 2013 es de 5,47%. Por ello, si se toma la fórmula y se calcula la tasa con este valor, se obtiene una tasa menor a la tasa piso. Además, para el año 2024, la tasa se encuentra en una tendencia decreciente, donde el promedio anual es del 5,00%. Por ello, se considerará para el proyecto una tasa fija del 12%, puesto que en promedio, la tasa calculada no supera el piso. 
+
+Se limitarán los plazos al igual que lo realiza el BCR, donde los plazos disponibles se encuentran en múltiplos de 5 años, donde el mínimo son 5 años y el máximo 30. El cliente deberá de ingresar el valor total de la casa y el valor a solicitar, puesto que ningún banco nacional suele financiar más del 80% de la propiedad. Aparte, se tendrá un valor mínimo de 5 millones de colones y un valor máximo de 150 millones de colones.
+
+Por último, la fórmula para calcular la cuota mensual es:
+$$ Cuota mensual = Monto total \cdot \frac{TEM \cdot (1+TEM)^{n}}{(1+TEM)^n-1}$$
 
 
 ### Cuentas bancarias y gestión de ahorro:
@@ -69,7 +74,7 @@ La personas pueden tener cuentas bancarias las cuales pueden ser en dólares o c
 
 ## Base de datos:
 
-Para el correcto funcionamiento del programa, es necesario establecer una base de datos corrupta y eficiente, que tenga la cantidad justa de tablas relacionadas, para que la posterior inserción, modificación y deleción de información sea de forma sencilla e intuitiva. Por ello, es importante plantear desde etapas tempranas la estructura de dicha base de datos, con el fin de optimizar los algoritmos a implementar. Por ello, se definirán las tablas pertenecientes a la base de datos del sistema bancario, no sin antes resaltar una serie de características claves del sistema a trabajar:
+Para el correcto funcionamiento del programa, es necesario establecer una base de datos robusta y eficiente, que tenga la cantidad justa de tablas relacionadas, para que la posterior inserción, modificación y deleción de información sea de forma sencilla e intuitiva. Por ello, es importante plantear desde etapas tempranas la estructura de dicha base de datos, con el fin de optimizar los algoritmos a implementar. Por ello, se definirán las tablas pertenecientes a la base de datos del sistema bancario, no sin antes resaltar una serie de características claves del sistema a trabajar:
 -Cada cliente puede tener únicamente una cuenta en colones y una cuenta en dólares, por ello, se prefiere que la llave foránea a la cuenta se encuentre en la tabla de clientes. Esto con el fin de que se puede asociar una cuenta a múltiples clientes.
 - Un cliente puede tener múltiples préstamos y CDPs, por lo que los CDPs contendrán el número de cédula del usuario como llave foránea al cliente que pertenecen.
 - Un préstamo puede ser caracterizado únicamente por su tasa, su monto total, su plazo en meses y su cantidad de cuotas mensuales pagadas. Si se almacenacen variables como el el total abonado, se estaría siendo redundante.
