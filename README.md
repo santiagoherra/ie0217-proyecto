@@ -56,6 +56,7 @@ A continuación, se muestran la tabla de valores con las opciones que puede sele
 Un préstamo hipotecario hace referencia a un préstamo que se da con el fin de que se realice una compra de vivienda o de terreno. Debido al monto alto que conlleva este flujo de dinero, el préstamo hipotecario tiene la particularidad de que la garantía de pago es el bien inmueble, es decir, la vivienda o el terreno que se está adquiriendo. Como los demás tipos de préstamo, este se encuentra definidio por una tasa de interés, de la que depende la cantidad adicional de dinero que se debe de pagar por el monto prestado. No obstante, debido a tratarse de montos grandes, los plazos ofrecidos por los bancos son de 36 hasta 360 meses. Por ello, es usual que la tasa de interés varíe. Por ello, las tasas de interés suelen ser variables. Tomando como referencia las condiciones brindadas por el Banco de Costa Rica, se muestra la siguiente tasa variable:
 
 -Durante los primeros dos años enteros del préstamo, la tasa es fija de un 12%.
+
 -Durante el resto del plazo, la tasa se calculará según la siguiente ecuación, con piso 12%:
 
 $$ 
@@ -75,7 +76,9 @@ $$
 Donde, 
 
 -TEM se refiere a la tasa efectiva mensual
+
 -n se refiere a la cantidad de meses de pago
+
 -Monto se refiere al monto total del préstamo hipotecario
 
 ### Cuentas bancarias y gestión de ahorro:
