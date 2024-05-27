@@ -24,7 +24,7 @@ Este proyecto se centra en la investigación, diseño e implementación de un si
 Los prestamos se realizarán en base al monto que la persona desee obtener, el salario que la persona posea y moneda que la persona desee. En cuanto se tenga esto se desplegará una tabla con las opciones posibles donde la persona podrá elegir la cuota mensual que deberá pagar en base al lapso de tiempo por el que escoja el préstamos, esto dependiendo del salario que esta persona tenga. Las tasas de interés las dara el banco las cuales varían dependiendo del tipo de préstamo que la persona escoja. Además, se debe de considerar que los préstamos pueden ser en colones o en dólares.
 
 ### Pestamos personales:
-Los prestamos personales es un tipo de credito **no asegurado** que ofrecen los bacos y ptras instituciones financieras a los individuos. Este tipo de prestamo no requiere que la persona ofrazca un objeto colateral para asegurar el prestamo. La tasa de interes que dara el banco para un prestamos personal usualmente es de 18% hasta 26%.
+Los prestamos personales es un tipo de credito **no asegurado** que ofrecen los bacos y otras instituciones financieras a los individuos. Este tipo de prestamo no requiere que la persona ofrazca un objeto colateral para asegurar el prestamo. La tasa de interes que dara el banco para un prestamos personal usualmente es de 18% hasta 26%. Usualmente la tasa de interes de los prestamos personales son mayores debido al riesgo de perdida de capital del prestatario. 
 
 
 
@@ -85,7 +85,10 @@ Donde,
 La personas pueden tener cuentas bancarias las cuales pueden ser en dólares o colones, dichas pueden poseer un máximo de dos cuentas bancarias. Estas están destinadas a la gestión de sus ahorros, donde que se utilizarán para obtener certificados de depósito a plazo. Los certificados de depósito a plazo son certificados que dan el banco gracias al ingreso de ahorros de parte de la persona, estos certificados se basan en un pago de interés que se le dará a la persona por el ingreso de sus ahorros por un plazo de tiempo definido. El banco da una tasa de interés para ahorros en colones y en dólares. 
 
 ## Certificados de Depósito a plazos:
-Los certificados de depositos a plazo son certificados que da el banco cuando una persona desee ingresar un capital para poder obtener intereses en un plazo de tiempo determinado. Dicho certificado valida dicho ingreso del capital e indica la tasa de interes que obtendra el cliente por el tiempo en que mantendra el capital dentro del banco. Los certificados de deposito a plazo utilizan intereses simples, por ende, retorno lineales segun la tasa de interes dada por el banco.
+
+Los certificados de depositos a plazo (CDP) son certificados que da el banco cuando una persona desee ingresar un capital para poder obtener intereses en un plazo de tiempo determinado. Dicho certificado valida dicho ingreso del capital e indica la tasa de interes que obtendra el cliente por el tiempo en que mantendra el capital dentro del banco. Las ventajas de tener un CDP es tener una inversion respaldada por el banco y posee tasa de interes mas altas. Los interes varian dependiendo de la cantidad del monto que se desee ahorrar, el plazo por el que el cliente ahorre y la moneda del monto, los bancos dan mayores tasas de intereses a ahorros en dolares. La mayoria de bancos utilizan interes simples segun tasa de interes que se le de al cliente.
+
+
 
 ## Base de datos:
 
