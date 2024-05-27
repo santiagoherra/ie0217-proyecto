@@ -38,9 +38,16 @@ Donde,
 -Monto se refiere al monto total del préstamo hipotecario
 
 ### Pestamos personales:
-Los prestamos personales es un tipo de credito **no asegurado** que ofrecen los bacos y otras instituciones financieras a los individuos. Este tipo de prestamo no requiere que la persona ofrazca un objeto colateral para asegurar el prestamo. La tasa de interes que dara el banco para un prestamos personal usualmente es de 18% hasta 26%. Usualmente la tasa de interes de los prestamos personales son mayores debido al riesgo de perdida de capital del prestatario. 
+Los prestamos personales es un tipo de credito **no asegurado** que ofrecen los bacos y otras instituciones financieras a los individuos. Este tipo de prestamo no requiere que la persona ofrazca un objeto colateral para asegurar el prestamo. La tasa de interes que dara el banco para un prestamos personal usualmente es de 18% hasta 26%, segun los dato tomados de la pagina del BAC. 
 
+El banco le da al cliente los siguientes requerimientos como:
+* Constancia salarial.
+* Colilla de pago del ultimo mes
+* Orden patronal.
 
+La colilla de pago del ultimo mes es esencial gracias a que es necesaria para analizar la capacidad de pago del cliente de las cuotas mensuales del prestamo. No se aceptaran clientes los cuales tenga un salario bruto menor a 450.000 o su equivalente en dolares y las cuotas mensuales no pueden ser mayores al 55% del salario bruto.
+
+ Tomando en cuenta estos valores, al cliente se le ofreceria una tabla personalizada para sus prestamos:  
 
 
 ## Préstamos prendarios:
@@ -86,8 +93,17 @@ La personas pueden tener cuentas bancarias las cuales pueden ser en dólares o c
 
 ## Certificados de Depósito a plazos:
 
-Los certificados de depositos a plazo (CDP) son certificados que da el banco cuando una persona desee ingresar un capital para poder obtener intereses en un plazo de tiempo determinado. Dicho certificado valida dicho ingreso del capital e indica la tasa de interes que obtendra el cliente por el tiempo en que mantendra el capital dentro del banco. Las ventajas de tener un CDP es tener una inversion respaldada por el banco y posee tasa de interes mas altas. Los interes varian dependiendo de la cantidad del monto que se desee ahorrar, el plazo por el que el cliente ahorre y la moneda del monto, los bancos dan mayores tasas de intereses a ahorros en dolares. La mayoria de bancos utilizan interes simples segun tasa de interes que se le de al cliente.
+Los certificados de depositos a plazo (CDP) son certificados que da el banco cuando una persona desee ingresar un capital para poder obtener intereses en un plazo de tiempo determinado. Dicho certificado valida dicho ingreso del capital e indica la tasa de interes que obtendra el cliente por el tiempo en que mantendra el capital dentro del banco. Las ventajas de tener un CDP es tener una inversion respaldada por el banco y posee tasa de interes mas altas. Los interes varian dependiendo de la cantidad del monto que se desee ahorrar, el plazo por el que el cliente ahorre y la moneda del monto, los bancos dan mayores tasas de intereses a ahorros en dolares. La mayoria de bancos utilizan interes simples segun tasa de interes que se le de al cliente. Los interes que se le daran al cliente esta dada por:
 
+$$
+I = P * r * t
+$$
+
+Donde:
+- I: Son los interes ganados durante un plazo de tiempo.
+- P: Es el principal monto ahorrado.
+- r: Es la tasa de interes dada por el banco.
+- t: Es el tiempo por el cual se acordo guardar el ahorro. 
 
 
 ## Base de datos:
