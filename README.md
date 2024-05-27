@@ -24,11 +24,10 @@ Este proyecto se centra en la investigación, diseño e implementación de un si
 Los prestamos se realizarán en base al monto que la persona desee obtener, el salario que la persona posea y moneda que la persona desee. En cuanto se tenga esto se desplegará una tabla con las opciones posibles donde la persona podrá elegir la cuota mensual que deberá pagar en base al lapso de tiempo por el que escoja el préstamos, esto dependiendo del salario que esta persona tenga. Las tasas de interés las dara el banco las cuales varían dependiendo del tipo de préstamo que la persona escoja. Además, se debe de considerar que los préstamos pueden ser en colones o en dólares.
 
 ### Pestamos personales:
-Los prestamos personales es un tipo de credito **no asegurado** que ofrecen los bacos y ptras instituciones financieras a los individuos. Este tipo de prestamo no requiere que la persona ofrazca un objeto colateral para asegurar el prestamo. La tasa de interes que dara el banco para un prestamos personal sera de 4%, entonces la formula para calcular las coutas es:
+Los prestamos personales es un tipo de credito **no asegurado** que ofrecen los bacos y ptras instituciones financieras a los individuos. Este tipo de prestamo no requiere que la persona ofrazca un objeto colateral para asegurar el prestamo. La tasa de interes que dara el banco para un prestamos personal usualmente es de 18% hasta 26%.
 
 
 
-Si la persona desea tener un prestamos por 1000000 de colones:
 
 ## Préstamos prendarios:
 Los préstamos prendarios son aquellos en los que la entidad bancaria solicita al cliente que requiere el préstamo, entregarle uno o varios activos físicos o financieros como garantía de que cumplirá con lo acordado según el préstamo [1]. Una forma más sencilla de comprender este tipo de préstamo es visualizarlo como si fuera lo que popularmente se conoce como "empeño", en donde un individuo cede un activo físico de forma temporal a una casa de empeño a cambio de dinero; en el caso del préstamo prendario sucede de forma similar, cediendo bienes como vehículos y acciones que permitirán eventualmente a la entidad bancaria, embargar o vender en caso de que el cliente incumpla con sus acuerdos y de esta forma, recuperar la inversión [1].
@@ -86,7 +85,7 @@ Donde,
 La personas pueden tener cuentas bancarias las cuales pueden ser en dólares o colones, dichas pueden poseer un máximo de dos cuentas bancarias. Estas están destinadas a la gestión de sus ahorros, donde que se utilizarán para obtener certificados de depósito a plazo. Los certificados de depósito a plazo son certificados que dan el banco gracias al ingreso de ahorros de parte de la persona, estos certificados se basan en un pago de interés que se le dará a la persona por el ingreso de sus ahorros por un plazo de tiempo definido. El banco da una tasa de interés para ahorros en colones y en dólares. 
 
 ## Certificados de Depósito a plazos:
-
+Los certificados de depositos a plazo son certificados que da el banco cuando una persona desee ingresar un capital para poder obtener intereses en un plazo de tiempo determinado. Dicho certificado valida dicho ingreso del capital e indica la tasa de interes que obtendra el cliente por el tiempo en que mantendra el capital dentro del banco. Los certificados de deposito a plazo utilizan intereses simples, por ende, retorno lineales segun la tasa de interes dada por el banco.
 
 ## Base de datos:
 
