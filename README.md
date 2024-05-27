@@ -64,7 +64,7 @@ Se limitarán los plazos al igual que lo realiza el BCR, donde los plazos dispon
 Por último, la fórmula para calcular la cuota mensual es:
 
 $$ 
-Cuota \: mensual = Monto \: total \cdot \frac{TEM \cdot (1+TEM)^n}{(1+TEM)^n-1}
+Cuota \ mensual = Monto \ total \cdot \frac{TEM \cdot (1+TEM)^n}{(1+TEM)^n-1}
 $$
 
 
