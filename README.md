@@ -66,6 +66,7 @@ Por último, la fórmula para calcular la cuota mensual es:
 $$ 
 Cuota \ mensual = Monto \ total \cdot \frac{TEM \cdot (1+TEM)^n}{(1+TEM)^n-1}
 $$
+
 Donde, 
 -TEM se refiere a la tasa efectiva mensual
 -n se refiere a la cantidad de meses de pago
