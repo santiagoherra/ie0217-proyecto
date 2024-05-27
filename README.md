@@ -52,7 +52,12 @@ A continuación, se muestran la tabla de valores con las opciones que puede sele
 
 **Nota, esto sería para el caso en que se soliciten cinco millones de colones o su equivalente en dólares.**
 
-### Préstamos Hipotecários:
+### Préstamos Hipotecarios:
+Un préstamo hipotecario hace referencia a un préstamo que se da con el fin de que se realice una compra de vivienda o de terreno. Debido al monto alto que conlleva este flujo de dinero, el préstamo hipotecario tiene la particularidad de que la garantía de pago es el bien inmueble, es decir, la vivienda o el terreno que se está adquiriendo. Como los demás tipos de préstamo, este se encuentra definidio por una tasa de interés, de la que depende la cantidad adicional de dinero que se debe de pagar por el monto prestado. No obstante, debido a tratarse de montos grandes, los plazos ofrecidos por los bancos son de 36 hasta 360 meses. Por ello, es usual que la tasa de interés varíe. Por ello, las tasas de interés suelen ser variables. Tomando como referencia las condiciones brindadas por el Banco de Costa Rica, se muestra la siguiente tasa variable:
+-Durante los primeros dos años enteros del préstamo, la tasa es fija de un 12%.
+-Durante el resto del plazo, la tasa se calculará según la siguiente ecuación, con piso 12%:
+$$ tasa = TBP + 6,50% $$
+Esto implica, que la tasa variable se calcula según la Tasa Básica Pasiva o TBP, brindada por el Banco Central que varía según las condiciones del mercado. A esta tasa, se le debe de sumar el 6,5%, lo que se conoce como el margen. No obstante por la seguridad del prestamista, se establece un piso, que es que no importa que tanto caiga la TBP, el valor menor que puede tener la tasa es del 12%. Para el proyecto, tomando en cuenta los datos de Costa Rica, brindados por el Banco Central, el valor de la TBP ponderado anual es de 5,00% y la desviación estándar asociada a este promedio es del 0,21%.
 
 
 ### Cuentas bancarias y gestión de ahorro:
