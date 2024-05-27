@@ -58,11 +58,11 @@ La colilla de pago del ultimo mes es esencial gracias a que es necesaria para an
 
  Tomando en cuenta estos valores, al cliente se le ofreceria una tabla personalizada para sus prestamos:  
 
-Segun el monto de 5000000 C, con una tasa de cambio de 512C
+Segun el monto de 5000000₡, con una tasa de cambio de 512.33₡ el dolar.
 
 | Intereses anuales | 24 meses | 60 meses | 84 meses | Tipo de Moneda |
 |-------------------|----------|----------|----------|----------------|
-|        20%        |  240,519 |  127,979 | 106,180  |    Colones     |
+|        20%        | 240,519₡ | 127,979₡ | 106,180₡ |    Colones     |
 |        16%        |  473,20$ |  231.9$  | 188.08$  |    Dolares     |
 
 
@@ -83,8 +83,8 @@ A continuación, se muestran la tabla de valores con las opciones que puede sele
 
 | Tasa de interés anual | 6 años  | 7 años  | 8 años  | Tipo de Moneda |
 |-----------------------|---------|---------|---------|----------------|
-| 12%                   |97 750,96|88 263,66|81 264,21| Colones        |
-| 7,25%                 |167,64   |148,56   |134,33   | Dólares        |
+| 12%                   |97 750,9₡|88 263,6₡|81 264,2₡| Colones        |
+| 7,25%                 |167,64$  |148,56$  |134,33$  | Dólares        |
 
 **Nota, esto sería para el caso en que se soliciten cinco millones de colones o su equivalente en dólares con una tasa de cambio de 512,33 colones (tasa de cambio del 26 de mayo de 2024). Datos tomados de la página oficial de BAC Credomatic [3].**
 
@@ -106,6 +106,8 @@ Se limitarán los plazos al igual que lo realiza el BCR, donde los plazos dispon
 ### Cuentas bancarias y gestión de ahorro:
 
 La personas pueden tener cuentas bancarias las cuales pueden ser en dólares o colones, dichas pueden poseer un máximo de dos cuentas bancarias. Estas están destinadas a la gestión de sus ahorros, donde que se utilizarán para obtener certificados de depósito a plazo. Los certificados de depósito a plazo son certificados que dan el banco gracias al ingreso de ahorros de parte de la persona, estos certificados se basan en un pago de interés que se le dará a la persona por el ingreso de sus ahorros por un plazo de tiempo definido. El banco da una tasa de interés para ahorros en colones y en dólares. 
+
+Las cuentas de ahorros pueden ser utilizadas para el pago de prestamos desde la cuenta que el cliente desee, para que esto sea posible se debe de tener tener la tasa de cambio de colones a dolores, para acciones de venta y compra, dichos valores estan dados por el Banco Central de Costa Rica. 
 
 ## Certificados de Depósito a plazos:
 
