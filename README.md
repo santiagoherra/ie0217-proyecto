@@ -233,7 +233,7 @@ Por último, se presenta la descripción de la tabla de certificados de depósit
 | **Columna**       | **Tipo de Dato** | **Descripción**                                             |
 |-------------------|------------------|-------------------------------------------------------------|
 | cdp_id            | INT              | Identificador único del CDP (llave primaria)                |
-| denominacion      | VARCHAR(8)      | Denominación de la moneda del CDP (colones/dólares)         |
+| denominacion      | VARCHAR(8)       | Denominación de la moneda del CDP (colones/dólares)         |
 | tasa              | DECIMAL(2, 2)    | Tasa de interés del CDP                                     |
 | plazo_meses       | INT              | Plazo en meses del CDP                                      |
 | monto_deposito    | DECIMAL(9, 2)    | Monto del depósito original del CDP                         |
