@@ -47,14 +47,14 @@ Donde:
 - r: Es el interes anual
 
 ### Pestamos personales:
-Los prestamos personales es un tipo de credito **no asegurado** que ofrecen los bacos y otras instituciones financieras a los individuos. Este tipo de prestamo no requiere que la persona ofrazca un objeto colateral para asegurar el prestamo. La tasa de interes que dara el banco para un prestamos personal usualmente es de 18% hasta 26%, segun los dato tomados de la pagina del BAC [11]. 
+Los prestamos personales es un tipo de credito **no asegurado** que ofrecen los bacos y otras instituciones financieras a los individuos. Este tipo de prestamo no requiere que la persona ofrazca un objeto colateral para asegurar el prestamo. La tasa de interes que dara el banco para un prestamos personal usualmente es de 18% hasta 26%, segun los dato tomados de la pagina del BAC [2]. 
 
 El banco le da al cliente los siguientes requerimientos como:
 * Constancia salarial.
 * Colilla de pago del ultimo mes
 * Orden patronal.
 
-La colilla de pago del ultimo mes es esencial gracias a que es necesaria para analizar la capacidad de pago del cliente de las cuotas mensuales del prestamo. No se aceptaran clientes los cuales tenga un salario bruto menor a 450.000 o su equivalente en dolares y las cuotas mensuales no pueden ser mayores al 55% del salario bruto [12].
+La colilla de pago del ultimo mes es esencial gracias a que es necesaria para analizar la capacidad de pago del cliente de las cuotas mensuales del prestamo. No se aceptaran clientes los cuales tenga un salario bruto menor a 450.000 o su equivalente en dolares y las cuotas mensuales no pueden ser mayores al 55% del salario bruto [3].
 
  Tomando en cuenta estos valores, al cliente se le ofreceria una tabla personalizada para sus prestamos:  
 
@@ -67,11 +67,11 @@ Segun el monto de 5000000₡, con una tasa de cambio de 512.33₡ el dolar.
 
 
 ## Préstamos prendarios:
-Los préstamos prendarios son aquellos en los que la entidad bancaria solicita al cliente que requiere el préstamo, entregarle uno o varios activos físicos o financieros como garantía de que cumplirá con lo acordado según el préstamo [2]. Una forma más sencilla de comprender este tipo de préstamo es visualizarlo como si fuera lo que popularmente se conoce como "empeño", en donde un individuo cede un activo físico de forma temporal a una casa de empeño a cambio de dinero; en el caso del préstamo prendario sucede de forma similar, cediendo bienes como vehículos y acciones que permitirán eventualmente a la entidad bancaria, embargar o vender en caso de que el cliente incumpla con sus acuerdos y de esta forma, recuperar la inversión [2].
+Los préstamos prendarios son aquellos en los que la entidad bancaria solicita al cliente que requiere el préstamo, entregarle uno o varios activos físicos o financieros como garantía de que cumplirá con lo acordado según el préstamo [2]. Una forma más sencilla de comprender este tipo de préstamo es visualizarlo como si fuera lo que popularmente se conoce como "empeño", en donde un individuo cede un activo físico de forma temporal a una casa de empeño a cambio de dinero; en el caso del préstamo prendario sucede de forma similar, cediendo bienes como vehículos y acciones que permitirán eventualmente a la entidad bancaria, embargar o vender en caso de que el cliente incumpla con sus acuerdos y de esta forma, recuperar la inversión [4].
 
-En cuanto a las características generales de este tipo de préstamos, se encuentra una baja considerable en los intereses a comparación de los préstamos personales (estos son más comunes en las entidades bancarias), encontrándose estas entre el 1% y 5% y además, generalmente este tipo de préstamos cuenta con plazos de rembolso menores, siendo estos de entre 1 y 8 años (dependiendo de la cantidad de dinero solicitada por el cliente) [2]. Es necesario destacar que la cantidad de dinero recibida por el cliente puede depender del valor de los bienes que haya entregado, y estos no serán devueltos hasta que se finalice la devolución del dinero prestado [2].
+En cuanto a las características generales de este tipo de préstamos, se encuentra una baja considerable en los intereses a comparación de los préstamos personales (estos son más comunes en las entidades bancarias), encontrándose estas entre el 1% y 5% y además, generalmente este tipo de préstamos cuenta con plazos de rembolso menores, siendo estos de entre 1 y 8 años (dependiendo de la cantidad de dinero solicitada por el cliente) [4]. Es necesario destacar que la cantidad de dinero recibida por el cliente puede depender del valor de los bienes que haya entregado, y estos no serán devueltos hasta que se finalice la devolución del dinero prestado [4].
 
-Por último, el cliente que presenta el préstamo prendario no se ve afectado por comisiones por amortización o cancelación anticipada; esto quiere decir que el cliente que entregó uno o más bienes puede recuperarlo sin tener que realizar ningún tipo de gasto extra como consecuencia [2]. 
+Por último, el cliente que presenta el préstamo prendario no se ve afectado por comisiones por amortización o cancelación anticipada; esto quiere decir que el cliente que entregó uno o más bienes puede recuperarlo sin tener que realizar ningún tipo de gasto extra como consecuencia [4]. 
 
 En este sistema, para solicitar un crédito prendario, es necesario tomar en cuenta que:
 
@@ -86,10 +86,10 @@ A continuación, se muestran la tabla de valores con las opciones que puede sele
 | 12%                   |97 750,9₡|88 263,6₡|81 264,2₡| Colones        |
 | 7,25%                 |167,64$  |148,56$  |134,33$  | Dólares        |
 
-**Nota, esto sería para el caso en que se soliciten cinco millones de colones o su equivalente en dólares con una tasa de cambio de 512,33 colones (tasa de cambio del 26 de mayo de 2024). Datos tomados de la página oficial de BAC Credomatic [3].**
+**Nota, esto sería para el caso en que se soliciten cinco millones de colones o su equivalente en dólares con una tasa de cambio de 512,33 colones (tasa de cambio del 26 de mayo de 2024). Datos tomados de la página oficial de BAC Credomatic [5].**
 
 ### Préstamos Hipotecarios:
-Un préstamo hipotecario hace referencia a un préstamo que se da con el fin de que se realice una compra de vivienda o de terreno. Debido al monto alto que conlleva este flujo de dinero, el préstamo hipotecario tiene la particularidad de que la garantía de pago es el bien inmueble, es decir, la vivienda o el terreno que se está adquiriendo. Como los demás tipos de préstamo, este se encuentra definidio por una tasa de interés, de la que depende la cantidad adicional de dinero que se debe de pagar por el monto prestado. No obstante, debido a tratarse de montos grandes, los plazos ofrecidos por los bancos son de 36 hasta 360 meses [4]. Por ello, es usual que la tasa de interés varíe. Por ello, las tasas de interés suelen ser variables. Tomando como referencia las condiciones brindadas por el Banco de Costa Rica, se muestra la siguiente tasa variable [5]:
+Un préstamo hipotecario hace referencia a un préstamo que se da con el fin de que se realice una compra de vivienda o de terreno. Debido al monto alto que conlleva este flujo de dinero, el préstamo hipotecario tiene la particularidad de que la garantía de pago es el bien inmueble, es decir, la vivienda o el terreno que se está adquiriendo. Como los demás tipos de préstamo, este se encuentra definidio por una tasa de interés, de la que depende la cantidad adicional de dinero que se debe de pagar por el monto prestado. No obstante, debido a tratarse de montos grandes, los plazos ofrecidos por los bancos son de 36 hasta 360 meses [6]. Por ello, es usual que la tasa de interés varíe. Por ello, las tasas de interés suelen ser variables. Tomando como referencia las condiciones brindadas por el Banco de Costa Rica, se muestra la siguiente tasa variable [7]:
 
 -Durante los primeros dos años enteros del préstamo, la tasa es fija de un 12%.
 
@@ -99,7 +99,7 @@ $$
 tasa = TBP + 6,50% 
 $$
 
-Esto implica, que la tasa variable se calcula según la Tasa Básica Pasiva o TBP, brindada por el Banco Central que varía según las condiciones del mercado. A esta tasa, se le debe de sumar el 6,5%, lo que se conoce como el margen. No obstante por la seguridad del prestamista, se establece un piso, que es que no importa que tanto caiga la TBP, el valor menor que puede tener la tasa es del 12%. Para el proyecto, tomando en cuenta los datos de Costa Rica, brindados por el Banco Central, el valor de la TBP ponderado desde el 2013 es de 5,47% [6]. Por ello, si se toma la fórmula y se calcula la tasa con este valor, se obtiene una tasa menor a la tasa piso. Además, para el año 2024, la tasa se encuentra en una tendencia decreciente, donde el promedio anual es del 5,00%. Por ello, se considerará para el proyecto una tasa fija del 12%, puesto que en promedio, la tasa calculada no supera el piso. 
+Esto implica, que la tasa variable se calcula según la Tasa Básica Pasiva o TBP, brindada por el Banco Central que varía según las condiciones del mercado. A esta tasa, se le debe de sumar el 6,5%, lo que se conoce como el margen. No obstante por la seguridad del prestamista, se establece un piso, que es que no importa que tanto caiga la TBP, el valor menor que puede tener la tasa es del 12%. Para el proyecto, tomando en cuenta los datos de Costa Rica, brindados por el Banco Central, el valor de la TBP ponderado desde el 2013 es de 5,47% [8]. Por ello, si se toma la fórmula y se calcula la tasa con este valor, se obtiene una tasa menor a la tasa piso. Además, para el año 2024, la tasa se encuentra en una tendencia decreciente, donde el promedio anual es del 5,00%. Por ello, se considerará para el proyecto una tasa fija del 12%, puesto que en promedio, la tasa calculada no supera el piso. 
 
 Se limitarán los plazos al igual que lo realiza el BCR, donde los plazos disponibles se encuentran en múltiplos de 5 años, donde el mínimo son 5 años y el máximo 30. El cliente deberá de ingresar el valor total de la casa y el valor a solicitar, puesto que ningún banco nacional suele financiar más del 80% de la propiedad. Aparte, se tendrá un valor mínimo de 5 millones de colones y un valor máximo de 150 millones de colones.
 
@@ -111,10 +111,10 @@ Las cuentas de ahorros pueden ser utilizadas para el pago de prestamos desde la 
 
 ## Certificados de Depósito a plazos:
 
-Los certificados de depositos a plazo (CDP) son certificados que da el banco cuando una persona desee ingresar un capital para poder obtener intereses en un plazo de tiempo determinado. Dicho certificado valida dicho ingreso del capital e indica la tasa de interes que obtendra el cliente por el tiempo en que mantendra el capital dentro del banco[10]. Las ventajas de tener un CDP es tener una inversion respaldada por el banco y posee tasa de interes mas altas. Los interes varian dependiendo de la cantidad del monto que se desee ahorrar, el plazo por el que el cliente ahorre y la moneda del monto, los bancos dan mayores tasas de intereses a ahorros en dolares[9]. La mayoria de bancos utilizan interes simples segun tasa de interes que se le de al cliente. El BCR, acepta valores minimos de 50000₡ y 100$.
+Los certificados de depositos a plazo (CDP) son certificados que da el banco cuando una persona desee ingresar un capital para poder obtener intereses en un plazo de tiempo determinado. Dicho certificado valida dicho ingreso del capital e indica la tasa de interes que obtendra el cliente por el tiempo en que mantendra el capital dentro del banco[9]. Las ventajas de tener un CDP es tener una inversion respaldada por el banco y posee tasa de interes mas altas. Los interes varian dependiendo de la cantidad del monto que se desee ahorrar, el plazo por el que el cliente ahorre y la moneda del monto, los bancos dan mayores tasas de intereses a ahorros en dolares[10]. La mayoria de bancos utilizan interes simples segun tasa de interes que se le de al cliente. El BCR, acepta valores minimos de 50000₡ y 100$.
  
 
- Los interes que se le daran al cliente esta dada por [13]:
+ Los interes que se le daran al cliente esta dada por [11]:
 
 $$
 I = P * r * t
@@ -128,15 +128,15 @@ Donde:
 
 ## Registros contables
 
-Un registro contable descrito en su forma más esencial, es el soporte físico o digital, donde se almacena toda la información financiera de las compañías durante un período de tiempo, este le permite a las compañías obtener un balance general y un estado financiero [7].
+Un registro contable descrito en su forma más esencial, es el soporte físico o digital, donde se almacena toda la información financiera de las compañías durante un período de tiempo, este le permite a las compañías obtener un balance general y un estado financiero [12].
 
-Existen registros contables obligatorios y no obligatorios. Entre los obligatorios se encuentra el Libro Diario, en este se registran diariamente todas las operaciones que la empresa realiza a nivel financiero y consisten en asientos contables que se construyen cronológicamente, también se encuentran los libros de inventarios y balances; estos dan detalles de la actividad empresarial y patrimonio desde el origen de la empresa [7].
+Existen registros contables obligatorios y no obligatorios. Entre los obligatorios se encuentra el Libro Diario, en este se registran diariamente todas las operaciones que la empresa realiza a nivel financiero y consisten en asientos contables que se construyen cronológicamente, también se encuentran los libros de inventarios y balances; estos dan detalles de la actividad empresarial y patrimonio desde el origen de la empresa [12].
 
-Los registros no obligatorios, son registros no exigidos por la ley pero que la empresa elabora para organizar su estructura financiera y tributaria, entre estos se encuentran: el estado de flujos de efectivo (entrada y salida de dinero en efectivo), estado de resultados (totalidad de ingresos y egresos del negocio) y el balance (registra todos los activos y los pasivos de la empresa) [7].
+Los registros no obligatorios, son registros no exigidos por la ley pero que la empresa elabora para organizar su estructura financiera y tributaria, entre estos se encuentran: el estado de flujos de efectivo (entrada y salida de dinero en efectivo), estado de resultados (totalidad de ingresos y egresos del negocio) y el balance (registra todos los activos y los pasivos de la empresa) [12].
 
-En el caso del estado de resultados, encuentra su importancia en que a partir de este la empresa puede desarrollar un análisis de que tan rentable es su empresa y además, da un seguimiento de todos aquellos clientes que aún no han realizado sus pagos y de todos aquellos gastos que se encuentran sin amortizar [7].
+En el caso del estado de resultados, encuentra su importancia en que a partir de este la empresa puede desarrollar un análisis de que tan rentable es su empresa y además, da un seguimiento de todos aquellos clientes que aún no han realizado sus pagos y de todos aquellos gastos que se encuentran sin amortizar [12].
 
-A continuación, se muestran todos aquellos datos que deben estar presentes en un registro de transacciones para que este pueda evidenciar la información necesaria tanto para la entidad financiera, como para los clientes [7]:
+A continuación, se muestran todos aquellos datos que deben estar presentes en un registro de transacciones para que este pueda evidenciar la información necesaria tanto para la entidad financiera, como para los clientes [12]:
 
 + Fecha y hora en la que se realiza la transacción.
 + Número de transacción.
@@ -144,7 +144,7 @@ A continuación, se muestran todos aquellos datos que deben estar presentes en u
 + Importes registrados a cada una de las cuentas involucradas en la transacción.
 + Descripción detallada de la transacción.
 
-En cuanto a los beneficios más importantes de utilizar registros contables, se encuentran: el monitorear regularmente el crecimiento general del negocio, la facilitación en la elaboración de estrategias políticas y comerciales orientadas al mercado y el aumento de la rapidez y la eficacia para la toma de decisiones de la empresa [8]. Este monitoreo regular del negocio, permite a los accionistas conocer la rentabilidad y la proyección financiera de la entidad y en función de estos, tomar las decisiones que consideren adecuadas para el futuro de dicha entidad, mientras que la elaboración de estrategias políticas y comerciales permite dirigir a una empresa hacia su crecimiento financiero a partir del aumento de sus ingresos generado por una mayor atracción de clientes. Por último, la rapidez y eficacia al tomar decisiones permitirá eventualmente realizar mejores negociaciones con otras compañías y marcas asociadas, lo que implica al igual que en el beneficio anterior, el crecimiento financiero de la empresa.
+En cuanto a los beneficios más importantes de utilizar registros contables, se encuentran: el monitorear regularmente el crecimiento general del negocio, la facilitación en la elaboración de estrategias políticas y comerciales orientadas al mercado y el aumento de la rapidez y la eficacia para la toma de decisiones de la empresa [13]. Este monitoreo regular del negocio, permite a los accionistas conocer la rentabilidad y la proyección financiera de la entidad y en función de estos, tomar las decisiones que consideren adecuadas para el futuro de dicha entidad, mientras que la elaboración de estrategias políticas y comerciales permite dirigir a una empresa hacia su crecimiento financiero a partir del aumento de sus ingresos generado por una mayor atracción de clientes. Por último, la rapidez y eficacia al tomar decisiones permitirá eventualmente realizar mejores negociaciones con otras compañías y marcas asociadas, lo que implica al igual que en el beneficio anterior, el crecimiento financiero de la empresa.
 
 
 ## Base de datos:
@@ -266,26 +266,27 @@ Se dividio el trabajo entre los integrante del grupo para medir los avances sema
 
 [1] "¿Cómo calcular la cuota para un préstamo?", BBVA, 2024. https://www.bbva.pe/blog/mis-finanzas/financiamiento/-como-calcular-la-cuota-para-un-prestamo-.html (accedido 26 de mayo de 2024).
 
-[2] “¿Qué es un préstamo prendario?: Características y ejemplos”. Santander Consumer Finance. Accedido el 24 de mayo de 2024. [En línea]. Disponible: https://www.santanderconsumer.es/blog/post/que-es-un-prestamo-prendario-caracteristicas-y-ejemplos
+[2] "Prestamo personal". BAC. Accedido el 23 de Mayo de 2024. [En linea]. https://www.baccredomatic.com/es-cr/personas/prestamos?categoria=personales&nombre=prestamo-personal&id=165901
 
-[3] “Préstamos Destacados”. BAC Credomátic. Accedido el 25 de mayo de 2024. [En línea]. Disponible: https://www.baccredomatic.com/es-cr/personas/prestamos?categoria=destacados&amp;bacid=CRIN-CORE-CPR-000007-GL-AW-PR-GG-B6-SR-00000/SEARCH-VEL-PPRENDARIO-NOBRAND-BROAD&amp;gclid=Cj0KCQjwu8uyBhC6ARIsAKwBGpRBq1byGhW05q1Fy7_K4r_2Sssz97o6e93dUTfRk0nDlo6utAl7pt8aAlw-EALw_wcB&amp;nombre=compra-de-casa&amp;id=165906
+[3] "Creditos Personales para cada necesidad". COOPENAE. Accedido el 26 de Mayo de 2024. [En linea]. https://www.coopenae.fi.cr/credito-personal
 
-[4] "¿Cómo funciona una hipoteca?", Banco Sabadell, 2024. https://www.bancsabadell.com/bsnacional/es/blog/como-funciona-una-hipoteca/#:~:text=Una%20hipoteca%20es%20un%20pr%C3%A9stamo,pago%20es%20el%20propio%20inmueble. (accedido 26 de mayo de 2024).
+[4] “¿Qué es un préstamo prendario?: Características y ejemplos”. Santander Consumer Finance. Accedido el 24 de mayo de 2024. [En línea]. Disponible: https://www.santanderconsumer.es/blog/post/que-es-un-prestamo-prendario-caracteristicas-y-ejemplos
 
-[5] "Solicitud de Préstamo Hipotecario", BAC Costa Rica, 2024. https://www.baccredomatic.com/es-cr/personas/prestamos/vivienda/terminada/solicitud (accedido 24 de mayo de 2024).
+[5] “Préstamos Destacados”. BAC Credomátic. Accedido el 25 de mayo de 2024. [En línea]. Disponible: https://www.baccredomatic.com/es-cr/personas/prestamos?categoria=destacados&amp;bacid=CRIN-CORE-CPR-000007-GL-AW-PR-GG-B6-SR-00000/SEARCH-VEL-PPRENDARIO-NOBRAND-BROAD&amp;gclid=Cj0KCQjwu8uyBhC6ARIsAKwBGpRBq1byGhW05q1Fy7_K4r_2Sssz97o6e93dUTfRk0nDlo6utAl7pt8aAlw-EALw_wcB&amp;nombre=compra-de-casa&amp;id=165906
 
-[6] "Tasa Básica Pasiva (TBP):, Banco Central de Costa Rica, 2024. https://gee.bccr.fi.cr/indicadoreseconomicos/cuadros/frmvercatcuadro.aspx?idioma=1&codcuadro=%2017 (accedido 26 de mayo de 2024).
+[6] "¿Cómo funciona una hipoteca?", Banco Sabadell, 2024. https://www.bancsabadell.com/bsnacional/es/blog/como-funciona-una-hipoteca/#:~:text=Una%20hipoteca%20es%20un%20pr%C3%A9stamo,pago%20es%20el%20propio%20inmueble. (accedido 26 de mayo de 2024).
 
-[7] “Registros contables, qué són, cómo llevarlos y todo lo que debes saber”. Contífico. Accedido el 26 de mayo de 2024. [En línea]. Disponible: https://contifico.com/que-son-los-registros-contables/
+[7] "Solicitud de Préstamo Hipotecario", BAC Costa Rica, 2024. https://www.baccredomatic.com/es-cr/personas/prestamos/vivienda/terminada/solicitud (accedido 24 de mayo de 2024).
 
-[8] “Importancia de los registros contables en una empresa”. JLC Auditors. Accedido el 26 de mayo de 2024. [En línea]. Disponible: https://jlcauditors.com/importancia-registros-contables-empresa/
+[8] "Tasa Básica Pasiva (TBP):, Banco Central de Costa Rica, 2024. https://gee.bccr.fi.cr/indicadoreseconomicos/cuadros/frmvercatcuadro.aspx?idioma=1&codcuadro=%2017 (accedido 26 de mayo de 2024).
 
-[9] "Tasas de intereses para CDP's". Banco de Costa Rica (BCR). Accedido el 26 de Mayo de 2024. [En linea]. https://www.bancobcr.com/wps/portal/bcr/bancobcr/personas/inversiones/certificados_de_deposito_a_plazo tasas_de_interes_para_cdps/
+[9] "Que es el Certificado de Deposito de Ahorro o CDA". Rossana Cardozo. Accedido el 23 de Mayo de 2024. [En linea]. https://www.bbva.com/es/innovacion/doce-consejos-de-seguridad-para-usar-la-banca-digital/
 
-[10] "Que es el Certificado de Deposito de Ahorro o CDA". Rossana Cardozo. Accedido el 23 de Mayo de 2024. [En linea]. https://www.bbva.com/es/innovacion/doce-consejos-de-seguridad-para-usar-la-banca-digital/
+[10] "Tasas de intereses para CDP's". Banco de Costa Rica (BCR). Accedido el 26 de Mayo de 2024. [En linea]. https://www.bancobcr.com/wps/portal/bcr/bancobcr/personas/inversiones/certificados_de_deposito_a_plazo tasas_de_interes_para_cdps/
 
-[11] "Prestamo personal". BAC. Accedido el 23 de Mayo de 2024. [En linea]. https://www.baccredomatic.com/es-cr/personas/prestamos?categoria=personales&nombre=prestamo-personal&id=165901
+[11] "Interes simple y compuesto, como calcularlo e implementarlo". GBS Group Staff. Accedido el 26 de Mayo de 2024. [En linea]. https://blog.gbsgroup.net/blog/interes-simple-y-compuesto-como-calcularlo-e-implementarlo 
 
-[12] "Creditos Personales para cada necesidad". COOPENAE. Accedido el 26 de Mayo de 2024. [En linea]. https://www.coopenae.fi.cr/credito-personal
+[12] “Registros contables, qué són, cómo llevarlos y todo lo que debes saber”. Contífico. Accedido el 26 de mayo de 2024. [En línea]. Disponible: https://contifico.com/que-son-los-registros-contables/
 
-[13] "Interes simple y compuesto, como calcularlo e implementarlo". GBS Group Staff. Accedido el 26 de Mayo de 2024. [En linea]. https://blog.gbsgroup.net/blog/interes-simple-y-compuesto-como-calcularlo-e-implementarlo 
+[13] “Importancia de los registros contables en una empresa”. JLC Auditors. Accedido el 26 de mayo de 2024. [En línea]. Disponible: https://jlcauditors.com/importancia-registros-contables-empresa/
+
