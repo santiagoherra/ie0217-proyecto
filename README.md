@@ -37,6 +37,15 @@ Donde,
 
 -Monto se refiere al monto total del préstamo hipotecario
 
+Los intereses dados por el banco en las tablas personalizadas son anuales, entonces se necesita convertir los intereses anuales a mensuales. La formula de intereses mensuales es:
+
+$$
+TEM = (1 + r)^{1/12} - 1
+$$
+
+Donde:
+- r: Es el interes anual
+
 ### Pestamos personales:
 Los prestamos personales es un tipo de credito **no asegurado** que ofrecen los bacos y otras instituciones financieras a los individuos. Este tipo de prestamo no requiere que la persona ofrazca un objeto colateral para asegurar el prestamo. La tasa de interes que dara el banco para un prestamos personal usualmente es de 18% hasta 26%, segun los dato tomados de la pagina del BAC. 
 
@@ -48,6 +57,13 @@ El banco le da al cliente los siguientes requerimientos como:
 La colilla de pago del ultimo mes es esencial gracias a que es necesaria para analizar la capacidad de pago del cliente de las cuotas mensuales del prestamo. No se aceptaran clientes los cuales tenga un salario bruto menor a 450.000 o su equivalente en dolares y las cuotas mensuales no pueden ser mayores al 55% del salario bruto.
 
  Tomando en cuenta estos valores, al cliente se le ofreceria una tabla personalizada para sus prestamos:  
+
+Segun el monto de 5000000 C, con una tasa de cambio de 512C
+
+| Intereses anuales | 24 meses | 60 meses | 84 meses | Tipo de Moneda |
+|-------------------|----------|----------|----------|----------------|
+|        20%        |  240,519 |  127,979 | 106,180  |    Colones     |
+|        16%        |  473,20$ |  231.9$  | 188.08$  |    Dolares     |
 
 
 ## Préstamos prendarios:
@@ -93,7 +109,10 @@ La personas pueden tener cuentas bancarias las cuales pueden ser en dólares o c
 
 ## Certificados de Depósito a plazos:
 
-Los certificados de depositos a plazo (CDP) son certificados que da el banco cuando una persona desee ingresar un capital para poder obtener intereses en un plazo de tiempo determinado. Dicho certificado valida dicho ingreso del capital e indica la tasa de interes que obtendra el cliente por el tiempo en que mantendra el capital dentro del banco. Las ventajas de tener un CDP es tener una inversion respaldada por el banco y posee tasa de interes mas altas. Los interes varian dependiendo de la cantidad del monto que se desee ahorrar, el plazo por el que el cliente ahorre y la moneda del monto, los bancos dan mayores tasas de intereses a ahorros en dolares. La mayoria de bancos utilizan interes simples segun tasa de interes que se le de al cliente. Los interes que se le daran al cliente esta dada por:
+Los certificados de depositos a plazo (CDP) son certificados que da el banco cuando una persona desee ingresar un capital para poder obtener intereses en un plazo de tiempo determinado. Dicho certificado valida dicho ingreso del capital e indica la tasa de interes que obtendra el cliente por el tiempo en que mantendra el capital dentro del banco. Las ventajas de tener un CDP es tener una inversion respaldada por el banco y posee tasa de interes mas altas. Los interes varian dependiendo de la cantidad del monto que se desee ahorrar, el plazo por el que el cliente ahorre y la moneda del monto, los bancos dan mayores tasas de intereses a ahorros en dolares. La mayoria de bancos utilizan interes simples segun tasa de interes que se le de al cliente. El BCR, acepta valores minimos de 
+ 
+
+ Los interes que se le daran al cliente esta dada por:
 
 $$
 I = P * r * t
