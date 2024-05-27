@@ -283,6 +283,14 @@ Se diseño una estructura del programa para poder capturar la esencia y funciona
 
 ![rip](funcionamiento.jpeg "Estructura del programa")
 
+-Utilizando la base de datos, es sencillo poder elaborar tablas que contienen únicamente los registros personales, seleccionando aquellas filas que contenga el número de cédula de la persona que consulta por su registro de transacciones. Si se quisiera el registro de préstamos, se seleccionan únicamente aquellas transacciones relacionadas con un abono o solicitud de préstamos. 
+
+-Para la elaboración del resgistro de préstamos personalizados, se planea utilizar la biblioteca fstream, que permite realizar modificaciones a archivos.txt. 
+
+-Se planea utilizar stdexcept junto con las expresiones de try, catch y throw para el manejo de excepciones, lo que ayudará a brindar robustez, además de hacer el código mantenible y escalable. 
+
+-Se prevee que es necesario la definición de clases que contengan los métodos y atributos necesarios para el manejo de objetos como lo serían los préstamos, los certificados a plazos y las cuentas de ahorro.
+
 ## Cronograma:
 Se dividio el trabajo entre los integrante del grupo para medir los avances semanales del proyecto y poder implementar una estrategia de equipo hacia la resolucion de los problemas en el desarrollo del codigo. Se planteo trabajar simulteaneamente para poder ayudarse unos a otros durante el proceso. Ademas se organizaran reuniones de equipo cada 2 semanas para poder ver el progreso del codigo, replantear soluciones y reestructurar el flujo de trabajo por si surgen problemas imprevistos.
 
