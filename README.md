@@ -62,7 +62,9 @@ Esto implica, que la tasa variable se calcula según la Tasa Básica Pasiva o TB
 Se limitarán los plazos al igual que lo realiza el BCR, donde los plazos disponibles se encuentran en múltiplos de 5 años, donde el mínimo son 5 años y el máximo 30. El cliente deberá de ingresar el valor total de la casa y el valor a solicitar, puesto que ningún banco nacional suele financiar más del 80% de la propiedad. Aparte, se tendrá un valor mínimo de 5 millones de colones y un valor máximo de 150 millones de colones.
 
 Por último, la fórmula para calcular la cuota mensual es:
-$$ Cuota mensual = Monto total \cdot \frac{TEM \cdot (1+TEM)^{n}}{(1+TEM)^n-1}$$
+$$ 
+Cuota mensual = Monto total \cdot \frac{TEM \cdot (1+TEM)^n}{(1+TEM)^n-1}
+$$
 
 
 ### Cuentas bancarias y gestión de ahorro:
