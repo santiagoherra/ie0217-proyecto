@@ -209,7 +209,7 @@ Ahora, se presenta la descripción de la tabla de préstamos. De nuevo, cada pr�
 |----------------------|------------------|------------------------------------------------------------------|
 | prestamo_id          | INT              | Número único que identifica el préstamo (llave primaria)         |
 | tipo                 | VARCHAR(11)      | Tipo de préstamo, ya sea prendario, hipotecario o personal       |
-| denominacion         | VARCHAR(8)      | Denominación de la moneda del préstamo (colones/dólares)         |
+| denominacion         | VARCHAR(8)       | Denominación de la moneda del préstamo (colones/dólares)         |
 | monto_total          | DECIMAL(9, 2)    | Monto total del préstamo                                         |
 | plazo_meses          | INT              | Plazo del préstamo en meses                                      |
 | tasa                 | DECIMAL(2, 2)    | Tasa de interés de ahorro de la cuenta                           |
