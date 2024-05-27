@@ -53,7 +53,7 @@ A continuación, se muestran la tabla de valores con las opciones que puede sele
 **Nota, esto sería para el caso en que se soliciten cinco millones de colones o su equivalente en dólares.**
 
 ### Préstamos Hipotecarios:
-Un préstamo hipotecario hace referencia a un préstamo que se da con el fin de que se realice una compra de vivienda o de terreno. Debido al monto alto que conlleva este flujo de dinero, el préstamo hipotecario tiene la particularidad de que la garantía de pago es el bien inmueble, es decir, la vivienda o el terreno que se está adquiriendo. Como los demás tipos de préstamo, este se encuentra definidio por una tasa de interés, de la que depende la cantidad adicional de dinero que se debe de pagar por el monto prestado. No obstante, debido a tratarse de montos grandes, los plazos ofrecidos por los bancos son de 36 hasta 360 meses. Por ello, es usual que la tasa de interés varíe. Por ello, las tasas de interés suelen ser variables. Tomando como referencia las condiciones brindadas por el Banco de Costa Rica, se muestra la siguiente tasa variable:
+Un préstamo hipotecario hace referencia a un préstamo que se da con el fin de que se realice una compra de vivienda o de terreno. Debido al monto alto que conlleva este flujo de dinero, el préstamo hipotecario tiene la particularidad de que la garantía de pago es el bien inmueble, es decir, la vivienda o el terreno que se está adquiriendo. Como los demás tipos de préstamo, este se encuentra definidio por una tasa de interés, de la que depende la cantidad adicional de dinero que se debe de pagar por el monto prestado. No obstante, debido a tratarse de montos grandes, los plazos ofrecidos por los bancos son de 36 hasta 360 meses[2]. Por ello, es usual que la tasa de interés varíe. Por ello, las tasas de interés suelen ser variables. Tomando como referencia las condiciones brindadas por el Banco de Costa Rica, se muestra la siguiente tasa variable[3]:
 
 -Durante los primeros dos años enteros del préstamo, la tasa es fija de un 12%.
 
@@ -195,3 +195,8 @@ CREATE TABLE certificados_de_deposito (
 ## Referencias
 
 [1] “¿Qué es un préstamo prendario?: Características y ejemplos”. Santander Consumer Finance. Accedido el 24 de mayo de 2024. [En línea]. Disponible: https://www.santanderconsumer.es/blog/post/que-es-un-prestamo-prendario-caracteristicas-y-ejemplos
+[2] "¿Cómo funciona una hipoteca?", Banco Sabadell, 2024. https://www.bancsabadell.com/bsnacional/es/blog/como-funciona-una-hipoteca/#:~:text=Una%20hipoteca%20es%20un%20pr%C3%A9stamo,pago%20es%20el%20propio%20inmueble. (accedido 26 de mayo de 2024).
+[3] "Solicitud de Préstamo Hipotecario", BAC Costa Rica, 2024. https://www.baccredomatic.com/es-cr/personas/prestamos/vivienda/terminada/solicitud (accedido 24 de mayo de 2024).
+[4] "Tasa Básica Pasiva (TBP):, Banco Central de Costa Rica, 2024. https://gee.bccr.fi.cr/indicadoreseconomicos/cuadros/frmvercatcuadro.aspx?idioma=1&codcuadro=%2017 (accedido 26 de mayo de 2024).
+[5] "¿Cómo calcular la cuota para un préstamo?", BBVA, 2024. https://www.bbva.pe/blog/mis-finanzas/financiamiento/-como-calcular-la-cuota-para-un-prestamo-.html (accedido 26 de mayo de 2024).
+
