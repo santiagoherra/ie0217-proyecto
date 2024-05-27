@@ -47,14 +47,14 @@ Donde:
 - r: Es el interes anual
 
 ### Pestamos personales:
-Los prestamos personales es un tipo de credito **no asegurado** que ofrecen los bacos y otras instituciones financieras a los individuos. Este tipo de prestamo no requiere que la persona ofrazca un objeto colateral para asegurar el prestamo. La tasa de interes que dara el banco para un prestamos personal usualmente es de 18% hasta 26%, segun los dato tomados de la pagina del BAC. 
+Los prestamos personales es un tipo de credito **no asegurado** que ofrecen los bacos y otras instituciones financieras a los individuos. Este tipo de prestamo no requiere que la persona ofrazca un objeto colateral para asegurar el prestamo. La tasa de interes que dara el banco para un prestamos personal usualmente es de 18% hasta 26%, segun los dato tomados de la pagina del BAC [11]. 
 
 El banco le da al cliente los siguientes requerimientos como:
 * Constancia salarial.
 * Colilla de pago del ultimo mes
 * Orden patronal.
 
-La colilla de pago del ultimo mes es esencial gracias a que es necesaria para analizar la capacidad de pago del cliente de las cuotas mensuales del prestamo. No se aceptaran clientes los cuales tenga un salario bruto menor a 450.000 o su equivalente en dolares y las cuotas mensuales no pueden ser mayores al 55% del salario bruto.
+La colilla de pago del ultimo mes es esencial gracias a que es necesaria para analizar la capacidad de pago del cliente de las cuotas mensuales del prestamo. No se aceptaran clientes los cuales tenga un salario bruto menor a 450.000 o su equivalente en dolares y las cuotas mensuales no pueden ser mayores al 55% del salario bruto [12].
 
  Tomando en cuenta estos valores, al cliente se le ofreceria una tabla personalizada para sus prestamos:  
 
@@ -111,10 +111,10 @@ Las cuentas de ahorros pueden ser utilizadas para el pago de prestamos desde la 
 
 ## Certificados de Depósito a plazos:
 
-Los certificados de depositos a plazo (CDP) son certificados que da el banco cuando una persona desee ingresar un capital para poder obtener intereses en un plazo de tiempo determinado. Dicho certificado valida dicho ingreso del capital e indica la tasa de interes que obtendra el cliente por el tiempo en que mantendra el capital dentro del banco. Las ventajas de tener un CDP es tener una inversion respaldada por el banco y posee tasa de interes mas altas. Los interes varian dependiendo de la cantidad del monto que se desee ahorrar, el plazo por el que el cliente ahorre y la moneda del monto, los bancos dan mayores tasas de intereses a ahorros en dolares. La mayoria de bancos utilizan interes simples segun tasa de interes que se le de al cliente. El BCR, acepta valores minimos de 
+Los certificados de depositos a plazo (CDP) son certificados que da el banco cuando una persona desee ingresar un capital para poder obtener intereses en un plazo de tiempo determinado. Dicho certificado valida dicho ingreso del capital e indica la tasa de interes que obtendra el cliente por el tiempo en que mantendra el capital dentro del banco[10]. Las ventajas de tener un CDP es tener una inversion respaldada por el banco y posee tasa de interes mas altas. Los interes varian dependiendo de la cantidad del monto que se desee ahorrar, el plazo por el que el cliente ahorre y la moneda del monto, los bancos dan mayores tasas de intereses a ahorros en dolares[9]. La mayoria de bancos utilizan interes simples segun tasa de interes que se le de al cliente. El BCR, acepta valores minimos de 50000₡ y 100$.
  
 
- Los interes que se le daran al cliente esta dada por:
+ Los interes que se le daran al cliente esta dada por [13]:
 
 $$
 I = P * r * t
@@ -269,3 +269,12 @@ CREATE TABLE certificados_de_deposito (
 
 [8] “Importancia de los registros contables en una empresa”. JLC Auditors. Accedido el 26 de mayo de 2024. [En línea]. Disponible: https://jlcauditors.com/importancia-registros-contables-empresa/
 
+[9] "Tasas de intereses para CDP's". Banco de Costa Rica (BCR). Accedido el 26 de Mayo de 2024. [En linea]. https://www.bancobcr.com/wps/portal/bcr/bancobcr/personas/inversiones/certificados_de_deposito_a_plazo tasas_de_interes_para_cdps/
+
+[10] "Que es el Certificado de Deposito de Ahorro o CDA". Rossana Cardozo. Accedido el 23 de Mayo de 2024. [En linea]. https://www.bbva.com/es/innovacion/doce-consejos-de-seguridad-para-usar-la-banca-digital/
+
+[11] "Prestamo personal". BAC. Accedido el 23 de Mayo de 2024. [En linea]. https://www.baccredomatic.com/es-cr/personas/prestamos?categoria=personales&nombre=prestamo-personal&id=165901
+
+[12] "Creditos Personales para cada necesidad". COOPENAE. Accedido el 26 de Mayo de 2024. [En linea]. https://www.coopenae.fi.cr/credito-personal
+
+[13] "Interes simple y compuesto, como calcularlo e implementarlo". GBS Group Staff. Accedido el 26 de Mayo de 2024. [En linea]. https://blog.gbsgroup.net/blog/interes-simple-y-compuesto-como-calcularlo-e-implementarlo 
