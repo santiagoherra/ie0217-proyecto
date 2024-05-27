@@ -23,6 +23,20 @@ Este proyecto se centra en la investigación, diseño e implementación de un si
 ## Prestamos:
 Los prestamos se realizarán en base al monto que la persona desee obtener, el salario que la persona posea y moneda que la persona desee. En cuanto se tenga esto se desplegará una tabla con las opciones posibles donde la persona podrá elegir la cuota mensual que deberá pagar en base al lapso de tiempo por el que escoja el préstamos, esto dependiendo del salario que esta persona tenga. Las tasas de interés las dara el banco las cuales varían dependiendo del tipo de préstamo que la persona escoja. Además, se debe de considerar que los préstamos pueden ser en colones o en dólares.
 
+La fórmula para calcular la cuota mensual es [5]:
+
+$$ 
+\text{Cuota mensual} = \text{Monto total} \cdot \frac{TEM \cdot (1+TEM)^n}{(1+TEM)^n-1}
+$$
+
+Donde, 
+
+-TEM se refiere a la tasa efectiva mensual
+
+-n se refiere a la cantidad de meses de pago
+
+-Monto se refiere al monto total del préstamo hipotecario
+
 ### Pestamos personales:
 Los prestamos personales es un tipo de credito **no asegurado** que ofrecen los bacos y otras instituciones financieras a los individuos. Este tipo de prestamo no requiere que la persona ofrazca un objeto colateral para asegurar el prestamo. La tasa de interes que dara el banco para un prestamos personal usualmente es de 18% hasta 26%. Usualmente la tasa de interes de los prestamos personales son mayores debido al riesgo de perdida de capital del prestatario. 
 
@@ -65,20 +79,6 @@ $$
 Esto implica, que la tasa variable se calcula según la Tasa Básica Pasiva o TBP, brindada por el Banco Central que varía según las condiciones del mercado. A esta tasa, se le debe de sumar el 6,5%, lo que se conoce como el margen. No obstante por la seguridad del prestamista, se establece un piso, que es que no importa que tanto caiga la TBP, el valor menor que puede tener la tasa es del 12%. Para el proyecto, tomando en cuenta los datos de Costa Rica, brindados por el Banco Central, el valor de la TBP ponderado desde el 2013 es de 5,47% [4]. Por ello, si se toma la fórmula y se calcula la tasa con este valor, se obtiene una tasa menor a la tasa piso. Además, para el año 2024, la tasa se encuentra en una tendencia decreciente, donde el promedio anual es del 5,00%. Por ello, se considerará para el proyecto una tasa fija del 12%, puesto que en promedio, la tasa calculada no supera el piso. 
 
 Se limitarán los plazos al igual que lo realiza el BCR, donde los plazos disponibles se encuentran en múltiplos de 5 años, donde el mínimo son 5 años y el máximo 30. El cliente deberá de ingresar el valor total de la casa y el valor a solicitar, puesto que ningún banco nacional suele financiar más del 80% de la propiedad. Aparte, se tendrá un valor mínimo de 5 millones de colones y un valor máximo de 150 millones de colones.
-
-Por último, la fórmula para calcular la cuota mensual es [5]:
-
-$$ 
-\text{Cuota mensual} = \text{Monto total} \cdot \frac{TEM \cdot (1+TEM)^n}{(1+TEM)^n-1}
-$$
-
-Donde, 
-
--TEM se refiere a la tasa efectiva mensual
-
--n se refiere a la cantidad de meses de pago
-
--Monto se refiere al monto total del préstamo hipotecario
 
 ### Cuentas bancarias y gestión de ahorro:
 
