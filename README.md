@@ -251,6 +251,17 @@ CREATE TABLE certificados_de_deposito (
 );
 ```
 
+## Funcionamiento del programa:
+Se diseño una estructura del programa para poder capturar la esencia y funcionamiento del programa para que sea facil de usar para el encargado, implementando los diferentes propositos y la informacion necesaria para el encargado y el cliente. 
+
+![rip](funcionamiento.jpeg "Estructura del programa")
+
+## Cronograma:
+Se dividio el trabajo entre los integrante del grupo para medir los avances semanales del proyecto y poder implementar una estrategia de equipo hacia la resolucion de los problemas en el desarrollo del codigo. Se planteo trabajar simulteaneamente para poder ayudarse unos a otros durante el proceso. Ademas se organizaran reuniones de equipo cada 2 semanas para poder ver el progreso del codigo, replantear soluciones y reestructurar el flujo de trabajo por si surgen problemas imprevistos.
+
+![rip](cronograma.jpeg "Cronograma del proyecto")
+
+
 ## Referencias
 
 [1] "¿Cómo calcular la cuota para un préstamo?", BBVA, 2024. https://www.bbva.pe/blog/mis-finanzas/financiamiento/-como-calcular-la-cuota-para-un-prestamo-.html (accedido 26 de mayo de 2024).
