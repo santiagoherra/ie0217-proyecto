@@ -164,8 +164,8 @@ La tabla clientes contendrá la información de cada cliente por separado. Esta 
 | cedula            | INT              | Número de cédula (llave primaria)            |
 | nombre            | VARCHAR(50)      | Nombre del cliente                           |
 | apellido          | VARCHAR(50)      | Apellido del cliente                         |
-| cuenta_colones    | INT              | Cuenta en colones                            |
-| cuenta_dolares    | INT              | Cuenta en dólares                            |
+| cuenta_colones    | INT              | Cuenta en colones (llave foránea)            |
+| cuenta_dolares    | INT              | Cuenta en dólares (llave foránea)            |
 
 ```sql
 CREATE TABLE clientes (
@@ -248,6 +248,33 @@ CREATE TABLE certificados_de_deposito (
     monto_deposito DECIMAL(9, 2),
     cliente_cedula CHAR(9),
     FOREIGN KEY (cliente) REFERENCES clientes(cedula)
+);
+```
+
+### Tabla de registros:
+Se presenta a continuación la descripción de una tabla para la base de datos, la tabla de registros. Cada registro tendrá un ID único que es un INT, la llave primaria. Este registro almacenará una VARCHAR que hace referencia al tipo de transacción, pudiendo representar, depósitos, retiros, registros, abono a préstamos, solicitud de préstamo, transferencia, apertura de CDP o retiro de CDP. También tendrá un DATE que almacene la fecha de la transacción. Tendrá un VARCHAR que haga referencia a la denominación, ya sea colones o dólares. Además, tendrá un INT cliente que represente el número de cédula del cliente que realiza la transacción y tendrá otro INT cliente que represente el número de cédula del cliente que recibe la transacción (puede ser el mismo cliente).  Contendrá un DECIMAL(9,2) que represente el monto base de la transacción, en caso de ser un depósito, retiro, abono o transferencia simplemente se refiere a la cantidad de dinero que participa del trámite. En caso de apertura de CDP o solicitud de préstamo, se refiere al depósito inicial o al monto total del préstamo. Nótese que existen algunas restricciones que se impondrán más adelante, como que en caso de préstamo, un usuario no puede solicitarle un préstamo a otro.
+
+| **Columna**                | **Tipo de Datos**    | **Descripción**                                                                 |
+|----------------------------|----------------------|---------------------------------------------------------------------------------|
+| **ID**                     | INT                  | Identificador único del registro (Llave primaria)                               |
+| **tipo_transaccion**       | VARCHAR(50)          | Tipo de transacción (depósitos, retiros, registros, abono a préstamos, etc.)    |
+| **fecha_transaccion**      | DATE                 | Fecha de la transacción                                                         |
+| **denominacion**           | VARCHAR(10)          | Moneda de la transacción (colones o dólares)                                    |
+| **cliente_origen_cedula**  | INT                  | Número de cédula del cliente que realiza la transacción (Llave foránea)         |
+| **cliente_destino_cedula** | INT                  | Número de cédula del cliente que recibe la transacción (Llave foránea)          |
+| **monto_base**             | DECIMAL(9,2)         | Monto de la transacción                                                         |
+
+```sql
+CREATE TABLE registros (
+    ID INT PRIMARY KEY,
+    tipo_transaccion VARCHAR(50),
+    fecha_transaccion DATE,
+    denominacion VARCHAR(10),
+    cliente_origen_cedula INT,
+    cliente_destino_cedula INT,
+    monto_base DECIMAL(9,2),
+    FOREIGN KEY (cliente_origen_cedula) REFERENCES clientes(cedula),
+    FOREIGN KEY (cliente_destino_cedula) REFERENCES clientes(cedula)
 );
 ```
 
