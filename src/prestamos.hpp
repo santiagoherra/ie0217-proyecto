@@ -1,12 +1,15 @@
 #ifndef PRESTAMOS_HPP
 #define PRESTAMOS_HPP
 #include <iostream>
+#include <vector>
 
 class Prestamos{
     public:
-        double monto;
-        double salario;
-        double montoPrendario;
+        std::vector<int> mesesPersonal = {12, 36, 48};
+
+        std::vector<int> mesesPrendario = {72, 84, 96};
+
+        std::vector<int> mesesHipotecario = {120, 180, 240};
 
         int interesPersonalAnualColones = 0.2;
         int interesPersonalAnualDolar = 0.16;
@@ -19,9 +22,9 @@ class Prestamos{
 
         int tasaCompraDolarColones = 521.5; //Asumiendo que la gente compra dolar para pagar el prestamo.
 
-        double calcularCoutas();//Funcion para calcular coutas
+        std::vector<int> calcularCoutas(double monto, double montoPrendario = NULL);//Funcion para calcular coutas
 
-        void imprimirTablaInformacion(); //Funcion para imprimir la tabla de prestamos personalizadas
+        void imprimirTablaInformacion(std::vector<int> cuotas); //Funcion para imprimir la tabla de prestamos personalizadas
 
         void validacionPrestamo(); //Funcion para validar si si se puede dar prestamo
 
