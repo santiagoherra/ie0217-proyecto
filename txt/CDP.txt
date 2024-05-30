@@ -1,0 +1,22 @@
+CERTIFICADO DE DEPÓSITO A PLAZO
+
+Los certificados de depósitos a plazo (CDP) son certificados que da el banco
+cuando una persona desee ingresar un capital para poder obtener intereses en
+un plazo de tiempo determinado. Dicho certificado valida dicho ingreso del
+capital e indica la tasa de interés que obtendrá el cliente por el tiempo en
+que mantendrá el capital dentro del banco. Las ventajas de tener un CDP es tener
+una inversión respaldada por el banco y posee tasa de interés más alta. Los
+interes varían dependiendo de la cantidad del monto que se desee ahorrar, el
+plazo por el que el cliente ahorre y la moneda del monto. Para los certificados
+de depósito a plazo acepta valores mínimos de 50000₡ y 100$.
+
+Los interes que se le daran al cliente esta dada por:
+
+I = P * r * t
+
+Donde:
+
+I: Son los intereses ganados durante un plazo de tiempo.
+P: Es el principal monto ahorrado.
+r: Es la tasa de interés (5.21% en colones) (2.91% en dólares).
+t: Es el tiempo por el cual se acordó guardar el ahorro.

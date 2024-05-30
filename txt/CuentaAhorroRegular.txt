@@ -1,0 +1,10 @@
+CUENTAS DE AHORROS
+
+Las personas pueden tener cuentas bancarias las cuales pueden ser en dólares
+o colones, dichas pueden poseer un máximo de dos cuentas bancarias. Estas están
+destinadas a la gestión de sus ahorros, donde que se utilizarán para obtener
+certificados de depósito a plazo.
+
+Las cuentas de ahorros pueden ser utilizadas para el pago de prestamos desde
+la cuenta que el cliente desee, para que esto sea posible se debe de tener tener
+la tasa de cambio de colones a dolores, para acciones de venta y compra.
