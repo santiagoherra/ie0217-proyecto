@@ -18,17 +18,17 @@ class Prestamos{
         int interesPrendarioAnualDolar = 0.125;
 
         int interesHipotecarioAnualColones = 0.12;
-        int interesHipotecarioAnualDolar = 0.97;
+        int interesHipotecarioAnualDolar = 0.07;
 
         int tasaCompraDolarColones = 521.5; //Asumiendo que la gente compra dolar para pagar el prestamo.
 
         int interesAnualaMensual(int interes);
 
-        std::vector<int> calcularCoutas(int interes ,std::vector<int> meses, double monto);//Funcion para calcular coutas
+        std::vector<int> calcularCoutas(int interes ,std::vector<int> meses, double monto, double monto_prendario = NULL);//Funcion para calcular coutas
 
         void imprimirTablaInformacion(int interesColon, int interesDolar, std::vector<int> cuotas_dolar,std::vector<int> cuotas_colon, std::vector<int> meses ); //Funcion para imprimir la tabla de prestamos personalizadas
 
-        void validacionPrestamo(int monto_prendario); //Funcion para validar si si se puede dar prestamo
+        void validacionPrestamo(std::vector<int> cuotas_dolar, std::vector<int> cuotas_colon, std::vector<int> meses); //Funcion para validar si si se puede dar prestamo
 
 
         Prestamos();//Constructor donde se hara toda el menu y se aplicaran los metodos
