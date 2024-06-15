@@ -262,3 +262,75 @@ int Operaciones::retiro() {
     sqlite3_finalize(stmt);
     sqlite3_close(db);
 };
+
+int Operaciones::transferencias() {
+    string cedula;
+    string denominacion;
+    char cuenta_op;
+    sqlite3 *db;
+    sqlite3_stmt *stmt;
+    char *errMsg = 0;
+    int rc;
+    const char* data = "Callback function called";
+
+    // Conexion a la base de datos y mensaje de repuesta
+    rc = sqlite3_open("banco.db", &db);
+    if(rc){
+        cerr << "Error al abrir la base de datos: " << sqlite3_errmsg(db) << endl;
+        return (0);
+    } else {
+        cout << "Ingreso correcto a la base de datos" << endl;
+    }
+
+    // Solicitar datos acerca del emisor de la transferencia
+    cout << "Por favor ingrese el número de cedula del cliente que va a realizar al transferencia" << endl;
+    getline(cin, cedula);
+
+    do {
+        cout << "¿Desea transferir desde la cuenta en colones o en dólares?" << endl;
+        cout << "1) Dólares" << std::endl;
+        cout << "2) Colones" << std::endl;
+        cin >> cuenta_op;
+        cin.ignore();
+
+        switch (cuenta_op)
+        {
+        case '1':
+            denominacion = "dolares";
+
+            // Primera consulta
+            clientes = "SELECT cuenta_colones from clientes WHERE cedula = ?";
+            break;
+        case '2':
+            denominacion = "colones";
+            
+            // Primera consulta
+            clientes = "SELECT cuenta_dolares from clientes WHERE cedula = ?";
+            break;
+        default:
+            cout << "¡La opción ingresada no es válida! Por favor, inténtelo de nuevo.";
+            break;
+        }
+    } while (cuenta_op != '1' && cuenta_op != '2');
+
+    // Preparar consulta parametrizada
+    rc = sqlite3_prepare_v2(db, clientes, -1, &stmt, nullptr);
+    if (rc != SQLITE_OK) {
+        cerr << "Error de SQL: " << sqlite3_errmsg(db) << endl;
+        sqlite3_close(db);
+        return;
+    }
+
+    // Parametro para la consulta
+    sqlite3_bind_text(stmt, 1, cedula.c_str(), -1, SQLITE_STATIC);
+
+    // Realizar primera consulta para obtener el numero de cuenta (puede ser dolares o colones)
+    rc = sqlite3_step(stmt);
+    if (rc == SQLITE_ROW) {
+        numero_cuenta = sqlite3_column_int(stmt, 0);
+    } else if (rc == SQLITE_DONE) {
+        cout << "No existe ninguna cuenta asociada a este número de cédula" << id << endl;
+    } else {
+        cerr << "Error de SQL." << sqlite3_errmsg(db) << endl;
+    }
+};
