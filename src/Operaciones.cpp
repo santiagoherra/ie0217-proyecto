@@ -21,6 +21,8 @@ static int callback(void *data, int argc, char**argv, char **azColName){
 
 int Operaciones::deposito() {
     string cedula;
+    string numero_cuenta;
+    string denominacion;
     char cuenta_op;
     sqlite3 *db;
     sqlite3_stmt *stmt;
@@ -50,10 +52,16 @@ int Operaciones::deposito() {
         switch (cuenta_op)
         {
         case 1:
-            
+            denominacion = dolares;
+
+            // Primera consulta
+            const char *clientes = "SELECT cuenta_colones from clientes WHERE cedula = ?";
             break;
         case 2:
+            denominacion = colones;
             
+            // Segunda consulta
+            const char *clientes = "SELECT cuenta_dolares from clientes WHERE cedula = ?"
             break;
         default:
             cout << "¡La opción ingresada no es válida! Por favor, inténtelo de nuevo."
@@ -61,5 +69,31 @@ int Operaciones::deposito() {
         }
     } while (cuenta_op != '1' && cuenta_op != '2');
 
+    // Preparar consulta parametrizada
+    rc = sqlite3_prepare_v2(db, clientes, -1, &stmt, nullptr);
+    if (rc != SQLITE_OK) {
+        cerr << "Error de SQL: " << sqlite3_errmsg(db) << endl;
+        sqlite3_close(db);
+        return;
+    }
 
-};
+    // Parametro para la consulta
+    sqlite3_bind_text(stmt, 1, cedula.c_str(), -1, SQLITE_STATIC);
+
+    // Realizar primera consulta para obtener el numero de cuenta (puede ser dolares o colones)
+    rc = sqlite3_step(stmt);
+    if (rc == SQLITE_ROW) {
+        numero_cuenta = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 0));
+    } else if (rc == SQLITE_DONE) {
+        cout << "No existe ninguna cuenta asociada a este número de cédula" << id << endl;
+    } else {
+        cerr << "Error de SQL." << sqlite3_errmsg(db) << endl;
+    }
+    
+    // Crear la segunda consulta
+    const char *cuentas = "";
+    
+    // Liberar memoria y cerrar la base de datos
+    sqlite3_finalize(stmt);
+    sqlite3_close(db);
+};  
