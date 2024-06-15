@@ -54,8 +54,8 @@ void RegistrosGenerales::actualizarRegistro(int ID, std::string tipo_transaccion
     sqlite3_bind_text(stmt, 2, tipo_transaccion.c_str(), -1, SQLITE_STATIC);
     sqlite3_bind_text(stmt, 3, fecha_transaccion.c_str(), -1, SQLITE_STATIC);
     sqlite3_bind_text(stmt, 4, denominacion.c_str(), -1, SQLITE_STATIC);
-    sqlite3_bind_int(stmt, 5, cliente_origen_cedula);
-    sqlite3_bind_int(stmt, 6, cliente_destino_cedula);
+    sqlite3_bind_text(stmt, 5, cliente_origen_cedula.c_str(), -1, SQLITE_STATIC);
+    sqlite3_bind_text(stmt, 6, cliente_destino_cedula.c_str(), -1, SQLITE_STATIC);
     sqlite3_bind_double(stmt, 7, monto_base);
 
     // Realizar la consulta parametrizada
