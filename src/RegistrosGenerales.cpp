@@ -2,8 +2,8 @@
  * @file RegistrosGenerales.cpp
  * @brief En este archivo de código fuente se definen los métodos actualizarRegistro,
  * verRegistro y filtrarRegistro. Es necesario destacar que se utiliza una consulta
- * parametrizada para reducir el riesgo de un SQL Injection; a pesar de esto, aún es
- * necesario mejorar la robustez del código.
+ * parametrizada en el método anadirRegistro para reducir el riesgo de un SQL Injection;
+ * a pesar de esto, aún es necesario mejorar la robustez del código.
  */
 
 #include "RegistrosGenerales.hpp"
@@ -66,13 +66,40 @@ void RegistrosGenerales::actualizarRegistro(int ID, std::string tipo_transaccion
         cout << "Transacción guardada correctamente en el registro general" << endl;
     }
     
-    // Liberar memoria y cerrar el programa
+    // Liberar memoria y cerrar la base de datos
     sqlite3_finalize(stmt);
     sqlite3_close(db);
 };
 
 void RegistrosGenerales::verRegistro() const {
+    sqlite3 *db;
+    char *errMsg = 0;
+    int rc;
+    const char* data = "Callback function called";
 
+    // Conexion a la base de datos y mensaje de repuesta
+    rc = sqlite3_open("banco.db", &db);
+    if(rc){
+        cerr << "Error al abrir la base de datos: " << sqlite3_errmsg(db) << endl;
+        return (0);
+    } else {
+        cout << "Ingreso correcto a la base de datos" << endl;
+    }
+
+    // Mostrar todo el registro
+    const char *mostrarRegistro = "SELECT * FROM registros";
+
+    // Realizar la consulta
+    rc = sqlite3_exec(db, mostrarRegistro, callback, 0, &errMsg);
+    if (rc != SQLITE_OK){
+        cerr << "Error de SQL: " << errMsg << endl;
+        sqlite3_free(errMsg);
+    } else {
+        cout << "Registro general de transacciones: " << endl;
+        // Se despligega todo el registro
+    }
+    
+    sqlite3_close(db);  // Cerrar la base de datos
 };
 
 void RegistrosGenerales::filtrarRegistro () const {
