@@ -120,8 +120,8 @@ void RegistrosGenerales::filtrarRegistro () const {
     }
 
     // Usuario ingresa el filtro
-	std::cout << "Por favor ingrese el tipo de transacción para el cual desea visualizar las transacciones:" << std::endl;
-	getline(std::cin, filtro);
+	cout << "Por favor ingrese el tipo de transacción para el cual desea visualizar las transacciones:" << std::endl;
+	getline(cin, filtro);
 
     // Mostrar todo el registro
     const char *mostrarRegistroFiltrado = "SELECT * FROM registros "
