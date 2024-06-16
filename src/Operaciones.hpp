@@ -22,15 +22,6 @@ class Operaciones {
 
         //
         int gestionAhorros();
-
-        //
-        int solicitudPrestamos();
-
-        //
-        int aperturaCDP();
-
-        //
-        int retiroCDP();
 };
 
 #endif

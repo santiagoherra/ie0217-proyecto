@@ -90,7 +90,7 @@ int Operaciones::deposito() {
     if (rc == SQLITE_ROW) {
         numero_cuenta = sqlite3_column_int(stmt, 0);
     } else if (rc == SQLITE_DONE) {
-        cout << "No existe ninguna cuenta asociada a este número de cédula" << id << endl;
+        cout << "No existe ninguna cuenta asociada a este número de cédula" << endl;
     } else {
         cerr << "Error de SQL." << sqlite3_errmsg(db) << endl;
     }
@@ -207,7 +207,7 @@ int Operaciones::retiro() {
     if (rc == SQLITE_ROW) {
         numero_cuenta = sqlite3_column_int(stmt, 0);
     } else if (rc == SQLITE_DONE) {
-        cout << "No existe ninguna cuenta asociada a este número de cédula" << id << endl;
+        cout << "No existe ninguna cuenta asociada a este número de cédula" << endl;
     } else {
         cerr << "Error de SQL." << sqlite3_errmsg(db) << endl;
     }
@@ -247,7 +247,7 @@ int Operaciones::retiro() {
     rc = sqlite3_step(stmt);
     if (rc == SQLITE_DONE) {
         /* En este caso es necesario verificar que el retiro se hizo adecuadamente, utilizando el metodo
-        sqlite3_changes(db), si se obtiene que no hay cambios pero la consulta fue exitosa, se deduce que
+        sqlite3_changes, si se obtiene que no hay cambios pero la consulta fue exitosa, se deduce que
         el monto ingresado fue menor al balance de la cuenta*/
         if (sqlite3_changes(db) > 0) {
             cout << "¡Retiro realizado exitosamente!" << endl;
@@ -265,7 +265,11 @@ int Operaciones::retiro() {
 
 int Operaciones::transferencias() {
     string cedula;
+    int numero_cuenta;
+    int numeroCuentaReceptor;
     string denominacion;
+    string denominacionReceptor;
+    float montoTransferencia;
     char cuenta_op;
     sqlite3 *db;
     sqlite3_stmt *stmt;
@@ -329,8 +333,95 @@ int Operaciones::transferencias() {
     if (rc == SQLITE_ROW) {
         numero_cuenta = sqlite3_column_int(stmt, 0);
     } else if (rc == SQLITE_DONE) {
-        cout << "No existe ninguna cuenta asociada a este número de cédula" << id << endl;
+        cout << "No existe ninguna cuenta asociada a este número de cédula" << endl;
     } else {
         cerr << "Error de SQL." << sqlite3_errmsg(db) << endl;
     }
+
+    // Crear la segunda consulta para actualizar balance de la cuenta
+    const char *cuentas = "UPDATE cuentas "
+                        // En este caso, solo se realiza la operacion si el balance es igual o mayor al monto ingresado para transferir
+                          "SET balance = CASE WHEN balance >= ? THEN balance - ? ELSE balance END "
+                          "WHERE numero_cuenta = ?";
+
+    // Preparar consulta parametrizada
+    rc = sqlite3_prepare_v2(db, cuentas, -1, &stmt, nullptr);
+    if (rc != SQLITE_OK) {
+        cerr << "Error de SQL: " << sqlite3_errmsg(db) << endl;
+        sqlite3_close(db);
+        return;
+    }
+
+    // Preguntar el monto que desea transferir
+    cout << "Por favor, ingrese el monto que desea transferir: " << endl;
+    cin >> montoTransferencia;
+    cin.ignore();
+
+    // Verificacion monto
+    if (montoTransferencia <= 0) {
+        cout << "¡Este monto no es válido!";
+        return 0;
+    }
+
+    // Parametros de la consulta
+    sqlite3_bind_double(stmt, 1, montoTransferencia);
+    sqlite3_bind_double(stmt, 2, montoTransferencia);
+    sqlite3_bind_int(stmt, 3, numero_cuenta);
+
+    /* Realizar la segunda consulta para modificar el balance del emisor de la transferencia en caso de
+    que posea el capital necesario para realizarla*/
+    rc = sqlite3_step(stmt);
+    if (rc == SQLITE_DONE) {
+        /* En este caso es necesario verificar que el retiro se hizo adecuadamente, utilizando el metodo
+        sqlite3_changes*/
+        if (sqlite3_changes(db) > 0) {
+            cout << "¡Retiro realizado exitosamente!" << endl;
+        } else {
+            cout << "El saldo es menor al monto que desea transferir." << endl;
+            return 0;  // Para que el metodo no siga ejecutandose
+        }
+    } else if (rc != SQLITE_ROW) {
+        cerr << "Error de SQL: " << sqlite3_errmsg(db) << endl;
+    }
+
+    // Solicitar el numero de cuenta del receptor de la transferencia
+    cout << "Por favor, ingrese el número de cuenta al que desea realizar la transferencia: " << endl;
+    cin >> numeroCuentaReceptor;
+    cin.ignore();
+
+    /* Es necesario hacer una consulta a la tabla de cuentas para identificar la denominacion de la cuenta
+    receptora, ya que si las cuentas involucradas dentro de una transaccion no tienen el mismo tipo de
+    denominacion es necesario ejecutar una conversion de la moneda*/
+    const char *cuentas = "SELECT denominacion from cuentas WHERE numero_cuenta = ?";
+
+    // Preparar consulta parametrizada
+    rc = sqlite3_prepare_v2(db, cuentas, -1, &stmt, nullptr);
+    if (rc != SQLITE_OK) {
+        cerr << "Error de SQL: " << sqlite3_errmsg(db) << endl;
+        sqlite3_close(db);
+        return;
+    }
+
+    // Parametro para la consulta
+    sqlite3_bind_int(stmt, 1, numeroCuentaReceptor);
+
+    // Realizar la consulta para obtener la denominacion de la cuenta receptora
+    rc = sqlite3_step(stmt);
+    if (rc == SQLITE_ROW) {
+        // Es necesario declarar este puntero ya que SQL utiliza este tipo de variable y se necesita un string
+        const unsigned char *denominacionUnsChar = sqlite3_column_text(stmt, 0);
+        if (denominacionUnsChar) {
+            denominacionReceptor = reinterpret_cast<const char*>(denominacionUnsChar);
+        } else {
+            cout << "No fue posible obtener la denominación de la cuenta receptora" << std::endl;
+            return 0;
+        }
+    } else if (rc == SQLITE_DONE) {
+        cout << "No existe ninguna cuenta asociada a este número de cédula" << endl;
+    } else {
+        cerr << "Error de SQL." << sqlite3_errmsg(db) << endl;
+    }
+
+    // Ahora se realiza una comparacion de las denominaciones de ambas cuentas
+    
 };
