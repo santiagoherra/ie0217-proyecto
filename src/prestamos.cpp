@@ -7,11 +7,13 @@ enum OpcionesPrestamos{
     HIPOTECARIO,
 };
 
+//Utilizando la bilbioteca cmath para hacer la funcion.
 int Prestamos::interesAnualaMensual(int interesAnual){
     int interes_mensual = pow(1 + interesAnual, 1/12) - 1;
     return interes_mensual;
 }
 
+//Calcula las cuotas personzalidas para el usuario
 std::vector<int> Prestamos::calcularCoutas(int interes, std::vector<int> meses, double monto, double monto_prendario = NULL){
 
     if(monto_prendario != NULL){
@@ -23,6 +25,7 @@ std::vector<int> Prestamos::calcularCoutas(int interes, std::vector<int> meses, 
     
     std::vector<int> cuotas_personalizadas;
 
+    //las cuotas se da en un formato de contenedor vector
     for(int mes : meses){
 
         int cuota_mes = monto * (pow(tem * (1 + tem), mes) / pow(1 + tem, mes) - 1);
@@ -33,6 +36,7 @@ std::vector<int> Prestamos::calcularCoutas(int interes, std::vector<int> meses, 
     return cuotas_personalizadas;
 }
 
+//Funcion para validar un prestamo del usuario y agregar a la base de datos.
 void Prestamos::validacionPrestamo(std::vector<int> cuotas_dolar, std::vector<int> cuotas_colon, std::vector<int> meses){
     int moneda_prestamo;
     double salario;
@@ -43,10 +47,12 @@ void Prestamos::validacionPrestamo(std::vector<int> cuotas_dolar, std::vector<in
     std::cout << "Indique el tipo de moneda en la que se hara el prestamo.\n" << std::endl;
     std::cin >> moneda_prestamo; 
 
+    
 }
 
+//Esta es la funcion que imprime la tabla personalizada de prestamos para que la persona pueda elegir
 void Prestamos::imprimirTablaInformacion(int interesColon, int interesDolar, std::vector<int> cuotas_dolar, std::vector<int> cuotas_colon, std::vector<int> meses){
-    int desicion;
+    int decision;
 
     std::cout << "La tabla personalizada de datos para el prestamo elegido es la siguiente.\n" << std::endl; 
 
@@ -58,15 +64,19 @@ void Prestamos::imprimirTablaInformacion(int interesColon, int interesDolar, std
     std::cout << "| " << interesDolar << "%" << " | " << cuotas_dolar[0] << "$ | " << cuotas_dolar[1] << "$ | " << cuotas_dolar[2] << "$ | Dolares |\n" << std::endl;
     std::cout << "|---------------------------------------\n" << std::endl;
 
+    //Decision esta hecha para que la persona elija si quiere elegir un prestamo en este momento.
     std::cout << "Desea optar por un prestamo en este momento?\n1) Si\n2) No " << std::endl;
-    std::cin >> desicion;
+    std::cin >> decision;
 
-    if(desicion == 1){
+    //Se planteo que el sistema sepa cual prestamos escogio el usuario en base al interes que se le de
+    //a la funcion
+    if(decision == 1){
         validacionPrestamo();
     }
 
 }
 
+//El constructor de prestamos sera utilizado para implementar la gestion de informacion del para el usuario.
 Prestamos::Prestamos(){
     int opcion_prestamo;
 
