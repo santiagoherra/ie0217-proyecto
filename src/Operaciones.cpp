@@ -3,6 +3,9 @@
  * @brief .
  */
 
+// Este valor se puede cambiar cada vez que se utilice el programa
+#define TASA_DE_CAMBIO 525.95
+
 #include "Operaciones.hpp"
 #include <iostream>
 #include <stdexcept>
@@ -31,7 +34,7 @@ int Operaciones::deposito() {
     int rc;
     const char* data = "Callback function called";
 
-    // String de consulta que va a variar dependiendo de la denominacion de la cuenta}
+    // String de consulta que va a variar dependiendo de la denominacion de la cuenta
     const char *clientes;
 
     // Conexion a la base de datos y mensaje de repuesta
@@ -277,6 +280,9 @@ int Operaciones::transferencias() {
     int rc;
     const char* data = "Callback function called";
 
+    // String de consulta que va a variar dependiendo de la denominacion de la cuenta
+    const char *clientes;
+
     // Conexion a la base de datos y mensaje de repuesta
     rc = sqlite3_open("banco.db", &db);
     if(rc){
@@ -392,10 +398,10 @@ int Operaciones::transferencias() {
     /* Es necesario hacer una consulta a la tabla de cuentas para identificar la denominacion de la cuenta
     receptora, ya que si las cuentas involucradas dentro de una transaccion no tienen el mismo tipo de
     denominacion es necesario ejecutar una conversion de la moneda*/
-    const char *cuentas = "SELECT denominacion from cuentas WHERE numero_cuenta = ?";
+    const char *cuentasDos = "SELECT denominacion from cuentas WHERE numero_cuenta = ?";
 
     // Preparar consulta parametrizada
-    rc = sqlite3_prepare_v2(db, cuentas, -1, &stmt, nullptr);
+    rc = sqlite3_prepare_v2(db, cuentasDos, -1, &stmt, nullptr);
     if (rc != SQLITE_OK) {
         cerr << "Error de SQL: " << sqlite3_errmsg(db) << endl;
         sqlite3_close(db);
@@ -423,5 +429,67 @@ int Operaciones::transferencias() {
     }
 
     // Ahora se realiza una comparacion de las denominaciones de ambas cuentas
-    
+    if (denominacion != denominacionReceptor) {
+        // Primer caso, la demominacion del emisor estara en colones y la del receptor en dolares
+        if (denominacion == "colones") {
+            montoTransferencia /= TASA_DE_CAMBIO;
+        } else {
+            // En este segundo caso la denominacion del emisor estara en dolares y la del receptor en colones
+            montoTransferencia *= TASA_DE_CAMBIO;
+        }
+    }
+
+    // Una vez convertido el monto de la transferencia (en caso de ser necesario), se crea la ultima consulta
+    const char *cuentasTres = "UPDATE cuentas "
+                          "SET balance = balance + ? "
+                          "WHERE numero_cuenta = ?";
+
+    // Preparar consulta parametrizada
+    rc = sqlite3_prepare_v2(db, cuentasTres, -1, &stmt, nullptr);
+    if (rc != SQLITE_OK) {
+        cerr << "Error de SQL: " << sqlite3_errmsg(db) << endl;
+        sqlite3_close(db);
+        return;
+    }
+
+    // Parametro para la consulta
+    sqlite3_bind_double(stmt, 1, montoTransferencia);
+    sqlite3_bind_int(stmt, 2, numeroCuentaReceptor);
+
+    // Realizar la segunda consulta
+    rc = sqlite3_step(stmt);
+    if (rc == SQLITE_DONE) {
+        cout << "¡La transferencia fue realizada de manera exitosa!" << endl;
+    } else {
+        cerr << "Error de SQL." << sqlite3_errmsg(db) << endl;
+    }
+
+    // Liberar memoria y cerrar la base de datos
+    sqlite3_finalize(stmt);
+    sqlite3_close(db);
+};
+
+int Operaciones::abonosPrestamos() {
+    string cliente_id;
+    sqlite3 *db;
+    sqlite3_stmt *stmt;
+    char *errMsg = 0;
+    int rc;
+    const char* data = "Callback function called";
+
+    // Conexion a la base de datos y mensaje de repuesta
+    rc = sqlite3_open("banco.db", &db);
+    if(rc){
+        cerr << "Error al abrir la base de datos: " << sqlite3_errmsg(db) << endl;
+        return (0);
+    } else {
+        cout << "Ingreso correcto a la base de datos" << endl;
+    }
+
+    // Solicitar cedula (cliente_id) para buscar en la tabla los prestamos asociados
+    cout << "Por favor ingrese el número de cedula del cliente que desea realizar el abono" << endl;
+    getline(cin, cliente_id);
+
+    // Crear consulta para desplegar los prestamos que tiene asociados el cliente
+    const char *prestamos = "SELECT * FROM prestamos";
 };
