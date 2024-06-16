@@ -13,9 +13,13 @@
 #define PRESTAMOS_HPP
 #include <iostream>
 #include <vector>
+#include <any>
 
 class Prestamos{
     public:
+        //Aqui se pondra toda la informacion esencial cuando el cliente sea valido para el prestamo
+        std::vector<std::any> informacionPrestamoNuevo;
+
         //Este es la cantidad de meses que se daran como opcion para los prestamos personales
         std::vector<int> mesesPersonal = {12, 36, 48};
 
@@ -49,7 +53,7 @@ class Prestamos{
         void imprimirTablaInformacion(int interesColon, int interesDolar, std::vector<int> cuotas_dolar,std::vector<int> cuotas_colon, std::vector<int> meses ); 
 
         //Valida el si la persona es apta para el prestamo.
-        bool validacionPrestamo(int interesDolar, std::vector<int> cuotas_dolar, std::vector<int> cuotas_colon, double salario, int tipoMoneda); 
+        bool validacionPrestamo(std::vector<int> meses, std::vector<int> cuotas_dolar, std::vector<int> cuotas_colon, double salario, int tipoMoneda); 
 
         //Funcion para agregar el prestamo a la base de datos.
         void agregarPrestamoBaseDatos(std::vector<int> cuotas_dolar, std::vector<int> cuotas_colon, std::vector<int> meses);

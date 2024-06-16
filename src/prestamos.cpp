@@ -37,27 +37,49 @@ std::vector<int> Prestamos::calcularCoutas(int interes, std::vector<int> meses, 
 }
 
 //Funcion para validar un prestamo del usuario y agregar a la base de datos.
-bool Prestamos::validacionPrestamo(int interesDolar, std::vector<int> cuotas_dolar, std::vector<int> cuotas_colon, double salario, int tipoMoneda){
+bool Prestamos::validacionPrestamo(std::vector<int> meses, std::vector<int> cuotas_dolar, std::vector<int> cuotas_colon, double salario, int tipoMoneda){
     int moneda_prestamo;
     int continuidad_laboral;
     int opcion_cuotas_meses;
+    int cuota_validar;
 
     std::cout << "Usted posee mas de 6 meses de continuidad laboral?\n1) Si\n2) No" << std::endl;
     std::cin >> continuidad_laboral;
-
-    std::cout << "Indique la moneda de su salario.\n1) Dolares\n2) Colones " << std::endl;
-    std::cin >> moneda_prestamo; 
 
     if(continuidad_laboral == 0){
         return false;
     }
 
     std::cout << "Ahora indique la opcion de plazo de meses y cuotas quiere elegir." << std::endl;
-    std::cout << ""
-
-
     
+    if(moneda_prestamo = 1){
+        for(int i = 0; i < 3; i++){
+        std::cout << i << ") " << cuotas_dolar[i] << "/" << meses[i] << "\n" << std::endl;
+        }
+    }else{
+        for(int i = 0; i < 3; i++){
+        std::cout << "1) " << cuotas_colon[i] << "/" << meses[i] << "\n" << std::endl;
+        }
+    }
 
+    std::cout << "Ingrese el valor de la opcion que desea escoger?\n1) 2) 3)" << std::endl;
+    std::cin >> opcion_cuotas_meses;
+
+    if(moneda_prestamo = 1){
+        cuota_validar = cuotas_dolar[opcion_cuotas_meses];
+        if(cuota_validar > (salario*tasaCompraDolarColones*0.7)){
+            return false;
+        }else{
+            return true;
+        }
+    }else{
+        cuota_validar = cuotas_colon[opcion_cuotas_meses];
+        if(cuota_validar > (salario*0.7)){
+            return false;
+        }else{
+            return true;
+        }
+    }
 
     
 }
@@ -65,6 +87,7 @@ bool Prestamos::validacionPrestamo(int interesDolar, std::vector<int> cuotas_dol
 //Esta es la funcion que imprime la tabla personalizada de prestamos para que la persona pueda elegir
 void Prestamos::imprimirTablaInformacion(int interesColon, int interesDolar, std::vector<int> cuotas_dolar, std::vector<int> cuotas_colon, std::vector<int> meses){
     int decision;
+    bool prestamo_valido;
 
     std::cout << "La tabla personalizada de datos para el prestamo elegido es la siguiente.\n" << std::endl; 
 
@@ -93,7 +116,14 @@ void Prestamos::imprimirTablaInformacion(int interesColon, int interesDolar, std
         std::cout << "Indique el tipo de moneda en que quiere hacer el prestamo\n1) Dolares\n2) Colones" << std::endl;
         std::cin >> moneda_prestamo;
 
-        validacionPrestamo(interesDolar, cuotas_dolar, cuotas_colon, salario, moneda_prestamo);
+        prestamo_valido = validacionPrestamo(meses, cuotas_dolar, cuotas_colon, salario, moneda_prestamo);
+
+        if(prestamo_valido){
+            std::cout << "Felicidades! Usted ha sido apto para el prestamo deseado." << std::endl;
+        }else{
+            std::cout << "Se han realizo la valoracion para su prestamo y lamentamos "
+            "informarlo que usted no fue apto para el prestamo\nQue tenga un buen dia." << std::endl;
+        }
     }
 
 }
