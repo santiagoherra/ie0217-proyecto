@@ -143,7 +143,7 @@ void RegistrosGenerales::filtrarRegistro () const {
     if (rc != SQLITE_DONE) {
         cerr << "Error de SQL: " << sqlite3_errmsg(db) << endl;
     } else {
-        cout << "Transacción guardada correctamente en el registro general" << endl;
+        cout << "Registro de transacciones para " << filtro << endl;
     }
     
     // Liberar memoria y cerrar la base de datos
