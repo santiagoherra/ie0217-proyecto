@@ -1,11 +1,20 @@
 #include "prestamos.hpp"
 #include <cmath>
+#include <sqlite3.h>
+#include <stdexcept>
 
 enum OpcionesPrestamos{
     PERSONAL = 1,
     PRENDARIO,
     HIPOTECARIO,
 };
+
+static int callback(void *data, int argc, char**argv, char **azColName){
+    for(int i = 0; i < argc; i++){
+        std::cout << azColName[i] << (argv[i] ? argv[i] : "NULL") << std::endl;
+    }
+    return 0;
+}
 
 //Utilizando la bilbioteca cmath para hacer la funcion.
 int Prestamos::interesAnualaMensual(int interesAnual){
@@ -91,8 +100,27 @@ bool Prestamos::validacionPrestamo(std::vector<int> meses, std::vector<int> cuot
         }
     }
 
+}
+
+
+int Prestamos::agregarPrestamoBaseDatos(){
+    sqlite3 *db;
+    char *errMsg = 0;
+    int rc;
+    const char* data = "Callback function called";
+
+    rc = sqlite3_open("banco.db", &db);
+    if(rc){
+        std::cerr << "Error al abrir la base de datos: " << sqlite3_errmsg(db) << std::endl;
+        return (0);
+    } else {
+        std::cout << "Ingreso correcto a la base de datos" << std::endl;
+    }
+
+    //agregar el prestamo en la base de datos
     
 }
+
 
 //Esta es la funcion que imprime la tabla personalizada de prestamos para que la persona pueda elegir
 void Prestamos::imprimirTablaInformacion(int interesColon, int interesDolar, std::vector<int> cuotas_dolar, std::vector<int> cuotas_colon, std::vector<int> meses){
