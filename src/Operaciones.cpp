@@ -41,7 +41,7 @@ int Operaciones::deposito() {
     rc = sqlite3_open("banco.db", &db);
     if(rc){
         cerr << "Error al abrir la base de datos: " << sqlite3_errmsg(db) << endl;
-        return (0);
+        return 0;
     } else {
         cout << "Ingreso correcto a la base de datos" << endl;
     }
@@ -82,7 +82,7 @@ int Operaciones::deposito() {
     if (rc != SQLITE_OK) {
         cerr << "Error de SQL: " << sqlite3_errmsg(db) << endl;
         sqlite3_close(db);
-        return;
+        return 0;
     }
 
     // Parametro para la consulta
@@ -108,7 +108,6 @@ int Operaciones::deposito() {
     if (rc != SQLITE_OK) {
         cerr << "Error de SQL: " << sqlite3_errmsg(db) << endl;
         sqlite3_close(db);
-        return;
     }
 
     // Preguntar el monto que desea depositar
@@ -132,11 +131,13 @@ int Operaciones::deposito() {
         cout << "¡El depósito fue realizado de manera exitosa!" << endl;
     } else {
         cerr << "Error de SQL." << sqlite3_errmsg(db) << endl;
+        return 0;
     }
 
     // Liberar memoria y cerrar la base de datos
     sqlite3_finalize(stmt);
     sqlite3_close(db);
+    return 1;
 }; 
 
 int Operaciones::retiro() {
@@ -158,7 +159,7 @@ int Operaciones::retiro() {
     rc = sqlite3_open("banco.db", &db);
     if(rc){
         cerr << "Error al abrir la base de datos: " << sqlite3_errmsg(db) << endl;
-        return (0);
+        return 0;
     } else {
         cout << "Ingreso correcto a la base de datos" << endl;
     }
@@ -199,7 +200,7 @@ int Operaciones::retiro() {
     if (rc != SQLITE_OK) {
         cerr << "Error de SQL: " << sqlite3_errmsg(db) << endl;
         sqlite3_close(db);
-        return;
+        return 0;
     }
 
     // Parametro para la consulta
@@ -211,8 +212,10 @@ int Operaciones::retiro() {
         numero_cuenta = sqlite3_column_int(stmt, 0);
     } else if (rc == SQLITE_DONE) {
         cout << "No existe ninguna cuenta asociada a este número de cédula" << endl;
+        return 0;
     } else {
         cerr << "Error de SQL." << sqlite3_errmsg(db) << endl;
+        return 0;
     }
 
     // Crear la segunda consulta para actualizar balance de la cuenta
@@ -227,7 +230,7 @@ int Operaciones::retiro() {
     if (rc != SQLITE_OK) {
         cerr << "Error de SQL: " << sqlite3_errmsg(db) << endl;
         sqlite3_close(db);
-        return;
+        return 0;
     }
 
     // Preguntar el monto que desea retirar
@@ -256,14 +259,17 @@ int Operaciones::retiro() {
             cout << "¡Retiro realizado exitosamente!" << endl;
         } else {
             cout << "El saldo es menor al monto que desea retirar." << endl;
+            return 0;
         }
     } else if (rc != SQLITE_ROW) {
         cerr << "Error de SQL: " << sqlite3_errmsg(db) << endl;
+        return 0;
     }
 
     // Liberar memoria y cerrar la base de datos
     sqlite3_finalize(stmt);
     sqlite3_close(db);
+    return 1;
 };
 
 int Operaciones::transferencias() {
@@ -287,7 +293,7 @@ int Operaciones::transferencias() {
     rc = sqlite3_open("banco.db", &db);
     if(rc){
         cerr << "Error al abrir la base de datos: " << sqlite3_errmsg(db) << endl;
-        return (0);
+        return 0;
     } else {
         cout << "Ingreso correcto a la base de datos" << endl;
     }
@@ -328,7 +334,7 @@ int Operaciones::transferencias() {
     if (rc != SQLITE_OK) {
         cerr << "Error de SQL: " << sqlite3_errmsg(db) << endl;
         sqlite3_close(db);
-        return;
+        return 0;
     }
 
     // Parametro para la consulta
@@ -340,8 +346,10 @@ int Operaciones::transferencias() {
         numero_cuenta = sqlite3_column_int(stmt, 0);
     } else if (rc == SQLITE_DONE) {
         cout << "No existe ninguna cuenta asociada a este número de cédula" << endl;
+        return 0;
     } else {
         cerr << "Error de SQL." << sqlite3_errmsg(db) << endl;
+        return 0;
     }
 
     // Crear la segunda consulta para actualizar balance de la cuenta
@@ -355,7 +363,7 @@ int Operaciones::transferencias() {
     if (rc != SQLITE_OK) {
         cerr << "Error de SQL: " << sqlite3_errmsg(db) << endl;
         sqlite3_close(db);
-        return;
+        return 0;
     }
 
     // Preguntar el monto que desea transferir
@@ -384,10 +392,11 @@ int Operaciones::transferencias() {
             cout << "¡Retiro realizado exitosamente!" << endl;
         } else {
             cout << "El saldo es menor al monto que desea transferir." << endl;
-            return 0;  // Para que el metodo no siga ejecutandose
+            return 0;
         }
     } else if (rc != SQLITE_ROW) {
         cerr << "Error de SQL: " << sqlite3_errmsg(db) << endl;
+        return 0;
     }
 
     // Solicitar el numero de cuenta del receptor de la transferencia
@@ -405,7 +414,7 @@ int Operaciones::transferencias() {
     if (rc != SQLITE_OK) {
         cerr << "Error de SQL: " << sqlite3_errmsg(db) << endl;
         sqlite3_close(db);
-        return;
+        return 0;
     }
 
     // Parametro para la consulta
@@ -424,8 +433,10 @@ int Operaciones::transferencias() {
         }
     } else if (rc == SQLITE_DONE) {
         cout << "No existe ninguna cuenta asociada a este número de cédula" << endl;
+        return 0;
     } else {
         cerr << "Error de SQL." << sqlite3_errmsg(db) << endl;
+        return 0;
     }
 
     // Ahora se realiza una comparacion de las denominaciones de ambas cuentas
@@ -449,7 +460,7 @@ int Operaciones::transferencias() {
     if (rc != SQLITE_OK) {
         cerr << "Error de SQL: " << sqlite3_errmsg(db) << endl;
         sqlite3_close(db);
-        return;
+        return 0;
     }
 
     // Parametro para la consulta
@@ -462,11 +473,13 @@ int Operaciones::transferencias() {
         cout << "¡La transferencia fue realizada de manera exitosa!" << endl;
     } else {
         cerr << "Error de SQL." << sqlite3_errmsg(db) << endl;
+        return 0;
     }
 
     // Liberar memoria y cerrar la base de datos
     sqlite3_finalize(stmt);
     sqlite3_close(db);
+    return 1;
 };
 
 int Operaciones::abonosPrestamos() {
@@ -486,7 +499,7 @@ int Operaciones::abonosPrestamos() {
     rc = sqlite3_open("banco.db", &db);
     if(rc){
         cerr << "Error al abrir la base de datos: " << sqlite3_errmsg(db) << endl;
-        return (0);
+        return 0;
     } else {
         cout << "Ingreso correcto a la base de datos" << endl;
     }
@@ -504,7 +517,7 @@ int Operaciones::abonosPrestamos() {
     if (rc != SQLITE_OK) {
         cerr << "Error de SQL: " << sqlite3_errmsg(db) << endl;
         sqlite3_close(db);
-        return;
+        return 0;
     }
 
     // Parametros para la consulta
@@ -514,6 +527,7 @@ int Operaciones::abonosPrestamos() {
     rc = sqlite3_step(stmt);
     if (rc != SQLITE_DONE) {
         cerr << "Error de SQL: " << sqlite3_errmsg(db) << endl;
+        return 0;
     } else {
         cout << "Estos son todos los préstamos registrados para el cliente " << cliente_id << endl;
     }
@@ -533,7 +547,7 @@ int Operaciones::abonosPrestamos() {
     if (rc != SQLITE_OK) {
         cerr << "Error de SQL: " << sqlite3_errmsg(db) << endl;
         sqlite3_close(db);
-        return;
+        return 0;
     }
 
     // Parametros para la consulta
@@ -543,6 +557,7 @@ int Operaciones::abonosPrestamos() {
     rc = sqlite3_step(stmt);
     if (rc != SQLITE_DONE) {
         cerr << "Error de SQL: " << sqlite3_errmsg(db) << endl;
+        return 0;
     } else {
         cuota_mensual = sqlite3_column_int(stmt, 0);
         cout << "¡El valor de la cuota mensual se obtuvo correctamente!" << endl;
@@ -583,7 +598,7 @@ int Operaciones::abonosPrestamos() {
     if (rc != SQLITE_OK) {
         cerr << "Error de SQL: " << sqlite3_errmsg(db) << endl;
         sqlite3_close(db);
-        return;
+        return 0;
     }
 
     // Parametro para la consulta
@@ -598,6 +613,7 @@ int Operaciones::abonosPrestamos() {
         return 0;
     } else {
         cerr << "Error de SQL." << sqlite3_errmsg(db) << endl;
+        return 0;
     }
 
     // Con el numero de cuenta, se realiza una consulta para realizar el rebajo a la cuenta del cliente
@@ -611,7 +627,7 @@ int Operaciones::abonosPrestamos() {
     if (rc != SQLITE_OK) {
         cerr << "Error de SQL: " << sqlite3_errmsg(db) << endl;
         sqlite3_close(db);
-        return;
+        return 0;
     }
 
     // Parametros de la consulta
@@ -628,13 +644,16 @@ int Operaciones::abonosPrestamos() {
             cout << "Pago realizado exitosamente!" << endl;
         } else {
             cout << "El saldo de la cuenta es menor a la cuota mensual del préstamo." << endl;
+            return 0;
         }
     } else if (rc != SQLITE_ROW) {
         cerr << "Error de SQL: " << sqlite3_errmsg(db) << endl;
+        return 0;
     }
 
     // Liberar memoria y cerrar la base de datos
     sqlite3_finalize(stmt);
     sqlite3_close(db);
+    return 1;
 };
 
