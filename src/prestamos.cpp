@@ -65,15 +65,25 @@ bool Prestamos::validacionPrestamo(std::vector<int> meses, std::vector<int> cuot
     std::cout << "Ingrese el valor de la opcion que desea escoger?\n1) 2) 3)" << std::endl;
     std::cin >> opcion_cuotas_meses;
 
+    informacionPrestamoNuevo.push_back(meses[opcion_cuotas_meses]);
+
     if(moneda_prestamo = 1){
+
         cuota_validar = cuotas_dolar[opcion_cuotas_meses];
+
+        informacionPrestamoNuevo.push_back(cuota_validar);
+
         if(cuota_validar > (salario*tasaCompraDolarColones*0.7)){
             return false;
         }else{
             return true;
         }
     }else{
+
         cuota_validar = cuotas_colon[opcion_cuotas_meses];
+
+        informacionPrestamoNuevo.push_back(cuota_validar);
+
         if(cuota_validar > (salario*0.7)){
             return false;
         }else{
@@ -116,9 +126,20 @@ void Prestamos::imprimirTablaInformacion(int interesColon, int interesDolar, std
         std::cout << "Indique el tipo de moneda en que quiere hacer el prestamo\n1) Dolares\n2) Colones" << std::endl;
         std::cin >> moneda_prestamo;
 
+        informacionPrestamoNuevo.push_back(salario);
+
+        if(moneda_prestamo = 1){
+            informacionPrestamoNuevo.push_back("Dolares");
+        }else{
+            informacionPrestamoNuevo.push_back("Colones");
+        }
+
         prestamo_valido = validacionPrestamo(meses, cuotas_dolar, cuotas_colon, salario, moneda_prestamo);
 
         if(prestamo_valido){
+
+            agregarPrestamoBaseDatos();
+
             std::cout << "Felicidades! Usted ha sido apto para el prestamo deseado." << std::endl;
         }else{
             std::cout << "Se han realizo la valoracion para su prestamo y lamentamos "
@@ -149,6 +170,10 @@ Prestamos::Prestamos(){
 
     if(opcion_prestamo == PERSONAL){
 
+        informacionPrestamoNuevo.push_back(monto);
+
+        informacionPrestamoNuevo.push_back("Personal");
+
         cuotas_personalizadas_dolar = calcularCoutas(interesPersonalAnualDolar, mesesPersonal, monto);
 
         cuotas_personalizadas_colon = calcularCoutas(interesPersonalAnualColones, mesesPersonal, monto);
@@ -156,6 +181,10 @@ Prestamos::Prestamos(){
         imprimirTablaInformacion(interesPersonalAnualColones,interesPersonalAnualDolar, cuotas_personalizadas_dolar, cuotas_personalizadas_colon, mesesPersonal);
 
     }else if(opcion_prestamo == PRENDARIO){
+
+        informacionPrestamoNuevo.push_back(monto*0.8);
+
+        informacionPrestamoNuevo.push_back("Prendario");
         
         std::cout << "Indique el monto del objeto que pondra de colateral para el prestamo." << std::endl;
         std::cin >> monto_prendario;
@@ -167,6 +196,10 @@ Prestamos::Prestamos(){
         imprimirTablaInformacion(interesPrendarioAnualColones, interesPrendarioAnualDolar, cuotas_personalizadas_dolar, cuotas_personalizadas_colon, mesesPrendario);
 
     }else if(opcion_prestamo == HIPOTECARIO){
+
+        informacionPrestamoNuevo.push_back(monto);
+
+        informacionPrestamoNuevo.push_back("Hipotecario");
 
         cuotas_personalizadas_dolar = calcularCoutas(interesHipotecarioAnualDolar, mesesHipotecario, monto);
 

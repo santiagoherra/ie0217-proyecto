@@ -56,7 +56,7 @@ class Prestamos{
         bool validacionPrestamo(std::vector<int> meses, std::vector<int> cuotas_dolar, std::vector<int> cuotas_colon, double salario, int tipoMoneda); 
 
         //Funcion para agregar el prestamo a la base de datos.
-        void agregarPrestamoBaseDatos(std::vector<int> cuotas_dolar, std::vector<int> cuotas_colon, std::vector<int> meses);
+        void agregarPrestamoBaseDatos();
 
 
         Prestamos();//Constructor donde se hara toda el menu y se aplicaran los metodos
