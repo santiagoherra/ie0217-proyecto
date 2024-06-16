@@ -37,15 +37,27 @@ std::vector<int> Prestamos::calcularCoutas(int interes, std::vector<int> meses, 
 }
 
 //Funcion para validar un prestamo del usuario y agregar a la base de datos.
-void Prestamos::validacionPrestamo(std::vector<int> cuotas_dolar, std::vector<int> cuotas_colon, std::vector<int> meses){
+bool Prestamos::validacionPrestamo(int interesDolar, std::vector<int> cuotas_dolar, std::vector<int> cuotas_colon, double salario, int tipoMoneda){
     int moneda_prestamo;
-    double salario;
+    int continuidad_laboral;
+    int opcion_cuotas_meses;
 
-    std::cout << "Salario mensual de la persona que optara por el prestamo (valor en colones)\n" << std::endl;
-    std::cin >> salario;
+    std::cout << "Usted posee mas de 6 meses de continuidad laboral?\n1) Si\n2) No" << std::endl;
+    std::cin >> continuidad_laboral;
 
-    std::cout << "Indique el tipo de moneda en la que se hara el prestamo.\n" << std::endl;
+    std::cout << "Indique la moneda de su salario.\n1) Dolares\n2) Colones " << std::endl;
     std::cin >> moneda_prestamo; 
+
+    if(continuidad_laboral == 0){
+        return false;
+    }
+
+    std::cout << "Ahora indique la opcion de plazo de meses y cuotas quiere elegir." << std::endl;
+    std::cout << ""
+
+
+    
+
 
     
 }
@@ -59,9 +71,9 @@ void Prestamos::imprimirTablaInformacion(int interesColon, int interesDolar, std
     std::cout << "|---------------------------------------\n" << std::endl;
     std::cout << "| Intereses anuales | " << meses[0] << " meses | " << meses[1] << " meses | " << meses[2] << " meses | Tipo de Moneda |\n" << std::endl;
     std::cout << "|---------------------------------------\n" << std::endl;
-    std::cout << "| " << interesColon << "%" << "₡ | " << cuotas_colon[0] << "₡ | " << cuotas_colon[1] << "₡ | " << cuotas_colon[2] << "₡ | Colones |\n" << std::endl;
+    std::cout << "| " << interesColon*100 << "%" << "₡ | " << cuotas_colon[0] << "₡ | " << cuotas_colon[1] << "₡ | " << cuotas_colon[2] << "₡ | Colones |\n" << std::endl;
     std::cout << "|---------------------------------------\n" << std::endl;
-    std::cout << "| " << interesDolar << "%" << " | " << cuotas_dolar[0] << "$ | " << cuotas_dolar[1] << "$ | " << cuotas_dolar[2] << "$ | Dolares |\n" << std::endl;
+    std::cout << "| " << interesDolar*100 << "%" << " | " << cuotas_dolar[0] << "$ | " << cuotas_dolar[1] << "$ | " << cuotas_dolar[2] << "$ | Dolares |\n" << std::endl;
     std::cout << "|---------------------------------------\n" << std::endl;
 
     //Decision esta hecha para que la persona elija si quiere elegir un prestamo en este momento.
@@ -71,7 +83,17 @@ void Prestamos::imprimirTablaInformacion(int interesColon, int interesDolar, std
     //Se planteo que el sistema sepa cual prestamos escogio el usuario en base al interes que se le de
     //a la funcion
     if(decision == 1){
-        validacionPrestamo();
+
+        double salario;
+        int moneda_prestamo;
+
+        std::cout << "Salario mensual de la persona que optara por el prestamo (valor en colones)\n" << std::endl;
+        std::cin >> salario;
+
+        std::cout << "Indique el tipo de moneda en que quiere hacer el prestamo\n1) Dolares\n2) Colones" << std::endl;
+        std::cin >> moneda_prestamo;
+
+        validacionPrestamo(interesDolar, cuotas_dolar, cuotas_colon, salario, moneda_prestamo);
     }
 
 }

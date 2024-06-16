@@ -43,13 +43,16 @@ class Prestamos{
         int interesAnualaMensual(int interes);
 
         //Calcula las cuotas utilizadas para la tabla personalizada
-        std::vector<int> calcularCoutas(int interes ,std::vector<int> meses, double monto, double monto_prendario = NULL);//Funcion para calcular coutas
+        std::vector<int> calcularCoutas(int interes ,std::vector<int> meses, double monto, double monto_prendario = NULL);
 
         //Imprime la informacion en una tabla para poder desplegar las valores de las cuotas
-        void imprimirTablaInformacion(int interesColon, int interesDolar, std::vector<int> cuotas_dolar,std::vector<int> cuotas_colon, std::vector<int> meses ); //Funcion para imprimir la tabla de prestamos personalizadas
+        void imprimirTablaInformacion(int interesColon, int interesDolar, std::vector<int> cuotas_dolar,std::vector<int> cuotas_colon, std::vector<int> meses ); 
 
         //Valida el si la persona es apta para el prestamo.
-        void validacionPrestamo(std::vector<int> cuotas_dolar, std::vector<int> cuotas_colon, std::vector<int> meses); //Funcion para validar si si se puede dar prestamo
+        bool validacionPrestamo(int interesDolar, std::vector<int> cuotas_dolar, std::vector<int> cuotas_colon, double salario, int tipoMoneda); 
+
+        //Funcion para agregar el prestamo a la base de datos.
+        void agregarPrestamoBaseDatos(std::vector<int> cuotas_dolar, std::vector<int> cuotas_colon, std::vector<int> meses);
 
 
         Prestamos();//Constructor donde se hara toda el menu y se aplicaran los metodos
