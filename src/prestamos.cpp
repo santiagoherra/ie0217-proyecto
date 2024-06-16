@@ -2,6 +2,8 @@
 #include <cmath>
 #include <sqlite3.h>
 #include <stdexcept>
+#include <string>
+#include <iostream>
 
 enum OpcionesPrestamos{
     PERSONAL = 1,
@@ -12,6 +14,27 @@ enum OpcionesPrestamos{
 static int callback(void *data, int argc, char**argv, char **azColName){
     for(int i = 0; i < argc; i++){
         std::cout << azColName[i] << (argv[i] ? argv[i] : "NULL") << std::endl;
+    }
+    return 0;
+}
+
+void executeSQL(sqlite3 *db, const char *sql, int (*callback)(void*,int,char**,char**), void *data) {
+    char *errMsg = 0;
+    int rc = sqlite3_exec(db, sql, callback, data, &errMsg);
+    if(rc != SQLITE_OK) {
+        std::cerr << "SQL error: " << errMsg << std::endl;
+        sqlite3_free(errMsg);
+    } else {
+        std::cout << "Operación realizada con éxito" << std::endl;
+    }
+}
+
+static int getLastPrestamoId(void *data, int argc, char **argv, char **azColName) {
+    int *lastPrestamoId = (int*)data;
+    if (argc > 0 && argv[0]) {
+        *lastPrestamoId = std::stoi(argv[0]);
+    } else {
+        *lastPrestamoId = 0;  // Si no hay filas, iniciar con 0
     }
     return 0;
 }
@@ -74,13 +97,13 @@ bool Prestamos::validacionPrestamo(std::vector<int> meses, std::vector<int> cuot
     std::cout << "Ingrese el valor de la opcion que desea escoger?\n1) 2) 3)" << std::endl;
     std::cin >> opcion_cuotas_meses;
 
-    informacionPrestamoNuevo.push_back(meses[opcion_cuotas_meses]);
+    informacionPrestamoNuevo[4] = meses[opcion_cuotas_meses];
 
     if(moneda_prestamo = 1){
 
         cuota_validar = cuotas_dolar[opcion_cuotas_meses];
 
-        informacionPrestamoNuevo.push_back(cuota_validar);
+        informacionPrestamoNuevo[5] = cuota_validar;
 
         if(cuota_validar > (salario*tasaCompraDolarColones*0.7)){
             return false;
@@ -91,7 +114,7 @@ bool Prestamos::validacionPrestamo(std::vector<int> meses, std::vector<int> cuot
 
         cuota_validar = cuotas_colon[opcion_cuotas_meses];
 
-        informacionPrestamoNuevo.push_back(cuota_validar);
+        informacionPrestamoNuevo[5] = cuota_validar;
 
         if(cuota_validar > (salario*0.7)){
             return false;
@@ -104,6 +127,8 @@ bool Prestamos::validacionPrestamo(std::vector<int> meses, std::vector<int> cuot
 
 
 int Prestamos::agregarPrestamoBaseDatos(){
+    std::string cedula;
+
     sqlite3 *db;
     char *errMsg = 0;
     int rc;
@@ -117,7 +142,35 @@ int Prestamos::agregarPrestamoBaseDatos(){
         std::cout << "Ingreso correcto a la base de datos" << std::endl;
     }
 
-    //agregar el prestamo en la base de datos
+    std::cout << "Porfavor ingrese su numero de cedula a la cual quiere asociar el prestamo." << std::endl;
+    getline(std::cin, cedula);
+
+    int lastPrestamoId = 0;
+    const char* sqlGetLastPrestamoId = "SELECT MAX(prestamo_id) FROM prestamos;";
+    executeSQL(db, sqlGetLastPrestamoId, getLastPrestamoId, &lastPrestamoId);
+
+    int nuevoIdPrestamo = lastPrestamoId + 1;
+
+
+    // Insertar un nuevo préstamo y asociarlo a un cliente existente
+    std::ostringstream oss;
+    oss << "INSERT INTO prestamos (prestamo_id, denominacion, tipo, monto_total, plazo_meses, cuota_mensual, cliente_id) "
+        << "VALUES ("
+        << nuevoIdPrestamo << ", "
+        << "'" << std::any_cast<std::string>(informacionPrestamoNuevo[3]) << "', "
+        << "'" << std::any_cast<std::string>(informacionPrestamoNuevo[1]) << "', "
+        << std::any_cast<double>(informacionPrestamoNuevo[0]) << ", "
+        << std::any_cast<int>(informacionPrestamoNuevo[4]) << ", "
+        << std::any_cast<double>(informacionPrestamoNuevo[5]) << ", "
+        << "'" << cedula << "');";
+
+    std::string sqlInsertPrestamo = oss.str();
+
+    executeSQL(db, sqlInsertPrestamo);
+
+    // Cerrar la base de datos
+    sqlite3_close(db);
+    return 0;
     
 }
 
@@ -154,12 +207,12 @@ void Prestamos::imprimirTablaInformacion(int interesColon, int interesDolar, std
         std::cout << "Indique el tipo de moneda en que quiere hacer el prestamo\n1) Dolares\n2) Colones" << std::endl;
         std::cin >> moneda_prestamo;
 
-        informacionPrestamoNuevo.push_back(salario);
+        informacionPrestamoNuevo[2] = salario;
 
         if(moneda_prestamo = 1){
-            informacionPrestamoNuevo.push_back("Dolares");
+            informacionPrestamoNuevo[3] = "Dolares";
         }else{
-            informacionPrestamoNuevo.push_back("Colones");
+            informacionPrestamoNuevo[3] = "Colones";
         }
 
         prestamo_valido = validacionPrestamo(meses, cuotas_dolar, cuotas_colon, salario, moneda_prestamo);
@@ -198,9 +251,9 @@ Prestamos::Prestamos(){
 
     if(opcion_prestamo == PERSONAL){
 
-        informacionPrestamoNuevo.push_back(monto);
+        informacionPrestamoNuevo[0] = monto;
 
-        informacionPrestamoNuevo.push_back("Personal");
+        informacionPrestamoNuevo[1] = "Personal";
 
         cuotas_personalizadas_dolar = calcularCoutas(interesPersonalAnualDolar, mesesPersonal, monto);
 
@@ -210,9 +263,9 @@ Prestamos::Prestamos(){
 
     }else if(opcion_prestamo == PRENDARIO){
 
-        informacionPrestamoNuevo.push_back(monto*0.8);
+        informacionPrestamoNuevo[0] = monto*0.8;
 
-        informacionPrestamoNuevo.push_back("Prendario");
+        informacionPrestamoNuevo[1] = "Prendario";
         
         std::cout << "Indique el monto del objeto que pondra de colateral para el prestamo." << std::endl;
         std::cin >> monto_prendario;
@@ -225,9 +278,9 @@ Prestamos::Prestamos(){
 
     }else if(opcion_prestamo == HIPOTECARIO){
 
-        informacionPrestamoNuevo.push_back(monto);
+        informacionPrestamoNuevo[0] = monto;
 
-        informacionPrestamoNuevo.push_back("Hipotecario");
+        informacionPrestamoNuevo[1] = "Hipotecario";
 
         cuotas_personalizadas_dolar = calcularCoutas(interesHipotecarioAnualDolar, mesesHipotecario, monto);
 
