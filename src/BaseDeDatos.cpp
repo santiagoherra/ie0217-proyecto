@@ -50,7 +50,7 @@ int crearDB(){
         "plazo_meses INT,"
         "cuota_mensual INT,"
         "tasa DECIMAL(2,2),"
-        "cliente_id INT,"
+        "cliente_id CHAR(9),"
         "FOREIGN KEY (cliente_id) REFERENCES clientes(cedula));"
         
         "CREATE TABLE certificados_de_deposito ("
