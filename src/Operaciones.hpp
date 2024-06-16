@@ -1,6 +1,6 @@
 /**
  * @file Operaciones.hpp
- * @brief .
+ * @brief Headerfile en donde se definen los metodos que realizan las operaciones.
 **/
 
 #ifndef OPERACIONES_HPP
