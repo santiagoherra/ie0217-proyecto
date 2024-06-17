@@ -41,27 +41,30 @@ static int getLastPrestamoId(void *data, int argc, char **argv, char **azColName
 }
 
 //Utilizando la bilbioteca cmath para hacer la funcion.
-int Prestamos::interesAnualaMensual(int interesAnual){
-    int interes_mensual = pow(1 + interesAnual, 1/12) - 1;
+float Prestamos::interesAnualaMensual(float interesAnual){
+    float interes_mensual = pow(1 + interesAnual, 1.0/12.0) - 1;
+
     return interes_mensual;
 }
 
 //Calcula las cuotas personzalidas para el usuario
-std::vector<int> Prestamos::calcularCoutas(int interes, std::vector<int> meses, double monto, double monto_prendario){
+std::vector<int> Prestamos::calcularCoutas(float interes, std::vector<int> meses, double monto, double monto_prendario){
 
     if(monto_prendario != 0){
 
         monto = monto_prendario * 0.8;
     }
 
-    int tem = interesAnualaMensual(interes);
+    float tem = interesAnualaMensual(interes);
     
     std::vector<int> cuotas_personalizadas;
 
     //las cuotas se da en un formato de contenedor vector
     for(int mes : meses){
 
-        int cuota_mes = monto * (pow(tem * (1 + tem), mes) / pow(1 + tem, mes) - 1);
+        float cuota_mes = (monto * tem * pow(1 + tem, mes)) / (pow(1 + tem, mes) - 1);
+
+
 
         cuotas_personalizadas.push_back(cuota_mes);
     }
@@ -86,12 +89,12 @@ bool Prestamos::validacionPrestamo(std::vector<int> meses, std::vector<int> cuot
     std::cout << "Ahora indique la opcion de plazo de meses y cuotas quiere elegir." << std::endl;
     
     if(moneda_prestamo = 1){
-        for(int i = 0; i < 3; i++){
-        std::cout << i << ") " << cuotas_dolar[i] << "/" << meses[i] << "\n" << std::endl;
+        for(int i = 1; i <= 3; i++){
+        std::cout << i << ") " << cuotas_dolar[i] << "$ /" << meses[i] << " meses\n" << std::endl;
         }
     }else{
-        for(int i = 0; i < 3; i++){
-        std::cout << "1) " << cuotas_colon[i] << "/" << meses[i] << "\n" << std::endl;
+        for(int i = 1; i <= 3; i++){
+        std::cout << "1) " << cuotas_colon[i] << "₡ /" << meses[i] << " meses\n" << std::endl;
         }
     }
 
@@ -177,20 +180,18 @@ int Prestamos::agregarPrestamoBaseDatos(){
 
 
 //Esta es la funcion que imprime la tabla personalizada de prestamos para que la persona pueda elegir
-void Prestamos::imprimirTablaInformacion(int interesColon, int interesDolar, std::vector<int> cuotas_dolar, std::vector<int> cuotas_colon, std::vector<int> meses){
+void Prestamos::imprimirTablaInformacion(float interesColon, float interesDolar, std::vector<int> cuotas_dolar, std::vector<int> cuotas_colon, std::vector<int> meses){
     int decision;
     bool prestamo_valido;
 
-    std::cout << interesColon <<  " " << interesDolar << std::endl;
-
-    std::cout << "La tabla personalizada de datos para el prestamo elegido es la siguiente.\n" << std::endl; 
+    std::cout << "\nLa tabla personalizada de datos para el prestamo elegido es la siguiente.\n" << std::endl; 
 
     std::cout << "|---------------------------------------\n" << std::endl;
     std::cout << "| Intereses anuales | " << meses[0] << " meses | " << meses[1] << " meses | " << meses[2] << " meses | Tipo de Moneda |\n" << std::endl;
     std::cout << "|---------------------------------------\n" << std::endl;
-    std::cout << "| " << interesColon*100 << "%" << "₡      | " << cuotas_colon[0] << "₡    | " << cuotas_colon[1] << "₡    | " << cuotas_colon[2] << "₡ | Colones |\n" << std::endl;
+    std::cout << "| " << interesColon*100 << "%" << "₡      | " << cuotas_colon[0] << "₡    | " << cuotas_colon[1] << "₡    |   " << cuotas_colon[2] << "₡  | Colones |\n" << std::endl;
     std::cout << "|---------------------------------------\n" << std::endl;
-    std::cout << "| " << interesDolar*100 << "%" << "$      | " << cuotas_dolar[0] << "$    | " << cuotas_dolar[1] << "$    | " << cuotas_dolar[2] << "$ | Dolares |\n" << std::endl;
+    std::cout << "| " << interesDolar*100 << "%" << "$      | " << cuotas_dolar[0] << "$    | " << cuotas_dolar[1] << "$    |   " << cuotas_dolar[2] << "$  | Dolares |\n" << std::endl;
     std::cout << "|---------------------------------------\n" << std::endl;
 
     //Decision esta hecha para que la persona elija si quiere elegir un prestamo en este momento.
@@ -261,26 +262,26 @@ Prestamos::Prestamos(){
 
         informacionPrestamoNuevo[1] = "Personal";
 
-        cuotas_personalizadas_dolar = calcularCoutas(interesPersonalAnualDolar, mesesPersonal, monto);
+        double monto_dolar = monto / tasaCompraDolarColones;
+
+        cuotas_personalizadas_dolar = calcularCoutas(interesPersonalAnualDolar, mesesPersonal, monto_dolar);
 
         cuotas_personalizadas_colon = calcularCoutas(interesPersonalAnualColones, mesesPersonal, monto);
-
-        for(int i : cuotas_personalizadas_colon){
-            std::cout << i << std::endl;
-        }
 
         imprimirTablaInformacion(interesPersonalAnualColones,interesPersonalAnualDolar, cuotas_personalizadas_dolar, cuotas_personalizadas_colon, mesesPersonal);
 
     }else if(opcion_prestamo == PRENDARIO){
-
-        informacionPrestamoNuevo[0] = monto*0.8;
 
         informacionPrestamoNuevo[1] = "Prendario";
         
         std::cout << "Indique el monto del objeto que pondra de colateral para el prestamo." << std::endl;
         std::cin >> monto_prendario;
 
-        cuotas_personalizadas_dolar = calcularCoutas(interesPrendarioAnualDolar, mesesPrendario, monto, monto_prendario);
+        double monto_dolar = monto / tasaCompraDolarColones;
+
+        informacionPrestamoNuevo[0] = monto_prendario*0.8;
+
+        cuotas_personalizadas_dolar = calcularCoutas(interesPrendarioAnualDolar, mesesPrendario, monto_dolar, monto_prendario);
 
         cuotas_personalizadas_colon = calcularCoutas(interesPrendarioAnualColones, mesesPrendario, monto, monto_prendario);
 
@@ -292,7 +293,9 @@ Prestamos::Prestamos(){
 
         informacionPrestamoNuevo[1] = "Hipotecario";
 
-        cuotas_personalizadas_dolar = calcularCoutas(interesHipotecarioAnualDolar, mesesHipotecario, monto);
+        double monto_dolar = monto / tasaCompraDolarColones;
+
+        cuotas_personalizadas_dolar = calcularCoutas(interesHipotecarioAnualDolar, mesesHipotecario, monto_dolar);
 
         cuotas_personalizadas_colon = calcularCoutas(interesHipotecarioAnualColones, mesesHipotecario, monto);
 
