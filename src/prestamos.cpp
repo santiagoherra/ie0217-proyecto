@@ -181,14 +181,16 @@ void Prestamos::imprimirTablaInformacion(int interesColon, int interesDolar, std
     int decision;
     bool prestamo_valido;
 
+    std::cout << interesColon <<  " " << interesDolar << std::endl;
+
     std::cout << "La tabla personalizada de datos para el prestamo elegido es la siguiente.\n" << std::endl; 
 
     std::cout << "|---------------------------------------\n" << std::endl;
     std::cout << "| Intereses anuales | " << meses[0] << " meses | " << meses[1] << " meses | " << meses[2] << " meses | Tipo de Moneda |\n" << std::endl;
     std::cout << "|---------------------------------------\n" << std::endl;
-    std::cout << "| " << interesColon*100 << "%" << "₡ | " << cuotas_colon[0] << "₡ | " << cuotas_colon[1] << "₡ | " << cuotas_colon[2] << "₡ | Colones |\n" << std::endl;
+    std::cout << "| " << interesColon*100 << "%" << "₡      | " << cuotas_colon[0] << "₡    | " << cuotas_colon[1] << "₡    | " << cuotas_colon[2] << "₡ | Colones |\n" << std::endl;
     std::cout << "|---------------------------------------\n" << std::endl;
-    std::cout << "| " << interesDolar*100 << "%" << " | " << cuotas_dolar[0] << "$ | " << cuotas_dolar[1] << "$ | " << cuotas_dolar[2] << "$ | Dolares |\n" << std::endl;
+    std::cout << "| " << interesDolar*100 << "%" << "$      | " << cuotas_dolar[0] << "$    | " << cuotas_dolar[1] << "$    | " << cuotas_dolar[2] << "$ | Dolares |\n" << std::endl;
     std::cout << "|---------------------------------------\n" << std::endl;
 
     //Decision esta hecha para que la persona elija si quiere elegir un prestamo en este momento.
@@ -233,6 +235,8 @@ void Prestamos::imprimirTablaInformacion(int interesColon, int interesDolar, std
 
 //El constructor de prestamos sera utilizado para implementar la gestion de informacion del para el usuario.
 Prestamos::Prestamos(){
+    informacionPrestamoNuevo.resize(6);
+
     int opcion_prestamo;
 
     double monto;
@@ -246,9 +250,9 @@ Prestamos::Prestamos(){
 
     std::cout << "Elija el tipo de prestamo por el que desearia optar.\n 1) Personal 2) Prendario 3) Hipotecario" << std::endl;
     std::cin >> opcion_prestamo;
+    std::cin.ignore();
 
-
-    std::cout << "Para continuar porfavor indique la siguiente informacion:\n Monto por el que sea optar (valor en colones):\n" << std::endl;
+    std::cout << "Para continuar porfavor indique la siguiente informacion:\nMonto por el que sea optar (valor en colones):\n" << std::endl;
     std::cin >> monto;
 
     if(opcion_prestamo == PERSONAL){
@@ -260,6 +264,10 @@ Prestamos::Prestamos(){
         cuotas_personalizadas_dolar = calcularCoutas(interesPersonalAnualDolar, mesesPersonal, monto);
 
         cuotas_personalizadas_colon = calcularCoutas(interesPersonalAnualColones, mesesPersonal, monto);
+
+        for(int i : cuotas_personalizadas_colon){
+            std::cout << i << std::endl;
+        }
 
         imprimirTablaInformacion(interesPersonalAnualColones,interesPersonalAnualDolar, cuotas_personalizadas_dolar, cuotas_personalizadas_colon, mesesPersonal);
 
