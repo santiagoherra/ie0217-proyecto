@@ -186,13 +186,13 @@ void Prestamos::imprimirTablaInformacion(float interesColon, float interesDolar,
 
     std::cout << "\nLa tabla personalizada de datos para el prestamo elegido es la siguiente.\n" << std::endl; 
 
-    std::cout << "|---------------------------------------\n" << std::endl;
+    std::cout << "|-------------------------------------------------------------------------\n" << std::endl;
     std::cout << "| Intereses anuales | " << meses[0] << " meses | " << meses[1] << " meses | " << meses[2] << " meses | Tipo de Moneda |\n" << std::endl;
-    std::cout << "|---------------------------------------\n" << std::endl;
-    std::cout << "| " << interesColon*100 << "%" << "₡      | " << cuotas_colon[0] << "₡    | " << cuotas_colon[1] << "₡    |   " << cuotas_colon[2] << "₡  | Colones |\n" << std::endl;
-    std::cout << "|---------------------------------------\n" << std::endl;
-    std::cout << "| " << interesDolar*100 << "%" << "$      | " << cuotas_dolar[0] << "$    | " << cuotas_dolar[1] << "$    |   " << cuotas_dolar[2] << "$  | Dolares |\n" << std::endl;
-    std::cout << "|---------------------------------------\n" << std::endl;
+    std::cout << "|-------------------------------------------------------------------------\n" << std::endl;
+    std::cout << "|         " << interesColon*100 << "%" << "₡      |   " << cuotas_colon[0] << "₡    |   " << cuotas_colon[1] << "₡    |     " << cuotas_colon[2] << "₡       | Colones |\n" << std::endl;
+    std::cout << "|-------------------------------------------------------------------------\n" << std::endl;
+    std::cout << "|         " << interesDolar*100 << "%" << "$      |       " << cuotas_dolar[0] << "$     |      " << cuotas_dolar[1] << "$    |    " << cuotas_dolar[2] << "$   | Dolares |\n" << std::endl;
+    std::cout << "|-------------------------------------------------------------------------\n" << std::endl;
 
     //Decision esta hecha para que la persona elija si quiere elegir un prestamo en este momento.
     std::cout << "Desea optar por un prestamo en este momento?\n1) Si\n2) No " << std::endl;
@@ -279,9 +279,11 @@ Prestamos::Prestamos(){
 
         double monto_dolar = monto / tasaCompraDolarColones;
 
+        double monto_prendario_dolar = monto / tasaCompraDolarColones;
+
         informacionPrestamoNuevo[0] = monto_prendario*0.8;
 
-        cuotas_personalizadas_dolar = calcularCoutas(interesPrendarioAnualDolar, mesesPrendario, monto_dolar, monto_prendario);
+        cuotas_personalizadas_dolar = calcularCoutas(interesPrendarioAnualDolar, mesesPrendario, monto_dolar, monto_prendario_dolar);
 
         cuotas_personalizadas_colon = calcularCoutas(interesPrendarioAnualColones, mesesPrendario, monto, monto_prendario);
 
