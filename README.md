@@ -5,6 +5,15 @@
 * Santiago Herra Castro C1721
 * José Ignacio Sáenz Díaz C27032
 * Kevin Jiménez Acuña C13876
+* 
+## Instrucciones de ejecucion:
+Para probar la parte de transferencia, deposito y abonos:
+
+g++ main.cpp BaseDeDatos.cpp CuentaAhorros.cpp Operaciones.cpp prestamos.cpp -o main -IC:\sqlite -LC:\sqlite -lsqlite3 
+
+Para probar la parte de prestamos:
+
+g++ main_prestamos.cpp BaseDeDatos.cpp CuentaAhorros.cpp Operaciones.cpp prestamos.cpp -o main -IC:\sqlite -LC:\sqlite -lsqlite3 
 
 ## Descripción de proyecto.
 Este proyecto se centra en la investigación, diseño e implementación de un sistema de gestión bancaria. Esta siendo para poder ser utilizado por agentes en ventanillas bancaria, facilitando tanto la atención a clientes como la gestion de información de prestamos bancarios.
