@@ -4,8 +4,8 @@
 #include <unordered_map>
 
 struct Cuotas{
-    int tasaDolar;
-    int tasaColon;
+    float tasaColon;
+    float tasaDolar;
 };
 
 class CDP{
