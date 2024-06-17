@@ -4,6 +4,7 @@
 #include <stdexcept>
 #include <string>
 #include <iostream>
+#include <sstream>
 
 enum OpcionesPrestamos{
     PERSONAL = 1,
@@ -166,7 +167,7 @@ int Prestamos::agregarPrestamoBaseDatos(){
 
     std::string sqlInsertPrestamo = oss.str();
 
-    executeSQL(db, sqlInsertPrestamo);
+    executeSQL(db, sqlInsertPrestamo.c_str(), nullptr, nullptr);
 
     // Cerrar la base de datos
     sqlite3_close(db);
