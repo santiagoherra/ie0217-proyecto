@@ -11,6 +11,7 @@
 #include <stdexcept>
 #include <string>
 #include <sstream>
+#include <iomanip>
 #include <sqlite3.h>
 
 using namespace std;
@@ -613,7 +614,8 @@ int Operaciones::abonosPrestamos() {
         double monto_total = sqlite3_column_double(stmt, 2);
         double cuota_mensual = sqlite3_column_double(stmt, 3);
 
-    	cout << "Préstamo ID: " << prestamo_id << ", Descripción: " << descripcion << ", Monto: " << monto_total << ", Cuota Mensual: " << cuota_mensual << endl;
+    	cout << "Préstamo ID: " << prestamo_id << ", Descripción: " << descripcion << ", Monto: " << monto_total <<
+                ", Cuota Mensual: " << std::fixed << std::setprecision(2) << cuota_mensual << endl;
 }
 if (rc != SQLITE_DONE) {
     cerr << "Error de SQL: " << sqlite3_errmsg(db) << endl;
@@ -647,15 +649,20 @@ if (rc != SQLITE_DONE) {
 
     // Realiza la consulta en donde obtiene la cuota
     rc = sqlite3_step(stmt);
-    if (rc != SQLITE_DONE) {
-        cerr << "Error de SQL: " << sqlite3_errmsg(db) << endl;
+    if (rc == SQLITE_ROW) {
+        cuota_mensual = sqlite3_column_int(stmt, 0);
+        cout << "¡El valor de la cuota mensual se obtuvo correctamente!" << endl;
+    } else if(rc == SQLITE_DONE){
+        cerr << "No se encontró un préstamo con este ID" << endl;
         sqlite3_finalize(stmt);
         sqlite3_close(db);
         return 0;
     } else {
-        cuota_mensual = sqlite3_column_int(stmt, 0);
-        cout << "¡El valor de la cuota mensual se obtuvo correctamente!" << endl;
-    }  
+        cerr << "Error de SQL (step): " << sqlite3_errmsg(db) << endl;
+        sqlite3_finalize(stmt);
+        sqlite3_close(db);
+        return 0;      
+    }
 
     sqlite3_finalize(stmt);  // Finalizar consulta
 
@@ -774,7 +781,7 @@ if (rc != SQLITE_DONE) {
     // Realizar la segunda consulta para modificar el balance en caso de que se pueda pagar la cuota
     rc = sqlite3_step(stmt);
     if (rc == SQLITE_DONE) {
-        cout << "Retiro realizado correctamente." << endl;
+        cout << "Abono realizado correctamente." << endl;
     } else if (rc != SQLITE_DONE) {
         // Hubo un error en la consulta
         cerr << "No fue posible realizar el abono." << endl;
