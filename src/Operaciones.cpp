@@ -11,6 +11,7 @@
 #include <stdexcept>
 #include <string>
 #include <sstream>
+#include <iomanip>
 #include <sqlite3.h>
 
 using namespace std;
@@ -96,6 +97,9 @@ int Operaciones::deposito() {
         cout << "No existe ninguna cuenta asociada a este número de cédula" << endl;
     } else {
         cerr << "Error de SQL." << sqlite3_errmsg(db) << endl;
+        sqlite3_finalize(stmt);
+        sqlite3_close(db);
+        return 0;
     }
     
     // Crear la segunda consulta para actualizar balance de la cuenta
@@ -131,6 +135,8 @@ int Operaciones::deposito() {
         cout << "¡El depósito fue realizado de manera exitosa!" << endl;
     } else {
         cerr << "Error de SQL." << sqlite3_errmsg(db) << endl;
+        sqlite3_finalize(stmt);
+        sqlite3_close(db);
         return 0;
     }
 
@@ -144,6 +150,7 @@ int Operaciones::retiro() {
     string cedula;
     int numero_cuenta;
     string denominacion;
+    float balance;
     float montoRetirar;
     char cuenta_op;
     sqlite3 *db;
@@ -215,13 +222,48 @@ int Operaciones::retiro() {
         return 0;
     } else {
         cerr << "Error de SQL." << sqlite3_errmsg(db) << endl;
+        sqlite3_finalize(stmt);
+        sqlite3_close(db);
         return 0;
     }
 
-    // Crear la segunda consulta para actualizar balance de la cuenta
+    sqlite3_finalize(stmt);  // Finalizar consulta
+
+    // Crear una consulta extra para obtener el balance y compararlo con el monto
+    const char *cuentasExt = "SELECT balance FROM cuentas WHERE numero_cuenta = ?";
+
+    // Preparar consulta parametrizada
+    rc = sqlite3_prepare_v2(db, cuentasExt, -1, &stmt, nullptr);
+    if (rc != SQLITE_OK) {
+        cerr << "Error de SQL: " << sqlite3_errmsg(db) << endl;
+        sqlite3_close(db);
+        return 0;
+    }
+
+    // Parametros de la consulta
+    sqlite3_bind_double(stmt, 1, numero_cuenta);
+
+    // Realizar la consulta
+    rc = sqlite3_step(stmt);
+    if (rc == SQLITE_ROW) {
+        balance = sqlite3_column_double(stmt, 0);
+        balance /= 100;  // Conversion necesaria por formato SQL
+        cout << "El valor del balance asociado fue accesado correctamente" << endl;
+    } else if (rc == SQLITE_DONE) {
+        cout << "No fue posible obtener el valor del balance asociado a esta cuenta" << endl;
+        return 0;
+    } else {
+        cerr << "Error de SQL." << sqlite3_errmsg(db) << endl;
+        sqlite3_finalize(stmt);
+        sqlite3_close(db);
+        return 0;
+    } 
+
+    sqlite3_finalize(stmt);  // Finalizar consulta
+
+    // Crear la tercera consulta para actualizar balance de la cuenta
     const char *cuentas = "UPDATE cuentas "
-                        // En este caso, solo se realiza la operacion si el balance es igual o mayor al monto ingresado
-                          "SET balance = CASE WHEN balance >= ? THEN balance - ? ELSE balance END "
+                          "SET balance = balance - ?"
                           "WHERE numero_cuenta = ?";
 
 
@@ -240,29 +282,26 @@ int Operaciones::retiro() {
 
     // Verifiacion monto
     if (montoRetirar <= 0) {
-        cout << "¡El monto a retirar no es válido!";
+        cout << "¡El monto a retirar no es válido!" << endl;
+        return 0;
+    } else if (balance < montoRetirar) {
+        cout << "La cuenta no presenta el saldo suficiente para retirar este monto" << endl;
         return 0;
     }
 
     // Parametros de la consulta
     sqlite3_bind_double(stmt, 1, montoRetirar);
-    sqlite3_bind_double(stmt, 2, montoRetirar);
-    sqlite3_bind_int(stmt, 3, numero_cuenta);
+    sqlite3_bind_int(stmt, 2, numero_cuenta);
 
-    // Realizar la segunda consulta para modificar el balance en caso de que el monto sea correcto
+    // Realizar la consulta final
     rc = sqlite3_step(stmt);
     if (rc == SQLITE_DONE) {
-        /* En este caso es necesario verificar que el retiro se hizo adecuadamente, utilizando el metodo
-        sqlite3_changes, si se obtiene que no hay cambios pero la consulta fue exitosa, se deduce que
-        el monto ingresado fue menor al balance de la cuenta*/
-        if (sqlite3_changes(db) > 0) {
-            cout << "¡Retiro realizado exitosamente!" << endl;
-        } else {
-            cout << "El saldo es menor al monto que desea retirar." << endl;
-            return 0;
-        }
-    } else if (rc != SQLITE_ROW) {
-        cerr << "Error de SQL: " << sqlite3_errmsg(db) << endl;
+        cout << "Retiro realizado correctamente." << endl;
+    } else if (rc != SQLITE_DONE) {
+        // Hubo un error en la consulta
+        cerr << "No fue posible realizar el retiro: " << endl;
+        sqlite3_finalize(stmt);
+        sqlite3_close(db);
         return 0;
     }
 
@@ -279,6 +318,7 @@ int Operaciones::transferencias() {
     string denominacion;
     string denominacionReceptor;
     float montoTransferencia;
+    float balance;
     char cuenta_op;
     sqlite3 *db;
     sqlite3_stmt *stmt;
@@ -349,13 +389,48 @@ int Operaciones::transferencias() {
         return 0;
     } else {
         cerr << "Error de SQL." << sqlite3_errmsg(db) << endl;
+        sqlite3_finalize(stmt);
+        sqlite3_close(db);
         return 0;
     }
 
-    // Crear la segunda consulta para actualizar balance de la cuenta
+    sqlite3_finalize(stmt);  // Finalizar consulta
+
+    // Crear una consulta extra para obtener el balance y compararlo con el monto
+    const char *cuentasExt = "SELECT balance FROM cuentas WHERE numero_cuenta = ?";
+
+    // Preparar consulta parametrizada
+    rc = sqlite3_prepare_v2(db, cuentasExt, -1, &stmt, nullptr);
+    if (rc != SQLITE_OK) {
+        cerr << "Error de SQL: " << sqlite3_errmsg(db) << endl;
+        sqlite3_close(db);
+        return 0;
+    }
+
+    // Parametros de la consulta
+    sqlite3_bind_double(stmt, 1, numero_cuenta);
+
+    // Realizar la consulta
+    rc = sqlite3_step(stmt);
+    if (rc == SQLITE_ROW) {
+        balance = sqlite3_column_double(stmt, 0);
+        balance /= 100;
+        cout << "El valor del balance asociado fue accesado correctamente" << endl;
+    } else if (rc == SQLITE_DONE) {
+        cout << "No fue posible obtener el valor del balance asociado a esta cuenta" << endl;
+        return 0;
+    } else {
+        cerr << "Error de SQL." << sqlite3_errmsg(db) << endl;
+        sqlite3_finalize(stmt);
+        sqlite3_close(db);
+        return 0;
+    }
+
+    sqlite3_finalize(stmt);  // Finalizar consulta
+
+    // Crear la tercera consulta para actualizar balance de la cuenta
     const char *cuentas = "UPDATE cuentas "
-                        // En este caso, solo se realiza la operacion si el balance es igual o mayor al monto ingresado para transferir
-                          "SET balance = CASE WHEN balance >= ? THEN balance - ? ELSE balance END "
+                          "SET balance = balance - ?"
                           "WHERE numero_cuenta = ?";
 
     // Preparar consulta parametrizada
@@ -375,29 +450,28 @@ int Operaciones::transferencias() {
     if (montoTransferencia <= 0) {
         cout << "¡Este monto no es válido!";
         return 0;
+    } else if (balance < montoTransferencia) {
+        cout << "La cuenta no presenta el saldo suficiente para transferir este monto" << endl;
+        return 0;
     }
 
     // Parametros de la consulta
     sqlite3_bind_double(stmt, 1, montoTransferencia);
-    sqlite3_bind_double(stmt, 2, montoTransferencia);
-    sqlite3_bind_int(stmt, 3, numero_cuenta);
+    sqlite3_bind_int(stmt, 2, numero_cuenta);
 
-    /* Realizar la segunda consulta para modificar el balance del emisor de la transferencia en caso de
-    que posea el capital necesario para realizarla*/
+    // Consulta para rebajar el monto de la cuenta emisora
     rc = sqlite3_step(stmt);
     if (rc == SQLITE_DONE) {
-        /* En este caso es necesario verificar que el retiro se hizo adecuadamente, utilizando el metodo
-        sqlite3_changes*/
-        if (sqlite3_changes(db) > 0) {
-            cout << "¡Retiro realizado exitosamente!" << endl;
-        } else {
-            cout << "El saldo es menor al monto que desea transferir." << endl;
-            return 0;
-        }
-    } else if (rc != SQLITE_ROW) {
-        cerr << "Error de SQL: " << sqlite3_errmsg(db) << endl;
+        cout << "Retiro realizado correctamente." << endl;
+    } else if (rc != SQLITE_DONE) {
+        // Hubo un error en la consulta
+        cerr << "No fue posible realizar el retiro: " << endl;
+        sqlite3_finalize(stmt);
+        sqlite3_close(db);
         return 0;
     }
+
+    sqlite3_finalize(stmt);  // Finalizar consulta
 
     // Solicitar el numero de cuenta del receptor de la transferencia
     cout << "Por favor, ingrese el número de cuenta al que desea realizar la transferencia: " << endl;
@@ -432,12 +506,16 @@ int Operaciones::transferencias() {
             return 0;
         }
     } else if (rc == SQLITE_DONE) {
-        cout << "No existe ninguna cuenta asociada a este número de cédula" << endl;
+        cout << "No existe ninguna cuenta asociada a este número de identificación." << endl;
         return 0;
     } else {
         cerr << "Error de SQL." << sqlite3_errmsg(db) << endl;
+        sqlite3_finalize(stmt);
+        sqlite3_close(db);
         return 0;
     }
+
+    sqlite3_finalize(stmt);  // Finalizar consulta
 
     // Ahora se realiza una comparacion de las denominaciones de ambas cuentas
     if (denominacion != denominacionReceptor) {
@@ -473,6 +551,8 @@ int Operaciones::transferencias() {
         cout << "¡La transferencia fue realizada de manera exitosa!" << endl;
     } else {
         cerr << "Error de SQL." << sqlite3_errmsg(db) << endl;
+        sqlite3_finalize(stmt);
+        sqlite3_close(db);
         return 0;
     }
 
@@ -485,9 +565,12 @@ int Operaciones::transferencias() {
 int Operaciones::abonosPrestamos() {
     string cliente_id;
     int prestamo_id;
+    string descripcion;
     string denominacion;
     int numero_cuenta;
     int cuota_mensual;
+    double monto_total;
+    float balance;
     char cuenta_op;
     sqlite3 *db;
     sqlite3_stmt *stmt;
@@ -523,14 +606,25 @@ int Operaciones::abonosPrestamos() {
     // Parametros para la consulta
     sqlite3_bind_text(stmt, 1, cliente_id.c_str(), -1, SQLITE_STATIC);
 
-    // Realizar la consulta
-    rc = sqlite3_step(stmt);
-    if (rc != SQLITE_DONE) {
-        cerr << "Error de SQL: " << sqlite3_errmsg(db) << endl;
-        return 0;
-    } else {
-        cout << "Estos son todos los préstamos registrados para el cliente " << cliente_id << endl;
-    }
+    cout << "Préstamos asociados al cliente: " << endl;
+    // A partir de esta consulta, se despliegan todos los prestamos relacionados con el cliente
+    while ((rc = sqlite3_step(stmt)) == SQLITE_ROW) {
+        int prestamo_id = sqlite3_column_int(stmt, 0);
+        std::string descripcion = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1));
+        double monto_total = sqlite3_column_double(stmt, 2);
+        double cuota_mensual = sqlite3_column_double(stmt, 3);
+
+    	cout << "Préstamo ID: " << prestamo_id << ", Descripción: " << descripcion << ", Monto: " << monto_total <<
+                ", Cuota Mensual: " << std::fixed << std::setprecision(2) << cuota_mensual << endl;
+}
+if (rc != SQLITE_DONE) {
+    cerr << "Error de SQL: " << sqlite3_errmsg(db) << endl;
+    sqlite3_finalize(stmt);
+    sqlite3_close(db);
+    return 0;
+}
+
+    sqlite3_finalize(stmt);  // Finalizar statement
 
     /* Ahora el cliente debe escoger a cual prestamo realizar el abono y cual cuenta
     va a utilizar para pagar la cuota.*/
@@ -555,13 +649,22 @@ int Operaciones::abonosPrestamos() {
 
     // Realiza la consulta en donde obtiene la cuota
     rc = sqlite3_step(stmt);
-    if (rc != SQLITE_DONE) {
-        cerr << "Error de SQL: " << sqlite3_errmsg(db) << endl;
-        return 0;
-    } else {
+    if (rc == SQLITE_ROW) {
         cuota_mensual = sqlite3_column_int(stmt, 0);
         cout << "¡El valor de la cuota mensual se obtuvo correctamente!" << endl;
-    }  
+    } else if(rc == SQLITE_DONE){
+        cerr << "No se encontró un préstamo con este ID" << endl;
+        sqlite3_finalize(stmt);
+        sqlite3_close(db);
+        return 0;
+    } else {
+        cerr << "Error de SQL (step): " << sqlite3_errmsg(db) << endl;
+        sqlite3_finalize(stmt);
+        sqlite3_close(db);
+        return 0;      
+    }
+
+    sqlite3_finalize(stmt);  // Finalizar consulta
 
     // String de consulta que va a variar dependiendo de la denominacion de la cuenta
     const char *clientes;
@@ -613,13 +716,48 @@ int Operaciones::abonosPrestamos() {
         return 0;
     } else {
         cerr << "Error de SQL." << sqlite3_errmsg(db) << endl;
+        sqlite3_finalize(stmt);
+        sqlite3_close(db);
         return 0;
     }
 
+    sqlite3_finalize(stmt);  // Finalizar consulta
+
+    // Anadir consulta extra para obtener el balance
+    const char *cuentasExt = "SELECT balance FROM cuentas WHERE numero_cuenta = ?";
+
+    // Preparar consulta parametrizada
+    rc = sqlite3_prepare_v2(db, cuentasExt, -1, &stmt, nullptr);
+    if (rc != SQLITE_OK) {
+        cerr << "Error de SQL: " << sqlite3_errmsg(db) << endl;
+        sqlite3_close(db);
+        return 0;
+    }
+
+    // Parametros de la consulta
+    sqlite3_bind_double(stmt, 1, numero_cuenta);
+
+    // Realizar la consulta
+    rc = sqlite3_step(stmt);
+    if (rc == SQLITE_ROW) {
+        balance = sqlite3_column_double(stmt, 0);
+        balance /= 100;
+        cout << "El valor del balance asociado fue accesado correctamente" << endl;
+    } else if (rc == SQLITE_DONE) {
+        cout << "No fue posible obtener el valor del balance asociado a esta cuenta" << endl;
+        return 0;
+    } else {
+        cerr << "Error de SQL." << sqlite3_errmsg(db) << endl;
+        sqlite3_finalize(stmt);
+        sqlite3_close(db);
+        return 0;
+    } 
+
+    sqlite3_finalize(stmt);  // Finalizar consulta
+
     // Con el numero de cuenta, se realiza una consulta para realizar el rebajo a la cuenta del cliente
     const char *cuentas = "UPDATE cuentas "
-                        // En este caso, solo se realiza la operacion si el balance es igual o mayor al monto ingresado
-                          "SET balance = CASE WHEN balance >= ? THEN balance - ? ELSE balance END "
+                          "SET balance = balance - ? "
                           "WHERE numero_cuenta = ?";
 
     // Preparar consulta parametrizada
@@ -630,24 +768,25 @@ int Operaciones::abonosPrestamos() {
         return 0;
     }
 
+    // Revisar que el balance no sea menor a la cuota mensual
+    if (balance < cuota_mensual) {
+        cout << "El saldo no es suficiente para pagar la cuota" << endl;
+        return 0;
+    } 
+
     // Parametros de la consulta
     sqlite3_bind_double(stmt, 1, cuota_mensual);
-    sqlite3_bind_double(stmt, 2, cuota_mensual);
-    sqlite3_bind_int(stmt, 3, numero_cuenta);
+    sqlite3_bind_int(stmt, 2, numero_cuenta);
 
     // Realizar la segunda consulta para modificar el balance en caso de que se pueda pagar la cuota
     rc = sqlite3_step(stmt);
     if (rc == SQLITE_DONE) {
-        /* En este caso es necesario verificar que el pago se hizo adecuadamente, utilizando el metodo
-        sqlite3_changes*/
-        if (sqlite3_changes(db) > 0) {
-            cout << "Pago realizado exitosamente!" << endl;
-        } else {
-            cout << "El saldo de la cuenta es menor a la cuota mensual del préstamo." << endl;
-            return 0;
-        }
-    } else if (rc != SQLITE_ROW) {
-        cerr << "Error de SQL: " << sqlite3_errmsg(db) << endl;
+        cout << "Abono realizado correctamente." << endl;
+    } else if (rc != SQLITE_DONE) {
+        // Hubo un error en la consulta
+        cerr << "No fue posible realizar el abono." << endl;
+        sqlite3_finalize(stmt);
+        sqlite3_close(db);
         return 0;
     }
 
@@ -656,4 +795,3 @@ int Operaciones::abonosPrestamos() {
     sqlite3_close(db);
     return 1;
 };
-
