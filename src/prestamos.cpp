@@ -247,6 +247,7 @@ Prestamos::Prestamos(){
     std::cout << "Elija el tipo de prestamo por el que desearia optar.\n 1) Personal 2) Prendario 3) Hipotecario" << std::endl;
     std::cin >> opcion_prestamo;
 
+
     std::cout << "Para continuar porfavor indique la siguiente informacion:\n Monto por el que sea optar (valor en colones):\n" << std::endl;
     std::cin >> monto;
 
