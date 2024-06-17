@@ -235,7 +235,7 @@ void Prestamos::imprimirTablaInformacion(float interesColon, float interesDolar,
 }
 
 //El constructor de prestamos sera utilizado para implementar la gestion de informacion del para el usuario.
-Prestamos::Prestamos(){
+void Prestamos::menu(){
     informacionPrestamoNuevo.resize(6);
 
     int opcion_prestamo;

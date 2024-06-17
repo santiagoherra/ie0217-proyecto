@@ -59,7 +59,7 @@ class Prestamos{
         int agregarPrestamoBaseDatos();
 
 
-        Prestamos();//Constructor donde se hara toda el menu y se aplicaran los metodos
+        void menu();//Constructor donde se hara toda el menu y se aplicaran los metodos
 
 };
 
