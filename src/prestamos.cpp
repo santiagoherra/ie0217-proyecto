@@ -47,9 +47,9 @@ int Prestamos::interesAnualaMensual(int interesAnual){
 }
 
 //Calcula las cuotas personzalidas para el usuario
-std::vector<int> Prestamos::calcularCoutas(int interes, std::vector<int> meses, double monto, double monto_prendario = NULL){
+std::vector<int> Prestamos::calcularCoutas(int interes, std::vector<int> meses, double monto, double monto_prendario){
 
-    if(monto_prendario != NULL){
+    if(monto_prendario != 0){
 
         monto = monto_prendario * 0.8;
     }
