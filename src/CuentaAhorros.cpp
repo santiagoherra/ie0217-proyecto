@@ -113,7 +113,7 @@ void CuentaAhorros::calculadoraIntereses() const{
 
 };
 
-bool CuentaAhorros::existeCliente(string clienteID){
+bool CuentaAhorros::existeCliente(const std::string& clienteID){
 
     sqlite3 *db;
     int rc;
@@ -153,9 +153,31 @@ bool CuentaAhorros::existeCliente(string clienteID){
     return existe;
 }
 
-void CuentaAhorros::agregarCliente(string clienteID, string nombre, string apellido,
+int CuentaAhorros::agregarCliente(const std::string clienteID, std::string nombre, std::string apellido,
                             int cuentacolones, int cuentadolares){
 
+    sqlite3 *db;
+    int rc;
+
+    rc = sqlite3_open("banco.db", &db);
+    if (rc) {
+        std::cerr << "No se puede abrir la base de datos: " << sqlite3_errmsg(db) << std::endl;
+        return 1;
+    } else {
+        std::cout << "Base de datos abierta exitosamente" << std::endl;
+    }
+
+    const char* consultaSql = "SELECT 1 FROM clientes WHERE cedula = ? LIMIT 1;";
+    sqlite3_stmt *stmt;
+
+    rc = sqlite3_prepare_v2(db, consultaSql, -1, &stmt, 0);
+    if (rc != SQLITE_OK) {
+        std::cerr << "No se puede preparar la declaración: " << sqlite3_errmsg(db) << std::endl;
+        sqlite3_close(db);
+        return 1;
+    }
+
+    
     
 
     
