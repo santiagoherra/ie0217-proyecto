@@ -23,6 +23,11 @@ class Operaciones {
         //
         int gestionAhorros();
 
+        //Esta es la solicitud de prestamos
+        int solicitudPrestamos();
+
+        //Esta es la funcion para 
+
 };
 
 #endif
