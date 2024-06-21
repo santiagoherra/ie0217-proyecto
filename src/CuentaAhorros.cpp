@@ -2,6 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <sqlite3.h>
 
 #define TASACOLONES 0.0521
 #define TASADOLARES 0.0292
@@ -111,3 +112,51 @@ void CuentaAhorros::calculadoraIntereses() const{
     } while(otroCalculo != 's');
 
 };
+
+bool CuentaAhorros::existeCliente(string clienteID){
+
+    sqlite3 *db;
+    int rc;
+
+    rc = sqlite3_open("banco.db", &db);
+    if (rc) {
+        std::cerr << "No se puede abrir la base de datos: " << sqlite3_errmsg(db) << std::endl;
+        return false;
+    } else {
+        std::cout << "Base de datos abierta exitosamente" << std::endl;
+    }
+
+    const char* consultaSql = "SELECT 1 FROM clientes WHERE cedula = ? LIMIT 1;";
+    sqlite3_stmt *stmt;
+
+    rc = sqlite3_prepare_v2(db, consultaSql, -1, &stmt, 0);
+    if (rc != SQLITE_OK) {
+        std::cerr << "No se puede preparar la declaración: " << sqlite3_errmsg(db) << std::endl;
+        sqlite3_close(db);
+        return false;
+    }
+
+    rc = sqlite3_bind_text(stmt, 1, clienteID.c_str(), -1, SQLITE_STATIC);
+    if (rc != SQLITE_OK) {
+        std::cerr << "Error al enlazar el valor: " << sqlite3_errmsg(db) << std::endl;
+        sqlite3_finalize(stmt);
+        sqlite3_close(db);
+        return false;
+    }
+
+    rc = sqlite3_step(stmt);
+    bool existe = (rc == SQLITE_ROW);
+
+    sqlite3_finalize(stmt);
+    sqlite3_close(db);
+
+    return existe;
+}
+
+void CuentaAhorros::agregarCliente(string clienteID, string nombre, string apellido,
+                            int cuentacolones, int cuentadolares){
+
+    
+
+    
+}

@@ -9,6 +9,8 @@
 #ifndef CUENTA_DE_AHORROS_HPP
 #define CUENTA_DE_AHORROS_HPP
 
+using namespace std;
+
 /*Esta clase contiene los métodos necesarios para mostrar toda la
 información necesaria acerca de las cuentas de ahorros y los certificados
 de pago a plazos; para los certificados de pago a plazos también se cuenta
@@ -29,7 +31,11 @@ class CuentaAhorros {
         int validacionCliente();
 
         //ESta funcion es para agregar el cliente en el sistema
-        void agregarCliente();
+        void agregarCliente(string clienteID, string nombre, string apellido,
+                            int cuentacolones, int cuentadolares);
+
+        //Funcion que revisa si el cliente existe
+        bool existeCliente(string clienteID);
 };
 
 #endif
