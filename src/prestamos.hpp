@@ -61,6 +61,17 @@ class Prestamos{
 
         void menu();//Constructor donde se hara toda el menu y se aplicaran los metodos
 
+    private:
+        std::string denominacion_agregar;
+        std::string tipo_agregar;
+        double monto_agregar;
+        int plazo_meses_agregar;
+        int cuotas_agregar;
+        std::string cliente_id;
+        std::string cedula_agregar;
+
+
+
 };
 
 #endif
