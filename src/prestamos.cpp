@@ -76,7 +76,6 @@ std::vector<int> Prestamos::calcularCoutas(float interes, std::vector<int> meses
 
 //Funcion para validar un prestamo del usuario y agregar a la base de datos.
 bool Prestamos::validacionPrestamo(std::vector<int> meses, std::vector<int> cuotas_dolar, std::vector<int> cuotas_colon, double salario, int tipoMoneda){
-    int moneda_prestamo;
     int continuidad_laboral;
     int opcion_cuotas_meses;
     int cuota_validar;
@@ -90,7 +89,7 @@ bool Prestamos::validacionPrestamo(std::vector<int> meses, std::vector<int> cuot
 
     std::cout << "Ahora indique la opcion de plazo de meses y cuotas quiere elegir." << std::endl;
     
-    if(moneda_prestamo == 1){
+    if(tipoMoneda == 1){
         for(int i = 0; i < 3; i++){
         std::cout << i+1 << ") " << cuotas_dolar[i] << "$ /" << meses[i] << " meses\n" << std::endl;
         }
@@ -103,26 +102,26 @@ bool Prestamos::validacionPrestamo(std::vector<int> meses, std::vector<int> cuot
     std::cout << "Ingrese el valor de la opcion que desea escoger?\n1) 2) 3)" << std::endl;
     std::cin >> opcion_cuotas_meses;
 
-    plazo_meses_agregar = meses[opcion_cuotas_meses];
+    plazo_meses_agregar = meses[opcion_cuotas_meses-1];
 
-    if(moneda_prestamo == 1){
+    if(tipoMoneda == 2){
 
-        cuota_validar = cuotas_dolar[opcion_cuotas_meses];
+        cuota_validar = cuotas_colon[opcion_cuotas_meses-1];
 
         cuotas_agregar = cuota_validar;
 
-        if(cuota_validar > (salario*tasaCompraDolarColones*0.7)){
+        if(cuota_validar > (salario*0.7)){
             return false;
         }else{
             return true;
         }
     }else{
 
-        cuota_validar = cuotas_colon[opcion_cuotas_meses];
+        cuota_validar = cuotas_dolar[opcion_cuotas_meses-1];
 
         cuotas_agregar = cuota_validar;
 
-        if(cuota_validar > (salario*0.7)){
+        if(cuota_validar > ((salario*0.7)/tasaCompraDolarColones)){
             return false;
         }else{
             return true;
@@ -163,7 +162,7 @@ int Prestamos::agregarPrestamoBaseDatos(){
 
     // Insertar un nuevo préstamo y asociarlo a un cliente existente
     std::ostringstream oss;
-    oss << "INSERT INTO prestamos (prestamo_id, denominacion, tipo, monto_total, plazo_meses, cuota_mensual, cliente_id) "
+    oss << "INSERT INTO prestamos (prestamo_id, denominacion, tipo, monto_total, plazo_meses, cuota_mensual, tasa, cliente_id) "
     << "VALUES ("
     << nuevoIdPrestamo << ", " // Asume que nuevoIdPrestamo es un número
     << "'" << denominacion_agregar << "', " // Asume que denominacion_agregar es un string
@@ -171,6 +170,7 @@ int Prestamos::agregarPrestamoBaseDatos(){
     << std::fixed << std::setprecision(2) << monto_agregar << ", " // Asume que monto_agregar es un número
     << plazo_meses_agregar << ", " // Asume que plazo_meses_agregar es un número
     << std::fixed << std::setprecision(2) << cuotas_agregar << ", " // Asume que cuotas_agregar es un número
+    << std::fixed << std::setprecision(2) << tasa_agregar << ", " 
     << "'" << cedula_agregar << "');"; // Asume que cedula_agregar es un string
 
     std::string sqlInsertPrestamo = oss.str();
@@ -189,6 +189,12 @@ int Prestamos::agregarPrestamoBaseDatos(){
 void Prestamos::imprimirTablaInformacion(float interesColon, float interesDolar, std::vector<int> cuotas_dolar, std::vector<int> cuotas_colon, std::vector<int> meses){
     int decision;
     bool prestamo_valido;
+
+    if(tipo_agregar == "Prendario"){
+        std::cout << "\nComo el tipo de prestamo deseado es de tipo prendario el banco le ofreceria "
+                    "ofrecer un monto de prestamo de " << monto_agregar << " ₡, que equivale a "
+                    "el 80% del monto del objeto colateral." << std::endl;
+    }
 
     std::cout << "\nLa tabla personalizada de datos para el prestamo elegido es la siguiente.\n" << std::endl; 
 
@@ -213,14 +219,44 @@ void Prestamos::imprimirTablaInformacion(float interesColon, float interesDolar,
 
         std::cout << "Salario mensual de la persona que optara por el prestamo (valor en colones)\n" << std::endl;
         std::cin >> salario;
+        std::cin.ignore();
 
         std::cout << "Indique el tipo de moneda en que quiere hacer el prestamo\n1) Dolares\n2) Colones" << std::endl;
         std::cin >> moneda_prestamo;
 
+        //condiciones para obtener datos para agregar el prestamo
+
         if(moneda_prestamo == 1){
             denominacion_agregar = "Dolares";
+
+            if (tipo_agregar == "Personal"){
+
+                tasa_agregar = interesPersonalAnualDolar;
+
+            } else if (tipo_agregar == "Prendario") {
+
+                tasa_agregar = interesPrendarioAnualDolar;
+
+            } else if (tipo_agregar == "Hipotecario") {
+
+                tasa_agregar = interesHipotecarioAnualDolar;
+            }
+
         }else{
             denominacion_agregar = "Colones";
+
+            if (tipo_agregar == "Personal"){
+
+                tasa_agregar = interesPersonalAnualColones;
+
+            } else if (tipo_agregar == "Prendario") {
+
+                tasa_agregar = interesPrendarioAnualColones;
+
+            } else if (tipo_agregar == "Hipotecario") {
+
+                tasa_agregar = interesHipotecarioAnualColones;
+            }
         }
 
         prestamo_valido = validacionPrestamo(meses, cuotas_dolar, cuotas_colon, salario, moneda_prestamo);
