@@ -16,17 +16,7 @@ int crearDB(){
     char *errMsg = 0;
     int rc;
     const char* data = "Callback function called";
-
-    rc = sqlite3_open("banco.db", &db);
-    if(rc){
-        cerr << "Error al abrir la base de datos: " << sqlite3_errmsg(db) << endl;
-        return (0);
-    } else {
-        cout << "Ingreso correcto a la base de datos" << endl;
-    }
-
-    const char *sql = 
-        "CREATE TABLE cuentas ("
+    const char *sql = "CREATE TABLE cuentas ("
         "numero_cuenta INT PRIMARY KEY,"
         "balance DECIMAL(11, 2),"
         "tasa DECIMAL(2, 2),"
@@ -49,7 +39,7 @@ int crearDB(){
         "monto_total DECIMAL(11, 2),"
         "plazo_meses INT,"
         "cuota_mensual INT,"
-        "tasa DECIMAL(2,2),"
+        "tasa DECIMAL(2, 2),"
         "cliente_id CHAR(9),"
         "FOREIGN KEY (cliente_id) REFERENCES clientes(cedula));"
         
@@ -59,6 +49,7 @@ int crearDB(){
         "tasa DECIMAL(2, 2),"
         "plazo_meses INT,"
         "monto_deposito DECIMAL(11, 2),"
+        "fecha_deposito DATE," 
         "cliente_cedula CHAR(9),"
         "FOREIGN KEY (cliente_cedula) REFERENCES clientes(cedula));"
         
@@ -72,6 +63,15 @@ int crearDB(){
         "monto_base DECIMAL(11, 2),"
         "FOREIGN KEY (cliente_origen_cedula) REFERENCES clientes(cedula),"
         "FOREIGN KEY (cliente_destino_cedula) REFERENCES clientes(cedula));";
+    rc = sqlite3_open("banco.db", &db);
+    if(rc){
+        cerr << "Error al abrir la base de datos: " << sqlite3_errmsg(db) << endl;
+        return (0);
+    } else {
+        cout << "Ingreso correcto a la base de datos" << endl;
+    }
+
+    
 
     rc = sqlite3_exec(db, sql, callback, 0, &errMsg);
     if (rc != SQLITE_OK){
@@ -99,7 +99,7 @@ int llenarDB(){
         cout << "Ingreso correcto a la base de datos" << endl;
     }
 
-    const char *inserts_sql ="INSERT INTO cuentas (numero_cuenta, balance, tasa, denominacion)"
+    const char *inserts_sql = "INSERT INTO cuentas (numero_cuenta, balance, tasa, denominacion)"
         "VALUES (1891435200, 87037015.99, 0.01, 'colones');"
         "INSERT INTO cuentas (numero_cuenta, balance, tasa, denominacion)"
         "VALUES (2891435200, 85426636.52, 0.01, 'dolares');"
@@ -165,12 +165,12 @@ int llenarDB(){
         "VALUES (2, 'colones', 'personal', 5000000, 10, 416666.67, 0.1, 456251480);"
         "INSERT INTO prestamos (prestamo_id, denominacion, tipo, monto_total, plazo_meses, cuota_mensual, tasa, cliente_id)" 
         "VALUES (3, 'dolares', 'hipotecario', 117187.5, 13, 1000000.0, 0.08, 409975644);"
-        "INSERT INTO certificados_de_deposito (cdp_id, denominacion, tasa, plazo_meses, monto_deposito, cliente_cedula)" 
-        "VALUES (1, 'colones', 0.12, 5, 1000000.00, 732194468);"
-        "INSERT INTO certificados_de_deposito (cdp_id, denominacion, tasa, plazo_meses, monto_deposito, cliente_cedula)" 
-        "VALUES (2, 'colones', 0.12, 10, 1000000.00, 114819158);"
-        "INSERT INTO certificados_de_deposito (cdp_id, denominacion, tasa, plazo_meses, monto_deposito, cliente_cedula)" 
-        "VALUES (3, 'dolares', 0.12, 13, 1953.12, 544018749);";
+        "INSERT INTO certificados_de_deposito (cdp_id, denominacion, tasa, plazo_meses, monto_deposito, fecha_deposito, cliente_cedula)" 
+        "VALUES (1, 'colones', 0.12, 5, 1000000.00, '2016-05-15', 732194468);"
+        "INSERT INTO certificados_de_deposito (cdp_id, denominacion, tasa, plazo_meses, monto_deposito, fecha_deposito, cliente_cedula)" 
+        "VALUES (2, 'colones', 0.12, 10, 1000000.00, '2017-09-22', 114819158);"
+        "INSERT INTO certificados_de_deposito (cdp_id, denominacion, tasa, plazo_meses, monto_deposito, fecha_deposito, cliente_cedula)" 
+        "VALUES (3, 'dolares', 0.12, 13, 1953.12, '2019-01-13', 544018749);";
 
 
 
