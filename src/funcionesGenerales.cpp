@@ -120,6 +120,7 @@ int agregarCliente(const std::string clienteID, std::string nombre, std::string 
     }
 
     sqlite3_finalize(stmt);
+    sqlite3_close(db);
 
     std::cout << "El cliente ha sido agregado de manera exitosa!" << std::endl;
 
@@ -127,3 +128,9 @@ int agregarCliente(const std::string clienteID, std::string nombre, std::string 
     
 }
 
+std::tm string_a_tiempo(const std::string& fecha_string) {
+    std::tm tm = {};
+    std::istringstream ss(fecha_string);
+    ss >> std::get_time(&tm, "%Y-%m-%d");
+    return tm;
+}

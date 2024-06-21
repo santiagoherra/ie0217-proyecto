@@ -10,10 +10,6 @@ struct Cuotas{
 
 class CDP{
     public:
-        
-        double monto;
-        int plazoTiempo;
-        int interes;
 
         void inicializarDatos();
 

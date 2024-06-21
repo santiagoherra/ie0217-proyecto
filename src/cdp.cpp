@@ -40,23 +40,3 @@ void CDP::inicializarDatos(){
     informacionIntereses[1800] = {0.0652, 0.0489};
 
 }
-
-int CDP::calculoIntereses(){
-    int interes_banco;
-
-    interes_banco = interes * plazoTiempo * monto;
-
-    return interes_banco;
-}
-
-void CDP::interesAcumulados(){
-    //Esta funcion esta hecha para que el cliente pueda ver los intereses acumulados por el cdp que posee
-    std::string cedula;
-    std::cout <<  "Ingrese el numero de cedula al cual esta asociado el certificado de plazo." << std::endl;
-    getline(std::cin, cedula);
-
-
-    
-
-
-}
