@@ -13,7 +13,8 @@ int main(){
     existe = cuenta.existeCliente(cedula);
 
     std::cout << existe << std::endl;  
-    
+
+    cuenta.agregarCliente(cedula, "santiago", "herra", 69696969, 1234567);
 
     return 0;
 }
