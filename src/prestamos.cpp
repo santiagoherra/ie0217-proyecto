@@ -203,8 +203,6 @@ void Prestamos::imprimirTablaInformacion(float interesColon, float interesDolar,
     std::cout << "|-------------------------------------------------------------------------\n" << std::endl;
     std::cout << "|         " << interesDolar*100 << "%" << "      |       " << cuotas_dolar[0] << "$     |      " << cuotas_dolar[1] << "$    |    " << cuotas_dolar[2] << "$   | Dolares |\n" << std::endl;
     std::cout << "|-------------------------------------------------------------------------\n" << std::endl;
-
-    seguirConPrestamo();
     
 }
 
