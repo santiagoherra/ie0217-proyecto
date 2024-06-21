@@ -2,7 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <sqlite3.h>
+
 
 #define TASACOLONES 0.0521
 #define TASADOLARES 0.0292
@@ -112,88 +112,3 @@ void CuentaAhorros::calculadoraIntereses() const{
     } while(otroCalculo != 's');
 
 };
-
-bool CuentaAhorros::existeCliente(const std::string& clienteID){
-
-    sqlite3 *db;
-    int rc;
-
-    rc = sqlite3_open("banco.db", &db);
-    if (rc) {
-        std::cerr << "No se puede abrir la base de datos: " << sqlite3_errmsg(db) << std::endl;
-        return false;
-    }
-
-    const char* consultaSql = "SELECT 1 FROM clientes WHERE cedula = ? LIMIT 1;";
-    sqlite3_stmt *stmt;
-
-    rc = sqlite3_prepare_v2(db, consultaSql, -1, &stmt, 0);
-    if (rc != SQLITE_OK) {
-        std::cerr << "No se puede preparar la declaración: " << sqlite3_errmsg(db) << std::endl;
-        sqlite3_close(db);
-        return false;
-    }
-
-    rc = sqlite3_bind_text(stmt, 1, clienteID.c_str(), -1, SQLITE_STATIC);
-    if (rc != SQLITE_OK) {
-        std::cerr << "Error al enlazar el valor: " << sqlite3_errmsg(db) << std::endl;
-        sqlite3_finalize(stmt);
-        sqlite3_close(db);
-        return false;
-    }
-
-    rc = sqlite3_step(stmt);
-    bool existe = (rc == SQLITE_ROW);
-
-    sqlite3_finalize(stmt);
-    sqlite3_close(db);
-
-    return existe;
-}
-
-int CuentaAhorros::agregarCliente(const std::string clienteID, std::string nombre, std::string apellido,
-                            int cuentacolones, int cuentadolares){
-
-    sqlite3 *db;
-    int rc;
-
-    rc = sqlite3_open("banco.db", &db);
-    if (rc) {
-        std::cerr << "No se puede abrir la base de datos: " << sqlite3_errmsg(db) << std::endl;
-        return 1;
-    } else {
-        return 0;
-    }
-
-    const char* insertarSql = "INSERT INTO clientes (cedula, nombre, apellido, cuenta_colones,"
-                              "cuenta_dolares) VALUES (?, ?, ?, ?, ?)";
-    sqlite3_stmt *stmt;
-
-    rc = sqlite3_prepare_v2(db, insertarSql, -1, &stmt, 0);
-    if (rc != SQLITE_OK) {
-        std::cerr << "No se puede preparar la declaración: " << sqlite3_errmsg(db) << std::endl;
-        sqlite3_close(db);
-        return 1;
-    }
-
-    //vincular datos
-
-    sqlite3_bind_text(stmt, 1, clienteID.c_str(), -1, SQLITE_STATIC);
-    sqlite3_bind_text(stmt, 2, nombre.c_str(), -1, SQLITE_STATIC);
-    sqlite3_bind_text(stmt, 3, apellido.c_str(), -1, SQLITE_STATIC);
-    sqlite3_bind_int(stmt, 4, cuentacolones);
-    sqlite3_bind_int(stmt, 5, cuentadolares);
-
-    rc = sqlite3_step(stmt);
-    if (rc != SQLITE_DONE) {
-        std::cerr << "Error al ejecutar la declaración: " << sqlite3_errmsg(db) << std::endl;
-        return 1;
-    }
-
-    sqlite3_finalize(stmt);
-
-    std::cout << "Se ha agregado de manera exitosa el cliente!" << std::endl;
-
-    return 0;
-    
-}

@@ -26,16 +26,6 @@ class CuentaAhorros {
 
         // Este metodo permite calcular los intereses ganados para un CDP
         void calculadoraIntereses() const;
-
-        //Esta funcion es para poder validar si el cliente esta en el sistema
-        int validacionCliente();
-
-        //ESta funcion es para agregar el cliente en el sistema
-        int agregarCliente(const std::string clienteID, std::string nombre, std::string apellido,
-                            int cuentacolones, int cuentadolares);
-
-        //Funcion que revisa si el cliente existe
-        bool existeCliente(const std::string& clienteID);
 };
 
 #endif

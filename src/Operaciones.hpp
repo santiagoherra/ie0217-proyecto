@@ -20,13 +20,12 @@ class Operaciones {
         //
         int abonosPrestamos();
 
-        //
+        //Esta es la funcion para poder ver el progreso del cdp
         int gestionAhorros();
 
         //Esta es la solicitud de prestamos
         int solicitudPrestamos();
 
-        //Esta es la funcion para 
 
 };
 
