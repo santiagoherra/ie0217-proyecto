@@ -187,8 +187,6 @@ int Prestamos::agregarPrestamoBaseDatos(){
 
 //Esta es la funcion que imprime la tabla personalizada de prestamos para que la persona pueda elegir
 void Prestamos::imprimirTablaInformacion(float interesColon, float interesDolar, std::vector<int> cuotas_dolar, std::vector<int> cuotas_colon, std::vector<int> meses){
-    int decision;
-    bool prestamo_valido;
 
     if(tipo_agregar == "Prendario"){
         std::cout << "\nComo el tipo de prestamo deseado es de tipo prendario el banco le ofreceria "
@@ -205,6 +203,14 @@ void Prestamos::imprimirTablaInformacion(float interesColon, float interesDolar,
     std::cout << "|-------------------------------------------------------------------------\n" << std::endl;
     std::cout << "|         " << interesDolar*100 << "%" << "      |       " << cuotas_dolar[0] << "$     |      " << cuotas_dolar[1] << "$    |    " << cuotas_dolar[2] << "$   | Dolares |\n" << std::endl;
     std::cout << "|-------------------------------------------------------------------------\n" << std::endl;
+    
+}
+
+void Prestamos::seguirConPrestamo(float interesColon, float interesDolar, std::vector<int> cuotas_dolar,
+                             std::vector<int> cuotas_colon, std::vector<int> meses){
+
+    int decision;
+    bool prestamo_valido;
 
     //Decision esta hecha para que la persona elija si quiere elegir un prestamo en este momento.
     std::cout << "Desea optar por un prestamo en este momento?\n1) Si\n2) No " << std::endl;

@@ -22,6 +22,7 @@ class Operaciones {
 
         //
         int gestionAhorros();
+
 };
 
 #endif

@@ -68,6 +68,7 @@ class Prestamos{
 
         void menu();//Constructor donde se hara toda el menu y se aplicaran los metodos
 
+    //Informacion del cliente para despues agregar el prestamo en la base de datos
     private:
         std::string denominacion_agregar;
         std::string tipo_agregar;

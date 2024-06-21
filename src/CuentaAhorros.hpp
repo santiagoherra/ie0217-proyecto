@@ -24,6 +24,12 @@ class CuentaAhorros {
 
         // Este metodo permite calcular los intereses ganados para un CDP
         void calculadoraIntereses() const;
+
+        //Esta funcion es para poder validar si el cliente esta en el sistema
+        int validacionCliente();
+
+        //ESta funcion es para agregar el cliente en el sistema
+        void agregarCliente();
 };
 
 #endif
