@@ -12,8 +12,6 @@
 
 using namespace std;
 
-float TASACOMPRADOLAR = 521.5;
-
 int Operaciones::solicitudPrestamos(){
     Prestamos prestamo;
     prestamo.menu();
@@ -39,7 +37,7 @@ int Operaciones::gestionAhorros(){
         return 0;
     }
 
-    std::cout << "Certificados de Deposito a Plazo asociados a la ID de cliente " << cedula << ".\n" << endl;
+    std::cout << "Certificados de Deposito a Plazo asociados a la ID de cliente\n" << cedula << ".\n" << endl;
 
     //proceso de obtener los cdps de las personas
 
@@ -73,12 +71,12 @@ int Operaciones::gestionAhorros(){
         double monto_deposito = sqlite3_column_double(stmt, 4);
         const unsigned char *fecha_deposito = sqlite3_column_text(stmt, 5);
 
-        cout << "CDP ID: " << cdp_id
-                  << ", Denominación: " << denominacion
-                  << ", Tasa: " << tasa
-                  << ", Plazo (meses): " << plazo_meses
-                  << ", Monto Depósito: " << monto_deposito
-                  << ", Fecha de deposito: " << fecha_deposito << endl;
+        cout << "\nCDP ID: " << cdp_id
+                  << "\nDenominación: " << denominacion
+                  << "\nTasa: " << tasa
+                  << "\nPlazo (meses): " << plazo_meses
+                  << "\nMonto Depósito: " << monto_deposito
+                  << "\nFecha de deposito: " << fecha_deposito << endl;
     }
 
     sqlite3_finalize(stmt);
@@ -87,12 +85,11 @@ int Operaciones::gestionAhorros(){
 
     int cdp_elegido;
 
-    cout << "En base al numero de ID del Certificado de Deposito a Plazo, elija el numero del CDP ID para poder ver"
-            " los progreso generado hasta ahora." << endl;
+    cout << "\nEn base al numero de ID del Certificado de Deposito a Plazo, elija el numero del CDP ID para poder ver"
+            "los progreso generado hasta ahora.\n" << endl;
 
     cin >> cdp_elegido; //Es el id del cdp
 
-    //cambiar comando!!!
     const char* recuperarCDPsql = "SELECT cdp_id, denominacion, tasa, plazo_meses, monto_deposito"
                                 ", fecha_deposito FROM certificados_de_deposito WHERE cdp_id = ?;";
 
@@ -103,6 +100,8 @@ int Operaciones::gestionAhorros(){
         sqlite3_close(db);
         return 1;
     }
+
+    rc = sqlite3_bind_int(stmt, 1, cdp_elegido);
 
     rc = sqlite3_step(stmt);
     if (rc == SQLITE_ROW) {
@@ -117,24 +116,19 @@ int Operaciones::gestionAhorros(){
         std::string denominacion_str = reinterpret_cast<const char*>(denominacion);
         std::string fecha_deposito_str = reinterpret_cast<const char*>(fecha_deposito);
 
-        //conversion de moneda
-        if(denominacion_str == "Dolares"){
-            monto_deposito  = monto_deposito / TASACOMPRADOLAR;
-        }
-
-        cout << "+------------------------------------+\n" << endl;
-        cout << "|       CDP ID      | " << cdp_id << " |\n" << endl;
-        cout << "+------------------------------------+\n" << endl;
-        cout << "|    Denominacion   | " << denominacion_str << " |\n" << endl;
-        cout << "+------------------------------------+\n" << endl;
-        cout << "|        Tasa       | " << tasa << " |\n" << endl;
-        cout << "+------------------------------------+\n" << endl;
-        cout << "|       Plazo       | " << plazo << " |\n" <<  endl;
-        cout << "+------------------------------------+\n" << endl;
-        cout << "|       Monto       | " << monto_deposito << " |\n" << endl;
-        cout << "+------------------------------------+\n" << endl;
-        cout << "| Fecha de Deposito | " << fecha_deposito_str << " |\n" << endl; 
-        cout << "+------------------------------------+\n" << endl;
+        cout << "+---------------------------------+\n" << endl;
+        cout << "|       CDP ID      |    " << cdp_id << "\n" << endl;
+        cout << "+---------------------------------+\n" << endl;
+        cout << "|    Denominacion   |   " << denominacion_str << "\n" << endl;
+        cout << "+---------------------------------+\n" << endl;
+        cout << "|        Tasa       |    " << tasa << "\n" << endl;
+        cout << "+---------------------------------+\n" << endl;
+        cout << "|       Plazo       |    " << plazo << "\n" <<  endl;
+        cout << "+---------------------------------+\n" << endl;
+        cout << "|       Monto       |   " << monto_deposito << "\n" << endl;
+        cout << "+---------------------------------+\n" << endl;
+        cout << "| Fecha de Deposito |   " << fecha_deposito_str << "\n" << endl; 
+        cout << "+---------------------------------+\n" << endl;
 
         std::tm tm_fecha_deposito = string_a_fecha(fecha_deposito_str);
 
@@ -151,8 +145,8 @@ int Operaciones::gestionAhorros(){
 
         //asi se obtiene el interes acumulados hasta el momento
         float interes_acumulados = tasa * diferencia_tiempo * monto_deposito;
-
-        cout << "| Intereses hasta\nahora     | " << interes_acumulados << " |\n" << endl;
+        cout << "\n\n+------------------------------------+\n" << endl;
+        cout << "| Intereses hasta ahora   | " << interes_acumulados << " |\n" << endl;
         cout << "+------------------------------------+\n" << endl;
 
     }else{
