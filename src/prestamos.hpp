@@ -17,9 +17,6 @@
 
 class Prestamos{
     public:
-        //Aqui se pondra toda la informacion esencial cuando el cliente sea valido para el prestamo
-        std::vector<std::any> informacionPrestamoNuevo;
-
         //Este es la cantidad de meses que se daran como opcion para los prestamos personales
         std::vector<int> mesesPersonal = {12, 36, 48};
 
@@ -47,20 +44,24 @@ class Prestamos{
         float interesAnualaMensual(float interes);
 
         //Calcula las cuotas utilizadas para la tabla personalizada
-        std::vector<int> calcularCoutas(float interes ,std::vector<int> meses, double monto, double monto_prendario = 0);
+        std::vector<int> calcularCoutas(float interes ,std::vector<int> meses, double monto);
 
         //Imprime la informacion en una tabla para poder desplegar las valores de las cuotas
-        void imprimirTablaInformacion(float interesColon, float interesDolar, std::vector<int> cuotas_dolar,std::vector<int> cuotas_colon, std::vector<int> meses ); 
+        void imprimirTablaInformacion(float interesColon, float interesDolar, std::vector<int> cuotas_dolar,
+                                     std::vector<int> cuotas_colon, std::vector<int> meses); 
 
         //Valida el si la persona es apta para el prestamo.
-        bool validacionPrestamo(std::vector<int> meses, std::vector<int> cuotas_dolar, std::vector<int> cuotas_colon, double salario, int tipoMoneda); 
+        bool validacionPrestamo(double salario, int tipoMoneda); 
 
         //Funcion para agregar el prestamo a la base de datos.
         int agregarPrestamoBaseDatos();
 
+        //Funcion para seguir con el prestamo despues de que la persona ve la tabla de informacion.
+        void seguirConPrestamo();
 
         void menu();//Constructor donde se hara toda el menu y se aplicaran los metodos
 
+    //Informacion del cliente para despues agregar el prestamo en la base de datos
     private:
         std::string denominacion_agregar;
         std::string tipo_agregar;
@@ -69,9 +70,12 @@ class Prestamos{
         int cuotas_agregar;
         std::string cliente_id;
         std::string cedula_agregar;
-
-
-
+        float tasa_agregar;
+        //Estos son las cuotas y meses personalizados que se ocupa para agregar el prestamo dependiendo
+        //de la informacion que elija el cliente
+        std::vector<int> cuotas_dolar_cliente;
+        std::vector<int> cuotas_colon_cliente;
+        std::vector<int> meses_cliente;
 };
 
 #endif

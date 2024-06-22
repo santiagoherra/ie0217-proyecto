@@ -3,6 +3,7 @@
 #include <fstream>
 #include <string>
 
+
 #define TASACOLONES 0.0521
 #define TASADOLARES 0.0292
 

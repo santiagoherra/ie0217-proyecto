@@ -8,6 +8,8 @@
 
 #ifndef CUENTA_DE_AHORROS_HPP
 #define CUENTA_DE_AHORROS_HPP
+#include <string>
+
 
 /*Esta clase contiene los métodos necesarios para mostrar toda la
 información necesaria acerca de las cuentas de ahorros y los certificados
