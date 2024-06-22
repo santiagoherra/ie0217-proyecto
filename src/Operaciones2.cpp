@@ -61,6 +61,8 @@ int Operaciones::gestionAhorros(){
         return 1;
     }
 
+    cout << std::fixed << std::setprecision(2); ///arreglar prints
+
     sqlite3_bind_text(stmt, 1, cedula.c_str(), -1, SQLITE_STATIC);
 
     while ((rc = sqlite3_step(stmt)) == SQLITE_ROW) {
