@@ -1,40 +1,5 @@
 #include "funcionesGenerales.hpp"
 
-long long int generarNumeroCuentaColon() {
-    // Crear un generador de números aleatorios
-    std::random_device rd;
-    std::mt19937 gen(rd());
-    std::uniform_int_distribution<> dis(0, 9);
-
-    // Inicializar el número con 1 (primer dígito)
-    long long int numero = 1;
-
-    // Generar los siguientes 9 dígitos aleatorios
-    for (int i = 0; i < 9; ++i) {
-        int digito = dis(gen);
-        numero = numero * 10 + digito;
-    }
-
-    return numero;
-}
-
-long long int generarNumeroCuentaDolar() {
-    // Crear un generador de números aleatorios
-    std::random_device rd;
-    std::mt19937 gen(rd());
-    std::uniform_int_distribution<> dis(0, 9);
-
-    // Inicializar el número con 1 (primer dígito)
-    long long int numero = 2;
-
-    // Generar los siguientes 9 dígitos aleatorios
-    for (int i = 0; i < 9; ++i) {
-        int digito = dis(gen);
-        numero = numero * 10 + digito;
-    }
-
-    return numero;
-}
 
 bool existeCliente(const std::string& clienteID){
 
@@ -74,7 +39,8 @@ bool existeCliente(const std::string& clienteID){
     return existe;
 }
 
-int agregarCliente(const std::string clienteID, std::string nombre, std::string apellido){
+int agregarCliente(const std::string clienteID, std::string nombre, std::string apellido,
+                    long int cuentacolones, long int cuentadolares){
 
     sqlite3 *db;
     int rc;
@@ -95,15 +61,6 @@ int agregarCliente(const std::string clienteID, std::string nombre, std::string 
         sqlite3_close(db);
         return 1;
     }
-
-    //obtener numeros de cuenta
-
-    int cuentacolones;
-    int cuentadolares;
-
-    cuentacolones = generarNumeroCuentaColon();
-
-    cuentadolares = generarNumeroCuentaDolar();
 
     //vincular datos
 
@@ -128,7 +85,7 @@ int agregarCliente(const std::string clienteID, std::string nombre, std::string 
     
 }
 
-std::tm string_a_tiempo(const std::string& fecha_string) {
+std::tm string_a_fecha(const std::string& fecha_string) {
     std::tm tm = {};
     std::istringstream ss(fecha_string);
     ss >> std::get_time(&tm, "%Y-%m-%d");

@@ -18,6 +18,8 @@ int Operaciones::solicitudPrestamos(){
     Prestamos prestamo;
     prestamo.menu();
     prestamo.seguirConPrestamo();
+
+    return 0;
 }
 
 int Operaciones::gestionAhorros(){

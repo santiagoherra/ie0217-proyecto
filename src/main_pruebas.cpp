@@ -1,20 +1,11 @@
-#include "CuentaAhorros.hpp"
-#include <iostream>
-#include <string>
-
+#include "funcionesGenerales.hpp"
+#include "Operaciones.hpp"
 
 
 int main(){
 
-    std::string cedula = "6969696";
+    Operaciones ope;
 
-    CuentaAhorros cuenta;
-    bool existe;
-    existe = cuenta.existeCliente(cedula);
-
-    std::cout << existe << std::endl;  
-
-    cuenta.agregarCliente(cedula, "santiago", "herra", 69696969, 1234567);
-
-    return 0;
-}
+    ope.gestionAhorros();
+    
+};
