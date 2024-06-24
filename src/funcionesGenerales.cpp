@@ -91,3 +91,23 @@ std::tm string_a_fecha(const std::string& fecha_string) {
     ss >> std::get_time(&tm, "%Y-%m-%d");
     return tm;
 }
+
+
+int leerInt(int num){
+    if(!(std::cin >> num)){
+        
+        std::cin.clear();
+
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        throw std::invalid_argument("Entrada no valida. Se epseraba un numero entero.");
+    }
+    return num;
+}
+
+bool leerCedula(std::string cedula){
+
+    std::regex patron("^//d{10}$");
+
+    return std::regex_match(cedula, patron);
+
+}
