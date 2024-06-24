@@ -26,9 +26,9 @@ bool existeCliente(const std::string& clienteID);
 
 std::tm string_a_fecha(const std::string& dateStr);
 
-int leerInt(int num);
+void leerInt(int num);
 
-bool leerCedula(const std::string cedula);
+void leerCedula(const std::string cedula);
 
 
 #endif

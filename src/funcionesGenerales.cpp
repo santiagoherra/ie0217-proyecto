@@ -93,21 +93,25 @@ std::tm string_a_fecha(const std::string& fecha_string) {
 }
 
 
-int leerInt(int num){
+void leerInt(int num){
     if(!(std::cin >> num)){
         
         std::cin.clear();
 
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        throw std::invalid_argument("Entrada no valida. Se epseraba un numero entero.");
+        throw std::invalid_argument("Entrada no valida. Se esperaba un numero entero.");
     }
-    return num;
 }
 
-bool leerCedula(std::string cedula){
+void leerCedula(std::string cedula){
+    bool validarCedula;
 
     std::regex patron("^//d{10}$");
 
-    return std::regex_match(cedula, patron);
+    validarCedula = std::regex_match(cedula, patron);
+
+    if(!validarCedula){
+        throw std::invalid_argument("Entrada no valida. Se esperaba una forma de cedula.");
+    }
 
 }
