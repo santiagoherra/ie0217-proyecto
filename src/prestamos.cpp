@@ -318,14 +318,10 @@ void Prestamos::menu(){
     
     leerInt(opcion_prestamo);
 
-    std::cin.ignore();
-
     std::cout << "Para continuar porfavor indique la siguiente informacion:\nMonto por el que sea optar (valor en colones):\n" << std::endl;
     std::cin >> monto;
 
     leerInt(monto);
-
-    std::cin.ignore();
 
     //En cada condicion, se guarda informacion en que sera necesaria para agregar el prestamo del usuario
     //y se modifica la informacion para calcular la cuotas personalizadas

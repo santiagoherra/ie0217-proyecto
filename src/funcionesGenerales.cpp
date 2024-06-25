@@ -93,15 +93,15 @@ std::tm string_a_fecha(const std::string& fecha_string) {
 }
 
 
-void leerInt(int num){
-    if(!(std::cin >> num)){
-        
+void leerInt(int num) {
+    if (std::cin.fail()) {
         std::cin.clear();
-
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        throw std::invalid_argument("Entrada no valida. Se esperaba un numero entero.");
+        std::cerr << "Entrada no valida. Se esperaba un numero entero." << std::endl;
+        std::exit(EXIT_FAILURE);  // Termina el programa con un estado de fallo
     }
 }
+
 
 void leerCedula(std::string cedula){
     bool validarCedula;
