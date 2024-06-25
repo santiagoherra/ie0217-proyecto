@@ -10,6 +10,7 @@
 #include <limits>
 #include <stdexcept>
 #include <regex>
+#include <cstdlib>
 
 //Esta funcion es para poder generar un numero de cuenta aleatorio en colones
 long long int generarNumeroCuentaColon();
