@@ -6,6 +6,5 @@
 int main(){
 
     Operaciones ope;
-    ope.gestionAhorros();
     
 };

@@ -30,6 +30,8 @@ int Operaciones::gestionAhorros(){
     cout << "Porfavor ingrese su numero de cedula para verificar si la persona esta ingresada en el sistema.\n" << endl; 
     getline(cin, cedula);
 
+    leerCedula(cedula);
+
     existe_cliente = existeCliente(cedula);
 
     if(!existe_cliente){

@@ -91,3 +91,23 @@ std::tm string_a_fecha(const std::string& fecha_string) {
     ss >> std::get_time(&tm, "%Y-%m-%d");
     return tm;
 }
+
+
+void leerInt(int num) {
+    if (std::cin.fail()) {
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        std::cerr << "Entrada no valida. Se esperaba un numero entero." << std::endl;
+        std::exit(EXIT_FAILURE);  // Termina el programa con un estado de fallo
+    }
+}
+
+
+void leerCedula(std::string cedula) {
+
+    std::regex patron("^\\d{10}$");
+    if (!std::regex_match(cedula, patron)) {
+        std::cerr << "Entrada no valida. Se esperaba una forma de cedula." << std::endl;
+        std::exit(EXIT_FAILURE);  // Termina el programa con un estado de fallo
+    }
+}

@@ -1,4 +1,5 @@
 #include "prestamos.hpp"
+#include "funcionesGenerales.hpp"
 #include <cmath>
 #include <sqlite3.h>
 #include <stdexcept>
@@ -78,6 +79,8 @@ bool Prestamos::validacionPrestamo(double salario, int tipoMoneda){
     std::cout << "Usted posee mas de 6 meses de continuidad laboral?\n1) Si\n2) No" << std::endl;
     std::cin >> continuidad_laboral;
 
+    leerInt(continuidad_laboral);  
+
     if(continuidad_laboral == 0){
         return false;
     }
@@ -96,6 +99,8 @@ bool Prestamos::validacionPrestamo(double salario, int tipoMoneda){
 
     std::cout << "Ingrese el valor de la opcion que desea escoger?\n1) 2) 3)" << std::endl;
     std::cin >> opcion_cuotas_meses;
+
+    leerInt(opcion_cuotas_meses);
 
     //Se agrega el plazo de meses que el cliente elijio
     plazo_meses_agregar = meses_cliente[opcion_cuotas_meses-1];
@@ -148,6 +153,8 @@ int Prestamos::agregarPrestamoBaseDatos(){
     std::cin.ignore();
     std::cout << "Porfavor ingrese su numero de cedula a la cual quiere asociar el prestamo.\n" << std::endl;
     getline(std::cin, cedula);
+
+    leerCedula(cedula);
 
     cedula_agregar = cedula;
 
@@ -216,6 +223,8 @@ void Prestamos::seguirConPrestamo(){
     std::cout << "Desea optar por un prestamo en este momento?\n1) Si\n2) No " << std::endl;
     std::cin >> decision;
 
+    leerInt(decision);
+
     //Se planteo que el sistema sepa cual prestamos escogio el usuario en base al interes que se le de
     //a la funcion
     if(decision == 1){
@@ -227,8 +236,12 @@ void Prestamos::seguirConPrestamo(){
         std::cin >> salario;
         std::cin.ignore();
 
+        leerInt(salario);
+
         std::cout << "Indique el tipo de moneda en que quiere hacer el prestamo\n1) Dolares\n2) Colones" << std::endl;
         std::cin >> moneda_prestamo;
+
+        leerInt(moneda_prestamo);
 
         //condiciones para obtener datos para agregar el prestamo
 
@@ -289,6 +302,8 @@ void Prestamos::menu(){
     //Esta son variables locales necesarias para elegir opciones y guardar imformacion importante
     int opcion_prestamo;
 
+    bool validarInt;
+
     double monto;
     double monto_prendario;
 
@@ -300,10 +315,13 @@ void Prestamos::menu(){
 
     std::cout << "Elija el tipo de prestamo por el que desearia optar.\n 1) Personal 2) Prendario 3) Hipotecario" << std::endl;
     std::cin >> opcion_prestamo;
-    std::cin.ignore();
+    
+    leerInt(opcion_prestamo);
 
     std::cout << "Para continuar porfavor indique la siguiente informacion:\nMonto por el que sea optar (valor en colones):\n" << std::endl;
     std::cin >> monto;
+
+    leerInt(monto);
 
     //En cada condicion, se guarda informacion en que sera necesaria para agregar el prestamo del usuario
     //y se modifica la informacion para calcular la cuotas personalizadas

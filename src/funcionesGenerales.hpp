@@ -7,6 +7,10 @@
 #include <ctime>
 #include <sstream>
 #include <iomanip>
+#include <limits>
+#include <stdexcept>
+#include <regex>
+#include <cstdlib>
 
 //Esta funcion es para poder generar un numero de cuenta aleatorio en colones
 long long int generarNumeroCuentaColon();
@@ -22,6 +26,10 @@ int agregarCliente(const std::string clienteID, std::string nombre, std::string 
 bool existeCliente(const std::string& clienteID);
 
 std::tm string_a_fecha(const std::string& dateStr);
+
+void leerInt(int num);
+
+void leerCedula(const std::string cedula);
 
 
 #endif
