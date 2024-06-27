@@ -16,6 +16,8 @@
 #include <thread>
 #include <chrono>
 
+#include "funcionesGenerales.hpp"
+
 class Operaciones {
     public:
         //

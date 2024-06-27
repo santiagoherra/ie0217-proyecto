@@ -8,6 +8,7 @@
 
 #include "Operaciones.hpp"
 
+
 using namespace std;
 
 enum OpcionesOperaciones{ // Define la enumeracion de las opciones del menu
