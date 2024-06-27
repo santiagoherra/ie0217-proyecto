@@ -146,7 +146,7 @@ int Operaciones::deposito(std::string &denominacion, std::string &clienteOrigenC
 
     // Parametro para la consulta
     sqlite3_bind_double(stmt, 1, montoDepositar);
-    sqlite3_bind_int(stmt, 2, numero_cuenta);
+    sqlite3_bind_double(stmt, 2, numero_cuenta);
 
     // Realizar la segunda consulta
     rc = sqlite3_step(stmt);
@@ -296,7 +296,6 @@ int Operaciones::retiro(std::string &denominacion, std::string &clienteOrigenCed
     rc = sqlite3_step(stmt);
     if (rc == SQLITE_ROW) {
         balance = sqlite3_column_double(stmt, 0);
-        balance /= 100;  // Conversion necesaria por formato SQL
         cout << "El valor del balance asociado fue accesado correctamente" << endl;
     } else if (rc == SQLITE_DONE) {
         cout << "No fue posible obtener el valor del balance asociado a esta cuenta" << endl;
@@ -340,7 +339,7 @@ int Operaciones::retiro(std::string &denominacion, std::string &clienteOrigenCed
 
     // Parametros de la consulta
     sqlite3_bind_double(stmt, 1, montoRetirar);
-    sqlite3_bind_int(stmt, 2, numero_cuenta);
+    sqlite3_bind_double(stmt, 2, numero_cuenta);
 
     // Realizar la consulta final
     rc = sqlite3_step(stmt);
@@ -478,7 +477,6 @@ int Operaciones::transferencias(std::string &denominacion, std::string &clienteO
     rc = sqlite3_step(stmt);
     if (rc == SQLITE_ROW) {
         balance = sqlite3_column_double(stmt, 0);
-        balance /= 100;
         cout << "El valor del balance asociado fue accesado correctamente" << endl;
     } else if (rc == SQLITE_DONE) {
         cout << "No fue posible obtener el valor del balance asociado a esta cuenta" << endl;
@@ -521,7 +519,7 @@ int Operaciones::transferencias(std::string &denominacion, std::string &clienteO
 
     // Parametros de la consulta
     sqlite3_bind_double(stmt, 1, montoTransferencia);
-    sqlite3_bind_int(stmt, 2, numero_cuenta);
+    sqlite3_bind_double(stmt, 2, numero_cuenta);
 
     // Consulta para rebajar el monto de la cuenta emisora
     rc = sqlite3_step(stmt);
@@ -556,7 +554,7 @@ int Operaciones::transferencias(std::string &denominacion, std::string &clienteO
     }
 
     // Parametro para la consulta
-    sqlite3_bind_int(stmt, 1, numeroCuentaReceptor);
+    sqlite3_bind_double(stmt, 1, numeroCuentaReceptor);
 
     // Realizar la consulta para obtener la denominacion de la cuenta receptora
     rc = sqlite3_step(stmt);
@@ -607,7 +605,7 @@ int Operaciones::transferencias(std::string &denominacion, std::string &clienteO
 
     // Parametro para la consulta
     sqlite3_bind_double(stmt, 1, montoTransferencia);
-    sqlite3_bind_int(stmt, 2, numeroCuentaReceptor);
+    sqlite3_bind_double(stmt, 2, numeroCuentaReceptor);
 
     // Realizar la segunda consulta
     rc = sqlite3_step(stmt);
@@ -628,10 +626,10 @@ int Operaciones::transferencias(std::string &denominacion, std::string &clienteO
 
 int Operaciones::abonosPrestamos(std::string &denominacion, std::string &clienteOrigenCedula, std::string &clienteDestinoCedula, float &montoBase) {
     string cliente_id;
-    int prestamo_id;
+    unsigned int prestamo_id;
     string descripcion;
     unsigned int numero_cuenta;
-    int cuota_mensual;
+    unsigned int cuota_mensual;
     double monto_total;
     double balance;
     int cuenta_op;
@@ -708,7 +706,7 @@ if (rc != SQLITE_DONE) {
     }
 
     // Parametros para la consulta
-    sqlite3_bind_int(stmt, 1, prestamo_id);
+    sqlite3_bind_double(stmt, 1, prestamo_id);
 
     // Realiza la consulta en donde obtiene la cuota
     rc = sqlite3_step(stmt);
@@ -811,7 +809,6 @@ if (rc != SQLITE_DONE) {
     rc = sqlite3_step(stmt);
     if (rc == SQLITE_ROW) {
         balance = sqlite3_column_double(stmt, 0);
-        balance /= 100;
         cout << "El valor del balance asociado fue accesado correctamente" << endl;
     } else if (rc == SQLITE_DONE) {
         cout << "No fue posible obtener el valor del balance asociado a esta cuenta" << endl;
@@ -846,7 +843,7 @@ if (rc != SQLITE_DONE) {
 
     // Parametros de la consulta
     sqlite3_bind_double(stmt, 1, cuota_mensual);
-    sqlite3_bind_int(stmt, 2, numero_cuenta);
+    sqlite3_bind_double(stmt, 2, numero_cuenta);
 
     // Realizar la segunda consulta para modificar el balance en caso de que se pueda pagar la cuota
     rc = sqlite3_step(stmt);

@@ -179,10 +179,10 @@ void RegistrosGenerales::registroPersonal() const {
     string nombre;
     string apellido;
 
-    int cuentaColones;
-    int cuentaDolares;
-    int numero_cuenta;
-    float balance;
+    unsigned int cuentaColones;
+    unsigned int cuentaDolares;
+    unsigned int numero_cuenta;
+    double balance;
     float tasa;
     string denominacion;
 
@@ -220,14 +220,6 @@ void RegistrosGenerales::registroPersonal() const {
         cout << "Ingreso correcto a la base de datos" << endl;
     }
 
-    // Inicio de la transacción
-    rc = sqlite3_exec(db, "BEGIN TRANSACTION", nullptr, nullptr, &errMsg);
-    if (rc != SQLITE_OK) {
-        cerr << "Error al iniciar la transacción: " << errMsg << endl;
-        sqlite3_close(db);
-        return;
-    }
-
     // Solicitar datos para obtener registro personal
     cout << "Por favor ingrese el número de cedula del cliente" << endl;
     getline(cin, cedula);
@@ -255,6 +247,10 @@ void RegistrosGenerales::registroPersonal() const {
         apellido = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1));
         cuentaColones = sqlite3_column_int(stmt, 2);
         cuentaDolares = sqlite3_column_int(stmt, 3);
+
+        //CHECKPOINT
+        cout << "CuentaColones: " << cuentaColones << endl;
+        cout << "CuentaDolares: " << cuentaDolares << endl;
     } else if (rc == SQLITE_DONE) {
         cout << "No existe ninguna cuenta asociada a este número de cédula" << endl;
         sqlite3_finalize(stmt);
@@ -273,8 +269,7 @@ void RegistrosGenerales::registroPersonal() const {
 
     // Crear consulta para obtener la informacion de las cuentas del cliente
     const char *regPersonalCuentas = "SELECT * FROM  cuentas "
-                                     "WHERE numero_cuenta = ? OR "
-                                     "numero_cuenta = ?";
+                                     "WHERE numero_cuenta = ? OR numero_cuenta = ? ";
 
     // Preparar la consulta parametrizada
     rc = sqlite3_prepare_v2(db, regPersonalCuentas, -1, &stmt, nullptr);
@@ -285,8 +280,8 @@ void RegistrosGenerales::registroPersonal() const {
     }       
 
     // Parametros para la consulta
-    sqlite3_bind_int(stmt, 1, cuentaColones);
-    sqlite3_bind_int(stmt, 2, cuentaDolares); 
+    sqlite3_bind_double(stmt, 1, cuentaColones);
+    sqlite3_bind_double(stmt, 2, cuentaDolares); 
 
     cout << "\nCuentas asociadas al cliente " << endl;
     // Con este bucle se obtienen las cuentas que cumplen las caracteristicas
@@ -412,16 +407,6 @@ void RegistrosGenerales::registroPersonal() const {
 
     if (rc != SQLITE_DONE) {
         cerr << "Error de SQL: " << sqlite3_errmsg(db) << endl;
-        sqlite3_finalize(stmt);
-        sqlite3_close(db);
-        return;
-    }
-
-    // Confirmar la transacción
-    rc = sqlite3_exec(db, "COMMIT", nullptr, nullptr, &errMsg);
-    if (rc != SQLITE_OK) {
-        cerr << "Error al confirmar la transacción: " << errMsg << endl;
-        sqlite3_exec(db, "ROLLBACK", nullptr, nullptr, &errMsg);
         sqlite3_finalize(stmt);
         sqlite3_close(db);
         return;
