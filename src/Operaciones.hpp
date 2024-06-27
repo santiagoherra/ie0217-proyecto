@@ -13,6 +13,8 @@
 #include <sstream>
 #include <iomanip>
 #include <sqlite3.h>
+#include <thread>
+#include <chrono>
 
 class Operaciones {
     public:

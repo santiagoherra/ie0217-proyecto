@@ -24,8 +24,8 @@ static int callback(void *data, int argc, char**argv, char **azColName){
 
 int Operaciones::deposito(std::string &denominacion, std::string &clienteOrigenCedula, std::string &clienteDestinoCedula, float &montoBase) {
     string cedula;
-    int numero_cuenta;
-    float montoDepositar;
+    unsigned int numero_cuenta;
+    double montoDepositar;
     int cuenta_op;
     sqlite3 *db;
     sqlite3_stmt *stmt;
@@ -106,6 +106,7 @@ int Operaciones::deposito(std::string &denominacion, std::string &clienteOrigenC
     rc = sqlite3_step(stmt);
     if (rc == SQLITE_ROW) {
         numero_cuenta = sqlite3_column_int(stmt, 0);
+        cout << numero_cuenta << endl;  // CHECKPOINT
     } else if (rc == SQLITE_DONE) {
         cout << "No existe ninguna cuenta asociada a este número de cédula" << endl;
         sqlite3_finalize(stmt);
@@ -175,14 +176,15 @@ int Operaciones::deposito(std::string &denominacion, std::string &clienteOrigenC
     // Liberar memoria y cerrar la base de datos
     sqlite3_finalize(stmt);
     sqlite3_close(db);
+
     return 1;
 }; 
 
 int Operaciones::retiro(std::string &denominacion, std::string &clienteOrigenCedula, std::string &clienteDestinoCedula, float &montoBase) {
     string cedula;
-    int numero_cuenta;
-    float balance;
-    float montoRetirar;
+    unsigned int numero_cuenta;
+    double balance;
+    double montoRetirar;
     int cuenta_op;
     sqlite3 *db;
     sqlite3_stmt *stmt;
@@ -263,6 +265,7 @@ int Operaciones::retiro(std::string &denominacion, std::string &clienteOrigenCed
     rc = sqlite3_step(stmt);
     if (rc == SQLITE_ROW) {
         numero_cuenta = sqlite3_column_int(stmt, 0);
+        cout << numero_cuenta << endl;  // CHECKPOINT
     } else if (rc == SQLITE_DONE) {
         cout << "No existe ninguna cuenta asociada a este número de cédula" << endl;
         return 0;
@@ -309,7 +312,7 @@ int Operaciones::retiro(std::string &denominacion, std::string &clienteOrigenCed
 
     // Crear la tercera consulta para actualizar balance de la cuenta
     const char *cuentas = "UPDATE cuentas "
-                          "SET balance = balance - ?"
+                          "SET balance = balance - ? "
                           "WHERE numero_cuenta = ?";
 
 
@@ -368,11 +371,11 @@ int Operaciones::retiro(std::string &denominacion, std::string &clienteOrigenCed
 
 int Operaciones::transferencias(std::string &denominacion, std::string &clienteOrigenCedula, std::string &clienteDestinoCedula, float &montoBase) {
     string cedula;
-    int numero_cuenta;
-    int numeroCuentaReceptor;
+    unsigned int numero_cuenta;
+    unsigned int numeroCuentaReceptor;
     string denominacionReceptor;
-    float montoTransferencia;
-    float balance;
+    double montoTransferencia;
+    double balance;
     int cuenta_op;
     sqlite3 *db;
     sqlite3_stmt *stmt;
@@ -627,10 +630,10 @@ int Operaciones::abonosPrestamos(std::string &denominacion, std::string &cliente
     string cliente_id;
     int prestamo_id;
     string descripcion;
-    int numero_cuenta;
+    unsigned int numero_cuenta;
     int cuota_mensual;
     double monto_total;
-    float balance;
+    double balance;
     int cuenta_op;
     sqlite3 *db;
     sqlite3_stmt *stmt;
