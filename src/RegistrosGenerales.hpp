@@ -8,6 +8,9 @@
 #define REGISTROS_GENERALES_HPP
 
 #include <string>
+#include <iostream>
+#include <sqlite3.h>
+#include <iomanip>
 
 /* En esta clase se encontrarán los distintos métodos de actualización (es decir,
 ingresar registros) y los distintos tipos de visualización implementados para los
@@ -18,14 +21,17 @@ mySQL.*/
 class RegistrosGenerales {
     public:
         // Este metodo se encarga de almacenar los datos mas importantes acerca de todas las transaccioes realizadas
-        void actualizarRegistro(int ID, std::string tipo_transaccion, std::string fecha_transaccion, std::string denominacion,
-                                int cliente_origen_cedula, int cliente_destino_cedula, float monto_base);
+        void actualizarRegistro(std::string tipo_transaccion, std::string fecha_transaccion, std::string denominacion,
+                                std::string cliente_origen_cedula, std::string cliente_destino_cedula, float monto_base);
 
         // Este metodo permite visualizar el historial general de transacciones
         void verRegistro() const;
 
         // Este metodo permite visualizar el registro de un solo tipo de transaccion (depositos, retiros, prestamos...)
         void filtrarRegistro () const;
+
+        // Este metodo imprime el registro de transacciones de un cliente
+        void registroPersonal () const;
 };
 
 #endif

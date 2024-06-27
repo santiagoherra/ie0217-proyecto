@@ -7,14 +7,13 @@
 #define TASA_DE_CAMBIO 525.95
 
 #include "Operaciones.hpp"
-#include <iostream>
-#include <stdexcept>
-#include <string>
-#include <sstream>
-#include <iomanip>
-#include <sqlite3.h>
 
 using namespace std;
+
+enum OpcionesOperaciones{ // Define la enumeracion de las opciones del menu
+    DOLARES = 1,
+    COLONES
+};
 
 static int callback(void *data, int argc, char**argv, char **azColName){
     for(int i = 0; i < argc; i++){
@@ -23,12 +22,11 @@ static int callback(void *data, int argc, char**argv, char **azColName){
     return 0;
 }
 
-int Operaciones::deposito() {
+int Operaciones::deposito(std::string &denominacion, std::string &clienteOrigenCedula, std::string &clienteDestinoCedula, float &montoBase) {
     string cedula;
     int numero_cuenta;
-    string denominacion;
     float montoDepositar;
-    char cuenta_op;
+    int cuenta_op;
     sqlite3 *db;
     sqlite3_stmt *stmt;
     char *errMsg = 0;
@@ -47,6 +45,14 @@ int Operaciones::deposito() {
         cout << "Ingreso correcto a la base de datos" << endl;
     }
 
+    // Inicio de la transacción
+    rc = sqlite3_exec(db, "BEGIN TRANSACTION", nullptr, nullptr, &errMsg);
+    if (rc != SQLITE_OK) {
+        cerr << "Error al iniciar la transacción: " << errMsg << endl;
+        sqlite3_close(db);
+        return 0;
+    }
+
     // Solicitar datos para realizar el deposito
     cout << "Por favor ingrese el número de cedula del cliente al que se va a depositar" << endl;
     getline(cin, cedula);
@@ -55,28 +61,35 @@ int Operaciones::deposito() {
         cout << "¿Desea realizar el depósito en la cuenta de dólares o colones?" << endl;
         cout << "1) Dólares" << std::endl;
         cout << "2) Colones" << std::endl;
-        cin >> cuenta_op;
-        cin.ignore();
+
+        // Verificar si la entrada del usuario es válida
+        if (!(cin >> cuenta_op)) {
+            cout << "\n";
+            cout << "Opcion no valida. Por favor, ingrese un numero." << endl;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Ignorar el resto de la línea
+            continue;
+        }
 
         switch (cuenta_op)
         {
-        case '1':
+        case DOLARES:
             denominacion = "dolares";
 
             // Primera consulta
-            clientes = "SELECT cuenta_colones from clientes WHERE cedula = ?";
+            clientes = "SELECT cuenta_dolares from clientes WHERE cedula = ?";
             break;
-        case '2':
+        case COLONES:
             denominacion = "colones";
             
             // Primera consulta
-            clientes = "SELECT cuenta_dolares from clientes WHERE cedula = ?";
+            clientes = "SELECT cuenta_colones from clientes WHERE cedula = ?";
             break;
         default:
             cout << "¡La opción ingresada no es válida! Por favor, inténtelo de nuevo.";
             break;
         }
-    } while (cuenta_op != '1' && cuenta_op != '2');
+    } while (cuenta_op != DOLARES && cuenta_op != COLONES);
 
     // Preparar consulta parametrizada
     rc = sqlite3_prepare_v2(db, clientes, -1, &stmt, nullptr);
@@ -95,6 +108,9 @@ int Operaciones::deposito() {
         numero_cuenta = sqlite3_column_int(stmt, 0);
     } else if (rc == SQLITE_DONE) {
         cout << "No existe ninguna cuenta asociada a este número de cédula" << endl;
+        sqlite3_finalize(stmt);
+        sqlite3_close(db);
+        return 0;
     } else {
         cerr << "Error de SQL." << sqlite3_errmsg(db) << endl;
         sqlite3_finalize(stmt);
@@ -122,6 +138,8 @@ int Operaciones::deposito() {
     // Verifiacion monto
     if (montoDepositar <= 0) {
         cout << "¡El monto a depositar no es válido!";
+        sqlite3_finalize(stmt);
+        sqlite3_close(db);
         return 0;
     }
 
@@ -140,19 +158,32 @@ int Operaciones::deposito() {
         return 0;
     }
 
+    // Guardar los datos para el registro
+    clienteOrigenCedula = cedula;
+    clienteDestinoCedula = cedula;
+    montoBase = montoDepositar;
+
+    // Confirmar la transacción
+    rc = sqlite3_exec(db, "COMMIT", nullptr, nullptr, &errMsg);
+    if (rc != SQLITE_OK) {
+        cerr << "Error al confirmar la transacción: " << errMsg << endl;
+        sqlite3_exec(db, "ROLLBACK", nullptr, nullptr, &errMsg);
+        sqlite3_close(db);
+        return 0;
+    }
+
     // Liberar memoria y cerrar la base de datos
     sqlite3_finalize(stmt);
     sqlite3_close(db);
     return 1;
 }; 
 
-int Operaciones::retiro() {
+int Operaciones::retiro(std::string &denominacion, std::string &clienteOrigenCedula, std::string &clienteDestinoCedula, float &montoBase) {
     string cedula;
     int numero_cuenta;
-    string denominacion;
     float balance;
     float montoRetirar;
-    char cuenta_op;
+    int cuenta_op;
     sqlite3 *db;
     sqlite3_stmt *stmt;
     char *errMsg = 0;
@@ -171,6 +202,14 @@ int Operaciones::retiro() {
         cout << "Ingreso correcto a la base de datos" << endl;
     }
 
+    // Inicio de la transacción
+    rc = sqlite3_exec(db, "BEGIN TRANSACTION", nullptr, nullptr, &errMsg);
+    if (rc != SQLITE_OK) {
+        cerr << "Error al iniciar la transacción: " << errMsg << endl;
+        sqlite3_close(db);
+        return 0;
+    }
+
     // Solicitar datos para realizar el retiro
     cout << "Por favor ingrese el número de cedula del cliente que va a realizar el retiro" << endl;
     getline(cin, cedula);
@@ -179,28 +218,35 @@ int Operaciones::retiro() {
         cout << "¿Desea realizar el depósito en la cuenta de dólares o colones?" << endl;
         cout << "1) Dólares" << std::endl;
         cout << "2) Colones" << std::endl;
-        cin >> cuenta_op;
-        cin.ignore();
+
+        // Verificar si la entrada del usuario es válida
+        if (!(cin >> cuenta_op)) {
+            cout << "\n";
+            cout << "Opcion no valida. Por favor, ingrese un numero." << endl;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Ignorar el resto de la línea
+            continue;
+        }
 
         switch (cuenta_op)
         {
-        case '1':
+        case DOLARES:
             denominacion = "dolares";
 
             // Primera consulta
-            clientes = "SELECT cuenta_colones from clientes WHERE cedula = ?";
+            clientes = "SELECT cuenta_dolares from clientes WHERE cedula = ?";
             break;
-        case '2':
+        case COLONES:
             denominacion = "colones";
             
             // Primera consulta
-            clientes = "SELECT cuenta_dolares from clientes WHERE cedula = ?";
+            clientes = "SELECT cuenta_colones from clientes WHERE cedula = ?";
             break;
         default:
             cout << "¡La opción ingresada no es válida! Por favor, inténtelo de nuevo.";
             break;
         }
-    } while (cuenta_op != '1' && cuenta_op != '2');
+    } while (cuenta_op != DOLARES && cuenta_op != COLONES);
 
     // Preparar consulta parametrizada
     rc = sqlite3_prepare_v2(db, clientes, -1, &stmt, nullptr);
@@ -305,21 +351,29 @@ int Operaciones::retiro() {
         return 0;
     }
 
+    // Confirmar la transacción
+    rc = sqlite3_exec(db, "COMMIT", nullptr, nullptr, &errMsg);
+    if (rc != SQLITE_OK) {
+        cerr << "Error al confirmar la transacción: " << errMsg << endl;
+        sqlite3_exec(db, "ROLLBACK", nullptr, nullptr, &errMsg);
+        sqlite3_close(db);
+        return 0;
+    }
+
     // Liberar memoria y cerrar la base de datos
     sqlite3_finalize(stmt);
     sqlite3_close(db);
     return 1;
 };
 
-int Operaciones::transferencias() {
+int Operaciones::transferencias(std::string &denominacion, std::string &clienteOrigenCedula, std::string &clienteDestinoCedula, float &montoBase) {
     string cedula;
     int numero_cuenta;
     int numeroCuentaReceptor;
-    string denominacion;
     string denominacionReceptor;
     float montoTransferencia;
     float balance;
-    char cuenta_op;
+    int cuenta_op;
     sqlite3 *db;
     sqlite3_stmt *stmt;
     char *errMsg = 0;
@@ -346,28 +400,35 @@ int Operaciones::transferencias() {
         cout << "¿Desea transferir desde la cuenta en colones o en dólares?" << endl;
         cout << "1) Dólares" << std::endl;
         cout << "2) Colones" << std::endl;
-        cin >> cuenta_op;
-        cin.ignore();
+
+        // Verificar si la entrada del usuario es válida
+        if (!(cin >> cuenta_op)) {
+            cout << "\n";
+            cout << "Opcion no valida. Por favor, ingrese un numero." << endl;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Ignorar el resto de la línea
+            continue;
+        }
 
         switch (cuenta_op)
         {
-        case '1':
+        case DOLARES:
             denominacion = "dolares";
 
             // Primera consulta
-            clientes = "SELECT cuenta_colones from clientes WHERE cedula = ?";
+            clientes = "SELECT cuenta_dolares from clientes WHERE cedula = ?";
             break;
-        case '2':
+        case COLONES:
             denominacion = "colones";
             
             // Primera consulta
-            clientes = "SELECT cuenta_dolares from clientes WHERE cedula = ?";
+            clientes = "SELECT cuenta_colones from clientes WHERE cedula = ?";
             break;
         default:
             cout << "¡La opción ingresada no es válida! Por favor, inténtelo de nuevo.";
             break;
         }
-    } while (cuenta_op != '1' && cuenta_op != '2');
+    } while (cuenta_op != DOLARES && cuenta_op != COLONES);
 
     // Preparar consulta parametrizada
     rc = sqlite3_prepare_v2(db, clientes, -1, &stmt, nullptr);
@@ -562,16 +623,15 @@ int Operaciones::transferencias() {
     return 1;
 };
 
-int Operaciones::abonosPrestamos() {
+int Operaciones::abonosPrestamos(std::string &denominacion, std::string &clienteOrigenCedula, std::string &clienteDestinoCedula, float &montoBase) {
     string cliente_id;
     int prestamo_id;
     string descripcion;
-    string denominacion;
     int numero_cuenta;
     int cuota_mensual;
     double monto_total;
     float balance;
-    char cuenta_op;
+    int cuenta_op;
     sqlite3 *db;
     sqlite3_stmt *stmt;
     char *errMsg = 0;
@@ -616,7 +676,7 @@ int Operaciones::abonosPrestamos() {
 
     	cout << "Préstamo ID: " << prestamo_id << ", Descripción: " << descripcion << ", Monto: " << monto_total <<
                 ", Cuota Mensual: " << std::fixed << std::setprecision(2) << cuota_mensual << endl;
-}
+    }
 if (rc != SQLITE_DONE) {
     cerr << "Error de SQL: " << sqlite3_errmsg(db) << endl;
     sqlite3_finalize(stmt);
@@ -673,28 +733,35 @@ if (rc != SQLITE_DONE) {
         cout << "¿Desea abonar desde la cuenta en colones o en dólares?" << endl;
         cout << "1) Dólares" << std::endl;
         cout << "2) Colones" << std::endl;
-        cin >> cuenta_op;
-        cin.ignore();
+
+        // Verificar si la entrada del usuario es válida
+        if (!(cin >> cuenta_op)) {
+            cout << "\n";
+            cout << "Opcion no valida. Por favor, ingrese un numero." << endl;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Ignorar el resto de la línea
+            continue;
+        }
 
         switch (cuenta_op)
         {
-        case '1':
+        case DOLARES:
             denominacion = "dolares";
 
             // Primera consulta
-            clientes = "SELECT cuenta_colones from clientes WHERE cedula = ?";
+            clientes = "SELECT cuenta_dolares from clientes WHERE cedula = ?";
             break;
-        case '2':
+        case COLONES:
             denominacion = "colones";
             
             // Primera consulta
-            clientes = "SELECT cuenta_dolares from clientes WHERE cedula = ?";
+            clientes = "SELECT cuenta_colones from clientes WHERE cedula = ?";
             break;
         default:
             cout << "¡La opción ingresada no es válida! Por favor, inténtelo de nuevo.";
             break;
         }
-    } while (cuenta_op != '1' && cuenta_op != '2');
+    } while (cuenta_op != DOLARES && cuenta_op != COLONES);
 
     // Preparar consulta parametrizada
     rc = sqlite3_prepare_v2(db, clientes, -1, &stmt, nullptr);

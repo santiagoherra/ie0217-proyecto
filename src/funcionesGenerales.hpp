@@ -5,6 +5,7 @@
 #include <string>
 #include <sqlite3.h>
 #include <ctime>
+#include <chrono>
 #include <sstream>
 #include <iomanip>
 #include <limits>
@@ -26,6 +27,9 @@ int agregarCliente(const std::string clienteID, std::string nombre, std::string 
 bool existeCliente(const std::string& clienteID);
 
 std::tm string_a_fecha(const std::string& dateStr);
+
+// Esta funcion se utiliza para obtener la fecha en forma de string
+std::string obtenerFechaString();
 
 void leerInt(int num);
 

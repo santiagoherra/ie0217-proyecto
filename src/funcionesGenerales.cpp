@@ -92,6 +92,18 @@ std::tm string_a_fecha(const std::string& fecha_string) {
     return tm;
 }
 
+std::string obtenerFechaString() {
+    auto fechaActual = std::chrono::system_clock::now();
+    std::time_t fechaActualTime = std::chrono::system_clock::to_time_t(fechaActual);
+    std::tm fechaActualLocal = *std::localtime(&fechaActualTime);
+
+    // Crear una cadena compatible con las consultas para la base de datos
+    std::ostringstream oss;
+    oss << std::put_time(&fechaActualLocal, "%Y-%m-%d");
+
+    // Devolver cadena
+    return oss.str();
+}
 
 void leerInt(int num) {
     if (std::cin.fail()) {

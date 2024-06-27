@@ -4,12 +4,15 @@
 #include <string>
 #include <limits>
 #include <cctype>
+#include <chrono>
+#include <ctime>
 
 
 #include "BaseDeDatos.hpp"
 #include "RegistrosGenerales.hpp"
 #include "Operaciones.hpp"
 #include "prestamos.hpp"
+#include "funcionesGenerales.hpp"
 
 using namespace std;
 
@@ -18,7 +21,8 @@ enum Opciones{ // Define la enumeracion de las opciones del menu
     DEPOSITO,
     RETIRO,
     TRANSFERENCIA,
-    ABONO, 
+    ABONO,
+    REGISTRO_PERSONAL,
     SALIR
 };
 
@@ -27,16 +31,27 @@ int main(){
     llenarDB();
     int opcion; // Switch del menu
     Operaciones op;
+    RegistrosGenerales regs;
+
+    // Datos para los registros
+    int retorno;
+    string tipoTransaccion;
+    string fechaTransaccion;
+    string denominacion;
+    string clienteOrigenCedula; 
+    string clienteDestinoCedula; 
+    float montoBase;
 
     do {
         // Imprime el menu
-        cout << "Bienvenido a la aplicacion de banco: \n";
+        cout << "\n\nBienvenido a la aplicacion de banco: \n";
         cout << "1. Mostrar informacion de prestamos \n";
         cout << "2. Realizar deposito \n";
         cout << "3. Realizar retiro \n";
         cout << "4. Realizar una transferencia \n";
         cout << "5. Abonar a un prestamo \n";
-        cout << "6. Salir \n";
+        cout << "6. Registro personal \n";
+        cout << "7. Salir \n";
         cout << "Ingrese su opcion \n";
         
         // Verificar si la entrada del usuario es válida
@@ -51,20 +66,60 @@ int main(){
         switch(opcion) {
             // Switch del menu
             case DEPOSITO:
-                cout << "\n";
-                op.deposito();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                retorno = op.deposito(denominacion, clienteOrigenCedula, clienteDestinoCedula, montoBase);
+
+                // Todos los metodos de operaciones devuelven 1 si la transaccion fue exitosa
+                //if(retorno) {
+                    //tipoTransaccion = "deposito";
+                    //fechaTransaccion = obtenerFechaString();  // Fecha en forma de string
+
+                    // Insertar la transaccion al registro general
+                    //regs.actualizarRegistro(tipoTransaccion, fechaTransaccion, denominacion,
+                                       //clienteOrigenCedula, clienteDestinoCedula, montoBase);
+                //}
                 break;
             case RETIRO:
-                cin.clear();
-                op.retiro();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                retorno = op.retiro(denominacion, clienteOrigenCedula, clienteDestinoCedula, montoBase);
+                //if(retorno) {
+                    //tipoTransaccion = "retiro";
+                    //fechaTransaccion = obtenerFechaString();  // Fecha en forma de string
+
+                    // Insertar la transaccion al registro general
+                    //regs.actualizarRegistro(tipoTransaccion, fechaTransaccion, denominacion,
+                                       //clienteOrigenCedula, clienteDestinoCedula, montoBase);
+                //}
                 break;
             case TRANSFERENCIA:
-                cin.clear();
-                op.transferencias();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                retorno = op.transferencias(denominacion, clienteOrigenCedula, clienteDestinoCedula, montoBase);
+                    //if(retorno) {
+                        //tipoTransaccion = "transferencia";
+                        //fechaTransaccion = obtenerFechaString();  // Fecha en forma de string
+
+                        // Insertar la transaccion al registro general
+                        //regs.actualizarRegistro(tipoTransaccion, fechaTransaccion, denominacion,
+                                       //clienteOrigenCedula, clienteDestinoCedula, montoBase);
+                //}
                 break;
             case ABONO:
-                cin.clear();
-                op.abonosPrestamos();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                retorno = op.abonosPrestamos(denominacion, clienteOrigenCedula, clienteDestinoCedula, montoBase);
+
+                    //if(retorno) {
+                        //tipoTransaccion = "abono";
+                        //fechaTransaccion = obtenerFechaString();  // Fecha en forma de string
+
+                        // Insertar la transaccion al registro general
+                        //regs.actualizarRegistro(tipoTransaccion, fechaTransaccion, denominacion,
+                                       //clienteOrigenCedula, clienteDestinoCedula, montoBase);
+                //}
+                
+                break;
+            case REGISTRO_PERSONAL:
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                regs.registroPersonal();
                 break;
             case SALIR:
                 cout << "Saliendo del programa... \n";
@@ -77,4 +132,3 @@ int main(){
 
     return 0;
 }
-

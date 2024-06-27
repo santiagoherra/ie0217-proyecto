@@ -54,7 +54,7 @@ int crearDB(){
         "FOREIGN KEY (cliente_cedula) REFERENCES clientes(cedula));"
         
         "CREATE TABLE registros ("
-        "ID INT PRIMARY KEY,"
+        "ID INT AUTO_INCREMENT PRIMARY KEY,"
         "tipo_transaccion VARCHAR(50),"
         "fecha_transaccion DATE,"
         "denominacion VARCHAR(10),"

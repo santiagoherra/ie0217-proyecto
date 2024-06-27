@@ -6,19 +6,27 @@
 #ifndef OPERACIONES_HPP
 #define OPERACIONES_HPP
 
+#include <iostream>
+#include <stdexcept>
+#include <string>
+#include <limits>
+#include <sstream>
+#include <iomanip>
+#include <sqlite3.h>
+
 class Operaciones {
     public:
         //
-        int deposito();
+        int deposito(std::string &denominacion, std::string &clienteOrigenCedula, std::string &clienteDestinoCedula, float &montoBase);
 
         //
-        int retiro();
+        int retiro(std::string &denominacion, std::string &clienteOrigenCedula, std::string &clienteDestinoCedula, float &montoBase);
 
         //
-        int transferencias();
+        int transferencias(std::string &denominacion, std::string &clienteOrigenCedula, std::string &clienteDestinoCedula, float &montoBase);
 
         //
-        int abonosPrestamos();
+        int abonosPrestamos(std::string &denominacion, std::string &clienteOrigenCedula, std::string &clienteDestinoCedula, float &montoBase);
 
         //Esta es la funcion para poder ver el progreso del cdp
         int gestionAhorros();
