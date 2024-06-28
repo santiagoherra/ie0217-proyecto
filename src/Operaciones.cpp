@@ -362,6 +362,11 @@ int Operaciones::retiro(std::string &denominacion, std::string &clienteOrigenCed
         return 0;
     }
 
+    // Guardar los datos para el registro
+    clienteOrigenCedula = cedula;
+    clienteDestinoCedula = cedula;
+    montoBase = montoRetirar;
+
     // Liberar memoria y cerrar la base de datos
     sqlite3_finalize(stmt);
     sqlite3_close(db);
@@ -618,6 +623,11 @@ int Operaciones::transferencias(std::string &denominacion, std::string &clienteO
         return 0;
     }
 
+    // Guardar los datos para el registro
+    clienteOrigenCedula = cedula;
+    clienteDestinoCedula = cedula;
+    montoBase = montoTransferencia;
+
     // Liberar memoria y cerrar la base de datos
     sqlite3_finalize(stmt);
     sqlite3_close(db);
@@ -626,11 +636,17 @@ int Operaciones::transferencias(std::string &denominacion, std::string &clienteO
 
 int Operaciones::abonosPrestamos(std::string &denominacion, std::string &clienteOrigenCedula, std::string &clienteDestinoCedula, float &montoBase) {
     string cliente_id;
+
     unsigned int prestamo_id;
-    string descripcion;
+    string denominacionPrestamo;
+    string tipoPrestamo;
     unsigned int numero_cuenta;
     unsigned int cuota_mensual;
     double monto_total;
+    int plazo_meses;
+    int plazo_restante;
+    float tasa;
+
     double balance;
     int cuenta_op;
     sqlite3 *db;
@@ -670,13 +686,18 @@ int Operaciones::abonosPrestamos(std::string &denominacion, std::string &cliente
     cout << "Préstamos asociados al cliente: " << endl;
     // A partir de esta consulta, se despliegan todos los prestamos relacionados con el cliente
     while ((rc = sqlite3_step(stmt)) == SQLITE_ROW) {
-        int prestamo_id = sqlite3_column_int(stmt, 0);
-        std::string descripcion = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1));
-        double monto_total = sqlite3_column_double(stmt, 2);
-        double cuota_mensual = sqlite3_column_double(stmt, 3);
+        prestamo_id = sqlite3_column_int(stmt, 0);
+        denominacionPrestamo = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1));
+        tipoPrestamo = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 2));
+        monto_total = sqlite3_column_double(stmt, 3);
+        plazo_meses = sqlite3_column_int(stmt, 4);
+        plazo_restante = sqlite3_column_int(stmt, 5);
+        cuota_mensual = sqlite3_column_int(stmt, 6);
+        tasa = sqlite3_column_double(stmt, 7);
 
-    	cout << "Préstamo ID: " << prestamo_id << ", Descripción: " << descripcion << ", Monto: " << monto_total <<
-                ", Cuota Mensual: " << std::fixed << std::setprecision(2) << cuota_mensual << endl;
+        cout << " Préstamo ID: "<< prestamo_id << " Denominación: " << denominacionPrestamo << " Tipo de Préstamo: "
+        << tipoPrestamo << " Monto total: " << std::fixed << std::setprecision(2) << monto_total << " Plazo (meses): " << plazo_meses <<
+        " Plazo restante (cuotas):" << plazo_restante << " Cuota mensual: " << std::fixed << std::setprecision(2) << cuota_mensual << " Tasa: " << tasa << endl;
     }
 if (rc != SQLITE_DONE) {
     cerr << "Error de SQL: " << sqlite3_errmsg(db) << endl;
@@ -695,7 +716,7 @@ if (rc != SQLITE_DONE) {
     cin.ignore();
 
     // Se tiene que hacer una consulta para obtener justamente, la cuota mensual de este prestamo
-    const char *prestamosDos = "SELECT cuota_mensual from prestamos WHERE prestamo_id = ?";
+    const char *prestamosDos = "SELECT denominacion, cuota_mensual from prestamos WHERE prestamo_id = ?";
 
     // Preparar consulta parametrizada
     rc = sqlite3_prepare_v2(db, prestamosDos, -1, &stmt, nullptr);
@@ -711,7 +732,8 @@ if (rc != SQLITE_DONE) {
     // Realiza la consulta en donde obtiene la cuota
     rc = sqlite3_step(stmt);
     if (rc == SQLITE_ROW) {
-        cuota_mensual = sqlite3_column_int(stmt, 0);
+        denominacionPrestamo = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 0));
+        cuota_mensual = sqlite3_column_double(stmt, 1);
         cout << "¡El valor de la cuota mensual se obtuvo correctamente!" << endl;
     } else if(rc == SQLITE_DONE){
         cerr << "No se encontró un préstamo con este ID" << endl;
@@ -822,6 +844,18 @@ if (rc != SQLITE_DONE) {
 
     sqlite3_finalize(stmt);  // Finalizar consulta
 
+    // El programa debe manejar casos en que se utilice una denominacion diferente para pagar el prestamo
+    // Ahora se realiza una comparacion de las denominaciones de ambas cuentas
+    if (denominacion != denominacionPrestamo) {
+        // Primer caso, el prestamo en colones se cancela con una cuenta en dolares
+        if (denominacionPrestamo == "colones") {
+            cuota_mensual /= TASA_DE_CAMBIO;
+        } else {
+            // Segundo caso, el prestamo en dolares se cancela con una cuenta en colones
+            cuota_mensual *= TASA_DE_CAMBIO;
+        }
+    }
+
     // Con el numero de cuenta, se realiza una consulta para realizar el rebajo a la cuenta del cliente
     const char *cuentas = "UPDATE cuentas "
                           "SET balance = balance - ? "
@@ -848,6 +882,36 @@ if (rc != SQLITE_DONE) {
     // Realizar la segunda consulta para modificar el balance en caso de que se pueda pagar la cuota
     rc = sqlite3_step(stmt);
     if (rc == SQLITE_DONE) {
+        cout << "Rebajo realizado exitosamente." << endl;
+    } else if (rc != SQLITE_DONE) {
+        // Hubo un error en la consulta
+        cerr << "No fue posible sustraer el dinero de la cuenta." << endl;
+        sqlite3_finalize(stmt);
+        sqlite3_close(db);
+        return 0;
+    }
+
+    sqlite3_finalize(stmt);  // Finalizar consulta
+
+    // Ultima consulta para reducir plazo restante del prestamo
+    const char *prestamosTres = "UPDATE prestamos "
+                                "SET plazo_restante = plazo_restante - 1 "
+                                "WHERE prestamo_id = ? ";
+
+    // Preparar consulta parametrizada
+    rc = sqlite3_prepare_v2(db, prestamosTres, -1, &stmt, nullptr);
+    if (rc != SQLITE_OK) {
+        cerr << "Error de SQL: " << sqlite3_errmsg(db) << endl;
+        sqlite3_close(db);
+        return 0;
+    }    
+
+    // Parametros de la consulta
+    sqlite3_bind_double(stmt, 1, prestamo_id);
+
+    // Hacer la ultima consulta
+    rc = sqlite3_step(stmt);
+    if (rc == SQLITE_DONE) {
         cout << "Abono realizado correctamente." << endl;
     } else if (rc != SQLITE_DONE) {
         // Hubo un error en la consulta
@@ -856,6 +920,11 @@ if (rc != SQLITE_DONE) {
         sqlite3_close(db);
         return 0;
     }
+
+    // Guardar los datos para el registro
+    clienteOrigenCedula = cliente_id;
+    clienteDestinoCedula = cliente_id;
+    montoBase = cuota_mensual;
 
     // Liberar memoria y cerrar la base de datos
     sqlite3_finalize(stmt);

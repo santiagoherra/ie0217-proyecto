@@ -23,6 +23,7 @@ enum Opciones{ // Define la enumeracion de las opciones del menu
     TRANSFERENCIA,
     ABONO,
     REGISTRO_PERSONAL,
+    REGISTRO_GENERAL,
     SALIR
 };
 
@@ -51,7 +52,8 @@ int main(){
         cout << "4. Realizar una transferencia \n";
         cout << "5. Abonar a un prestamo \n";
         cout << "6. Registro personal \n";
-        cout << "7. Salir \n";
+        cout << "7. Registro general \n";
+        cout << "8. Salir \n";
         cout << "Ingrese su opcion \n";
         
         // Verificar si la entrada del usuario es válida
@@ -82,44 +84,48 @@ int main(){
             case RETIRO:
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 retorno = op.retiro(denominacion, clienteOrigenCedula, clienteDestinoCedula, montoBase);
-                //if(retorno) {
-                    //tipoTransaccion = "retiro";
-                    //fechaTransaccion = obtenerFechaString();  // Fecha en forma de string
+                if(retorno) {
+                    tipoTransaccion = "retiro";
+                    fechaTransaccion = obtenerFechaString();  // Fecha en forma de string
 
                     // Insertar la transaccion al registro general
-                    //regs.actualizarRegistro(tipoTransaccion, fechaTransaccion, denominacion,
-                                       //clienteOrigenCedula, clienteDestinoCedula, montoBase);
-                //}
+                    regs.actualizarRegistro(tipoTransaccion, fechaTransaccion, denominacion,
+                                       clienteOrigenCedula, clienteDestinoCedula, montoBase);
+                }
                 break;
             case TRANSFERENCIA:
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 retorno = op.transferencias(denominacion, clienteOrigenCedula, clienteDestinoCedula, montoBase);
-                    //if(retorno) {
-                        //tipoTransaccion = "transferencia";
-                        //fechaTransaccion = obtenerFechaString();  // Fecha en forma de string
+                    if(retorno) {
+                        tipoTransaccion = "transferencia";
+                        fechaTransaccion = obtenerFechaString();  // Fecha en forma de string
 
                         // Insertar la transaccion al registro general
-                        //regs.actualizarRegistro(tipoTransaccion, fechaTransaccion, denominacion,
-                                       //clienteOrigenCedula, clienteDestinoCedula, montoBase);
-                //}
+                        regs.actualizarRegistro(tipoTransaccion, fechaTransaccion, denominacion,
+                                       clienteOrigenCedula, clienteDestinoCedula, montoBase);
+                }
                 break;
             case ABONO:
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 retorno = op.abonosPrestamos(denominacion, clienteOrigenCedula, clienteDestinoCedula, montoBase);
 
-                    //if(retorno) {
-                        //tipoTransaccion = "abono";
-                        //fechaTransaccion = obtenerFechaString();  // Fecha en forma de string
+                    if(retorno) {
+                        tipoTransaccion = "abono";
+                        fechaTransaccion = obtenerFechaString();  // Fecha en forma de string
 
                         // Insertar la transaccion al registro general
-                        //regs.actualizarRegistro(tipoTransaccion, fechaTransaccion, denominacion,
-                                       //clienteOrigenCedula, clienteDestinoCedula, montoBase);
-                //}
+                        regs.actualizarRegistro(tipoTransaccion, fechaTransaccion, denominacion,
+                                       clienteOrigenCedula, clienteDestinoCedula, montoBase);
+                }
                 
                 break;
             case REGISTRO_PERSONAL:
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 regs.registroPersonal();
+                break;
+            case REGISTRO_GENERAL:
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                regs.verRegistro();
                 break;
             case SALIR:
                 cout << "Saliendo del programa... \n";
