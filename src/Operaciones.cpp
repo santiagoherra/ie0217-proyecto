@@ -623,9 +623,37 @@ int Operaciones::transferencias(std::string &denominacion, std::string &clienteO
         return 0;
     }
 
+    sqlite3_finalize(stmt);  // Finalizar statement
+
+    // Crear una consulta final para obtener la cedula del cliente destino
+    const char *clientesDos = "SELECT cedula FROM clientes "
+                              "WHERE cuenta_colones = ? OR "
+                              "cuenta_dolares = ?";
+
+    // Preparar consulta parametrizada
+    rc = sqlite3_prepare_v2(db, clientesDos, -1, &stmt, nullptr);
+    if (rc != SQLITE_OK) {
+        cerr << "Error de SQL: " << sqlite3_errmsg(db) << endl;
+        sqlite3_close(db);
+        return 0;
+    }
+
+    // Parametros
+    sqlite3_bind_double(stmt, 1, numeroCuentaReceptor);
+    sqlite3_bind_double(stmt, 2, numeroCuentaReceptor);    
+
+    rc = sqlite3_step(stmt);
+    if (rc == SQLITE_ROW) {
+        // Se obtiene la cedula del cliente destino de la transaccion
+        clienteDestinoCedula = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 0));
+    } else if (rc == SQLITE_DONE) {
+        cerr << "No se encontró ninguna cedula para las cuentas dadas." << endl;
+    } else {
+        cerr << "Error de SQL: " << sqlite3_errmsg(db) << endl;
+    } 
+
     // Guardar los datos para el registro
     clienteOrigenCedula = cedula;
-    clienteDestinoCedula = cedula;
     montoBase = montoTransferencia;
 
     // Liberar memoria y cerrar la base de datos
@@ -716,7 +744,7 @@ if (rc != SQLITE_DONE) {
     cin.ignore();
 
     // Se tiene que hacer una consulta para obtener justamente, la cuota mensual de este prestamo
-    const char *prestamosDos = "SELECT denominacion, cuota_mensual from prestamos WHERE prestamo_id = ?";
+    const char *prestamosDos = "SELECT denominacion, cuota_mensual, cliente_id from prestamos WHERE prestamo_id = ?";
 
     // Preparar consulta parametrizada
     rc = sqlite3_prepare_v2(db, prestamosDos, -1, &stmt, nullptr);
@@ -734,6 +762,9 @@ if (rc != SQLITE_DONE) {
     if (rc == SQLITE_ROW) {
         denominacionPrestamo = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 0));
         cuota_mensual = sqlite3_column_double(stmt, 1);
+
+        // Se obtiene el cliente destino (ya que puede ser diferente al cliente origen)
+        clienteDestinoCedula = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 2));
         cout << "¡El valor de la cuota mensual se obtuvo correctamente!" << endl;
     } else if(rc == SQLITE_DONE){
         cerr << "No se encontró un préstamo con este ID" << endl;
@@ -923,7 +954,6 @@ if (rc != SQLITE_DONE) {
 
     // Guardar los datos para el registro
     clienteOrigenCedula = cliente_id;
-    clienteDestinoCedula = cliente_id;
     montoBase = cuota_mensual;
 
     // Liberar memoria y cerrar la base de datos
