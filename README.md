@@ -10,7 +10,7 @@
 Para probar la parte de transferencia, deposito y abonos:
 
 ```
-g++ main.cpp BaseDeDatos.cpp CuentaAhorros.cpp Operaciones.cpp prestamos.cpp -o main -IC:\sqlite -LC:\sqlite -lsqlite3 
+g++ aplicacion.cpp menus.cpp BaseDeDatos.cpp cdp.cpp CuentaAhorros.cpp funcionesGenerales.cpp Operaciones.cpp prestamos.cpp RegistrosGenerales.cpp -o main -IC:\sqlite -LC:\sqlite -lsqlite3
 ```
 
 Para probar la parte de prestamos:
