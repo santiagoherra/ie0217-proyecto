@@ -1,5 +1,5 @@
 /**
- * @file Operaciones.cpp
+ * @file Operaciones.hpp
  * @version 1.0
  * @date 6/2024
  * @authors JoséIgnacioSáenzDíaz, SantiagoHerraCastro, KevinJiménezAcuña
