@@ -7,6 +7,7 @@
 #include <iostream>
 #include <sstream>
 #include <iomanip>
+#include <fstream>
 
 
 enum OpcionesPrestamos{
@@ -29,7 +30,7 @@ void executeSQL(sqlite3 *db, const char *sql, int (*callback)(void*,int,char**,c
         std::cerr << "SQL error: " << errMsg << std::endl;
         sqlite3_free(errMsg);
     } else {
-        std::cout << "Operacion realizada con éxito" << std::endl;
+        std::cout << "Operacion realizada con exito" << std::endl;
     }
 }
 
@@ -167,13 +168,14 @@ int Prestamos::agregarPrestamoBaseDatos(){
 
     // Insertar un nuevo préstamo y asociarlo a un cliente existente
     std::ostringstream oss;
-    oss << "INSERT INTO prestamos (prestamo_id, denominacion, tipo, monto_total, plazo_meses, cuota_mensual, tasa, cliente_id) "
+    oss << "INSERT INTO prestamos (prestamo_id, denominacion, tipo, monto_total, plazo_meses, plazo_restante, cuota_mensual, tasa, cliente_id) "
     << "VALUES ("
     << nuevoIdPrestamo << ", " // Asume que nuevoIdPrestamo es un número
     << "'" << denominacion_agregar << "', " // Asume que denominacion_agregar es un string
     << "'" << tipo_agregar << "', " // Asume que tipo_agregar es un string
     << std::fixed << std::setprecision(2) << monto_agregar << ", " // Asume que monto_agregar es un número
     << plazo_meses_agregar << ", " // Asume que plazo_meses_agregar es un número
+    << plazo_meses_agregar << ", " // Plazo restante = plazo inicial
     << std::fixed << std::setprecision(2) << cuotas_agregar << ", " // Asume que cuotas_agregar es un número
     << std::fixed << std::setprecision(3) << tasa_agregar << ", " 
     << "'" << cedula_agregar << "');"; // Asume que cedula_agregar es un string
@@ -396,4 +398,90 @@ void Prestamos::menu(){
         
     }
 };
+
+// Obtiene el nombre del cliente
+static int callbackClientName(void *data, int argc, char **argv, char **azColName) {
+    if (argc == 2) {
+        std::string* clientName = static_cast<std::string*>(data);
+        *clientName = std::string(argv[0]) + " " + std::string(argv[1]);
+    }
+    return 0;
+}
+
+// Escribe en el archivo de texto
+static int callbackLoans(void *data, int argc, char **argv, char **azColName) {
+    std::ofstream* outFile = static_cast<std::ofstream*>(data);
+    if (argc == 8) {
+        *outFile << "ID: " << argv[0] << ", Denominacion: " << argv[1]
+                 << ", Tipo: " << argv[2] << ", Monto Total: " << argv[3]
+                 << ", Plazo Meses: " << argv[4] << ", Plazo Restante: " << argv[5]
+                 << ", Cuota Mensual: " << argv[6] << ", Tasa: " << argv[7] << std::endl;
+    }
+    return 0;
+}
+
+int Prestamos::infoPrestamos(){
+    sqlite3 *db;
+    char *errMsg = 0;
+    int rc;
+    std::string clientID;
+    std::string clientName;
+
+    std::cout << "Ingrese el ID del cliente: ";
+    std::cin >> clientID;
+    leerCedula(clientID);
+
+    rc = sqlite3_open("banco.db", &db);
+    if (rc) {
+        std::cerr << "Error al abrir la base de datos: " << sqlite3_errmsg(db) << std::endl;
+        return 1;
+    }
+
+    // Obtener nombre de cliente
+    std::string sqlClient = "SELECT nombre, apellido FROM clientes WHERE cedula = '" + clientID + "';";
+    rc = sqlite3_exec(db, sqlClient.c_str(), callbackClientName, &clientName, &errMsg);
+    if (rc != SQLITE_OK) {
+        std::cerr << "Error de SQL: " << errMsg << std::endl;
+        sqlite3_free(errMsg);
+        sqlite3_close(db);
+        return 1;
+    }
+
+    if (clientName.empty()) {
+        std::cerr << "Cliente no encontrado." << std::endl;
+        sqlite3_close(db);
+        return 1;
+    }
+
+    // Crear archivo output
+    std::ofstream outFile(clientID + ".txt");
+    if (!outFile.is_open()) {
+        std::cerr << "Error al crear el archivo de salida." << std::endl;
+        sqlite3_close(db);
+        return 1;
+    }
+
+    // Escribir el nombre del cliente
+    outFile << "Nombre: " << clientName << std::endl << std::endl;
+
+    // Obtener la informacion del cliente
+    std::string sqlLoans = "SELECT prestamo_id, denominacion, tipo, monto_total, plazo_meses, plazo_restante, cuota_mensual, tasa "
+                           "FROM prestamos WHERE cliente_id = '" + clientID + "';";
+    rc = sqlite3_exec(db, sqlLoans.c_str(), callbackLoans, &outFile, &errMsg);
+    if (rc != SQLITE_OK) {
+        std::cerr << "Error de SQL: " << errMsg << std::endl;
+        sqlite3_free(errMsg);
+        sqlite3_close(db);
+        return 1;
+    }
+
+    std::cout << "Archivo " << clientID << ".txt creado con exito." << std::endl;
+
+    // Cerrar base de datos y archivo de salida
+    sqlite3_close(db);
+    outFile.close();
+
+    return 0;
+}
+
 
