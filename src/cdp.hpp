@@ -1,5 +1,7 @@
 #ifndef CDPS_HPP
 #define CDPS_HPP
+#include <string>
+#include <sqlite3.h>
 
 #include <unordered_map>
 
@@ -13,13 +15,9 @@ class CDP{
 
         void inicializarDatos();
 
-        int aperturaCDP();
+        void agregarCDP();
 
-        int retiroCDP();
-
-        int calculoIntereses();
-
-        void interesAcumulados();
+        bool verificarSaldoSuficiente(sqlite3* db, const std::string& cedula, int denominacion, double monto);
 
     private:
         //Se agregara segun la cantidad de dias, el interes que la persona obtendra.
