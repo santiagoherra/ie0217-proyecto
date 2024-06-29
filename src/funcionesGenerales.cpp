@@ -105,7 +105,20 @@ std::string obtenerFechaString() {
     return oss.str();
 }
 
-void leerInt(int num, int op1 = 0, int op2 = 0, int op3 = 0) {
+/**
+ * @brief Esta funcion esta hecha para validar numeros ints ademas tambien tira error 
+ * si una de las opciones dadas en op1, 2, 3, 4, 5 no es int num para que el usuario tenga que dar las opciones
+ * que se piden.
+ * 
+ * @param num este es el numero que se valida
+ * @param op1 esta es una opcion de entrada
+ * @param op2 esta es una opcion de entrada
+ * @param op3 esta es una opcion de entrada
+ * @param op4 esta es una opcion de entrada
+ * @param op5 esta es una opcion de entrada
+ * 
+ */
+void leerInt(int num, int op1, int op2, int op3, int op4, int op5) {
     if (std::cin.fail()) {
         std::cin.clear();
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -113,8 +126,8 @@ void leerInt(int num, int op1 = 0, int op2 = 0, int op3 = 0) {
         std::exit(EXIT_FAILURE);  // Termina el programa con un estado de fallo
     }
 
-    else if(op1 != 0 || op2 != 0 || op3 != 0){
-        if(num != op1 || num != op2 || num != op3){
+    if (op1 != 0 || op2 != 0 || op3 != 0 || op4 != 0 || op5 != 0) {
+        if (num != op1 && num != op2 && num != op3 && num != op4 && num != op5) {
             std::cerr << "Entrada no valida. No existe la opcion seleccionada" << std::endl;
             std::exit(EXIT_FAILURE);
         }

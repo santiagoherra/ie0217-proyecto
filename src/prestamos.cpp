@@ -82,9 +82,9 @@ bool Prestamos::validacionPrestamo(double salario, int tipoMoneda){
     std::cout << "Usted posee mas de 6 meses de continuidad laboral?\n1) Si\n2) No" << std::endl;
     std::cin >> continuidad_laboral;
 
-    leerInt(continuidad_laboral);  
+    leerInt(continuidad_laboral, 1, 2);  
 
-    if(continuidad_laboral == 0){
+    if(continuidad_laboral == 2){
         return false;
     }
 
@@ -103,7 +103,7 @@ bool Prestamos::validacionPrestamo(double salario, int tipoMoneda){
     std::cout << "Ingrese el valor de la opcion que desea escoger?\n1) 2) 3)" << std::endl;
     std::cin >> opcion_cuotas_meses;
 
-    leerInt(opcion_cuotas_meses);
+    leerInt(opcion_cuotas_meses, 1, 2, 3);
 
     //Se agrega el plazo de meses que el cliente elijio
     plazo_meses_agregar = meses_cliente[opcion_cuotas_meses-1];
@@ -227,7 +227,7 @@ void Prestamos::seguirConPrestamo(){
     std::cout << "Desea optar por un prestamo en este momento?\n1) Si\n2) No " << std::endl;
     std::cin >> decision;
 
-    leerInt(decision);
+    leerInt(decision, 1, 2);
 
     //Se planteo que el sistema sepa cual prestamos escogio el usuario en base al interes que se le de
     //a la funcion
@@ -245,7 +245,7 @@ void Prestamos::seguirConPrestamo(){
         std::cout << "Indique el tipo de moneda en que quiere hacer el prestamo\n1) Dolares\n2) Colones" << std::endl;
         std::cin >> moneda_prestamo;
 
-        leerInt(moneda_prestamo);
+        leerInt(moneda_prestamo, 1, 2);
 
         //condiciones para obtener datos para agregar el prestamo
 
