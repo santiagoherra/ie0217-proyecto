@@ -1,3 +1,10 @@
+/**
+ * @file funcionesGenerales.cpp
+ * @version 1.0
+ * @date 6/2024
+ * @authors JoséIgnacioSáenzDíaz, SantiagoHerraCastro, KevinJiménezAcuña
+ * @brief Implementación: Métodos utilidad para otros métodos, asociados al manejo y comprobación de errores
+*/
 #include "funcionesGenerales.hpp"
 
 /**

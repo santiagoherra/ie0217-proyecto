@@ -1,3 +1,10 @@
+/**
+ * @file CuentaAhorros.cpp
+ * @version 1.0
+ * @date 6/2024
+ * @authors JoséIgnacioSáenzDíaz, SantiagoHerraCastro, KevinJiménezAcuña
+ * @brief Implementación: Métodos para el despliegue de información de cuentas y CDPs
+*/
 #include "CuentaAhorros.hpp"
 #include <iostream>
 #include <fstream>
@@ -71,12 +78,12 @@ void CuentaAhorros::calculadoraIntereses() const{
         cout << "Ingrese el monto principal que desea abonar:" << endl;
         cin >> montoPrincipal;
 
-        cout << "Ingrese el tiempo en años que desea para el CDP:" << endl;
+        cout << "Ingrese el tiempo en anios que desea para el CDP:" << endl;
         cin >> tiempo;
 
         cout << "Ingrese el tipo de moneda que desea utilizar:" << endl;
         cout << "1) Colones" << endl;
-        cout << "2) Dólares" << endl;
+        cout << "2) Dolares" << endl;
 
         // Verificar si la entrada del usuario es válida
         if (!(cin >> moneda)) {
@@ -94,7 +101,7 @@ void CuentaAhorros::calculadoraIntereses() const{
             // Verificar que montoPrincipal no sea menor que el monto minimo en colones
             try {
                 if (montoPrincipal < 50000) {
-                    throw std::runtime_error("Un CDP en colones no puede contar con un monto mínimo de 50000₡");
+                    throw std::runtime_error("Un CDP en colones no puede contar con un monto minimo de 50000₡");
                 }
 
                 // Calcular los intereses ganados e imprimirlo
@@ -109,7 +116,7 @@ void CuentaAhorros::calculadoraIntereses() const{
             // Verificar que montoPrincipal no sea menor que el monto minimo en dolares
             try {
                 if (montoPrincipal < 100) {
-                    throw std::runtime_error("Un CDP en dólares no puede contar con un monto mínimo de 100$");
+                    throw std::runtime_error("Un CDP en dolares no puede contar con un monto minimo de 100$");
                 }
 
                 // Calcular los intereses ganados e imprimirlo
@@ -122,8 +129,8 @@ void CuentaAhorros::calculadoraIntereses() const{
             break;
         }
 
-        cout << "¿Desea obtener otro cálculo?" << endl;
-        cout << "Presione cualquier tecla para realizar otro cálculo, presione 's' para salir." << endl;
+        cout << "¿Desea obtener otro calculo?" << endl;
+        cout << "Presione cualquier tecla para realizar otro calculo, presione 's' para salir." << endl;
         cin >> otroCalculo;
 
     } while(otroCalculo != 's');

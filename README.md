@@ -5,18 +5,16 @@
 * Santiago Herra Castro C1721
 * José Ignacio Sáenz Díaz C27032
 * Kevin Jiménez Acuña C13876
-* 
 ## Instrucciones de ejecucion:
-Para probar la parte de transferencia, deposito y abonos:
+Para ejecutar el sistema de gestión bancaria se deben tener los siguientes archivos en la carpeta C: de Windows: sqlite3.dll, sqlite3.def y sqlite3.h. Se deben correr los siguientes comandos en una terminal:
 
+Para compilar:
 ```
-g++ main.cpp BaseDeDatos.cpp CuentaAhorros.cpp Operaciones.cpp prestamos.cpp -o main -IC:\sqlite -LC:\sqlite -lsqlite3 
+g++ aplicacion.cpp menus.cpp BaseDeDatos.cpp cdp.cpp CuentaAhorros.cpp funcionesGenerales.cpp Operaciones.cpp prestamos.cpp RegistrosGenerales.cpp -o main -IC:\sqlite -LC:\sqlite -lsqlite3
 ```
-
-Para probar la parte de prestamos:
-
+y para ejectuar:
 ```
-g++ main_prestamos.cpp BaseDeDatos.cpp CuentaAhorros.cpp Operaciones.cpp prestamos.cpp -o main -IC:\sqlite -LC:\sqlite -lsqlite3 
+.\main.exe
 ```
 
 ## Descripción de proyecto.

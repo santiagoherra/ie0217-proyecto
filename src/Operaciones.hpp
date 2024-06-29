@@ -1,7 +1,10 @@
 /**
  * @file Operaciones.hpp
- * @brief Headerfile en donde se definen los metodos que realizan las operaciones.
-**/
+ * @version 1.0
+ * @date 6/2024
+ * @authors JoséIgnacioSáenzDíaz, SantiagoHerraCastro, KevinJiménezAcuña
+ * @brief Retiro, depósito, abono, transferencia y ahorros
+*/
 
 #ifndef OPERACIONES_HPP
 #define OPERACIONES_HPP
@@ -33,9 +36,17 @@ class Operaciones {
         int abonosPrestamos(std::string &denominacion, std::string &clienteOrigenCedula, std::string &clienteDestinoCedula, float &montoBase);
 
         //Esta es la funcion para poder ver el progreso del cdp
+        /**
+        * @brief Accede a la información para observar el progreso de los cdps
+        * @return Int que determina el funcionamiento de la función
+        */
         int gestionAhorros();
 
         //Esta es la solicitud de prestamos
+        /**
+        * @brief Permite solicitar un préstamo
+        * @return Int que determina el funcionamiento de la función
+        */
         int solicitudPrestamos();
 
 

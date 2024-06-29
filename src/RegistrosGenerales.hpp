@@ -1,9 +1,10 @@
 /**
- * @file RegistrosGenerales.hpp
- * @brief En este headerfile se declaran los métodos de la clase RegistrosGenerales,
- * utilizada para todas aquellas acciones requeridas para el registro general de
- * transacciones de la aplicación.
-**/
+ * @file RegistrosGenerales.cpp
+ * @version 1.0
+ * @date 6/2024
+ * @authors JoséIgnacioSáenzDíaz, SantiagoHerraCastro, KevinJiménezAcuña
+ * @brief Clase registro, manejo y despliegue de estos.
+*/
 #ifndef REGISTROS_GENERALES_HPP
 #define REGISTROS_GENERALES_HPP
 

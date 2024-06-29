@@ -1,10 +1,10 @@
 /**
  * @file RegistrosGenerales.cpp
- * @brief En este archivo de código fuente se definen los métodos actualizarRegistro,
- * verRegistro y filtrarRegistro. Es necesario destacar que se utiliza una consulta
- * parametrizada en los métodos anadirRegistro y filtrarRegistro para reducir el riesgo
- * de un SQL Injection. A pesar de esto, aún es necesario mejorar la robustez del código.
- */
+ * @version 1.0
+ * @date 6/2024
+ * @authors JoséIgnacioSáenzDíaz, SantiagoHerraCastro, KevinJiménezAcuña
+ * @brief Implementación: Clase registro, manejo y despliegue de estos.
+*/
 
 #include "RegistrosGenerales.hpp"
 

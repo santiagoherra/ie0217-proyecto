@@ -1,3 +1,10 @@
+/**
+ * @file prestamos.cpp
+ * @version 1.0
+ * @date 6/2024
+ * @authors JoséIgnacioSáenzDíaz, SantiagoHerraCastro, KevinJiménezAcuña
+ * @brief Implementación de la clase préstamo
+*/
 #include "prestamos.hpp"
 #include "funcionesGenerales.hpp"
 #include <cmath>
@@ -7,6 +14,7 @@
 #include <iostream>
 #include <sstream>
 #include <iomanip>
+#include <fstream>
 
 
 enum OpcionesPrestamos{
@@ -31,7 +39,7 @@ void executeSQL(sqlite3 *db, const char *sql, int (*callback)(void*,int,char**,c
         std::cerr << "SQL error: " << errMsg << std::endl;
         sqlite3_free(errMsg);
     } else {
-        std::cout << "Operación realizada con éxito" << std::endl;
+        std::cout << "Operacion realizada con exito" << std::endl;
     }
 }
 
@@ -96,7 +104,7 @@ bool Prestamos::validacionPrestamo(double salario, int tipoMoneda){
         }
     }else{
         for(int i = 0; i < 3; i++){
-        std::cout << i+1 << ") " << cuotas_colon_cliente[i] << "₡ /" << meses_cliente[i] << " meses\n" << std::endl;
+        std::cout << i+1 << ") " << cuotas_colon_cliente[i] << " /" << meses_cliente[i] << " meses\n" << std::endl;
         }
     }
 
@@ -201,7 +209,7 @@ void Prestamos::imprimirTablaInformacion(float interesColon, float interesDolar,
     //imprime la informacion personalizada
     if(tipo_agregar == "Prendario"){
         std::cout << "\nComo el tipo de prestamo deseado es de tipo prendario el banco le ofreceria "
-                    "ofrecer un monto de prestamo de " << monto_agregar << " ₡, que equivale a "
+                    "ofrecer un monto de prestamo de " << monto_agregar << " colones, que equivale a "
                     "el 80% del monto del objeto colateral." << std::endl;
     }
 
@@ -210,7 +218,7 @@ void Prestamos::imprimirTablaInformacion(float interesColon, float interesDolar,
     std::cout << "|-------------------------------------------------------------------------\n" << std::endl;
     std::cout << "| Intereses anuales | " << meses[0] << " meses | " << meses[1] << " meses | " << meses[2] << " meses | Tipo de Moneda |\n" << std::endl;
     std::cout << "|-------------------------------------------------------------------------\n" << std::endl;
-    std::cout << "|         " << interesColon*100 << "%" << "      |   " << cuotas_colon[0] << "₡    |   " << cuotas_colon[1] << "₡    |     " << cuotas_colon[2] << "₡       | Colones |\n" << std::endl;
+    std::cout << "|         " << interesColon*100 << "%" << "      |   " << cuotas_colon[0] << "    |   " << cuotas_colon[1] << "    |     " << cuotas_colon[2] << "       | Colones |\n" << std::endl;
     std::cout << "|-------------------------------------------------------------------------\n" << std::endl;
     std::cout << "|         " << interesDolar*100 << "%" << "      |       " << cuotas_dolar[0] << "$     |      " << cuotas_dolar[1] << "$    |    " << cuotas_dolar[2] << "$   | Dolares |\n" << std::endl;
     std::cout << "|-------------------------------------------------------------------------\n" << std::endl;
@@ -400,4 +408,90 @@ void Prestamos::menu(){
         
     }
 };
+
+// Obtiene el nombre del cliente
+static int callbackClientName(void *data, int argc, char **argv, char **azColName) {
+    if (argc == 2) {
+        std::string* clientName = static_cast<std::string*>(data);
+        *clientName = std::string(argv[0]) + " " + std::string(argv[1]);
+    }
+    return 0;
+}
+
+// Escribe en el archivo de texto
+static int callbackLoans(void *data, int argc, char **argv, char **azColName) {
+    std::ofstream* outFile = static_cast<std::ofstream*>(data);
+    if (argc == 8) {
+        *outFile << "ID: " << argv[0] << ", Denominacion: " << argv[1]
+                 << ", Tipo: " << argv[2] << ", Monto Total: " << argv[3]
+                 << ", Plazo Meses: " << argv[4] << ", Plazo Restante: " << argv[5]
+                 << ", Cuota Mensual: " << argv[6] << ", Tasa: " << argv[7] << std::endl;
+    }
+    return 0;
+}
+
+int Prestamos::infoPrestamos(){
+    sqlite3 *db;
+    char *errMsg = 0;
+    int rc;
+    std::string clientID;
+    std::string clientName;
+
+    std::cout << "Ingrese el ID del cliente: ";
+    std::cin >> clientID;
+    leerCedula(clientID);
+
+    rc = sqlite3_open("banco.db", &db);
+    if (rc) {
+        std::cerr << "Error al abrir la base de datos: " << sqlite3_errmsg(db) << std::endl;
+        return 1;
+    }
+
+    // Obtener nombre de cliente
+    std::string sqlClient = "SELECT nombre, apellido FROM clientes WHERE cedula = '" + clientID + "';";
+    rc = sqlite3_exec(db, sqlClient.c_str(), callbackClientName, &clientName, &errMsg);
+    if (rc != SQLITE_OK) {
+        std::cerr << "Error de SQL: " << errMsg << std::endl;
+        sqlite3_free(errMsg);
+        sqlite3_close(db);
+        return 1;
+    }
+
+    if (clientName.empty()) {
+        std::cerr << "Cliente no encontrado." << std::endl;
+        sqlite3_close(db);
+        return 1;
+    }
+
+    // Crear archivo output
+    std::ofstream outFile(clientID + ".txt");
+    if (!outFile.is_open()) {
+        std::cerr << "Error al crear el archivo de salida." << std::endl;
+        sqlite3_close(db);
+        return 1;
+    }
+
+    // Escribir el nombre del cliente
+    outFile << "Nombre: " << clientName << std::endl << std::endl;
+
+    // Obtener la informacion del cliente
+    std::string sqlLoans = "SELECT prestamo_id, denominacion, tipo, monto_total, plazo_meses, plazo_restante, cuota_mensual, tasa "
+                           "FROM prestamos WHERE cliente_id = '" + clientID + "';";
+    rc = sqlite3_exec(db, sqlLoans.c_str(), callbackLoans, &outFile, &errMsg);
+    if (rc != SQLITE_OK) {
+        std::cerr << "Error de SQL: " << errMsg << std::endl;
+        sqlite3_free(errMsg);
+        sqlite3_close(db);
+        return 1;
+    }
+
+    std::cout << "Archivo " << clientID << ".txt creado con exito." << std::endl;
+
+    // Cerrar base de datos y archivo de salida
+    sqlite3_close(db);
+    outFile.close();
+
+    return 0;
+}
+
 

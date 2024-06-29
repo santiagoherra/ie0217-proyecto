@@ -1,12 +1,16 @@
 /**
- * @file Operaciones.cpp
- * @brief .
- */
+ * @file Operaciones2.cpp
+ * @version 1.0
+ * @date 6/2024
+ * @authors JoséIgnacioSáenzDíaz, SantiagoHerraCastro, KevinJiménezAcuña
+ * @brief Implementación: Retiro, depósito, abono, transferencia y ahorros
+*/
 
 // Este valor se puede cambiar cada vez que se utilice el programa
 #define TASA_DE_CAMBIO 525.95
 
 #include "Operaciones.hpp"
+#include "funcionesGenerales.hpp"
 
 
 using namespace std;
@@ -63,11 +67,22 @@ int Operaciones::deposito() {
         return 0;
     }
 
+<<<<<<< HEAD
     // Solicitar datos para realizar el depósito
     std::cout << "Por favor ingrese el número de cedula del cliente al que se va a depositar" << std::endl;
     std::getline(std::cin, cedula);
 
     leerCedula(cedula);
+=======
+    // Solicitar datos para realizar el deposito
+    cout << "Por favor ingrese el numero de cedula del cliente al que se va a depositar" << endl;
+    getline(cin, cedula);
+
+    do {
+        cout << "¿Desea realizar el deposito en la cuenta de dolares o colones?" << endl;
+        cout << "1) Dolares" << std::endl;
+        cout << "2) Colones" << std::endl;
+>>>>>>> origin
 
     std::cout << "¿Desea realizar el depósito en la cuenta de dólares o colones?" << std::endl;
     std::cout << "1) Dólares" << std::endl;
@@ -76,9 +91,26 @@ int Operaciones::deposito() {
 
     leerInt(cuenta_op, 1, 2);
 
+<<<<<<< HEAD
     if(cuenta_op == DOLARES){
         denominacion = "dolares";
         clientes = "SELECT cuenta_dolares FROM clientes WHERE cedula = ?";
+=======
+            // Primera consulta
+            clientes = "SELECT cuenta_dolares from clientes WHERE cedula = ?";
+            break;
+        case COLONES:
+            denominacion = "colones";
+            
+            // Primera consulta
+            clientes = "SELECT cuenta_colones from clientes WHERE cedula = ?";
+            break;
+        default:
+            cout << "La opcion ingresada no es valida! Por favor, intentelo de nuevo.";
+            break;
+        }
+    } while (cuenta_op != DOLARES && cuenta_op != COLONES);
+>>>>>>> origin
 
     } else if(cuenta_op == COLONES){
         denominacion = "colones";
@@ -102,7 +134,11 @@ int Operaciones::deposito() {
         numero_cuenta = sqlite3_column_int(stmt, 0);
         std::cout << "El número de cuenta del cliente en " << denominacion << " es " << numero_cuenta << std::endl;  // CHECKPOINT
     } else if (rc == SQLITE_DONE) {
+<<<<<<< HEAD
         std::cout << "No existe ninguna cuenta asociada a este número de cédula" << std::endl;
+=======
+        cout << "No existe ninguna cuenta asociada a este numero de cedula" << endl;
+>>>>>>> origin
         sqlite3_finalize(stmt);
         sqlite3_exec(db, "ROLLBACK", nullptr, nullptr, &errMsg);
         sqlite3_close(db);
@@ -121,8 +157,24 @@ int Operaciones::deposito() {
     // Preparar consulta parametrizada
     rc = sqlite3_prepare_v2(db, cuentas, -1, &stmt, nullptr);
     if (rc != SQLITE_OK) {
+<<<<<<< HEAD
         std::cerr << "Error de SQL: " << sqlite3_errmsg(db) << std::endl;
         sqlite3_exec(db, "ROLLBACK", nullptr, nullptr, &errMsg);
+=======
+        cerr << "Error de SQL: " << sqlite3_errmsg(db) << endl;
+        sqlite3_close(db);
+    }
+
+    // Preguntar el monto que desea depositar
+    cout << "Por favor, ingrese el monto que desea depositar: " << endl;
+    cin >> montoDepositar;
+    cin.ignore();
+
+    // Verifiacion monto
+    if (montoDepositar <= 0) {
+        cout << "¡El monto a depositar no es valido!";
+        sqlite3_finalize(stmt);
+>>>>>>> origin
         sqlite3_close(db);
         return 0;
     }
@@ -149,7 +201,11 @@ int Operaciones::deposito() {
     // Realizar la segunda consulta
     rc = sqlite3_step(stmt);
     if (rc == SQLITE_DONE) {
+<<<<<<< HEAD
         std::cout << "¡El depósito fue realizado de manera exitosa!" << std::endl;
+=======
+        cout << "¡El deposito fue realizado de manera exitosa!" << endl;
+>>>>>>> origin
     } else {
         std::cerr << "Error de SQL: " << sqlite3_errmsg(db) << std::endl;
         sqlite3_finalize(stmt);
@@ -166,7 +222,11 @@ int Operaciones::deposito() {
     // Confirmar la transacción
     rc = sqlite3_exec(db, "COMMIT", nullptr, nullptr, &errMsg);
     if (rc != SQLITE_OK) {
+<<<<<<< HEAD
         std::cerr << "Error al confirmar la transacción: " << errMsg << std::endl;
+=======
+        cerr << "Error al confirmar la transaccion: " << errMsg << endl;
+>>>>>>> origin
         sqlite3_exec(db, "ROLLBACK", nullptr, nullptr, &errMsg);
         sqlite3_close(db);
         return 0;
@@ -214,12 +274,12 @@ int Operaciones::retiro(std::string &denominacion, std::string &clienteOrigenCed
     }
 
     // Solicitar datos para realizar el retiro
-    cout << "Por favor ingrese el número de cedula del cliente que va a realizar el retiro" << endl;
+    cout << "Por favor ingrese el numero de cedula del cliente que va a realizar el retiro" << endl;
     getline(cin, cedula);
 
     do {
-        cout << "¿Desea realizar el depósito en la cuenta de dólares o colones?" << endl;
-        cout << "1) Dólares" << std::endl;
+        cout << "¿Desea realizar el deposito en la cuenta de dolares o colones?" << endl;
+        cout << "1) Dolares" << std::endl;
         cout << "2) Colones" << std::endl;
 
         // Verificar si la entrada del usuario es válida
@@ -246,7 +306,7 @@ int Operaciones::retiro(std::string &denominacion, std::string &clienteOrigenCed
             clientes = "SELECT cuenta_colones from clientes WHERE cedula = ?";
             break;
         default:
-            cout << "¡La opción ingresada no es válida! Por favor, inténtelo de nuevo.";
+            cout << "La opcion ingresada no es valida! Por favor, intentelo de nuevo.";
             break;
         }
     } while (cuenta_op != DOLARES && cuenta_op != COLONES);
@@ -268,7 +328,7 @@ int Operaciones::retiro(std::string &denominacion, std::string &clienteOrigenCed
         numero_cuenta = sqlite3_column_int(stmt, 0);
         cout << numero_cuenta << endl;  // CHECKPOINT
     } else if (rc == SQLITE_DONE) {
-        cout << "No existe ninguna cuenta asociada a este número de cédula" << endl;
+        cout << "No existe ninguna cuenta asociada a este numero de cedula" << endl;
         return 0;
     } else {
         cerr << "Error de SQL." << sqlite3_errmsg(db) << endl;
@@ -331,7 +391,7 @@ int Operaciones::retiro(std::string &denominacion, std::string &clienteOrigenCed
 
     // Verifiacion monto
     if (montoRetirar <= 0) {
-        cout << "¡El monto a retirar no es válido!" << endl;
+        cout << "El monto a retirar no es valido!" << endl;
         return 0;
     } else if (balance < montoRetirar) {
         cout << "La cuenta no presenta el saldo suficiente para retirar este monto" << endl;
@@ -401,11 +461,11 @@ int Operaciones::transferencias(std::string &denominacion, std::string &clienteO
     }
 
     // Solicitar datos acerca del emisor de la transferencia
-    cout << "Por favor ingrese el número de cedula del cliente que va a realizar al transferencia" << endl;
+    cout << "Por favor ingrese el numero de cedula del cliente que va a realizar al transferencia" << endl;
     getline(cin, cedula);
 
     do {
-        cout << "¿Desea transferir desde la cuenta en colones o en dólares?" << endl;
+        cout << "¿Desea transferir desde la cuenta en colones o en dolares?" << endl;
         cout << "1) Dólares" << std::endl;
         cout << "2) Colones" << std::endl;
 
@@ -433,7 +493,7 @@ int Operaciones::transferencias(std::string &denominacion, std::string &clienteO
             clientes = "SELECT cuenta_colones from clientes WHERE cedula = ?";
             break;
         default:
-            cout << "¡La opción ingresada no es válida! Por favor, inténtelo de nuevo.";
+            cout << "La opcion ingresada no es valida! Por favor, inténtelo de nuevo.";
             break;
         }
     } while (cuenta_op != DOLARES && cuenta_op != COLONES);
@@ -454,7 +514,7 @@ int Operaciones::transferencias(std::string &denominacion, std::string &clienteO
     if (rc == SQLITE_ROW) {
         numero_cuenta = sqlite3_column_int(stmt, 0);
     } else if (rc == SQLITE_DONE) {
-        cout << "No existe ninguna cuenta asociada a este número de cédula" << endl;
+        cout << "No existe ninguna cuenta asociada a este numero de cedula" << endl;
         return 0;
     } else {
         cerr << "Error de SQL." << sqlite3_errmsg(db) << endl;
@@ -516,7 +576,7 @@ int Operaciones::transferencias(std::string &denominacion, std::string &clienteO
 
     // Verificacion monto
     if (montoTransferencia <= 0) {
-        cout << "¡Este monto no es válido!";
+        cout << "Este monto no es valido!";
         return 0;
     } else if (balance < montoTransferencia) {
         cout << "La cuenta no presenta el saldo suficiente para transferir este monto" << endl;
@@ -542,7 +602,7 @@ int Operaciones::transferencias(std::string &denominacion, std::string &clienteO
     sqlite3_finalize(stmt);  // Finalizar consulta
 
     // Solicitar el numero de cuenta del receptor de la transferencia
-    cout << "Por favor, ingrese el número de cuenta al que desea realizar la transferencia: " << endl;
+    cout << "Por favor, ingrese el numero de cuenta al que desea realizar la transferencia: " << endl;
     cin >> numeroCuentaReceptor;
     cin.ignore();
 
@@ -574,7 +634,7 @@ int Operaciones::transferencias(std::string &denominacion, std::string &clienteO
             return 0;
         }
     } else if (rc == SQLITE_DONE) {
-        cout << "No existe ninguna cuenta asociada a este número de identificación." << endl;
+        cout << "No existe ninguna cuenta asociada a este numero de identificacion." << endl;
         return 0;
     } else {
         cerr << "Error de SQL." << sqlite3_errmsg(db) << endl;
@@ -616,7 +676,7 @@ int Operaciones::transferencias(std::string &denominacion, std::string &clienteO
     // Realizar la segunda consulta
     rc = sqlite3_step(stmt);
     if (rc == SQLITE_DONE) {
-        cout << "¡La transferencia fue realizada de manera exitosa!" << endl;
+        cout << "La transferencia fue realizada de manera exitosa!" << endl;
     } else {
         cerr << "Error de SQL." << sqlite3_errmsg(db) << endl;
         sqlite3_finalize(stmt);
@@ -648,7 +708,7 @@ int Operaciones::transferencias(std::string &denominacion, std::string &clienteO
         // Se obtiene la cedula del cliente destino de la transaccion
         clienteDestinoCedula = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 0));
     } else if (rc == SQLITE_DONE) {
-        cerr << "No se encontró ninguna cedula para las cuentas dadas." << endl;
+        cerr << "No se encontro ninguna cedula para las cuentas dadas." << endl;
     } else {
         cerr << "Error de SQL: " << sqlite3_errmsg(db) << endl;
     } 
@@ -712,7 +772,7 @@ int Operaciones::abonosPrestamos(std::string &denominacion, std::string &cliente
     // Parametros para la consulta
     sqlite3_bind_text(stmt, 1, cliente_id.c_str(), -1, SQLITE_STATIC);
 
-    cout << "Préstamos asociados al cliente: " << endl;
+    cout << "Prestamos asociados al cliente: " << endl;
     // A partir de esta consulta, se despliegan todos los prestamos relacionados con el cliente
     while ((rc = sqlite3_step(stmt)) == SQLITE_ROW) {
         prestamo_id = sqlite3_column_int(stmt, 0);
@@ -724,7 +784,7 @@ int Operaciones::abonosPrestamos(std::string &denominacion, std::string &cliente
         cuota_mensual = sqlite3_column_int(stmt, 6);
         tasa = sqlite3_column_double(stmt, 7);
 
-        cout << " Préstamo ID: "<< prestamo_id << " Denominación: " << denominacionPrestamo << " Tipo de Préstamo: "
+        cout << " Prestamo ID: "<< prestamo_id << " Denominacion: " << denominacionPrestamo << " Tipo de Prestamo: "
         << tipoPrestamo << " Monto total: " << std::fixed << std::setprecision(2) << monto_total << " Plazo (meses): " << plazo_meses <<
         " Plazo restante (cuotas):" << plazo_restante << " Cuota mensual: " << std::fixed << std::setprecision(2) << cuota_mensual << " Tasa: " << tasa << endl;
     }
@@ -740,7 +800,7 @@ if (rc != SQLITE_DONE) {
     /* Ahora el cliente debe escoger a cual prestamo realizar el abono y cual cuenta
     va a utilizar para pagar la cuota.*/
 
-    cout << "Por favor, ingrese el número de identificación del préstamo al que desea abonar" << endl;
+    cout << "Por favor, ingrese el numero de identificacion del prestamo al que desea abonar" << endl;
     cin >> prestamo_id;
     cin.ignore();
 
@@ -766,9 +826,9 @@ if (rc != SQLITE_DONE) {
 
         // Se obtiene el cliente destino (ya que puede ser diferente al cliente origen)
         clienteDestinoCedula = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 2));
-        cout << "¡El valor de la cuota mensual se obtuvo correctamente!" << endl;
+        cout << "El valor de la cuota mensual se obtuvo correctamente!" << endl;
     } else if(rc == SQLITE_DONE){
-        cerr << "No se encontró un préstamo con este ID" << endl;
+        cerr << "No se encontro un prestamo con este ID" << endl;
         sqlite3_finalize(stmt);
         sqlite3_close(db);
         return 0;
@@ -785,8 +845,8 @@ if (rc != SQLITE_DONE) {
     const char *clientes;
 
     do {
-        cout << "¿Desea abonar desde la cuenta en colones o en dólares?" << endl;
-        cout << "1) Dólares" << std::endl;
+        cout << "¿Desea abonar desde la cuenta en colones o en dolares?" << endl;
+        cout << "1) Dolares" << std::endl;
         cout << "2) Colones" << std::endl;
 
         // Verificar si la entrada del usuario es válida
@@ -813,7 +873,7 @@ if (rc != SQLITE_DONE) {
             clientes = "SELECT cuenta_colones from clientes WHERE cedula = ?";
             break;
         default:
-            cout << "¡La opción ingresada no es válida! Por favor, inténtelo de nuevo.";
+            cout << "La opcion ingresada no es válida! Por favor, inténtelo de nuevo.";
             break;
         }
     } while (cuenta_op != DOLARES && cuenta_op != COLONES);
@@ -834,7 +894,7 @@ if (rc != SQLITE_DONE) {
     if (rc == SQLITE_ROW) {
         numero_cuenta = sqlite3_column_int(stmt, 0);
     } else if (rc == SQLITE_DONE) {
-        cout << "No existe ninguna cuenta asociada a este número de cédula" << endl;
+        cout << "No existe ninguna cuenta asociada a este numero de cedula" << endl;
         return 0;
     } else {
         cerr << "Error de SQL." << sqlite3_errmsg(db) << endl;
@@ -962,3 +1022,147 @@ if (rc != SQLITE_DONE) {
     sqlite3_close(db);
     return 1;
 };
+
+int Operaciones::gestionAhorros() {
+    bool existe_cliente;
+    std::string cedula;
+    
+    std::cout << "Esta es la seccion de gestion de ahorros para los clientes." << std::endl;
+    std::cout << "Porfavor ingrese su numero de cedula para verificar si la persona esta ingresada en el sistema." << std::endl;
+    std::getline(std::cin, cedula);
+
+    leerCedula(cedula);
+    existe_cliente = existeCliente(cedula);
+
+    if (!existe_cliente) {
+        std::cout << "La persona de la cedula " << cedula << " no esta ingresada en el sistema." << std::endl;
+        return 0;
+    }
+
+    std::cout << "Certificados de Deposito a Plazo asociados a la ID de cliente " << cedula << std::endl;
+
+    sqlite3 *db;
+    int rc;
+
+    rc = sqlite3_open("banco.db", &db);
+    if (rc) {
+        std::cerr << "No se puede abrir la base de datos: " << sqlite3_errmsg(db) << std::endl;
+        return 1;
+    }
+
+    const char* sqlConsulta = "SELECT * FROM certificados_de_deposito WHERE cliente_cedula = ?;";
+
+    sqlite3_stmt *stmt;
+
+    rc = sqlite3_prepare_v2(db, sqlConsulta, -1, &stmt, 0);
+    if (rc != SQLITE_OK) {
+        std::cerr << "No se puede preparar la declaracion: " << sqlite3_errmsg(db) << std::endl;
+        sqlite3_close(db);
+        return 1;
+    }
+
+    std::cout << std::fixed << std::setprecision(2);
+
+    sqlite3_bind_text(stmt, 1, cedula.c_str(), -1, SQLITE_STATIC);
+
+    bool tieneCDP = false;
+
+    while ((rc = sqlite3_step(stmt)) == SQLITE_ROW) {
+        tieneCDP = true;
+        int cdp_id = sqlite3_column_int(stmt, 0);
+        const unsigned char *denominacion = sqlite3_column_text(stmt, 1);
+        double tasa = sqlite3_column_double(stmt, 2);
+        int plazo_meses = sqlite3_column_int(stmt, 3);
+        double monto_deposito = sqlite3_column_double(stmt, 4);
+        const unsigned char *fecha_deposito = sqlite3_column_text(stmt, 5);
+
+        std::cout << "\nCDP ID: " << cdp_id
+                  << "\nDenominacion: " << denominacion
+                  << "\nTasa: " << tasa
+                  << "\nPlazo (meses): " << plazo_meses
+                  << "\nMonto Deposito: " << monto_deposito
+                  << "\nFecha de deposito: " << fecha_deposito << std::endl;
+    }
+
+    sqlite3_finalize(stmt);
+
+    if (!tieneCDP) {
+        std::cout << "\nEl cliente no tiene ningún Certificado de Depósito a Plazo asociado." << std::endl;
+        sqlite3_close(db);
+        return 0;
+    }
+
+    int cdp_elegido;
+
+    std::cout << "\nEn base al numero de ID del Certificado de Deposito a Plazo, elija el numero del CDP ID para poder ver los progreso generado hasta ahora." << std::endl;
+
+    std::cin >> cdp_elegido; // Es el id del cdp
+
+    const char* recuperarCDPsql = "SELECT cdp_id, denominacion, tasa, plazo_meses, monto_deposito, fecha_deposito "
+                                  "FROM certificados_de_deposito WHERE cdp_id = ? AND cliente_cedula = ?;";
+
+    rc = sqlite3_prepare_v2(db, recuperarCDPsql, -1, &stmt, 0);
+    if (rc != SQLITE_OK) {
+        std::cerr << "No se puede preparar la declaracion: " << sqlite3_errmsg(db) << std::endl;
+        sqlite3_close(db);
+        return 1;
+    }
+
+    sqlite3_bind_int(stmt, 1, cdp_elegido);
+    sqlite3_bind_text(stmt, 2, cedula.c_str(), -1, SQLITE_STATIC);
+
+    rc = sqlite3_step(stmt);
+    if (rc == SQLITE_ROW) {
+        int cdp_id = sqlite3_column_int(stmt, 0);
+        const unsigned char* denominacion = sqlite3_column_text(stmt, 1);
+        double tasa = sqlite3_column_double(stmt, 2);
+        int plazo = sqlite3_column_int(stmt, 3);
+        double monto_deposito = sqlite3_column_double(stmt, 4);
+        const unsigned char* fecha_deposito = sqlite3_column_text(stmt, 5);
+
+        // Guardar los valores en variables locales
+        std::string denominacion_str = reinterpret_cast<const char*>(denominacion);
+        std::string fecha_deposito_str = reinterpret_cast<const char*>(fecha_deposito);
+
+        std::cout << "+---------------------------------+" << std::endl;
+        std::cout << "|       CDP ID      |    " << cdp_id << std::endl;
+        std::cout << "+---------------------------------+" << std::endl;
+        std::cout << "|    Denominacion   |   " << denominacion_str << std::endl;
+        std::cout << "+---------------------------------+" << std::endl;
+        std::cout << "|        Tasa       |    " << tasa << std::endl;
+        std::cout << "+---------------------------------+" << std::endl;
+        std::cout << "|       Plazo       |    " << plazo << std::endl;
+        std::cout << "+---------------------------------+" << std::endl;
+        std::cout << "|       Monto       |   " << monto_deposito << std::endl;
+        std::cout << "+---------------------------------+" << std::endl;
+        std::cout << "| Fecha de Deposito |   " << fecha_deposito_str << std::endl; 
+        std::cout << "+---------------------------------+" << std::endl;
+
+        std::tm tm_fecha_deposito = string_a_fecha(fecha_deposito_str);
+
+        // Obtener la fecha actual
+        std::time_t t = std::time(nullptr);
+        std::tm tm_actual = *std::localtime(&t);
+
+        // Convertir tm a time_t para calcular la diferencia
+        std::time_t tiempo_deposito = std::mktime(&tm_fecha_deposito);
+        std::time_t tiempo_actual = std::mktime(&tm_actual);
+
+        // Calcular la diferencia de tiempo en días
+        double diferencia_tiempo = difftime(tiempo_actual, tiempo_deposito) / (10000 * 60 * 60 * 24.0); // Diferencia en días
+
+        // Calcular intereses acumulados
+        double interes_acumulados = tasa * diferencia_tiempo * monto_deposito;
+        std::cout << "\n+------------------------------------+" << std::endl;
+        std::cout << "| Intereses hasta ahora   | " << std::fixed << std::setprecision(2) << interes_acumulados << " |" << std::endl;
+        std::cout << "+------------------------------------+" << std::endl;
+
+    } else {
+        std::cout << "No se encontro ningun Certificado de Deposito a plazo con ese ID asociado al cliente." << std::endl;
+    }
+
+    sqlite3_finalize(stmt);
+    sqlite3_close(db);
+
+    return 0;
+}
