@@ -15,6 +15,7 @@ enum OpcionesPrestamos{
     HIPOTECARIO,
 };
 
+//Esta funcion procesa los resultados dados en una consulta sql
 static int callback(void *data, int argc, char**argv, char **azColName){
     for(int i = 0; i < argc; i++){
         std::cout << azColName[i] << (argv[i] ? argv[i] : "NULL") << std::endl;
@@ -22,6 +23,7 @@ static int callback(void *data, int argc, char**argv, char **azColName){
     return 0;
 }
 
+//Esta funcion ejecuta la consulta hecha en la base de datos SQL
 void executeSQL(sqlite3 *db, const char *sql, int (*callback)(void*,int,char**,char**), void *data) {
     char *errMsg = 0;
     int rc = sqlite3_exec(db, sql, callback, data, &errMsg);
@@ -33,6 +35,7 @@ void executeSQL(sqlite3 *db, const char *sql, int (*callback)(void*,int,char**,c
     }
 }
 
+//Esta funcion obtiene el ultimo ID de prestamo para poder agregar uno otro sin que se repita el ID
 static int getLastPrestamoId(void *data, int argc, char **argv, char **azColName) {
     int *lastPrestamoId = (int*)data;
     if (argc > 0 && argv[0]) {
@@ -133,7 +136,7 @@ bool Prestamos::validacionPrestamo(double salario, int tipoMoneda){
 
 }
 
-
+//Funcion para agregar prestamos
 int Prestamos::agregarPrestamoBaseDatos(){
     std::string cedula;
 
@@ -317,7 +320,7 @@ void Prestamos::menu(){
     std::cout << "Elija el tipo de prestamo por el que desearia optar.\n 1) Personal 2) Prendario 3) Hipotecario" << std::endl;
     std::cin >> opcion_prestamo;
     
-    leerInt(opcion_prestamo);
+    leerInt(opcion_prestamo, 1, 2, 3);
 
     std::cout << "Para continuar porfavor indique la siguiente informacion:\nMonto por el que sea optar (valor en colones):\n" << std::endl;
     std::cin >> monto;

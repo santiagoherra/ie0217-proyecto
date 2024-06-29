@@ -105,12 +105,19 @@ std::string obtenerFechaString() {
     return oss.str();
 }
 
-void leerInt(int num) {
+void leerInt(int num, int op1 = 0, int op2 = 0, int op3 = 0) {
     if (std::cin.fail()) {
         std::cin.clear();
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         std::cerr << "Entrada no valida. Se esperaba un numero entero." << std::endl;
         std::exit(EXIT_FAILURE);  // Termina el programa con un estado de fallo
+    }
+
+    else if(op1 != 0 || op2 != 0 || op3 != 0){
+        if(num != op1 || num != op2 || num != op3){
+            std::cerr << "Entrada no valida. No existe la opcion seleccionada" << std::endl;
+            std::exit(EXIT_FAILURE);
+        }
     }
 }
 
