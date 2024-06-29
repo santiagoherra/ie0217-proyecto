@@ -44,5 +44,11 @@ void leerInt(int num, int op1 = 0, int op2 = 0, int op3 = 0, int op4 = 0, int op
 
 void leerCedula(const std::string cedula);
 
+void insertarCuentasYClientes();
+
+bool validarNombreApellido(const std::string &nombre);
+
+bool existeCuenta(int numero_cuenta);
+
 
 #endif

@@ -32,6 +32,7 @@ enum Opciones{ // Define la enumeracion de las opciones del menu
     OPERACIONES = 1,
     PRESTAMO,
     CDPS,
+    ANADIR,
     SALIR
 };
 
@@ -84,7 +85,9 @@ int menu_atencion(){
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 menu_CDP();
                 break;
-
+            case ANADIR:
+                insertarCuentasYClientes();
+                break;
             case SALIR:
                 cout << "Saliendo del modulo de atencion al cliente \n";
                 break;

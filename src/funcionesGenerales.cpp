@@ -178,3 +178,135 @@ void leerCedula(std::string cedula) {
         std::exit(EXIT_FAILURE);  // Termina el programa con un estado de fallo
     }
 }
+
+bool validarNombreApellido(const std::string &nombre) {
+    std::regex nombreRegex("^[A-Z][a-zA-Z]{0,9}$");
+    return std::regex_match(nombre, nombreRegex);
+}
+
+void insertarCuentasYClientes() {
+    std::string cedula;
+    std::cout << "Ingrese el numero de cedula del cliente: ";
+    std::getline(std::cin, cedula);
+
+    leerCedula(cedula);
+
+    if (existeCliente(cedula)) {
+        std::cerr << "El cliente con la cedula " << cedula << " ya existe en el sistema." << std::endl;
+        return;
+    }
+
+    int cuenta_colones = std::stoi("1" + cedula);
+    int cuenta_dolares = std::stoi("2" + cedula);
+
+    if (existeCuenta(cuenta_colones) || existeCuenta(cuenta_dolares)) {
+        std::cerr << "Una de las cuentas ya existe en el sistema." << std::endl;
+        return;
+    }
+
+    sqlite3 *db;
+    int rc;
+
+    rc = sqlite3_open("banco.db", &db);
+    if (rc) {
+        std::cerr << "No se puede abrir la base de datos: " << sqlite3_errmsg(db) << std::endl;
+        return;
+    }
+
+    const char* sqlInsertCuenta = "INSERT INTO cuentas (numero_cuenta, balance, tasa, denominacion) VALUES (?, 0.0, 0.01, ?);";
+    const char* sqlInsertCliente = "INSERT INTO clientes (cedula, nombre, apellido, cuenta_colones, cuenta_dolares) VALUES (?, ?, ?, ?, ?);";
+
+    sqlite3_stmt *stmt;
+
+    // Insertar cuenta en colones
+    rc = sqlite3_prepare_v2(db, sqlInsertCuenta, -1, &stmt, 0);
+    if (rc != SQLITE_OK) {
+        std::cerr << "No se puede preparar la declaracion: " << sqlite3_errmsg(db) << std::endl;
+        sqlite3_close(db);
+        return;
+    }
+    sqlite3_bind_int(stmt, 1, cuenta_colones);
+    sqlite3_bind_text(stmt, 2, "colones", -1, SQLITE_STATIC);
+    sqlite3_step(stmt);
+    sqlite3_finalize(stmt);
+
+    // Insertar cuenta en dolares
+    rc = sqlite3_prepare_v2(db, sqlInsertCuenta, -1, &stmt, 0);
+    if (rc != SQLITE_OK) {
+        std::cerr << "No se puede preparar la declaracion: " << sqlite3_errmsg(db) << std::endl;
+        sqlite3_close(db);
+        return;
+    }
+    sqlite3_bind_int(stmt, 1, cuenta_dolares);
+    sqlite3_bind_text(stmt, 2, "dolares", -1, SQLITE_STATIC);
+    sqlite3_step(stmt);
+    sqlite3_finalize(stmt);
+
+    std::string nombre, apellido;
+
+    std::cout << "Ingrese el nombre del cliente: ";
+    std::getline(std::cin, nombre);
+    if (!validarNombreApellido(nombre)) {
+        std::cerr << "El nombre debe comenzar con una letra mayuscula y tener un maximo de 10 caracteres." << std::endl;
+        sqlite3_close(db);
+        return;
+    }
+
+    std::cout << "Ingrese el apellido del cliente: ";
+    std::getline(std::cin, apellido);
+    if (!validarNombreApellido(apellido)) {
+        std::cerr << "El apellido debe comenzar con una letra mayuscula y tener un maximo de 10 caracteres." << std::endl;
+        sqlite3_close(db);
+        return;
+    }
+
+    // Insertar cliente
+    rc = sqlite3_prepare_v2(db, sqlInsertCliente, -1, &stmt, 0);
+    if (rc != SQLITE_OK) {
+        std::cerr << "No se puede preparar la declaracion: " << sqlite3_errmsg(db) << std::endl;
+        sqlite3_close(db);
+        return;
+    }
+    sqlite3_bind_text(stmt, 1, cedula.c_str(), -1, SQLITE_STATIC);
+    sqlite3_bind_text(stmt, 2, nombre.c_str(), -1, SQLITE_STATIC);
+    sqlite3_bind_text(stmt, 3, apellido.c_str(), -1, SQLITE_STATIC);
+    sqlite3_bind_int(stmt, 4, cuenta_colones);
+    sqlite3_bind_int(stmt, 5, cuenta_dolares);
+    sqlite3_step(stmt);
+    sqlite3_finalize(stmt);
+
+    sqlite3_close(db);
+
+    std::cout << "Cliente y cuentas insertados correctamente." << std::endl;
+}
+
+bool existeCuenta(int numero_cuenta) {
+    sqlite3 *db;
+    int rc;
+    sqlite3_stmt *stmt;
+
+    rc = sqlite3_open("banco.db", &db);
+    if (rc) {
+        std::cerr << "No se puede abrir la base de datos: " << sqlite3_errmsg(db) << std::endl;
+        return false;
+    }
+
+    const char* sql = "SELECT 1 FROM cuentas WHERE numero_cuenta = ? LIMIT 1;";
+
+    rc = sqlite3_prepare_v2(db, sql, -1, &stmt, 0);
+    if (rc != SQLITE_OK) {
+        std::cerr << "No se puede preparar la declaración: " << sqlite3_errmsg(db) << std::endl;
+        sqlite3_close(db);
+        return false;
+    }
+
+    sqlite3_bind_int(stmt, 1, numero_cuenta);
+
+    rc = sqlite3_step(stmt);
+    bool existe = (rc == SQLITE_ROW);
+
+    sqlite3_finalize(stmt);
+    sqlite3_close(db);
+
+    return existe;
+}
