@@ -21,7 +21,12 @@
 #ifndef MENUS_HPP
 #define MENUS_HPP
 
+// Despliegue de menus que define la implementacion del resto de archivos
+// Se busca orden y simpleza
+
 int menu_atencion();
 int menu_informacion();
+int menu_prestamos();
+int menu_operaciones();
 
 #endif
