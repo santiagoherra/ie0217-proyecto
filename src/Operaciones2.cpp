@@ -100,7 +100,7 @@ int Operaciones::gestionAhorros(){
 
     rc = sqlite3_prepare_v2(db, recuperarCDPsql, -1, &stmt, 0);
     if (rc != SQLITE_OK) {
-        std::cerr << "No se puede preparar la declaración: " << sqlite3_errmsg(db) << std::endl;
+        std::cerr << "No se puede preparar la declaracion: " << sqlite3_errmsg(db) << std::endl;
         sqlite3_close(db);
         return 1;
     }

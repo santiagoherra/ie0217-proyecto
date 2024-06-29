@@ -166,6 +166,7 @@ enum Opciones2{ // Define la enumeracion de las opciones del menu
 
 int menu_informacion(){
     Prestamos prestamo;
+    CuentaAhorros cuenta;
     int opcion;
     do {
         // Imprime el menu
@@ -189,7 +190,7 @@ int menu_informacion(){
                 prestamo.menu();
                 break;
             case INFORMACION_CDP:
-                
+                cuenta.calculadoraIntereses();
                 break;
             case SALIR2:
                 cout << "Saliendo del modulo de atencion a clientes \n";
