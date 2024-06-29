@@ -67,22 +67,11 @@ int Operaciones::deposito() {
         return 0;
     }
 
-<<<<<<< HEAD
     // Solicitar datos para realizar el depósito
     std::cout << "Por favor ingrese el número de cedula del cliente al que se va a depositar" << std::endl;
     std::getline(std::cin, cedula);
 
     leerCedula(cedula);
-=======
-    // Solicitar datos para realizar el deposito
-    cout << "Por favor ingrese el numero de cedula del cliente al que se va a depositar" << endl;
-    getline(cin, cedula);
-
-    do {
-        cout << "¿Desea realizar el deposito en la cuenta de dolares o colones?" << endl;
-        cout << "1) Dolares" << std::endl;
-        cout << "2) Colones" << std::endl;
->>>>>>> origin
 
     std::cout << "¿Desea realizar el depósito en la cuenta de dólares o colones?" << std::endl;
     std::cout << "1) Dólares" << std::endl;
@@ -91,27 +80,9 @@ int Operaciones::deposito() {
 
     leerInt(cuenta_op, 1, 2);
 
-<<<<<<< HEAD
     if(cuenta_op == DOLARES){
         denominacion = "dolares";
         clientes = "SELECT cuenta_dolares FROM clientes WHERE cedula = ?";
-=======
-            // Primera consulta
-            clientes = "SELECT cuenta_dolares from clientes WHERE cedula = ?";
-            break;
-        case COLONES:
-            denominacion = "colones";
-            
-            // Primera consulta
-            clientes = "SELECT cuenta_colones from clientes WHERE cedula = ?";
-            break;
-        default:
-            cout << "La opcion ingresada no es valida! Por favor, intentelo de nuevo.";
-            break;
-        }
-    } while (cuenta_op != DOLARES && cuenta_op != COLONES);
->>>>>>> origin
-
     } else if(cuenta_op == COLONES){
         denominacion = "colones";
         clientes = "SELECT cuenta_colones FROM clientes WHERE cedula = ?";
@@ -134,11 +105,7 @@ int Operaciones::deposito() {
         numero_cuenta = sqlite3_column_int(stmt, 0);
         std::cout << "El número de cuenta del cliente en " << denominacion << " es " << numero_cuenta << std::endl;  // CHECKPOINT
     } else if (rc == SQLITE_DONE) {
-<<<<<<< HEAD
         std::cout << "No existe ninguna cuenta asociada a este número de cédula" << std::endl;
-=======
-        cout << "No existe ninguna cuenta asociada a este numero de cedula" << endl;
->>>>>>> origin
         sqlite3_finalize(stmt);
         sqlite3_exec(db, "ROLLBACK", nullptr, nullptr, &errMsg);
         sqlite3_close(db);
@@ -157,11 +124,8 @@ int Operaciones::deposito() {
     // Preparar consulta parametrizada
     rc = sqlite3_prepare_v2(db, cuentas, -1, &stmt, nullptr);
     if (rc != SQLITE_OK) {
-<<<<<<< HEAD
         std::cerr << "Error de SQL: " << sqlite3_errmsg(db) << std::endl;
         sqlite3_exec(db, "ROLLBACK", nullptr, nullptr, &errMsg);
-=======
-        cerr << "Error de SQL: " << sqlite3_errmsg(db) << endl;
         sqlite3_close(db);
     }
 
@@ -174,7 +138,6 @@ int Operaciones::deposito() {
     if (montoDepositar <= 0) {
         cout << "¡El monto a depositar no es valido!";
         sqlite3_finalize(stmt);
->>>>>>> origin
         sqlite3_close(db);
         return 0;
     }
@@ -201,11 +164,7 @@ int Operaciones::deposito() {
     // Realizar la segunda consulta
     rc = sqlite3_step(stmt);
     if (rc == SQLITE_DONE) {
-<<<<<<< HEAD
         std::cout << "¡El depósito fue realizado de manera exitosa!" << std::endl;
-=======
-        cout << "¡El deposito fue realizado de manera exitosa!" << endl;
->>>>>>> origin
     } else {
         std::cerr << "Error de SQL: " << sqlite3_errmsg(db) << std::endl;
         sqlite3_finalize(stmt);
@@ -222,11 +181,7 @@ int Operaciones::deposito() {
     // Confirmar la transacción
     rc = sqlite3_exec(db, "COMMIT", nullptr, nullptr, &errMsg);
     if (rc != SQLITE_OK) {
-<<<<<<< HEAD
         std::cerr << "Error al confirmar la transacción: " << errMsg << std::endl;
-=======
-        cerr << "Error al confirmar la transaccion: " << errMsg << endl;
->>>>>>> origin
         sqlite3_exec(db, "ROLLBACK", nullptr, nullptr, &errMsg);
         sqlite3_close(db);
         return 0;
