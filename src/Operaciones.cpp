@@ -1,7 +1,10 @@
 /**
  * @file Operaciones.cpp
- * @brief .
- */
+ * @version 1.0
+ * @date 6/2024
+ * @authors JoséIgnacioSáenzDíaz, SantiagoHerraCastro, KevinJiménezAcuña
+ * @brief Implementación: Retiro, depósito, abono, transferencia y ahorros
+*/
 
 // Este valor se puede cambiar cada vez que se utilice el programa
 #define TASA_DE_CAMBIO 525.95

@@ -1,14 +1,10 @@
 /**
  * @file prestamos.hpp
- * @author Santiago Herra santiago.herra@ucr.ac.cr
- * @brief Este es el archivo header para el despliegue de informacion de los prestamos personalizados
- * ademas posee una implementacion que puede agregar prestamos a usuarios.
- * @version 0.1
- * @date 2024-06-15
- * 
- * @copyright Copyright (c) 2024
- * 
- */
+ * @version 1.0
+ * @date 6/2024
+ * @authors JoséIgnacioSáenzDíaz, SantiagoHerraCastro, KevinJiménezAcuña
+ * @brief Clase préstamo y métodos para añadir, calcular tasas, desplegar info y validarlos
+*/
 #ifndef PRESTAMOS_HPP
 #define PRESTAMOS_HPP
 #include <iostream>

@@ -1,3 +1,11 @@
+/**
+ * @file cdp.hpp
+ * @version 1.0
+ * @date 6/2024
+ * @authors JoséIgnacioSáenzDíaz, SantiagoHerraCastro, KevinJiménezAcuña
+ * @brief Funciones asociadas a la posibilidad de añadir CDPs y verificar que el cliente saldo suficiente
+*/
+
 #ifndef CDPS_HPP
 #define CDPS_HPP
 #include <string>

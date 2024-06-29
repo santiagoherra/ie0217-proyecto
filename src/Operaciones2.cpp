@@ -1,3 +1,10 @@
+/**
+ * @file Operaciones.cpp
+ * @version 1.0
+ * @date 6/2024
+ * @authors JoséIgnacioSáenzDíaz, SantiagoHerraCastro, KevinJiménezAcuña
+ * @brief Implementación: Retiro, depósito, abono, transferencia y ahorros parte 2.
+*/
 #include "Operaciones.hpp"
 #include "prestamos.hpp"
 #include "funcionesGenerales.hpp"

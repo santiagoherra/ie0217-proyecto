@@ -1,7 +1,10 @@
 /**
- * @file Operaciones.hpp
- * @brief Headerfile en donde se definen los metodos que realizan las operaciones.
-**/
+ * @file Operaciones.cpp
+ * @version 1.0
+ * @date 6/2024
+ * @authors JoséIgnacioSáenzDíaz, SantiagoHerraCastro, KevinJiménezAcuña
+ * @brief Retiro, depósito, abono, transferencia y ahorros
+*/
 
 #ifndef OPERACIONES_HPP
 #define OPERACIONES_HPP

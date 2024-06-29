@@ -1,3 +1,11 @@
+/**
+ * @file aplicacion.cpp
+ * @version 1.0
+ * @date 6/2024
+ * @authors JoséIgnacioSáenzDíaz, SantiagoHerraCastro, KevinJiménezAcuña
+ * @brief Main del sistema de gestión bancario
+*/
+
 #include <iostream>
 #include <sqlite3.h>
 #include <iostream>

@@ -1,3 +1,10 @@
+/**
+ * @file BaseDeDatos.cpp
+ * @version 1.0
+ * @date 6/2024
+ * @authors JoséIgnacioSáenzDíaz, SantiagoHerraCastro, KevinJiménezAcuña
+ * @brief Implementación: Crea e inserta información a la base de datos
+*/
 #include <iostream>
 #include <sqlite3.h>
 #include "BaseDeDatos.hpp"

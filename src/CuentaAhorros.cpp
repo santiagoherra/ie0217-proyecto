@@ -1,3 +1,10 @@
+/**
+ * @file CuentaAhorros.cpp
+ * @version 1.0
+ * @date 6/2024
+ * @authors JoséIgnacioSáenzDíaz, SantiagoHerraCastro, KevinJiménezAcuña
+ * @brief Implementación: Métodos para el despliegue de información de cuentas y CDPs
+*/
 #include "CuentaAhorros.hpp"
 #include <iostream>
 #include <fstream>

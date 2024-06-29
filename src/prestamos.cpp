@@ -1,3 +1,10 @@
+/**
+ * @file prestamos.cpp
+ * @version 1.0
+ * @date 6/2024
+ * @authors JoséIgnacioSáenzDíaz, SantiagoHerraCastro, KevinJiménezAcuña
+ * @brief Implementación de la clase préstamo
+*/
 #include "prestamos.hpp"
 #include "funcionesGenerales.hpp"
 #include <cmath>
