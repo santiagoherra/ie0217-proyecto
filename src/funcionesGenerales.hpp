@@ -20,6 +20,8 @@
 #include <regex>
 #include <cstdlib>
 
+using namespace std;
+
 //Esta funcion es para poder generar un numero de cuenta aleatorio en colones
 long long int generarNumeroCuentaColon();
 
@@ -38,7 +40,7 @@ std::tm string_a_fecha(const std::string& dateStr);
 // Esta funcion se utiliza para obtener la fecha en forma de string
 std::string obtenerFechaString();
 
-void leerInt(int num);
+void leerInt(int num, int op1 = 0, int op2 = 0, int op3 = 0, int op4 = 0, int op5 = 0);
 
 void leerCedula(const std::string cedula);
 

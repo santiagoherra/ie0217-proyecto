@@ -7,7 +7,13 @@
 */
 #include "funcionesGenerales.hpp"
 
-
+/**
+ * @brief Esta funcion devuelve un booleano si el cliente ya esta en la base de datos.
+ * 
+ * @param clienteID se hace con la cedula
+ * @return true 
+ * @return false 
+ */
 bool existeCliente(const std::string& clienteID){
 
     sqlite3 *db;
@@ -46,6 +52,16 @@ bool existeCliente(const std::string& clienteID){
     return existe;
 }
 
+/**
+ * @brief Esta funcion esta hecha para agregar un cliente a la base de datos si no existe
+ * 
+ * @param clienteID 
+ * @param nombre 
+ * @param apellido 
+ * @param cuentacolones 
+ * @param cuentadolares 
+ * @return int Devuelve un 0 si se realiza con exito, un 1 si fallo.
+ */
 int agregarCliente(const std::string clienteID, std::string nombre, std::string apellido,
                     long int cuentacolones, long int cuentadolares){
 
@@ -92,12 +108,20 @@ int agregarCliente(const std::string clienteID, std::string nombre, std::string 
     
 }
 
+/**
+ * @brief Esta funcion para un string a una fecha usando la biblioteca Ctime para poder realizar
+ * calculos de tiempo con la fecha que da la base de dato
+ * 
+ * @param fecha_string fecha en string que se da
+ * @return tm devuelve el tiempo del string
+ */
 std::tm string_a_fecha(const std::string& fecha_string) {
     std::tm tm = {};
     std::istringstream ss(fecha_string);
     ss >> std::get_time(&tm, "%Y-%m-%d");
     return tm;
 }
+
 
 std::string obtenerFechaString() {
     auto fechaActual = std::chrono::system_clock::now();
@@ -112,16 +136,40 @@ std::string obtenerFechaString() {
     return oss.str();
 }
 
-void leerInt(int num) {
+/**
+ * @brief Esta funcion esta hecha para validar numeros ints ademas tambien tira error 
+ * si una de las opciones dadas en op1, 2, 3, 4, 5 no es int num para que el usuario tenga que dar las opciones
+ * que se piden.
+ * 
+ * @param num este es el numero que se valida
+ * @param op1 esta es una opcion de entrada
+ * @param op2 esta es una opcion de entrada
+ * @param op3 esta es una opcion de entrada
+ * @param op4 esta es una opcion de entrada
+ * @param op5 esta es una opcion de entrada
+ * 
+ */
+void leerInt(int num, int op1, int op2, int op3, int op4, int op5) {
     if (std::cin.fail()) {
         std::cin.clear();
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         std::cerr << "Entrada no valida. Se esperaba un numero entero." << std::endl;
         std::exit(EXIT_FAILURE);  // Termina el programa con un estado de fallo
     }
+
+    if (op1 != 0 || op2 != 0 || op3 != 0 || op4 != 0 || op5 != 0) {
+        if (num != op1 && num != op2 && num != op3 && num != op4 && num != op5) {
+            std::cerr << "Entrada no valida. No existe la opcion seleccionada" << std::endl;
+            std::exit(EXIT_FAILURE);
+        }
+    }
 }
 
-
+/**
+ * @brief Esta funcion leer la cedula del usuario y si no se parece a una cedula tira un error
+ * 
+ * @param cedula cedula que da el usuario
+ */
 void leerCedula(std::string cedula) {
 
     std::regex patron("^\\d{9}$");

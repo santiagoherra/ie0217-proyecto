@@ -23,6 +23,7 @@ enum OpcionesPrestamos{
     HIPOTECARIO,
 };
 
+//Esta funcion procesa los resultados dados en una consulta sql
 static int callback(void *data, int argc, char**argv, char **azColName){
     for(int i = 0; i < argc; i++){
         std::cout << azColName[i] << (argv[i] ? argv[i] : "NULL") << std::endl;
@@ -30,6 +31,7 @@ static int callback(void *data, int argc, char**argv, char **azColName){
     return 0;
 }
 
+//Esta funcion ejecuta la consulta hecha en la base de datos SQL
 void executeSQL(sqlite3 *db, const char *sql, int (*callback)(void*,int,char**,char**), void *data) {
     char *errMsg = 0;
     int rc = sqlite3_exec(db, sql, callback, data, &errMsg);
@@ -41,6 +43,7 @@ void executeSQL(sqlite3 *db, const char *sql, int (*callback)(void*,int,char**,c
     }
 }
 
+//Esta funcion obtiene el ultimo ID de prestamo para poder agregar uno otro sin que se repita el ID
 static int getLastPrestamoId(void *data, int argc, char **argv, char **azColName) {
     int *lastPrestamoId = (int*)data;
     if (argc > 0 && argv[0]) {
@@ -87,9 +90,9 @@ bool Prestamos::validacionPrestamo(double salario, int tipoMoneda){
     std::cout << "Usted posee mas de 6 meses de continuidad laboral?\n1) Si\n2) No" << std::endl;
     std::cin >> continuidad_laboral;
 
-    leerInt(continuidad_laboral);  
+    leerInt(continuidad_laboral, 1, 2);  
 
-    if(continuidad_laboral == 0){
+    if(continuidad_laboral == 2){
         return false;
     }
 
@@ -108,7 +111,7 @@ bool Prestamos::validacionPrestamo(double salario, int tipoMoneda){
     std::cout << "Ingrese el valor de la opcion que desea escoger?\n1) 2) 3)" << std::endl;
     std::cin >> opcion_cuotas_meses;
 
-    leerInt(opcion_cuotas_meses);
+    leerInt(opcion_cuotas_meses, 1, 2, 3);
 
     //Se agrega el plazo de meses que el cliente elijio
     plazo_meses_agregar = meses_cliente[opcion_cuotas_meses-1];
@@ -141,7 +144,7 @@ bool Prestamos::validacionPrestamo(double salario, int tipoMoneda){
 
 }
 
-
+//Funcion para agregar prestamos
 int Prestamos::agregarPrestamoBaseDatos(){
     std::string cedula;
 
@@ -182,7 +185,7 @@ int Prestamos::agregarPrestamoBaseDatos(){
     << "'" << tipo_agregar << "', " // Asume que tipo_agregar es un string
     << std::fixed << std::setprecision(2) << monto_agregar << ", " // Asume que monto_agregar es un número
     << plazo_meses_agregar << ", " // Asume que plazo_meses_agregar es un número
-    << plazo_meses_agregar << ", " // Plazo restante = plazo inicial
+    << plazo_meses_agregar << ", " //se agrega el mismo numero de meses
     << std::fixed << std::setprecision(2) << cuotas_agregar << ", " // Asume que cuotas_agregar es un número
     << std::fixed << std::setprecision(3) << tasa_agregar << ", " 
     << "'" << cedula_agregar << "');"; // Asume que cedula_agregar es un string
@@ -232,7 +235,7 @@ void Prestamos::seguirConPrestamo(){
     std::cout << "Desea optar por un prestamo en este momento?\n1) Si\n2) No " << std::endl;
     std::cin >> decision;
 
-    leerInt(decision);
+    leerInt(decision, 1, 2);
 
     //Se planteo que el sistema sepa cual prestamos escogio el usuario en base al interes que se le de
     //a la funcion
@@ -250,7 +253,7 @@ void Prestamos::seguirConPrestamo(){
         std::cout << "Indique el tipo de moneda en que quiere hacer el prestamo\n1) Dolares\n2) Colones" << std::endl;
         std::cin >> moneda_prestamo;
 
-        leerInt(moneda_prestamo);
+        leerInt(moneda_prestamo, 1, 2);
 
         //condiciones para obtener datos para agregar el prestamo
 
@@ -325,7 +328,7 @@ void Prestamos::menu(){
     std::cout << "Elija el tipo de prestamo por el que desearia optar.\n 1) Personal 2) Prendario 3) Hipotecario" << std::endl;
     std::cin >> opcion_prestamo;
     
-    leerInt(opcion_prestamo);
+    leerInt(opcion_prestamo, 1, 2, 3);
 
     std::cout << "Para continuar porfavor indique la siguiente informacion:\nMonto por el que sea optar (valor en colones):\n" << std::endl;
     std::cin >> monto;
