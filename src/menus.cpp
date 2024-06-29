@@ -278,7 +278,7 @@ int menu_operaciones(){
             // Switch del menu
             case DEPOSITO:
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                retorno = op.deposito(denominacion, clienteOrigenCedula, clienteDestinoCedula, montoBase);
+                retorno = op.deposito();
 
                 // Todos los metodos de operaciones devuelven 1 si la transaccion fue exitosa
                 //if(retorno) {
