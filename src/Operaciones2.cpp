@@ -58,7 +58,7 @@ int Operaciones::gestionAhorros(){
 
     rc = sqlite3_prepare_v2(db, sqlConsulta, -1, &stmt, 0);
     if (rc != SQLITE_OK) {
-        std::cerr << "No se puede preparar la declaración: " << sqlite3_errmsg(db) << std::endl;
+        std::cerr << "No se puede preparar la declaracion: " << sqlite3_errmsg(db) << std::endl;
         sqlite3_close(db);
         return 1;
     }
@@ -76,10 +76,10 @@ int Operaciones::gestionAhorros(){
         const unsigned char *fecha_deposito = sqlite3_column_text(stmt, 5);
 
         cout << "\nCDP ID: " << cdp_id
-                  << "\nDenominación: " << denominacion
+                  << "\nDenominacion: " << denominacion
                   << "\nTasa: " << tasa
                   << "\nPlazo (meses): " << plazo_meses
-                  << "\nMonto Depósito: " << monto_deposito
+                  << "\nMonto Deposito: " << monto_deposito
                   << "\nFecha de deposito: " << fecha_deposito << endl;
     }
 

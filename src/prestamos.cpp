@@ -29,7 +29,7 @@ void executeSQL(sqlite3 *db, const char *sql, int (*callback)(void*,int,char**,c
         std::cerr << "SQL error: " << errMsg << std::endl;
         sqlite3_free(errMsg);
     } else {
-        std::cout << "Operación realizada con éxito" << std::endl;
+        std::cout << "Operacion realizada con éxito" << std::endl;
     }
 }
 
@@ -93,7 +93,7 @@ bool Prestamos::validacionPrestamo(double salario, int tipoMoneda){
         }
     }else{
         for(int i = 0; i < 3; i++){
-        std::cout << i+1 << ") " << cuotas_colon_cliente[i] << "₡ /" << meses_cliente[i] << " meses\n" << std::endl;
+        std::cout << i+1 << ") " << cuotas_colon_cliente[i] << " /" << meses_cliente[i] << " meses\n" << std::endl;
         }
     }
 
@@ -197,7 +197,7 @@ void Prestamos::imprimirTablaInformacion(float interesColon, float interesDolar,
     //imprime la informacion personalizada
     if(tipo_agregar == "Prendario"){
         std::cout << "\nComo el tipo de prestamo deseado es de tipo prendario el banco le ofreceria "
-                    "ofrecer un monto de prestamo de " << monto_agregar << " ₡, que equivale a "
+                    "ofrecer un monto de prestamo de " << monto_agregar << " colones, que equivale a "
                     "el 80% del monto del objeto colateral." << std::endl;
     }
 
@@ -206,7 +206,7 @@ void Prestamos::imprimirTablaInformacion(float interesColon, float interesDolar,
     std::cout << "|-------------------------------------------------------------------------\n" << std::endl;
     std::cout << "| Intereses anuales | " << meses[0] << " meses | " << meses[1] << " meses | " << meses[2] << " meses | Tipo de Moneda |\n" << std::endl;
     std::cout << "|-------------------------------------------------------------------------\n" << std::endl;
-    std::cout << "|         " << interesColon*100 << "%" << "      |   " << cuotas_colon[0] << "₡    |   " << cuotas_colon[1] << "₡    |     " << cuotas_colon[2] << "₡       | Colones |\n" << std::endl;
+    std::cout << "|         " << interesColon*100 << "%" << "      |   " << cuotas_colon[0] << "    |   " << cuotas_colon[1] << "    |     " << cuotas_colon[2] << "       | Colones |\n" << std::endl;
     std::cout << "|-------------------------------------------------------------------------\n" << std::endl;
     std::cout << "|         " << interesDolar*100 << "%" << "      |       " << cuotas_dolar[0] << "$     |      " << cuotas_dolar[1] << "$    |    " << cuotas_dolar[2] << "$   | Dolares |\n" << std::endl;
     std::cout << "|-------------------------------------------------------------------------\n" << std::endl;
