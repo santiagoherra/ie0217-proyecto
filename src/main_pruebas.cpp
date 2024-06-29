@@ -7,8 +7,8 @@
 int main(){
 
     Operaciones ope;
-    ope.solicitudPrestamos();
-    
+    ope.deposito();
+
 
     
 };

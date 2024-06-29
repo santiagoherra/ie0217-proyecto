@@ -13,6 +13,8 @@
 #include <regex>
 #include <cstdlib>
 
+using namespace std;
+
 //Esta funcion es para poder generar un numero de cuenta aleatorio en colones
 long long int generarNumeroCuentaColon();
 

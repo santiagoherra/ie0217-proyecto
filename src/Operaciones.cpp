@@ -46,7 +46,7 @@ int Operaciones::deposito() {
     const char* data = "Callback function called";
 
     // String de consulta que va a variar dependiendo de la denominacion de la cuenta
-    const char *clientes;
+    const char* clientes;
 
     // Conexion a la base de datos y mensaje de repuesta
     rc = sqlite3_open("banco.db", &db);
@@ -57,58 +57,36 @@ int Operaciones::deposito() {
         cout << "Ingreso correcto a la base de datos" << endl;
     }
 
-    // Inicio de la transacción
-    rc = sqlite3_exec(db, "BEGIN TRANSACTION", nullptr, nullptr, &errMsg);
-    if (rc != SQLITE_OK) {
-        cerr << "Error al iniciar la transacción: " << errMsg << endl;
-        sqlite3_close(db);
-        return 0;
-    }
+    
 
     // Solicitar datos para realizar el deposito
     cout << "Por favor ingrese el número de cedula del cliente al que se va a depositar" << endl;
     getline(cin, cedula);
 
-    do {
-        cout << "¿Desea realizar el depósito en la cuenta de dólares o colones?" << endl;
-        cout << "1) Dólares" << std::endl;
-        cout << "2) Colones" << std::endl;
+    leerCedula(cedula);
 
-        // Verificar si la entrada del usuario es válida
-        if (!(cin >> cuenta_op)) {
-            cout << "\n";
-            cout << "Opcion no valida. Por favor, ingrese un numero." << endl;
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Ignorar el resto de la línea
-            continue;
-        }
+    
+    cout << "¿Desea realizar el depósito en la cuenta de dólares o colones?" << endl;
+    cout << "1) Dólares" << std::endl;
+    cout << "2) Colones" << std::endl;
+    cin >> cuenta_op;
 
-        switch (cuenta_op)
-        {
-        case DOLARES:
-            denominacion = "dolares";
+    leerInt(cuenta_op, 1, 2);
 
-            // Primera consulta
-            clientes = "SELECT cuenta_dolares from clientes WHERE cedula = ?";
-            break;
-        case COLONES:
-            denominacion = "colones";
-            
-            // Primera consulta
-            clientes = "SELECT cuenta_colones from clientes WHERE cedula = ?";
-            break;
-        default:
-            cout << "¡La opción ingresada no es válida! Por favor, inténtelo de nuevo.";
-            break;
-        }
-    } while (cuenta_op != DOLARES && cuenta_op != COLONES);
+    if(cuenta_op == DOLARES){
+        denominacion = "dolares";
+        clientes = "SELECT cuenta_dolares from clientes WHERE cedula = ?";
 
-    // Preparar consulta parametrizada
-    rc = sqlite3_prepare_v2(db, clientes, -1, &stmt, nullptr);
+    }else if(cuenta_op == COLONES){
+        denominacion = "colones";
+        clientes = "SELECT cuenta_colones from clientes WHERE cedula = ?";
+    }
+
+    rc = sqlite3_prepare_v2(db, clientes, -1, &stmt, 0);
     if (rc != SQLITE_OK) {
-        cerr << "Error de SQL: " << sqlite3_errmsg(db) << endl;
+        std::cerr << "No se puede preparar la declaración: " << sqlite3_errmsg(db) << std::endl;
         sqlite3_close(db);
-        return 0;
+        return 1;
     }
 
     // Parametro para la consulta
