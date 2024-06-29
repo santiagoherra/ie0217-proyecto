@@ -48,7 +48,7 @@ int menu_atencion(){
         cout << "\nEscoja una de las siguientes opciones \n";
         cout << "1. Tramites Generales \n";
         cout << "2. Solicitud y abono de prestamos\n";
-        cout << "3. Apertura o retiro de CDPs \n";
+        cout << "3. Solicitud e informacion de CDPs \n";
         cout << "4. Salir \n";
         cout << "Ingrese su opcion \n";
         
@@ -330,7 +330,6 @@ int menu_operaciones(){
 
 enum Opciones5{ // Define la enumeracion de las opciones del menu
     PEDIR = 1,
-    RETIRAR,
     GESTION,
     SALIR_CDP
 };
@@ -340,6 +339,7 @@ int menu_CDP(){
     Operaciones op;
     RegistrosGenerales regs;
     Prestamos prestamo;
+    CDP cdp;
 
     // Datos para los registros
     int retorno;
@@ -354,9 +354,8 @@ int menu_CDP(){
         // Imprime el menu
         cout << "\nEscoja una de las siguientes opciones \n";
         cout << "1. Solicitar un CDP \n";
-        cout << "2. Retirar un CDP\n";
-        cout << "3. Observar informacion asociada a un CDP \n";
-        cout << "4. Salir \n";
+        cout << "2. Observar informacion asociada a un CDP \n";
+        cout << "3. Salir \n";
         cout << "Ingrese su opcion \n";
         
         // Verificar si la entrada del usuario es válida
@@ -372,11 +371,7 @@ int menu_CDP(){
             // Switch del menu
             case PEDIR:
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                regs.registroPersonal();
-                break;
-            case RETIRAR:
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                regs.verRegistro();
+                cdp.agregarCDP();
                 break;
             case GESTION:
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');

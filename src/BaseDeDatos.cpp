@@ -45,7 +45,7 @@ int crearDB(){
         "FOREIGN KEY (cliente_id) REFERENCES clientes(cedula));"
         
         "CREATE TABLE certificados_de_deposito ("
-        "cdp_id INT PRIMARY KEY,"
+        "cdp_id INTEGER PRIMARY KEY AUTOINCREMENT,"
         "denominacion VARCHAR(8),"
         "tasa DECIMAL(2, 2),"
         "plazo_meses INT,"
@@ -101,7 +101,7 @@ int llenarDB(){
     }
 
     const char *inserts_sql = "INSERT INTO cuentas (numero_cuenta, balance, tasa, denominacion)"
-        "VALUES (1891435200, 87037015.99, 0.01, 'colones');"
+        "VALUES (1891435200, 10000.99, 0.01, 'colones');"
         "INSERT INTO cuentas (numero_cuenta, balance, tasa, denominacion)"
         "VALUES (2891435200, 85426636.52, 0.01, 'dolares');"
         "INSERT INTO cuentas (numero_cuenta, balance, tasa, denominacion)"
@@ -166,12 +166,12 @@ int llenarDB(){
         "VALUES (2, 'colones', 'personal', 5000000, 12 ,10, 416666.67, 0.1, 456251480);"
         "INSERT INTO prestamos (prestamo_id, denominacion, tipo, monto_total, plazo_meses, plazo_restante, cuota_mensual, tasa, cliente_id)" 
         "VALUES (3, 'dolares', 'hipotecario', 117187.5, 15, 13, 1000000.0, 0.08, 409975644);"
-        "INSERT INTO certificados_de_deposito (cdp_id, denominacion, tasa, plazo_meses, monto_deposito, fecha_deposito, cliente_cedula)" 
-        "VALUES (1, 'colones', 0.12, 5, 1000000.00, '2016-05-15', 732194468);"
-        "INSERT INTO certificados_de_deposito (cdp_id, denominacion, tasa, plazo_meses, monto_deposito, fecha_deposito, cliente_cedula)" 
-        "VALUES (2, 'colones', 0.12, 10, 1000000.00, '2017-09-22', 114819158);"
-        "INSERT INTO certificados_de_deposito (cdp_id, denominacion, tasa, plazo_meses, monto_deposito, fecha_deposito, cliente_cedula)" 
-        "VALUES (3, 'dolares', 0.12, 13, 1953.12, '2019-01-13', 544018749);";
+        "INSERT INTO certificados_de_deposito (denominacion, tasa, plazo_meses, monto_deposito, fecha_deposito, cliente_cedula)" 
+        "VALUES ('colones', 0.12, 5, 1000000.00, '2016-05-15', 732194468);"
+        "INSERT INTO certificados_de_deposito (denominacion, tasa, plazo_meses, monto_deposito, fecha_deposito, cliente_cedula)" 
+        "VALUES ('colones', 0.12, 10, 1000000.00, '2017-09-22', 114819158);"
+        "INSERT INTO certificados_de_deposito (denominacion, tasa, plazo_meses, monto_deposito, fecha_deposito, cliente_cedula)" 
+        "VALUES ('dolares', 0.12, 13, 1953.12, '2019-01-13', 544018749);";
 
 
 
