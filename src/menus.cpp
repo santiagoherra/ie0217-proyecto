@@ -75,6 +75,7 @@ int menu_atencion(){
                 
             case CDPS:
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                menu_CDP();
                 break;
 
             case SALIR:
@@ -381,7 +382,7 @@ int menu_CDP(){
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 op.gestionAhorros();
             case SALIR_CDP:
-                cout << "Saliendo del modulo de operaciones \n";
+                cout << "Saliendo del modulo de CDPs \n";
                 break;
             default:
                 cout << "Opcion no valida. Intente de nuevo" << endl;
