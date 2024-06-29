@@ -165,7 +165,7 @@ void leerInt(int num, int op1, int op2, int op3, int op4, int op5) {
  */
 void leerCedula(std::string cedula) {
 
-    std::regex patron("^\\d{10}$");
+    std::regex patron("^\\d{9}$");
     if (!std::regex_match(cedula, patron)) {
         std::cerr << "Entrada no valida. Se esperaba una forma de cedula." << std::endl;
         std::exit(EXIT_FAILURE);  // Termina el programa con un estado de fallo
