@@ -27,13 +27,9 @@ static int callback(void *data, int argc, char**argv, char **azColName){
     return 0;
 }
 
-int Operaciones::deposito() {
+int Operaciones::deposito(std::string &denominacion, std::string &clienteOrigenCedula, std::string &clienteDestinoCedula, float &montoBase) {
     // Variables para realizar el depósito
-    std::string denominacion;
     std::string cedula;
-    std::string clienteOrigenCedula;
-    std::string clienteDestinoCedula;
-    float montoBase;
 
     // Variables que no se que son
     unsigned int numero_cuenta;
@@ -118,6 +114,8 @@ int Operaciones::deposito() {
         return 0;
     }
 
+    sqlite3_finalize(stmt);
+
     // Crear la segunda consulta para actualizar balance de la cuenta
     const char *cuentas = "UPDATE cuentas SET balance = balance + ? WHERE numero_cuenta = ?";
 
@@ -127,19 +125,6 @@ int Operaciones::deposito() {
         std::cerr << "Error de SQL: " << sqlite3_errmsg(db) << std::endl;
         sqlite3_exec(db, "ROLLBACK", nullptr, nullptr, &errMsg);
         sqlite3_close(db);
-    }
-
-    // Preguntar el monto que desea depositar
-    cout << "Por favor, ingrese el monto que desea depositar: " << endl;
-    cin >> montoDepositar;
-    cin.ignore();
-
-    // Verifiacion monto
-    if (montoDepositar <= 0) {
-        cout << "¡El monto a depositar no es valido!";
-        sqlite3_finalize(stmt);
-        sqlite3_close(db);
-        return 0;
     }
 
     // Preguntar el monto que desea depositar

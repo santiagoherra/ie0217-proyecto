@@ -24,7 +24,7 @@
 class Operaciones {
     public:
         //
-        int deposito();
+        int deposito(std::string &denominacion, std::string &clienteOrigenCedula, std::string &clienteDestinoCedula, float &montoBase);
 
         //
         int retiro(std::string &denominacion, std::string &clienteOrigenCedula, std::string &clienteDestinoCedula, float &montoBase);
