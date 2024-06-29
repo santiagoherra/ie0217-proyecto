@@ -58,8 +58,8 @@ int Operaciones::deposito(std::string &denominacion, std::string &clienteOrigenC
     getline(cin, cedula);
 
     do {
-        cout << "¿Desea realizar el deposito en la cuenta de dólares o colones?" << endl;
-        cout << "1) Dólares" << std::endl;
+        cout << "¿Desea realizar el deposito en la cuenta de dolares o colones?" << endl;
+        cout << "1) Dolares" << std::endl;
         cout << "2) Colones" << std::endl;
 
         // Verificar si la entrada del usuario es válida
@@ -218,7 +218,7 @@ int Operaciones::retiro(std::string &denominacion, std::string &clienteOrigenCed
 
     do {
         cout << "¿Desea realizar el deposito en la cuenta de dolares o colones?" << endl;
-        cout << "1) Dólares" << std::endl;
+        cout << "1) Dolares" << std::endl;
         cout << "2) Colones" << std::endl;
 
         // Verificar si la entrada del usuario es válida
@@ -245,7 +245,7 @@ int Operaciones::retiro(std::string &denominacion, std::string &clienteOrigenCed
             clientes = "SELECT cuenta_colones from clientes WHERE cedula = ?";
             break;
         default:
-            cout << "La opcion ingresada no es válida! Por favor, intentelo de nuevo.";
+            cout << "La opcion ingresada no es valida! Por favor, intentelo de nuevo.";
             break;
         }
     } while (cuenta_op != DOLARES && cuenta_op != COLONES);
@@ -432,7 +432,7 @@ int Operaciones::transferencias(std::string &denominacion, std::string &clienteO
             clientes = "SELECT cuenta_colones from clientes WHERE cedula = ?";
             break;
         default:
-            cout << "La opcion ingresada no es válida! Por favor, inténtelo de nuevo.";
+            cout << "La opcion ingresada no es valida! Por favor, inténtelo de nuevo.";
             break;
         }
     } while (cuenta_op != DOLARES && cuenta_op != COLONES);
@@ -739,7 +739,7 @@ if (rc != SQLITE_DONE) {
     /* Ahora el cliente debe escoger a cual prestamo realizar el abono y cual cuenta
     va a utilizar para pagar la cuota.*/
 
-    cout << "Por favor, ingrese el numero de identificación del prestamo al que desea abonar" << endl;
+    cout << "Por favor, ingrese el numero de identificacion del prestamo al que desea abonar" << endl;
     cin >> prestamo_id;
     cin.ignore();
 
@@ -812,7 +812,7 @@ if (rc != SQLITE_DONE) {
             clientes = "SELECT cuenta_colones from clientes WHERE cedula = ?";
             break;
         default:
-            cout << "¡La opción ingresada no es válida! Por favor, inténtelo de nuevo.";
+            cout << "La opcion ingresada no es válida! Por favor, inténtelo de nuevo.";
             break;
         }
     } while (cuenta_op != DOLARES && cuenta_op != COLONES);
