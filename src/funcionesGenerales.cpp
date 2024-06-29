@@ -1,6 +1,12 @@
 #include "funcionesGenerales.hpp"
 
-
+/**
+ * @brief Esta funcion devuelve un booleano si el cliente ya esta en la base de datos.
+ * 
+ * @param clienteID se hace con la cedula
+ * @return true 
+ * @return false 
+ */
 bool existeCliente(const std::string& clienteID){
 
     sqlite3 *db;
@@ -39,6 +45,16 @@ bool existeCliente(const std::string& clienteID){
     return existe;
 }
 
+/**
+ * @brief Esta funcion esta hecha para agregar un cliente a la base de datos si no existe
+ * 
+ * @param clienteID 
+ * @param nombre 
+ * @param apellido 
+ * @param cuentacolones 
+ * @param cuentadolares 
+ * @return int Devuelve un 0 si se realiza con exito, un 1 si fallo.
+ */
 int agregarCliente(const std::string clienteID, std::string nombre, std::string apellido,
                     long int cuentacolones, long int cuentadolares){
 
@@ -85,12 +101,20 @@ int agregarCliente(const std::string clienteID, std::string nombre, std::string 
     
 }
 
+/**
+ * @brief Esta funcion para un string a una fecha usando la biblioteca Ctime para poder realizar
+ * calculos de tiempo con la fecha que da la base de dato
+ * 
+ * @param fecha_string fecha en string que se da
+ * @return tm devuelve el tiempo del string
+ */
 std::tm string_a_fecha(const std::string& fecha_string) {
     std::tm tm = {};
     std::istringstream ss(fecha_string);
     ss >> std::get_time(&tm, "%Y-%m-%d");
     return tm;
 }
+
 
 std::string obtenerFechaString() {
     auto fechaActual = std::chrono::system_clock::now();
@@ -134,7 +158,11 @@ void leerInt(int num, int op1, int op2, int op3, int op4, int op5) {
     }
 }
 
-
+/**
+ * @brief Esta funcion leer la cedula del usuario y si no se parece a una cedula tira un error
+ * 
+ * @param cedula cedula que da el usuario
+ */
 void leerCedula(std::string cedula) {
 
     std::regex patron("^\\d{10}$");
