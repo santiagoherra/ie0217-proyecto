@@ -31,10 +31,30 @@
 // Despliegue de menus que define la implementacion del resto de archivos
 // Se busca orden y simpleza
 
+/**
+* @brief Menu de atencion al cliente
+* @return Int que determina el funcionamiento del menú
+*/
 int menu_atencion();
+/**
+* @brief Menu de información
+* @return Int que determina el funcionamiento del menú
+*/
 int menu_informacion();
+/**
+* @brief Menu de préstamos
+* @return Int que determina el funcionamiento del menú
+*/
 int menu_prestamos();
+/**
+* @brief Menu de operaciones
+* @return Int que determina el funcionamiento del menú
+*/
 int menu_operaciones();
+/**
+* @brief Menu de CDPs
+* @return Int que determina el funcionamiento del menú
+*/
 int menu_CDP();
 
 #endif
