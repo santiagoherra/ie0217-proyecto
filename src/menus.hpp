@@ -28,5 +28,6 @@ int menu_atencion();
 int menu_informacion();
 int menu_prestamos();
 int menu_operaciones();
+int menu_CDP();
 
 #endif

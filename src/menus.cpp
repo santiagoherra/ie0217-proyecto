@@ -326,3 +326,68 @@ int menu_operaciones(){
 
     return 0;
 }
+
+enum Opciones5{ // Define la enumeracion de las opciones del menu
+    PEDIR = 1,
+    RETIRAR,
+    GESTION,
+    SALIR_CDP
+};
+
+int menu_CDP(){
+    int opcion; // Switch del menu
+    Operaciones op;
+    RegistrosGenerales regs;
+    Prestamos prestamo;
+
+    // Datos para los registros
+    int retorno;
+    string tipoTransaccion;
+    string fechaTransaccion;
+    string denominacion;
+    string clienteOrigenCedula; 
+    string clienteDestinoCedula; 
+    float montoBase;
+
+    do {
+        // Imprime el menu
+        cout << "\nEscoja una de las siguientes opciones \n";
+        cout << "1. Solicitar un CDP \n";
+        cout << "2. Retirar un CDP\n";
+        cout << "3. Observar informacion asociada a un CDP \n";
+        cout << "4. Salir \n";
+        cout << "Ingrese su opcion \n";
+        
+        // Verificar si la entrada del usuario es válida
+        if (!(cin >> opcion)) {
+            cout << "\n";
+            cout << "Opcion no valida. Por favor, ingrese un numero." << endl;
+            cin.clear(); // Limpiar el indicador de error
+            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Ignorar el resto de la línea
+            continue; // Saltar al siguiente ciclo del bucle
+        }
+        
+        switch(opcion) {
+            // Switch del menu
+            case PEDIR:
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                regs.registroPersonal();
+                break;
+            case RETIRAR:
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                regs.verRegistro();
+                break;
+            case GESTION:
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                op.gestionAhorros();
+            case SALIR_CDP:
+                cout << "Saliendo del modulo de operaciones \n";
+                break;
+            default:
+                cout << "Opcion no valida. Intente de nuevo" << endl;
+                break;
+        }
+    } while (opcion != SALIR_CDP); // Ciclo mientras opcion sea diferente de salir
+
+    return 0;
+}
