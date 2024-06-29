@@ -23,11 +23,22 @@ static int callback(void *data, int argc, char**argv, char **azColName){
     return 0;
 }
 
-int Operaciones::deposito(std::string &denominacion, std::string &clienteOrigenCedula, std::string &clienteDestinoCedula, float &montoBase) {
+int Operaciones::deposito() {
+    
+    //variables para realizar el deposito
+    string denominacion;
     string cedula;
+    string clienteOrigenCedula;
+    string clienteDestinoCedula;
+    float montoBase;
+
+
+    //variables que no se que son
     unsigned int numero_cuenta;
     double montoDepositar;
     int cuenta_op;
+
+    //variables sql
     sqlite3 *db;
     sqlite3_stmt *stmt;
     char *errMsg = 0;
