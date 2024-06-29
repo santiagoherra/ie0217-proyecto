@@ -57,7 +57,8 @@ int menu_atencion(){
         cout << "1. Tramites Generales \n";
         cout << "2. Solicitud y abono de prestamos\n";
         cout << "3. Solicitud e informacion de CDPs \n";
-        cout << "4. Salir \n";
+        cout << "4. Anadir cliente \n";
+        cout << "5. Salir \n";
         cout << "Ingrese su opcion \n";
         
         // Verificar si la entrada del usuario es válida
@@ -86,6 +87,7 @@ int menu_atencion(){
                 menu_CDP();
                 break;
             case ANADIR:
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 insertarCuentasYClientes();
                 break;
             case SALIR:
