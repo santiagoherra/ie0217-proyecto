@@ -55,7 +55,7 @@ int crearDB(){
         "FOREIGN KEY (cliente_cedula) REFERENCES clientes(cedula));"
         
         "CREATE TABLE registros ("
-        "ID INT AUTO_INCREMENT PRIMARY KEY,"
+        "ID INTEGER PRIMARY KEY AUTOINCREMENT,"
         "tipo_transaccion VARCHAR(50),"
         "fecha_transaccion DATE,"
         "denominacion VARCHAR(10),"
@@ -161,7 +161,7 @@ int llenarDB(){
         "INSERT INTO clientes (cedula, nombre, apellido, cuenta_colones, cuenta_dolares)" 
         "VALUES (544018749, 'Lorraine', 'Ryan', 1544018749, 2544018749);"
         "INSERT INTO prestamos (prestamo_id, denominacion, tipo, monto_total, plazo_meses, plazo_restante, cuota_mensual, tasa, cliente_id)"  
-        "VALUES (1, 'colones', 'prendario', 2000000, 12,5, 400000.0, 0.15, 326823600);"
+        "VALUES (1, 'colones', 'prendario', 2000000, 12, 5, 400000.0, 0.15, 326823600);"
         "INSERT INTO prestamos (prestamo_id, denominacion, tipo, monto_total, plazo_meses, plazo_restante, cuota_mensual, tasa, cliente_id)" 
         "VALUES (2, 'colones', 'personal', 5000000, 12 ,10, 416666.67, 0.1, 456251480);"
         "INSERT INTO prestamos (prestamo_id, denominacion, tipo, monto_total, plazo_meses, plazo_restante, cuota_mensual, tasa, cliente_id)" 
