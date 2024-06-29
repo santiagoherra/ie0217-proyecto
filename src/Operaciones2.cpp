@@ -34,6 +34,7 @@ int Operaciones::gestionAhorros(){
 
     cout << "Esta es la seccion de gestion de ahorros para los clientes.\n" << endl;
 
+    //Se ingresa la cedula para ver los CDPs de la persona asociada
     cout << "Porfavor ingrese su numero de cedula para verificar si la persona esta ingresada en el sistema.\n" << endl; 
     getline(cin, cedula);
 
@@ -48,21 +49,23 @@ int Operaciones::gestionAhorros(){
 
     std::cout << "Certificados de Deposito a Plazo asociados a la ID de cliente\n" << cedula << ".\n" << endl;
 
-    //proceso de obtener los cdps de las personas
+    //Ahora se hara una consuta a la base de datos para obtener los CDPs de la persona de la cedula
 
     sqlite3 *db;
     int rc;
 
+    //Se abre la base de datos
     rc = sqlite3_open("banco.db", &db);
     if (rc) {
         std::cerr << "No se puede abrir la base de datos: " << sqlite3_errmsg(db) << std::endl;
         return 1;
     }
-    //cambiar comando!!!
+    
     const char* sqlConsulta = "SELECT * FROM certificados_de_deposito WHERE cliente_cedula = ?;";
 
     sqlite3_stmt *stmt;
 
+    //Se prepara la consulta
     rc = sqlite3_prepare_v2(db, sqlConsulta, -1, &stmt, 0);
     if (rc != SQLITE_OK) {
         std::cerr << "No se puede preparar la declaracion: " << sqlite3_errmsg(db) << std::endl;
@@ -70,10 +73,13 @@ int Operaciones::gestionAhorros(){
         return 1;
     }
 
-    cout << std::fixed << std::setprecision(2); ///arreglar prints
+    //Se arreglan prints de los numeros para que no salgan en potencia
+    cout << std::fixed << std::setprecision(2); 
 
+    //Se inserta la cedula en la consulta 
     sqlite3_bind_text(stmt, 1, cedula.c_str(), -1, SQLITE_STATIC);
 
+    //Con el bucle se obtiene todos los valores de la consulta y se van imprimiendo uno por uno
     while ((rc = sqlite3_step(stmt)) == SQLITE_ROW) {
         int cdp_id = sqlite3_column_int(stmt, 0);
         const unsigned char *denominacion = sqlite3_column_text(stmt, 1);
@@ -92,7 +98,10 @@ int Operaciones::gestionAhorros(){
 
     sqlite3_finalize(stmt);
 
-    //poder escoger ver el cdp especifico
+    //Despues de ver cada uno de los cdps de la perosona, se debe de escoger cual es el que se quiere ver en especifico
+    //y la cantidad de plata que lleva hasta el momento, entonces se escoge, despues se busca en la base de datos y se
+    //imprime el cdp deseado
+
 
     int cdp_elegido;
 
@@ -100,6 +109,8 @@ int Operaciones::gestionAhorros(){
             "los progreso generado hasta ahora.\n" << endl;
 
     cin >> cdp_elegido; //Es el id del cdp
+
+    leerInt(cdp_elegido);
 
     const char* recuperarCDPsql = "SELECT cdp_id, denominacion, tasa, plazo_meses, monto_deposito"
                                 ", fecha_deposito FROM certificados_de_deposito WHERE cdp_id = ?;";
@@ -160,6 +171,7 @@ int Operaciones::gestionAhorros(){
         cout << "| Intereses hasta ahora   | " << interes_acumulados << " |\n" << endl;
         cout << "+------------------------------------+\n" << endl;
 
+    //Del lado contrario el usuario no escoge el CDP ID deseado no se encontrara el CDP designado
     }else{
         cout << "No se encontro ningun Certificado de Deposito a plazo con ese ID.\n" << endl;
     }
