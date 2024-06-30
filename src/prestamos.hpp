@@ -11,56 +11,128 @@
 #include <vector>
 #include <any>
 
+/**
+ * @brief Esta es la clase de prestamos la cual amneja el ingreso de prestamos del usuario e 
+ * imprime la informacion personalizada de las tasas de interes para los montos personalizados 
+ * que ingresa el usuario.
+ * 
+ */
 class Prestamos{
     public:
-        //Este es la cantidad de meses que se daran como opcion para los prestamos personales
+        /**
+         * @brief Este es la cantidad de meses que se daran como opcion para los prestamos personales
+         */
         std::vector<int> mesesPersonal = {12, 36, 48};
 
-        //ESta es la cantidad de meses que se daran como opcion para los prestamos prendarios
+        /**
+         * @brief Esta es la cantidad de meses que se daran como opcion para los prestamos prendario
+         * 
+         */
         std::vector<int> mesesPrendario = {72, 84, 96};
 
-        //Esta es la cantidad de meses que se daran como opcion para los prestamos hipotecarios
+        /**
+         * @brief Esta es la cantidad de meses que se daran como opcion para los prestamos hipotecarios
+         * 
+         */
         std::vector<int> mesesHipotecario = {120, 180, 240};
 
-        //Estos son los intereses anuales para los prestamos personales
+        /**
+         * @brief Estos son los intereses anuales para los prestamos personales
+         * 
+         */
         float interesPersonalAnualColones = 0.2;
         float interesPersonalAnualDolar = 0.16;
 
-        //Estos son los intereses anuales para los prestamos prendarios
+        /**
+         * @brief Estos son los intereses anuales para los prestamos prendarios
+         * 
+         */
         float interesPrendarioAnualColones = 0.155;
         float interesPrendarioAnualDolar = 0.125;
 
-        //Estos son los intereses anuales para los prestmos hipotecarios
+        /**
+         * @brief Estos son los intereses anuales para los prestmos hipotecarios
+         * 
+         */
         float interesHipotecarioAnualColones = 0.12;
         float interesHipotecarioAnualDolar = 0.07;
 
-        float tasaCompraDolarColones = 521.5; //Asumiendo que la gente compra dolar para pagar el prestamo.
+        /**
+         * @brief Asumiendo que la gente compra dolar para pagar el prestamo.
+         * 
+         */
+        float tasaCompraDolarColones = 521.5; 
 
-        //Funcion que cambia el interes anual a mensual, necesario para dar las cuotas mensuales
+        /**
+         * @brief Funcion que cambia el interes anual a mensual, necesario para dar las cuotas mensuales
+         * 
+         * @param interes interes anual
+         * @return float Devuelve el interes mensual
+         */
         float interesAnualaMensual(float interes);
 
-        //Calcula las cuotas utilizadas para la tabla personalizada
+        /**
+         * @brief Calcula las cuotas utilizadas para la tabla personalizada
+         * 
+         * @param interes Manda el interes mensual utilizado
+         * @param meses Manda las opciones de meses que se puede utilizar
+         * @param monto Manda el monto total que la persona eligio
+         * @return std::vector<int> Calculas las cuotas mensual para los meses que dan de opcion
+         */
         std::vector<int> calcularCoutas(float interes ,std::vector<int> meses, double monto);
 
-        //Imprime la informacion en una tabla para poder desplegar las valores de las cuotas
+        /**
+         * @brief Imprime la tabla de opciones personalizadas del prestamo que la persona eligio
+         * 
+         * @param interesColon Interes el prestamo elegido en colones
+         * @param interesDolar Interes del prestamo elegido en dolares
+         * @param cuotas_dolar cuotas en dolares dependiendo del mes
+         * @param cuotas_colon cuotas en colones dependiendo del mes
+         * @param meses meses de opciones para el usuario
+         */
         void imprimirTablaInformacion(float interesColon, float interesDolar, std::vector<int> cuotas_dolar,
                                      std::vector<int> cuotas_colon, std::vector<int> meses); 
 
-        //Valida el si la persona es apta para el prestamo.
+        /**
+         * @brief Valida el si la persona es apta para el prestamo.
+         * 
+         * @param salario Salario de la persona que desea optar por el prestamo
+         * @param tipoMoneda Tipo de moneda para el prestamo
+         * @return true Si la persona es apta para el prestamo
+         * @return false Si la persona no es apta para el prestamo
+         */
         bool validacionPrestamo(double salario, int tipoMoneda); 
 
-        //Funcion para agregar el prestamo a la base de datos.
+        /**
+         * @brief Funcion para agregar el prestamo a la base de datos.
+         * 
+         * @return int devuelve 1 o 0 dependiendo si se logro agregar el prestamo
+         */
         int agregarPrestamoBaseDatos();
 
-        //Funcion para seguir con el prestamo despues de que la persona ve la tabla de informacion.
+        /**
+         * @brief Funcion para seguir con el prestamo despues de que la persona ve la tabla de informacion.
+         * 
+         */
         void seguirConPrestamo();
 
-        void menu();//Constructor donde se hara toda el menu y se aplicaran los metodos
+        /**
+         * @brief Funcion que comienza para dar paso hacia la la tabla personalizada del usuario
+         * 
+         */
+        void menu();
 
-        //Funcion para imprimir en un archivo de texto la informacion asociada a los prestamos de un cliente
+        /**
+         * @brief Funcion para imprimir en un archivo de texto la informacion asociada a los prestamos de un cliente
+         * 
+         * @return int 
+         */
         int infoPrestamos();
 
-    //Informacion del cliente para despues agregar el prestamo en la base de datos
+    /**
+     * @brief Informacion del cliente para despues agregar el prestamo en la base de datos 
+     * 
+     */
     private:
         std::string denominacion_agregar;
         std::string tipo_agregar;
