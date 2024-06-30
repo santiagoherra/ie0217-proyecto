@@ -217,19 +217,15 @@ int Operaciones::retiro(std::string &denominacion, std::string &clienteOrigenCed
     cout << "Por favor ingrese el numero de cedula del cliente que va a realizar el retiro" << endl;
     getline(cin, cedula);
 
+    leerCedula(cedula);
+
     do {
         cout << "¿Desea realizar el deposito en la cuenta de dolares o colones?" << endl;
         cout << "1) Dolares" << std::endl;
         cout << "2) Colones" << std::endl;
+        cin >> cuenta_op;
 
-        // Verificar si la entrada del usuario es válida
-        if (!(cin >> cuenta_op)) {
-            cout << "\n";
-            cout << "Opcion no valida. Por favor, ingrese un numero." << endl;
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Ignorar el resto de la línea
-            continue;
-        }
+        leerInt(cuenta_op, 1, 2);
 
         switch (cuenta_op)
         {
@@ -329,7 +325,10 @@ int Operaciones::retiro(std::string &denominacion, std::string &clienteOrigenCed
     cin >> montoRetirar;
     cin.ignore();
 
-    // Verifiacion monto
+    // Verifiacion entrada
+    leerInt(montoRetirar);
+
+    // Verificar monto
     if (montoRetirar <= 0) {
         cout << "El monto a retirar no es valido!" << endl;
         return 0;
@@ -404,19 +403,16 @@ int Operaciones::transferencias(std::string &denominacion, std::string &clienteO
     cout << "Por favor ingrese el numero de cedula del cliente que va a realizar al transferencia" << endl;
     getline(cin, cedula);
 
+    leerCedula(cedula);
+
     do {
         cout << "¿Desea transferir desde la cuenta en colones o en dolares?" << endl;
         cout << "1) Dólares" << std::endl;
         cout << "2) Colones" << std::endl;
+        cin >> cuenta_op;
 
         // Verificar si la entrada del usuario es válida
-        if (!(cin >> cuenta_op)) {
-            cout << "\n";
-            cout << "Opcion no valida. Por favor, ingrese un numero." << endl;
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Ignorar el resto de la línea
-            continue;
-        }
+        leerInt(cuenta_op, 1, 2);
 
         switch (cuenta_op)
         {
@@ -514,6 +510,9 @@ int Operaciones::transferencias(std::string &denominacion, std::string &clienteO
     cin >> montoTransferencia;
     cin.ignore();
 
+    // Verificacion de entrada
+    leerInt(montoTransferencia);
+
     // Verificacion monto
     if (montoTransferencia <= 0) {
         cout << "Este monto no es valido!";
@@ -545,6 +544,9 @@ int Operaciones::transferencias(std::string &denominacion, std::string &clienteO
     cout << "Por favor, ingrese el numero de cuenta al que desea realizar la transferencia: " << endl;
     cin >> numeroCuentaReceptor;
     cin.ignore();
+
+    // Verificacion de entrada
+    leerInt(numeroCuentaReceptor);
 
     /* Es necesario hacer una consulta a la tabla de cuentas para identificar la denominacion de la cuenta
     receptora, ya que si las cuentas involucradas dentro de una transaccion no tienen el mismo tipo de
@@ -697,6 +699,8 @@ int Operaciones::abonosPrestamos(std::string &denominacion, std::string &cliente
     cout << "Por favor ingrese el número de cedula del cliente que desea realizar el abono" << endl;
     getline(cin, cliente_id);
 
+    leerCedula(cliente_id);
+
     // Crear consulta para desplegar los prestamos que tiene asociados el cliente
     const char *prestamos = "SELECT * FROM prestamos "
                             "WHERE cliente_id = ?";
@@ -743,6 +747,8 @@ if (rc != SQLITE_DONE) {
     cout << "Por favor, ingrese el numero de identificacion del prestamo al que desea abonar" << endl;
     cin >> prestamo_id;
     cin.ignore();
+
+    leerInt(prestamo_id);
 
     // Se tiene que hacer una consulta para obtener justamente, la cuota mensual de este prestamo
     const char *prestamosDos = "SELECT denominacion, cuota_mensual, cliente_id from prestamos WHERE prestamo_id = ?";

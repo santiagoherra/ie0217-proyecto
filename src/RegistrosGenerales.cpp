@@ -254,6 +254,8 @@ void RegistrosGenerales::registroPersonal() const {
     cout << "Por favor ingrese el número de cedula del cliente" << endl;
     getline(cin, cedula);
 
+    leerCedula(cedula);
+
     // Crear consulta para obtener informacion sobre las cuentas registradas para el cliente
     const char *regPersonalClientes = "SELECT nombre, apellido, cuenta_colones, cuenta_dolares "
                                       "FROM clientes "

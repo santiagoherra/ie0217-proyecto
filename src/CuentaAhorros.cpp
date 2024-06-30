@@ -25,7 +25,7 @@ enum OpcionesCuentaAhorrosInfo{ // Define la enumeracion de las opciones del men
 
 void CuentaAhorros::printInfoCuentaAhorroRegular() const{
     // Obtener archivo de texto
-    string cuentaAhorroRegularTexto = "txt/CuentaAhorroRegular.txt";
+    string cuentaAhorroRegularTexto = "../txt/CuentaAhorroRegular.txt";
 
     // Objeto de tipo fstream
     fstream info(cuentaAhorroRegularTexto);
@@ -46,7 +46,7 @@ void CuentaAhorros::printInfoCuentaAhorroRegular() const{
 
 void CuentaAhorros::printInfoCDP() const{
     // Obtener archivo de texto
-    string cdpTexto = "txt/CDP.txt";
+    string cdpTexto = "../txt/CDP.txt";
 
     // Objeto de tipo fstream
     fstream info(cdpTexto);

@@ -11,11 +11,13 @@
 #include <string>
 
 
-/*Esta clase contiene los métodos necesarios para mostrar toda la
-información necesaria acerca de las cuentas de ahorros y los certificados
-de pago a plazos; para los certificados de pago a plazos también se cuenta
-con un método que calcula los intereses ganados de acuerdo al monto, tiempo
-y tipo de moneda con el que se realice*/
+/**
+ * @brief Esta es la clase que se utiliza para dar información acerca de las cuentas de ahorro.
+ * 
+ * Esta clase contiene los métodos necesarios para mostrar toda la información necesaria acerca de las cuentas de ahorros y
+ * los certificados de pago a plazos; para los certificados de pago a plazo también se cuenta con un método que calcula los
+ * intereses ganados de acuerdo al monto, tiempo y tipo de moneda con el que se realice.
+ */
 class CuentaAhorros {
     public:
         // Este metodo imprime la informacion referente a una cuenta de ahorro regular
