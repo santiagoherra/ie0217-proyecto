@@ -38,9 +38,7 @@ void executeSQL(sqlite3 *db, const char *sql, int (*callback)(void*,int,char**,c
     if(rc != SQLITE_OK) {
         std::cerr << "SQL error: " << errMsg << std::endl;
         sqlite3_free(errMsg);
-    } else {
-        std::cout << "Operacion realizada con exito" << std::endl;
-    }
+    } 
 }
 
 //Esta funcion obtiene el ultimo ID de prestamo para poder agregar uno otro sin que se repita el ID
