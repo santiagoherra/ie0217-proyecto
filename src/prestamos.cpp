@@ -167,7 +167,7 @@ int Prestamos::agregarPrestamoBaseDatos(){
 
     if (!leerCedula2(cedula)) {
         cout << "La cedula introducida no es valida.";
-        return 0; // Salir del programa si la cédula no es válida
+        return 1; // Salir del programa si la cédula no es válida
     }
 
     cedula_agregar = cedula;
@@ -300,7 +300,10 @@ void Prestamos::seguirConPrestamo(){
 
         if(prestamo_valido){
 
-            agregarPrestamoBaseDatos();
+            if (agregarPrestamoBaseDatos() == 1){
+                cout << "\n";
+                return;
+            }
 
             std::cout << "Felicidades! Usted ha sido apto para el prestamo deseado." << std::endl;
         }else{
