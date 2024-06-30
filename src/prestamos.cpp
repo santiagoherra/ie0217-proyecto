@@ -165,7 +165,10 @@ int Prestamos::agregarPrestamoBaseDatos(){
     std::cout << "Porfavor ingrese su numero de cedula a la cual quiere asociar el prestamo.\n" << std::endl;
     getline(std::cin, cedula);
 
-    leerCedula(cedula);
+    if (!leerCedula2(cedula)) {
+        cout << "La cedula introducida no es valida.";
+        return 0; // Salir del programa si la cédula no es válida
+    }
 
     cedula_agregar = cedula;
 
@@ -439,7 +442,10 @@ int Prestamos::infoPrestamos(){
 
     std::cout << "Ingrese el ID del cliente: ";
     std::cin >> clientID;
-    leerCedula(clientID);
+    if (!leerCedula2(clientID)) {
+        cout << "La cedula introducida no es valida.";
+        return 0; // Salir del programa si la cédula no es válida
+    }
 
     rc = sqlite3_open("banco.db", &db);
     if (rc) {

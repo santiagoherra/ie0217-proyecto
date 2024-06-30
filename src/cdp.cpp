@@ -34,9 +34,12 @@ void CDP::agregarCDP() {
     std::string cedula;
     std::cout << "Ingrese la cedula del cliente: ";
     std::cin >> cedula;
-    leerCedula(cedula);
+    if (!leerCedula2(cedula)) {
+        cout << "La cedula introducida no es valida.";
+        return; // Salir del programa si la cédula no es válida
+    }
 
-    // Verificar si el cliente existe (implementar función existeCliente())
+    // Verificar si el cliente existe
     bool clienteExiste = existeCliente(cedula);
     if (!clienteExiste) {
         std::cout << "El cliente no existe. No se puede agregar un CDP." << std::endl;
@@ -70,7 +73,7 @@ void CDP::agregarCDP() {
         }
         denominacion1 = "dolares";
     } else {
-        std::cout << "Denominación no valida." << std::endl;
+        std::cout << "Denominacion no valida." << std::endl;
         sqlite3_close(db);
         return;
     }
@@ -80,7 +83,7 @@ void CDP::agregarCDP() {
     std::cout << "Seleccione el plazo (1-4): ";
     std::cin >> opcionPlazo;
     if (opcionPlazo < 1 || opcionPlazo > 4) {
-        std::cout << "Opción de plazo no valida." << std::endl;
+        std::cout << "Opcion de plazo no valida." << std::endl;
         sqlite3_close(db);
         return;
     }
@@ -184,7 +187,7 @@ bool CDP::verificarSaldoSuficiente(sqlite3* db, const std::string& cedula, int d
         sql = "UPDATE cuentas SET balance = ? WHERE numero_cuenta = ?";
         rc = sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, nullptr);
         if (rc != SQLITE_OK) {
-            std::cerr << "Error al preparar la consulta de actualización de saldo: " << sqlite3_errmsg(db) << std::endl;
+            std::cerr << "Error al preparar la consulta de actualizacion de saldo: " << sqlite3_errmsg(db) << std::endl;
             return false;
         }
 

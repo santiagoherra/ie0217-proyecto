@@ -38,7 +38,10 @@ int Operaciones::gestionAhorros(){
     cout << "Porfavor ingrese su numero de cedula para verificar si la persona esta ingresada en el sistema.\n" << endl; 
     getline(cin, cedula);
 
-    leerCedula(cedula);
+    if (!leerCedula2(cedula)) {
+        cout << "La cedula introducida no es valida.";
+        return 0; // Salir del programa si la cédula no es válida
+    }
 
     existe_cliente = existeCliente(cedula);
 

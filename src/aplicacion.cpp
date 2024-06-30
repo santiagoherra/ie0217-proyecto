@@ -61,7 +61,7 @@ int main(){
     do {
         // Imprime el menu
         cout << "\n\nBienvenido a la aplicacion de banco, escoja el modo de uso: \n";
-        cout << "1. Modulo de informacion general de prestamos\n";
+        cout << "1. Modulo de informacion general\n";
         cout << "2. Modulo de atencion al cliente \n";
         cout << "3. Salir \n";
         cout << "Ingrese su opcion \n";

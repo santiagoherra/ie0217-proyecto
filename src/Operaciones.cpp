@@ -57,20 +57,23 @@ int Operaciones::deposito(std::string &denominacion, std::string &clienteOrigenC
     // Iniciar la transacción
     rc = sqlite3_exec(db, "BEGIN TRANSACTION", nullptr, nullptr, &errMsg);
     if (rc != SQLITE_OK) {
-        std::cerr << "Error al iniciar la transacción: " << errMsg << std::endl;
+        std::cerr << "Error al iniciar la transaccion: " << errMsg << std::endl;
         sqlite3_free(errMsg);
         sqlite3_close(db);
         return 0;
     }
 
     // Solicitar datos para realizar el depósito
-    std::cout << "Por favor ingrese el número de cedula del cliente al que se va a depositar" << std::endl;
+    std::cout << "Por favor ingrese el numero de cedula del cliente al que se va a depositar" << std::endl;
     std::getline(std::cin, cedula);
 
-    leerCedula(cedula);
+    if (!leerCedula2(cedula)) {
+        cout << "La cedula introducida no es valida.";
+        return 0; // Salir del programa si la cédula no es válida
+    }
 
-    std::cout << "¿Desea realizar el depósito en la cuenta de dólares o colones?" << std::endl;
-    std::cout << "1) Dólares" << std::endl;
+    std::cout << "¿Desea realizar el deposito en la cuenta de dolares o colones?" << std::endl;
+    std::cout << "1) Dolares" << std::endl;
     std::cout << "2) Colones" << std::endl;
     std::cin >> cuenta_op;
 
@@ -86,7 +89,7 @@ int Operaciones::deposito(std::string &denominacion, std::string &clienteOrigenC
 
     rc = sqlite3_prepare_v2(db, clientes, -1, &stmt, 0);
     if (rc != SQLITE_OK) {
-        std::cerr << "No se puede preparar la declaración: " << sqlite3_errmsg(db) << std::endl;
+        std::cerr << "No se puede preparar la declaracion: " << sqlite3_errmsg(db) << std::endl;
         sqlite3_exec(db, "ROLLBACK", nullptr, nullptr, &errMsg);
         sqlite3_close(db);
         return 1;
@@ -99,9 +102,9 @@ int Operaciones::deposito(std::string &denominacion, std::string &clienteOrigenC
     rc = sqlite3_step(stmt);
     if (rc == SQLITE_ROW) {
         numero_cuenta = sqlite3_column_int(stmt, 0);
-        std::cout << "El número de cuenta del cliente en " << denominacion << " es " << numero_cuenta << std::endl;  // CHECKPOINT
+        std::cout << "El numero de cuenta del cliente en " << denominacion << " es " << numero_cuenta << std::endl;  // CHECKPOINT
     } else if (rc == SQLITE_DONE) {
-        std::cout << "No existe ninguna cuenta asociada a este número de cédula" << std::endl;
+        std::cout << "No existe ninguna cuenta asociada a este numero de cedula" << std::endl;
         sqlite3_finalize(stmt);
         sqlite3_exec(db, "ROLLBACK", nullptr, nullptr, &errMsg);
         sqlite3_close(db);
@@ -135,7 +138,7 @@ int Operaciones::deposito(std::string &denominacion, std::string &clienteOrigenC
 
     // Verificación monto
     if (montoDepositar <= 0) {
-        std::cout << "¡El monto a depositar no es válido!" << std::endl;
+        std::cout << "¡El monto a depositar no es valido!" << std::endl;
         sqlite3_finalize(stmt);
         sqlite3_exec(db, "ROLLBACK", nullptr, nullptr, &errMsg);
         sqlite3_close(db);
@@ -149,7 +152,7 @@ int Operaciones::deposito(std::string &denominacion, std::string &clienteOrigenC
     // Realizar la segunda consulta
     rc = sqlite3_step(stmt);
     if (rc == SQLITE_DONE) {
-        std::cout << "¡El depósito fue realizado de manera exitosa!" << std::endl;
+        std::cout << "¡El deposito fue realizado de manera exitosa!" << std::endl;
     } else {
         std::cerr << "Error de SQL: " << sqlite3_errmsg(db) << std::endl;
         sqlite3_finalize(stmt);
@@ -166,7 +169,7 @@ int Operaciones::deposito(std::string &denominacion, std::string &clienteOrigenC
     // Confirmar la transacción
     rc = sqlite3_exec(db, "COMMIT", nullptr, nullptr, &errMsg);
     if (rc != SQLITE_OK) {
-        std::cerr << "Error al confirmar la transacción: " << errMsg << std::endl;
+        std::cerr << "Error al confirmar la transaccion: " << errMsg << std::endl;
         sqlite3_exec(db, "ROLLBACK", nullptr, nullptr, &errMsg);
         sqlite3_close(db);
         return 0;
@@ -208,7 +211,7 @@ int Operaciones::retiro(std::string &denominacion, std::string &clienteOrigenCed
     // Inicio de la transacción
     rc = sqlite3_exec(db, "BEGIN TRANSACTION", nullptr, nullptr, &errMsg);
     if (rc != SQLITE_OK) {
-        cerr << "Error al iniciar la transacción: " << errMsg << endl;
+        cerr << "Error al iniciar la transaccion: " << errMsg << endl;
         sqlite3_close(db);
         return 0;
     }
@@ -217,7 +220,10 @@ int Operaciones::retiro(std::string &denominacion, std::string &clienteOrigenCed
     cout << "Por favor ingrese el numero de cedula del cliente que va a realizar el retiro" << endl;
     getline(cin, cedula);
 
-    leerCedula(cedula);
+    if (!leerCedula2(cedula)) {
+        cout << "La cedula introducida no es valida.";
+        return 0; // Salir del programa si la cédula no es válida
+    }
 
     do {
         cout << "¿Desea realizar el deposito en la cuenta de dolares o colones?" << endl;
@@ -356,7 +362,7 @@ int Operaciones::retiro(std::string &denominacion, std::string &clienteOrigenCed
     // Confirmar la transacción
     rc = sqlite3_exec(db, "COMMIT", nullptr, nullptr, &errMsg);
     if (rc != SQLITE_OK) {
-        cerr << "Error al confirmar la transacción: " << errMsg << endl;
+        cerr << "Error al confirmar la transaccion: " << errMsg << endl;
         sqlite3_exec(db, "ROLLBACK", nullptr, nullptr, &errMsg);
         sqlite3_close(db);
         return 0;
@@ -403,11 +409,14 @@ int Operaciones::transferencias(std::string &denominacion, std::string &clienteO
     cout << "Por favor ingrese el numero de cedula del cliente que va a realizar al transferencia" << endl;
     getline(cin, cedula);
 
-    leerCedula(cedula);
+    if (!leerCedula2(cedula)) {
+        cout << "La cedula introducida no es valida.";
+        return 0; // Salir del programa si la cédula no es válida
+    }
 
     do {
         cout << "¿Desea transferir desde la cuenta en colones o en dolares?" << endl;
-        cout << "1) Dólares" << std::endl;
+        cout << "1) Dolares" << std::endl;
         cout << "2) Colones" << std::endl;
         cin >> cuenta_op;
 
@@ -572,7 +581,7 @@ int Operaciones::transferencias(std::string &denominacion, std::string &clienteO
         if (denominacionUnsChar) {
             denominacionReceptor = reinterpret_cast<const char*>(denominacionUnsChar);
         } else {
-            cout << "No fue posible obtener la denominación de la cuenta receptora" << std::endl;
+            cout << "No fue posible obtener la denominacion de la cuenta receptora" << std::endl;
             return 0;
         }
     } else if (rc == SQLITE_DONE) {
@@ -696,10 +705,13 @@ int Operaciones::abonosPrestamos(std::string &denominacion, std::string &cliente
     }
 
     // Solicitar cedula (cliente_id) para buscar en la tabla los prestamos asociados
-    cout << "Por favor ingrese el número de cedula del cliente que desea realizar el abono" << endl;
+    cout << "Por favor ingrese el numero de cedula del cliente que desea realizar el abono" << endl;
     getline(cin, cliente_id);
 
-    leerCedula(cliente_id);
+    if (!leerCedula2(cliente_id)) {
+        cout << "La cedula introducida no es valida.";
+        return 0; // Salir del programa si la cédula no es válida
+    }
 
     // Crear consulta para desplegar los prestamos que tiene asociados el cliente
     const char *prestamos = "SELECT * FROM prestamos "
@@ -819,7 +831,7 @@ if (rc != SQLITE_DONE) {
             clientes = "SELECT cuenta_colones from clientes WHERE cedula = ?";
             break;
         default:
-            cout << "La opcion ingresada no es válida! Por favor, inténtelo de nuevo.";
+            cout << "La opcion ingresada no es valida! Por favor, intentelo de nuevo.";
             break;
         }
     } while (cuenta_op != DOLARES && cuenta_op != COLONES);
@@ -977,7 +989,10 @@ int Operaciones::gestionAhorros() {
     std::cout << "Porfavor ingrese su numero de cedula para verificar si la persona esta ingresada en el sistema." << std::endl;
     std::getline(std::cin, cedula);
 
-    leerCedula(cedula);
+    if (!leerCedula2(cedula)) {
+        cout << "La cedula introducida no es valida.";
+        return 0; // Salir del programa si la cédula no es válida
+    }
     existe_cliente = existeCliente(cedula);
 
     if (!existe_cliente) {
@@ -1033,7 +1048,7 @@ int Operaciones::gestionAhorros() {
     sqlite3_finalize(stmt);
 
     if (!tieneCDP) {
-        std::cout << "\nEl cliente no tiene ningún Certificado de Depósito a Plazo asociado." << std::endl;
+        std::cout << "\nEl cliente no tiene ningun Certificado de Deposito a Plazo asociado." << std::endl;
         sqlite3_close(db);
         return 0;
     }

@@ -42,7 +42,7 @@ void RegistrosGenerales::actualizarRegistro(std::string tipo_transaccion, std::s
     // Inicio de la transacción
     rc = sqlite3_exec(db, "BEGIN TRANSACTION", nullptr, nullptr, &errMsg);
     if (rc != SQLITE_OK) {
-        cerr << "Error al iniciar la transacción: " << errMsg << endl;
+        cerr << "Error al iniciar la transaccion: " << errMsg << endl;
         sqlite3_close(db);
         return;
     }
@@ -77,13 +77,13 @@ void RegistrosGenerales::actualizarRegistro(std::string tipo_transaccion, std::s
     }
     else
     {
-        cout << "Transacción guardada correctamente en el registro general" << endl;
+        cout << "Transaccion guardada correctamente en el registro general" << endl;
     }
 
     // Confirmar la transacción
     rc = sqlite3_exec(db, "COMMIT", nullptr, nullptr, &errMsg);
     if (rc != SQLITE_OK) {
-        cerr << "Error al confirmar la transacción: " << errMsg << endl;
+        cerr << "Error al confirmar la transaccion: " << errMsg << endl;
         sqlite3_exec(db, "ROLLBACK", nullptr, nullptr, &errMsg);
         sqlite3_close(db);
         return;
@@ -140,8 +140,8 @@ void RegistrosGenerales::verRegistro() const {
         cliente_destino_cedula = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 5));
         monto_base = sqlite3_column_double(stmt, 6);
 
-        cout << "Transacción ID: " << ID << " Tipo de transacción: " << tipo_transaccion << " Fecha: " <<
-                fecha_transaccion << " Denominación: " << denominacion << " Cliente origen: " <<
+        cout << "Transaccion ID: " << ID << " Tipo de transaccion: " << tipo_transaccion << " Fecha: " <<
+                fecha_transaccion << " Denominacion: " << denominacion << " Cliente origen: " <<
                 cliente_origen_cedula << " Cliente destino: " << cliente_destino_cedula <<
                 " Monto: " << monto_base << endl;
     } 
@@ -172,7 +172,7 @@ void RegistrosGenerales::filtrarRegistro () const {
     }
 
     // Usuario ingresa el filtro
-	cout << "Por favor ingrese el tipo de transacción para el cual desea visualizar las transacciones:" << std::endl;
+	cout << "Por favor ingrese el tipo de transaccion para el cual desea visualizar las transacciones:" << std::endl;
 	getline(cin, filtro);
 
     // Mostrar todo el registro
@@ -251,10 +251,13 @@ void RegistrosGenerales::registroPersonal() const {
     }
 
     // Solicitar datos para obtener registro personal
-    cout << "Por favor ingrese el número de cedula del cliente" << endl;
+    cout << "Por favor ingrese el numero de cedula del cliente" << endl;
     getline(cin, cedula);
 
-    leerCedula(cedula);
+    if (!leerCedula2(cedula)) {
+        cout << "La cedula introducida no es valida.";
+        return; // Salir del programa si la cédula no es válida
+    }
 
     // Crear consulta para obtener informacion sobre las cuentas registradas para el cliente
     const char *regPersonalClientes = "SELECT nombre, apellido, cuenta_colones, cuenta_dolares "
@@ -284,7 +287,7 @@ void RegistrosGenerales::registroPersonal() const {
         cout << "CuentaColones: " << cuentaColones << endl;
         cout << "CuentaDolares: " << cuentaDolares << endl;
     } else if (rc == SQLITE_DONE) {
-        cout << "No existe ninguna cuenta asociada a este número de cédula" << endl;
+        cout << "No existe ninguna cuenta asociada a este número de cedula" << endl;
         sqlite3_finalize(stmt);
         sqlite3_close(db);
         return;
@@ -323,8 +326,8 @@ void RegistrosGenerales::registroPersonal() const {
             tasa = sqlite3_column_double(stmt, 2);
             denominacion = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 3));
 
-            cout << "Número de cuenta: " << numero_cuenta << " Balance: " << std::fixed <<
-            std::setprecision(2) << balance << " Tasa: " << tasa << " Denominación: " << denominacion << endl;
+            cout << "Numero de cuenta: " << numero_cuenta << " Balance: " << std::fixed <<
+            std::setprecision(2) << balance << " Tasa: " << tasa << " Denominacion: " << denominacion << endl;
     }                        
 
     // Crear la consulta para obtener un registro con las transacciones en las que se involucra al cliente
@@ -354,8 +357,8 @@ void RegistrosGenerales::registroPersonal() const {
         cliente_destino_cedula = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 5));
         monto_base = sqlite3_column_int(stmt, 6);
 
-        cout << " Tipo transacción: " << tipo_transaccion << " Fecha transacción: " << fecha_transaccion <<
-        " Denominación: " << denominacion << " Cliente origen: " << cliente_origen_cedula << " Cliente destino: "
+        cout << " Tipo transaccion: " << tipo_transaccion << " Fecha transaccion: " << fecha_transaccion <<
+        " Denominacion: " << denominacion << " Cliente origen: " << cliente_origen_cedula << " Cliente destino: "
         << cliente_destino_cedula << " Monto: " << std::fixed << std::setprecision(2) << monto_base << endl;
     }
 
@@ -383,7 +386,7 @@ void RegistrosGenerales::registroPersonal() const {
     // Parametros para la consulta
     sqlite3_bind_text(stmt, 1, cedula.c_str(), -1, SQLITE_STATIC);
 
-    cout << "\nPréstamos asociados al cliente: " << endl;
+    cout << "\nPrestamos asociados al cliente: " << endl;
     // A partir de esta consulta, se despliegan todos los prestamos relacionados con el cliente
     while ((rc = sqlite3_step(stmt)) == SQLITE_ROW) {
         prestamo_id = sqlite3_column_int(stmt, 0);
@@ -395,7 +398,7 @@ void RegistrosGenerales::registroPersonal() const {
         cuota_mensual = sqlite3_column_int(stmt, 6);
         tasa = sqlite3_column_double(stmt, 7);
 
-        cout << " Préstamo ID: "<< prestamo_id << " Denominación: " << denominacion << " Tipo de Préstamo: "
+        cout << " Prestamo ID: "<< prestamo_id << " Denominacion: " << denominacion << " Tipo de Prestamo: "
         << tipo_prestamo << " Monto total: " << std::fixed << std::setprecision(2) << monto_total << " Plazo (meses): " << plazo_meses <<
         " Plazo restante (cuotas):" << plazo_restante << " Cuota mensual: " << std::fixed << std::setprecision(2) << cuota_mensual << " Tasa: " << tasa << endl;
     }
@@ -424,7 +427,7 @@ void RegistrosGenerales::registroPersonal() const {
     // Parametros para la consulta
     sqlite3_bind_text(stmt, 1, cedula.c_str(), -1, SQLITE_STATIC);
 
-    cout << "\nCréditos de depósito a plazo asociados al cliente: " << endl;
+    cout << "\nCreditos de deposito a plazo asociados al cliente: " << endl;
     while ((rc = sqlite3_step(stmt)) == SQLITE_ROW) {
         cdp_id = sqlite3_column_int(stmt, 0);
         denominacion = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1));
@@ -433,9 +436,9 @@ void RegistrosGenerales::registroPersonal() const {
         monto_deposito = sqlite3_column_double(stmt, 4);
         fecha_deposito = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 5));
 
-        cout << "CDP ID: " << cdp_id << " Denominación: " << denominacion << " Tasa: " << tasa <<
-        " Plazo (meses): " << plazo_meses << " Monto depósito: " << std::fixed << std::setprecision(2) <<
-        monto_deposito << " Fecha depósito: " << fecha_deposito << endl;
+        cout << "CDP ID: " << cdp_id << " Denominacion: " << denominacion << " Tasa: " << tasa <<
+        " Plazo (meses): " << plazo_meses << " Monto deposito: " << std::fixed << std::setprecision(2) <<
+        monto_deposito << " Fecha deposito: " << fecha_deposito << endl;
     }
 
     if (rc != SQLITE_DONE) {
