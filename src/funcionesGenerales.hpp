@@ -50,5 +50,7 @@ bool validarNombreApellido(const std::string &nombre);
 
 bool existeCuenta(int numero_cuenta);
 
+bool leerCedula2(const std::string &cedula);
+
 
 #endif

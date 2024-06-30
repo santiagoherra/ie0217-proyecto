@@ -30,7 +30,7 @@ bool existeCliente(const std::string& clienteID){
 
     rc = sqlite3_prepare_v2(db, consultaSql, -1, &stmt, 0);
     if (rc != SQLITE_OK) {
-        std::cerr << "No se puede preparar la declaración: " << sqlite3_errmsg(db) << std::endl;
+        std::cerr << "No se puede preparar la declaracion: " << sqlite3_errmsg(db) << std::endl;
         sqlite3_close(db);
         return false;
     }
@@ -80,7 +80,7 @@ int agregarCliente(const std::string clienteID, std::string nombre, std::string 
 
     rc = sqlite3_prepare_v2(db, insertarSql, -1, &stmt, 0);
     if (rc != SQLITE_OK) {
-        std::cerr << "No se puede preparar la declaración: " << sqlite3_errmsg(db) << std::endl;
+        std::cerr << "No se puede preparar la declaracion: " << sqlite3_errmsg(db) << std::endl;
         sqlite3_close(db);
         return 1;
     }
@@ -95,7 +95,7 @@ int agregarCliente(const std::string clienteID, std::string nombre, std::string 
 
     rc = sqlite3_step(stmt);
     if (rc != SQLITE_DONE) {
-        std::cerr << "Error al ejecutar la declaración: " << sqlite3_errmsg(db) << std::endl;
+        std::cerr << "Error al ejecutar la declaracion: " << sqlite3_errmsg(db) << std::endl;
         return 1;
     }
 
@@ -189,7 +189,7 @@ void insertarCuentasYClientes() {
     std::cout << "Ingrese el numero de cedula del cliente: ";
     std::getline(std::cin, cedula);
 
-    leerCedula(cedula);
+    
 
     if (existeCliente(cedula)) {
         std::cerr << "El cliente con la cedula " << cedula << " ya existe en el sistema." << std::endl;
@@ -295,7 +295,7 @@ bool existeCuenta(int numero_cuenta) {
 
     rc = sqlite3_prepare_v2(db, sql, -1, &stmt, 0);
     if (rc != SQLITE_OK) {
-        std::cerr << "No se puede preparar la declaración: " << sqlite3_errmsg(db) << std::endl;
+        std::cerr << "No se puede preparar la declaracion: " << sqlite3_errmsg(db) << std::endl;
         sqlite3_close(db);
         return false;
     }
@@ -309,4 +309,12 @@ bool existeCuenta(int numero_cuenta) {
     sqlite3_close(db);
 
     return existe;
+}
+
+bool leerCedula2(const std::string &cedula) {
+    std::regex patron("^\\d{9}$");
+    if (!std::regex_match(cedula, patron)) {
+        return false;
+    }
+    return true;
 }
