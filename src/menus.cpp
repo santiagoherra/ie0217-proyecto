@@ -283,17 +283,17 @@ int menu_operaciones(){
             // Switch del menu
             case DEPOSITO:
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                retorno = op.deposito();
+                retorno = op.deposito(denominacion, clienteOrigenCedula, clienteDestinoCedula, montoBase);
 
                 // Todos los metodos de operaciones devuelven 1 si la transaccion fue exitosa
-                //if(retorno) {
-                    //tipoTransaccion = "deposito";
-                    //fechaTransaccion = obtenerFechaString();  // Fecha en forma de string
+                if(retorno) {
+                    tipoTransaccion = "deposito";
+                    fechaTransaccion = obtenerFechaString();  // Fecha en forma de string
 
                     // Insertar la transaccion al registro general
-                    //regs.actualizarRegistro(tipoTransaccion, fechaTransaccion, denominacion,
-                                       //clienteOrigenCedula, clienteDestinoCedula, montoBase);
-                //}
+                    regs.actualizarRegistro(tipoTransaccion, fechaTransaccion, denominacion,
+                                       clienteOrigenCedula, clienteDestinoCedula, montoBase);
+                }
                 break;
             case RETIRO:
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');

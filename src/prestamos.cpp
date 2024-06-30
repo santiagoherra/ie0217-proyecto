@@ -464,7 +464,7 @@ int Prestamos::infoPrestamos(){
     }
 
     // Crear archivo output
-    std::ofstream outFile(clientID + ".txt");
+    std::ofstream outFile("../txt/" + clientID + ".txt");
     if (!outFile.is_open()) {
         std::cerr << "Error al crear el archivo de salida." << std::endl;
         sqlite3_close(db);
