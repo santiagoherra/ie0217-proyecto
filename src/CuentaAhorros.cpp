@@ -78,7 +78,7 @@ void CuentaAhorros::calculadoraIntereses() const{
         cout << "Ingrese el monto principal que desea abonar:" << endl;
         cin >> montoPrincipal;
 
-        cout << "Ingrese el tiempo en anios que desea para el CDP:" << endl;
+        cout << "Ingrese el tiempo en años que desea para el CDP:" << endl;
         cin >> tiempo;
 
         cout << "Ingrese el tipo de moneda que desea utilizar:" << endl;

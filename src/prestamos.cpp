@@ -206,6 +206,9 @@ int Prestamos::agregarPrestamoBaseDatos(){
 //Esta es la funcion que imprime la tabla personalizada de prestamos para que la persona pueda elegir
 void Prestamos::imprimirTablaInformacion(float interesColon, float interesDolar, std::vector<int> cuotas_dolar,
                                          std::vector<int> cuotas_colon, std::vector<int> meses){
+    
+    //Arregla la el print para que no salga en potencia
+    cout << std::fixed << std::setprecision(2); 
 
     //imprime la informacion personalizada
     if(tipo_agregar == "Prendario"){
