@@ -1,0 +1,55 @@
+\hypertarget{classCDP}{}\doxysection{Referencia de la Clase CDP}
+\label{classCDP}\index{CDP@{CDP}}
+\doxysubsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classCDP_af4c4c2fc83e9d7269ecc31f0b8803a46}{agregar\+CDP}} ()
+\begin{DoxyCompactList}\small\item\em Agrega un \mbox{\hyperlink{classCDP}{CDP}} para un cliente dado. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classCDP_a4d3551887bc1bc9506c3219cced0e58e}{verificar\+Saldo\+Suficiente}} (sqlite3 $\ast$db, const std\+::string \&cedula, int denominacion, double monto)
+\begin{DoxyCompactList}\small\item\em Verifica si el saldo es suficiente como para obtener un \mbox{\hyperlink{classCDP}{CDP}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentación de las funciones miembro}
+\mbox{\Hypertarget{classCDP_af4c4c2fc83e9d7269ecc31f0b8803a46}\label{classCDP_af4c4c2fc83e9d7269ecc31f0b8803a46}} 
+\index{CDP@{CDP}!agregarCDP@{agregarCDP}}
+\index{agregarCDP@{agregarCDP}!CDP@{CDP}}
+\doxysubsubsection{\texorpdfstring{agregarCDP()}{agregarCDP()}}
+{\footnotesize\ttfamily void CDP\+::agregar\+CDP (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Agrega un \mbox{\hyperlink{classCDP}{CDP}} para un cliente dado. 
+
+\begin{DoxyReturn}{Devuelve}
+Función tipo Void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCDP_a4d3551887bc1bc9506c3219cced0e58e}\label{classCDP_a4d3551887bc1bc9506c3219cced0e58e}} 
+\index{CDP@{CDP}!verificarSaldoSuficiente@{verificarSaldoSuficiente}}
+\index{verificarSaldoSuficiente@{verificarSaldoSuficiente}!CDP@{CDP}}
+\doxysubsubsection{\texorpdfstring{verificarSaldoSuficiente()}{verificarSaldoSuficiente()}}
+{\footnotesize\ttfamily bool CDP\+::verificar\+Saldo\+Suficiente (\begin{DoxyParamCaption}\item[{sqlite3 $\ast$}]{db,  }\item[{const std\+::string \&}]{cedula,  }\item[{int}]{denominacion,  }\item[{double}]{monto }\end{DoxyParamCaption})}
+
+
+
+Verifica si el saldo es suficiente como para obtener un \mbox{\hyperlink{classCDP}{CDP}}. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em db} & Base de datos con la que se trabaja \\
+\hline
+{\em cedula} & Cédula del cliente \\
+\hline
+{\em denominacion} & Colones o Dólares \\
+\hline
+{\em monto} & Monto del \mbox{\hyperlink{classCDP}{CDP}} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+Bool que indica si se tienen o no los fondos 
+\end{DoxyReturn}
+
+
+La documentación para esta clase fue generada a partir de los siguientes ficheros\+:\begin{DoxyCompactItemize}
+\item 
+/home/santiago/\+Documents/ie0217-\/proyecto/src/\mbox{\hyperlink{cdp_8hpp}{cdp.\+hpp}}\item 
+/home/santiago/\+Documents/ie0217-\/proyecto/src/\mbox{\hyperlink{cdp_8cpp}{cdp.\+cpp}}\end{DoxyCompactItemize}

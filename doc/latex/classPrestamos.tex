@@ -1,0 +1,272 @@
+\hypertarget{classPrestamos}{}\doxysection{Referencia de la Clase Prestamos}
+\label{classPrestamos}\index{Prestamos@{Prestamos}}
+
+
+Esta es la clase de prestamos la cual amneja el ingreso de prestamos del usuario e imprime la informacion personalizada de las tasas de interes para los montos personalizados que ingresa el usuario.  
+
+
+
+
+{\ttfamily \#include $<$prestamos.\+hpp$>$}
+
+\doxysubsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{classPrestamos_a628a25b1fd00c301a8aeda1232dcd8b2}{interes\+Anuala\+Mensual}} (float interes)
+\begin{DoxyCompactList}\small\item\em Funcion que cambia el interes anual a mensual, necesario para dar las cuotas mensuales. \end{DoxyCompactList}\item 
+std\+::vector$<$ int $>$ \mbox{\hyperlink{classPrestamos_a298640631f351f6ea677a963aac62610}{calcular\+Coutas}} (float interes, std\+::vector$<$ int $>$ meses, double monto)
+\begin{DoxyCompactList}\small\item\em Calcula las cuotas utilizadas para la tabla personalizada. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPrestamos_a1a47cf53ae98ad2fabb2ef21cfb8d52e}{imprimir\+Tabla\+Informacion}} (float interes\+Colon, float interes\+Dolar, std\+::vector$<$ int $>$ cuotas\+\_\+dolar, std\+::vector$<$ int $>$ cuotas\+\_\+colon, std\+::vector$<$ int $>$ meses)
+\begin{DoxyCompactList}\small\item\em Imprime la tabla de opciones personalizadas del prestamo que la persona eligio. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classPrestamos_ac746f1cff71a77a0d2fc3bdb6eeb0eeb}{validacion\+Prestamo}} (double salario, int tipo\+Moneda)
+\begin{DoxyCompactList}\small\item\em Valida el si la persona es apta para el prestamo. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classPrestamos_a4f69fed7e7e0815b49d4851b9ea35436}{agregar\+Prestamo\+Base\+Datos}} ()
+\begin{DoxyCompactList}\small\item\em Funcion para agregar el prestamo a la base de datos. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPrestamos_a8368c34a3cf410232fe96777215e0462}{seguir\+Con\+Prestamo}} ()
+\begin{DoxyCompactList}\small\item\em Funcion para seguir con el prestamo despues de que la persona ve la tabla de informacion. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPrestamos_aa3ef02547f80274165e9fecb1298b812}{menu}} ()
+\begin{DoxyCompactList}\small\item\em Funcion que comienza para dar paso hacia la la tabla personalizada del usuario. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classPrestamos_a091a3b9960ea0de2e67412dd9aa5497d}{info\+Prestamos}} ()
+\begin{DoxyCompactList}\small\item\em Funcion para imprimir en un archivo de texto la informacion asociada a los prestamos de un cliente. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Atributos públicos}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ int $>$ \mbox{\hyperlink{classPrestamos_ae6a9f96083019a6fbcccace9fbe1125e}{meses\+Personal}} = \{12, 36, 48\}
+\begin{DoxyCompactList}\small\item\em Este es la cantidad de meses que se daran como opcion para los prestamos personales. \end{DoxyCompactList}\item 
+std\+::vector$<$ int $>$ \mbox{\hyperlink{classPrestamos_ab26ca235fca9ab5aedea9aa7905ae4da}{meses\+Prendario}} = \{72, 84, 96\}
+\begin{DoxyCompactList}\small\item\em Esta es la cantidad de meses que se daran como opcion para los prestamos prendario. \end{DoxyCompactList}\item 
+std\+::vector$<$ int $>$ \mbox{\hyperlink{classPrestamos_a834c641c7eeb2136140dc43a2ed2b4e6}{meses\+Hipotecario}} = \{120, 180, 240\}
+\begin{DoxyCompactList}\small\item\em Esta es la cantidad de meses que se daran como opcion para los prestamos hipotecarios. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classPrestamos_a8ddcdfd978edcde5e53864f29fac58ee}{interes\+Personal\+Anual\+Colones}} = 0.\+2
+\begin{DoxyCompactList}\small\item\em Estos son los intereses anuales para los prestamos personales. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classPrestamos_a6c09af462f6a2563a93c16a15d0780e1}\label{classPrestamos_a6c09af462f6a2563a93c16a15d0780e1}} 
+float {\bfseries interes\+Personal\+Anual\+Dolar} = 0.\+16
+\item 
+float \mbox{\hyperlink{classPrestamos_a37efebe9b52998cc509289ffcfab49aa}{interes\+Prendario\+Anual\+Colones}} = 0.\+155
+\begin{DoxyCompactList}\small\item\em Estos son los intereses anuales para los prestamos prendarios. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classPrestamos_a56f99073050623db9157defc00954d60}\label{classPrestamos_a56f99073050623db9157defc00954d60}} 
+float {\bfseries interes\+Prendario\+Anual\+Dolar} = 0.\+125
+\item 
+float \mbox{\hyperlink{classPrestamos_abeec4c232bad0e75973b17e77dc4ec23}{interes\+Hipotecario\+Anual\+Colones}} = 0.\+12
+\begin{DoxyCompactList}\small\item\em Estos son los intereses anuales para los prestmos hipotecarios. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classPrestamos_a36cc4acf7db03b47fd2bafa93ae395bf}\label{classPrestamos_a36cc4acf7db03b47fd2bafa93ae395bf}} 
+float {\bfseries interes\+Hipotecario\+Anual\+Dolar} = 0.\+07
+\item 
+float \mbox{\hyperlink{classPrestamos_a64f494543f750dea927741cfcbbb9540}{tasa\+Compra\+Dolar\+Colones}} = 521.\+5
+\begin{DoxyCompactList}\small\item\em Asumiendo que la gente compra dolar para pagar el prestamo. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+Esta es la clase de prestamos la cual amneja el ingreso de prestamos del usuario e imprime la informacion personalizada de las tasas de interes para los montos personalizados que ingresa el usuario. 
+
+\doxysubsection{Documentación de las funciones miembro}
+\mbox{\Hypertarget{classPrestamos_a4f69fed7e7e0815b49d4851b9ea35436}\label{classPrestamos_a4f69fed7e7e0815b49d4851b9ea35436}} 
+\index{Prestamos@{Prestamos}!agregarPrestamoBaseDatos@{agregarPrestamoBaseDatos}}
+\index{agregarPrestamoBaseDatos@{agregarPrestamoBaseDatos}!Prestamos@{Prestamos}}
+\doxysubsubsection{\texorpdfstring{agregarPrestamoBaseDatos()}{agregarPrestamoBaseDatos()}}
+{\footnotesize\ttfamily int Prestamos\+::agregar\+Prestamo\+Base\+Datos (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Funcion para agregar el prestamo a la base de datos. 
+
+\begin{DoxyReturn}{Devuelve}
+int devuelve 1 o 0 dependiendo si se logro agregar el prestamo 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classPrestamos_a298640631f351f6ea677a963aac62610}\label{classPrestamos_a298640631f351f6ea677a963aac62610}} 
+\index{Prestamos@{Prestamos}!calcularCoutas@{calcularCoutas}}
+\index{calcularCoutas@{calcularCoutas}!Prestamos@{Prestamos}}
+\doxysubsubsection{\texorpdfstring{calcularCoutas()}{calcularCoutas()}}
+{\footnotesize\ttfamily std\+::vector$<$ int $>$ Prestamos\+::calcular\+Coutas (\begin{DoxyParamCaption}\item[{float}]{interes,  }\item[{std\+::vector$<$ int $>$}]{meses,  }\item[{double}]{monto }\end{DoxyParamCaption})}
+
+
+
+Calcula las cuotas utilizadas para la tabla personalizada. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em interes} & Manda el interes mensual utilizado \\
+\hline
+{\em meses} & Manda las opciones de meses que se puede utilizar \\
+\hline
+{\em monto} & Manda el monto total que la persona eligio \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+std\+::vector$<$int$>$ Calculas las cuotas mensual para los meses que dan de opcion 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classPrestamos_a1a47cf53ae98ad2fabb2ef21cfb8d52e}\label{classPrestamos_a1a47cf53ae98ad2fabb2ef21cfb8d52e}} 
+\index{Prestamos@{Prestamos}!imprimirTablaInformacion@{imprimirTablaInformacion}}
+\index{imprimirTablaInformacion@{imprimirTablaInformacion}!Prestamos@{Prestamos}}
+\doxysubsubsection{\texorpdfstring{imprimirTablaInformacion()}{imprimirTablaInformacion()}}
+{\footnotesize\ttfamily void Prestamos\+::imprimir\+Tabla\+Informacion (\begin{DoxyParamCaption}\item[{float}]{interes\+Colon,  }\item[{float}]{interes\+Dolar,  }\item[{std\+::vector$<$ int $>$}]{cuotas\+\_\+dolar,  }\item[{std\+::vector$<$ int $>$}]{cuotas\+\_\+colon,  }\item[{std\+::vector$<$ int $>$}]{meses }\end{DoxyParamCaption})}
+
+
+
+Imprime la tabla de opciones personalizadas del prestamo que la persona eligio. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em interes\+Colon} & Interes el prestamo elegido en colones \\
+\hline
+{\em interes\+Dolar} & Interes del prestamo elegido en dolares \\
+\hline
+{\em cuotas\+\_\+dolar} & cuotas en dolares dependiendo del mes \\
+\hline
+{\em cuotas\+\_\+colon} & cuotas en colones dependiendo del mes \\
+\hline
+{\em meses} & meses de opciones para el usuario \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classPrestamos_a091a3b9960ea0de2e67412dd9aa5497d}\label{classPrestamos_a091a3b9960ea0de2e67412dd9aa5497d}} 
+\index{Prestamos@{Prestamos}!infoPrestamos@{infoPrestamos}}
+\index{infoPrestamos@{infoPrestamos}!Prestamos@{Prestamos}}
+\doxysubsubsection{\texorpdfstring{infoPrestamos()}{infoPrestamos()}}
+{\footnotesize\ttfamily int Prestamos\+::info\+Prestamos (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Funcion para imprimir en un archivo de texto la informacion asociada a los prestamos de un cliente. 
+
+\begin{DoxyReturn}{Devuelve}
+int 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classPrestamos_a628a25b1fd00c301a8aeda1232dcd8b2}\label{classPrestamos_a628a25b1fd00c301a8aeda1232dcd8b2}} 
+\index{Prestamos@{Prestamos}!interesAnualaMensual@{interesAnualaMensual}}
+\index{interesAnualaMensual@{interesAnualaMensual}!Prestamos@{Prestamos}}
+\doxysubsubsection{\texorpdfstring{interesAnualaMensual()}{interesAnualaMensual()}}
+{\footnotesize\ttfamily float Prestamos\+::interes\+Anuala\+Mensual (\begin{DoxyParamCaption}\item[{float}]{interes }\end{DoxyParamCaption})}
+
+
+
+Funcion que cambia el interes anual a mensual, necesario para dar las cuotas mensuales. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em interes} & interes anual \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+float Devuelve el interes mensual 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classPrestamos_aa3ef02547f80274165e9fecb1298b812}\label{classPrestamos_aa3ef02547f80274165e9fecb1298b812}} 
+\index{Prestamos@{Prestamos}!menu@{menu}}
+\index{menu@{menu}!Prestamos@{Prestamos}}
+\doxysubsubsection{\texorpdfstring{menu()}{menu()}}
+{\footnotesize\ttfamily void Prestamos\+::menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Funcion que comienza para dar paso hacia la la tabla personalizada del usuario. 
+
+\mbox{\Hypertarget{classPrestamos_a8368c34a3cf410232fe96777215e0462}\label{classPrestamos_a8368c34a3cf410232fe96777215e0462}} 
+\index{Prestamos@{Prestamos}!seguirConPrestamo@{seguirConPrestamo}}
+\index{seguirConPrestamo@{seguirConPrestamo}!Prestamos@{Prestamos}}
+\doxysubsubsection{\texorpdfstring{seguirConPrestamo()}{seguirConPrestamo()}}
+{\footnotesize\ttfamily void Prestamos\+::seguir\+Con\+Prestamo (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Funcion para seguir con el prestamo despues de que la persona ve la tabla de informacion. 
+
+\mbox{\Hypertarget{classPrestamos_ac746f1cff71a77a0d2fc3bdb6eeb0eeb}\label{classPrestamos_ac746f1cff71a77a0d2fc3bdb6eeb0eeb}} 
+\index{Prestamos@{Prestamos}!validacionPrestamo@{validacionPrestamo}}
+\index{validacionPrestamo@{validacionPrestamo}!Prestamos@{Prestamos}}
+\doxysubsubsection{\texorpdfstring{validacionPrestamo()}{validacionPrestamo()}}
+{\footnotesize\ttfamily bool Prestamos\+::validacion\+Prestamo (\begin{DoxyParamCaption}\item[{double}]{salario,  }\item[{int}]{tipo\+Moneda }\end{DoxyParamCaption})}
+
+
+
+Valida el si la persona es apta para el prestamo. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em salario} & Salario de la persona que desea optar por el prestamo \\
+\hline
+{\em tipo\+Moneda} & Tipo de moneda para el prestamo \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+true Si la persona es apta para el prestamo 
+
+false Si la persona no es apta para el prestamo 
+\end{DoxyReturn}
+
+
+\doxysubsection{Documentación de los datos miembro}
+\mbox{\Hypertarget{classPrestamos_abeec4c232bad0e75973b17e77dc4ec23}\label{classPrestamos_abeec4c232bad0e75973b17e77dc4ec23}} 
+\index{Prestamos@{Prestamos}!interesHipotecarioAnualColones@{interesHipotecarioAnualColones}}
+\index{interesHipotecarioAnualColones@{interesHipotecarioAnualColones}!Prestamos@{Prestamos}}
+\doxysubsubsection{\texorpdfstring{interesHipotecarioAnualColones}{interesHipotecarioAnualColones}}
+{\footnotesize\ttfamily float Prestamos\+::interes\+Hipotecario\+Anual\+Colones = 0.\+12}
+
+
+
+Estos son los intereses anuales para los prestmos hipotecarios. 
+
+\mbox{\Hypertarget{classPrestamos_a8ddcdfd978edcde5e53864f29fac58ee}\label{classPrestamos_a8ddcdfd978edcde5e53864f29fac58ee}} 
+\index{Prestamos@{Prestamos}!interesPersonalAnualColones@{interesPersonalAnualColones}}
+\index{interesPersonalAnualColones@{interesPersonalAnualColones}!Prestamos@{Prestamos}}
+\doxysubsubsection{\texorpdfstring{interesPersonalAnualColones}{interesPersonalAnualColones}}
+{\footnotesize\ttfamily float Prestamos\+::interes\+Personal\+Anual\+Colones = 0.\+2}
+
+
+
+Estos son los intereses anuales para los prestamos personales. 
+
+\mbox{\Hypertarget{classPrestamos_a37efebe9b52998cc509289ffcfab49aa}\label{classPrestamos_a37efebe9b52998cc509289ffcfab49aa}} 
+\index{Prestamos@{Prestamos}!interesPrendarioAnualColones@{interesPrendarioAnualColones}}
+\index{interesPrendarioAnualColones@{interesPrendarioAnualColones}!Prestamos@{Prestamos}}
+\doxysubsubsection{\texorpdfstring{interesPrendarioAnualColones}{interesPrendarioAnualColones}}
+{\footnotesize\ttfamily float Prestamos\+::interes\+Prendario\+Anual\+Colones = 0.\+155}
+
+
+
+Estos son los intereses anuales para los prestamos prendarios. 
+
+\mbox{\Hypertarget{classPrestamos_a834c641c7eeb2136140dc43a2ed2b4e6}\label{classPrestamos_a834c641c7eeb2136140dc43a2ed2b4e6}} 
+\index{Prestamos@{Prestamos}!mesesHipotecario@{mesesHipotecario}}
+\index{mesesHipotecario@{mesesHipotecario}!Prestamos@{Prestamos}}
+\doxysubsubsection{\texorpdfstring{mesesHipotecario}{mesesHipotecario}}
+{\footnotesize\ttfamily std\+::vector$<$int$>$ Prestamos\+::meses\+Hipotecario = \{120, 180, 240\}}
+
+
+
+Esta es la cantidad de meses que se daran como opcion para los prestamos hipotecarios. 
+
+\mbox{\Hypertarget{classPrestamos_ae6a9f96083019a6fbcccace9fbe1125e}\label{classPrestamos_ae6a9f96083019a6fbcccace9fbe1125e}} 
+\index{Prestamos@{Prestamos}!mesesPersonal@{mesesPersonal}}
+\index{mesesPersonal@{mesesPersonal}!Prestamos@{Prestamos}}
+\doxysubsubsection{\texorpdfstring{mesesPersonal}{mesesPersonal}}
+{\footnotesize\ttfamily std\+::vector$<$int$>$ Prestamos\+::meses\+Personal = \{12, 36, 48\}}
+
+
+
+Este es la cantidad de meses que se daran como opcion para los prestamos personales. 
+
+\mbox{\Hypertarget{classPrestamos_ab26ca235fca9ab5aedea9aa7905ae4da}\label{classPrestamos_ab26ca235fca9ab5aedea9aa7905ae4da}} 
+\index{Prestamos@{Prestamos}!mesesPrendario@{mesesPrendario}}
+\index{mesesPrendario@{mesesPrendario}!Prestamos@{Prestamos}}
+\doxysubsubsection{\texorpdfstring{mesesPrendario}{mesesPrendario}}
+{\footnotesize\ttfamily std\+::vector$<$int$>$ Prestamos\+::meses\+Prendario = \{72, 84, 96\}}
+
+
+
+Esta es la cantidad de meses que se daran como opcion para los prestamos prendario. 
+
+\mbox{\Hypertarget{classPrestamos_a64f494543f750dea927741cfcbbb9540}\label{classPrestamos_a64f494543f750dea927741cfcbbb9540}} 
+\index{Prestamos@{Prestamos}!tasaCompraDolarColones@{tasaCompraDolarColones}}
+\index{tasaCompraDolarColones@{tasaCompraDolarColones}!Prestamos@{Prestamos}}
+\doxysubsubsection{\texorpdfstring{tasaCompraDolarColones}{tasaCompraDolarColones}}
+{\footnotesize\ttfamily float Prestamos\+::tasa\+Compra\+Dolar\+Colones = 521.\+5}
+
+
+
+Asumiendo que la gente compra dolar para pagar el prestamo. 
+
+
+
+La documentación para esta clase fue generada a partir de los siguientes ficheros\+:\begin{DoxyCompactItemize}
+\item 
+/home/santiago/\+Documents/ie0217-\/proyecto/src/\mbox{\hyperlink{prestamos_8hpp}{prestamos.\+hpp}}\item 
+/home/santiago/\+Documents/ie0217-\/proyecto/src/\mbox{\hyperlink{prestamos_8cpp}{prestamos.\+cpp}}\end{DoxyCompactItemize}

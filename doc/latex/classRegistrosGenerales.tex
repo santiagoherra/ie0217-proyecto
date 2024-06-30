@@ -1,0 +1,91 @@
+\hypertarget{classRegistrosGenerales}{}\doxysection{Referencia de la Clase Registros\+Generales}
+\label{classRegistrosGenerales}\index{RegistrosGenerales@{RegistrosGenerales}}
+
+
+En esta clase se encuentran los métodos utilizados para todo lo relacionado con registros generales y personales.  
+
+
+
+
+{\ttfamily \#include $<$Registros\+Generales.\+hpp$>$}
+
+\doxysubsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classRegistrosGenerales_a2afbc10f89c96747286dc1372b1c705b}{actualizar\+Registro}} (std\+::string tipo\+\_\+transaccion, std\+::string fecha\+\_\+transaccion, std\+::string denominacion, std\+::string cliente\+\_\+origen\+\_\+cedula, std\+::string cliente\+\_\+destino\+\_\+cedula, float monto\+\_\+base)
+\begin{DoxyCompactList}\small\item\em Este método accede a la tabla registros de la base de datos para guardar las transacciones exitosas realizadas en el banco. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classRegistrosGenerales_a2d69c02f6bf8fc31f514aa4f9ae473c8}{ver\+Registro}} () const
+\begin{DoxyCompactList}\small\item\em Este método accede a la tabla registros de la base de datos y permite visualizar el historial completo de transacciones del banco. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classRegistrosGenerales_a560b32c6d35f131bee6b733e71ba6762}{filtrar\+Registro}} () const
+\begin{DoxyCompactList}\small\item\em Este método accede a la tabla registros y obtiene el historial de transacciones de un tipo de transacción en específico. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classRegistrosGenerales_ae666dee83da6fa917fe7cf8116361b53}{registro\+Personal}} () const
+\begin{DoxyCompactList}\small\item\em Este método realiza varias consultas para obtener así, toda la nformación relevante de\+: las cuentas, préstamos, créditos de depośito a plazo y transacciones registradas con su número de cédula. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+En esta clase se encuentran los métodos utilizados para todo lo relacionado con registros generales y personales. 
+
+Los métodos de esta clase acceden a la base de datos para actualizar y obtener de forma detallada, toda la información referente al historial de transacciones, préstamos, créditos de depósito a plazo, y cuentas de clientes que han sido registradas en la base de datos del banco. De esta forma, se ofrece un historial de acciones que puede ser útil para el personal del banco y también sus clientes. 
+
+\doxysubsection{Documentación de las funciones miembro}
+\mbox{\Hypertarget{classRegistrosGenerales_a2afbc10f89c96747286dc1372b1c705b}\label{classRegistrosGenerales_a2afbc10f89c96747286dc1372b1c705b}} 
+\index{RegistrosGenerales@{RegistrosGenerales}!actualizarRegistro@{actualizarRegistro}}
+\index{actualizarRegistro@{actualizarRegistro}!RegistrosGenerales@{RegistrosGenerales}}
+\doxysubsubsection{\texorpdfstring{actualizarRegistro()}{actualizarRegistro()}}
+{\footnotesize\ttfamily void Registros\+Generales\+::actualizar\+Registro (\begin{DoxyParamCaption}\item[{std\+::string}]{tipo\+\_\+transaccion,  }\item[{std\+::string}]{fecha\+\_\+transaccion,  }\item[{std\+::string}]{denominacion,  }\item[{std\+::string}]{cliente\+\_\+origen\+\_\+cedula,  }\item[{std\+::string}]{cliente\+\_\+destino\+\_\+cedula,  }\item[{float}]{monto\+\_\+base }\end{DoxyParamCaption})}
+
+
+
+Este método accede a la tabla registros de la base de datos para guardar las transacciones exitosas realizadas en el banco. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em tipo\+\_\+transaccion} & Indica que tipo de transacción se efectuó (retiro, depósito, etc) \\
+\hline
+{\em fecha\+\_\+transaccion} & Fecha en la que se realizó la transacción \\
+\hline
+{\em denominacion} & Indica el tipo de moneda que se utilizó para realizar la transacción \\
+\hline
+{\em cliente\+\_\+origen\+\_\+cedula} & Número de cédula del cliente que emitió la transferencia \\
+\hline
+{\em cliente\+\_\+destino\+\_\+cedula} & Número de cédula del cliente que recibió la transferencia (en algunos casos es el mismo que el cliente origen) \\
+\hline
+{\em monto\+Base} & Monto que estuvo involucrado en la transferencia \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classRegistrosGenerales_a560b32c6d35f131bee6b733e71ba6762}\label{classRegistrosGenerales_a560b32c6d35f131bee6b733e71ba6762}} 
+\index{RegistrosGenerales@{RegistrosGenerales}!filtrarRegistro@{filtrarRegistro}}
+\index{filtrarRegistro@{filtrarRegistro}!RegistrosGenerales@{RegistrosGenerales}}
+\doxysubsubsection{\texorpdfstring{filtrarRegistro()}{filtrarRegistro()}}
+{\footnotesize\ttfamily void Registros\+Generales\+::filtrar\+Registro (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Este método accede a la tabla registros y obtiene el historial de transacciones de un tipo de transacción en específico. 
+
+\mbox{\Hypertarget{classRegistrosGenerales_ae666dee83da6fa917fe7cf8116361b53}\label{classRegistrosGenerales_ae666dee83da6fa917fe7cf8116361b53}} 
+\index{RegistrosGenerales@{RegistrosGenerales}!registroPersonal@{registroPersonal}}
+\index{registroPersonal@{registroPersonal}!RegistrosGenerales@{RegistrosGenerales}}
+\doxysubsubsection{\texorpdfstring{registroPersonal()}{registroPersonal()}}
+{\footnotesize\ttfamily void Registros\+Generales\+::registro\+Personal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Este método realiza varias consultas para obtener así, toda la nformación relevante de\+: las cuentas, préstamos, créditos de depośito a plazo y transacciones registradas con su número de cédula. 
+
+\mbox{\Hypertarget{classRegistrosGenerales_a2d69c02f6bf8fc31f514aa4f9ae473c8}\label{classRegistrosGenerales_a2d69c02f6bf8fc31f514aa4f9ae473c8}} 
+\index{RegistrosGenerales@{RegistrosGenerales}!verRegistro@{verRegistro}}
+\index{verRegistro@{verRegistro}!RegistrosGenerales@{RegistrosGenerales}}
+\doxysubsubsection{\texorpdfstring{verRegistro()}{verRegistro()}}
+{\footnotesize\ttfamily void Registros\+Generales\+::ver\+Registro (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Este método accede a la tabla registros de la base de datos y permite visualizar el historial completo de transacciones del banco. 
+
+
+
+La documentación para esta clase fue generada a partir de los siguientes ficheros\+:\begin{DoxyCompactItemize}
+\item 
+/home/santiago/\+Documents/ie0217-\/proyecto/src/Registros\+Generales.\+hpp\item 
+/home/santiago/\+Documents/ie0217-\/proyecto/src/\mbox{\hyperlink{RegistrosGenerales_8cpp}{Registros\+Generales.\+cpp}}\end{DoxyCompactItemize}

@@ -1,16 +1,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=11"/>
-<meta name="generator" content="Doxygen 1.10.0"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Proyecto Final Sistema Bancario: Archivo de código fuente /home/kevin/Desktop/ProyectoQuintoClon/ie0217-proyecto/src/BaseDeDatos.hpp</title>
+<title>Proyecto Final Sistema Bancario: Fichero Fuente /home/santiago/Documents/ie0217-proyecto/src/BaseDeDatos.hpp</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<script type="text/javascript" src="clipboard.js"></script>
-<script type="text/javascript" src="cookie.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -21,8 +19,8 @@
 <div id="titlearea">
 <table cellspacing="0" cellpadding="0">
  <tbody>
- <tr id="projectrow">
-  <td id="projectalign">
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Proyecto Final Sistema Bancario
    </div>
    <div id="projectbrief">Este proyecto final es del curso Estructuras Abstractas de Datos para ingenieria,</div>
@@ -32,28 +30,22 @@
 </table>
 </div>
 <!-- end header part -->
-<!-- Generado por Doxygen 1.10.0 -->
+<!-- Generado por Doxygen 1.9.1 -->
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Buscar','.html');
 /* @license-end */
 </script>
 <script type="text/javascript" src="menudata.js"></script>
 <script type="text/javascript" src="menu.js"></script>
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
 $(function() {
   initMenu('',true,false,'search.php','Buscar');
-  $(function() { init_search(); });
+  $(document).ready(function() { init_search(); });
 });
-/* @license-end */
-</script>
+/* @license-end */</script>
 <div id="main-nav"></div>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function() { codefold.init(0); });
-/* @license-end */
-</script>
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -63,16 +55,9 @@ $(function() { codefold.init(0); });
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
-<div id="MSearchResults">
-<div class="SRPage">
-<div id="SRIndex">
-<div id="SRResults"></div>
-<div class="SRStatus" id="Loading">Cargando...</div>
-<div class="SRStatus" id="Searching">Buscando...</div>
-<div class="SRStatus" id="NoMatches">Nada coincide</div>
-</div>
-</div>
-</div>
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
 </div>
 
 <div id="nav-path" class="navpath">
@@ -81,26 +66,27 @@ $(function() { codefold.init(0); });
 </div>
 </div><!-- top -->
 <div class="header">
-  <div class="headertitle"><div class="title">BaseDeDatos.hpp</div></div>
+  <div class="headertitle">
+<div class="title">BaseDeDatos.hpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="BaseDeDatos_8hpp.html">Ir a la documentación de este archivo.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#ifndef BASEDEDATOS_HPP</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#define BASEDEDATOS_HPP</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">using namespace </span>std;</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keyword">static</span> <span class="keywordtype">int</span> callback(<span class="keywordtype">void</span> *data, <span class="keywordtype">int</span> argc, <span class="keywordtype">char</span>**argv, <span class="keywordtype">char</span> **azColName);</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keywordtype">int</span> <a class="code hl_function" href="BaseDeDatos_8hpp.html#a50c8f1cae699c5680ef1100177c58c86">crearDB</a>();</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keywordtype">int</span> <a class="code hl_function" href="BaseDeDatos_8hpp.html#af8cbc28193c6b3d5a62c9f279bd21ca3">llenarDB</a>();</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#endif</span></div>
-<div class="ttc" id="aBaseDeDatos_8hpp_html_a50c8f1cae699c5680ef1100177c58c86"><div class="ttname"><a href="BaseDeDatos_8hpp.html#a50c8f1cae699c5680ef1100177c58c86">crearDB</a></div><div class="ttdeci">int crearDB()</div><div class="ttdoc">Crea la base de datos con las tablas respectivas.</div><div class="ttdef"><b>Definition</b> BaseDeDatos.cpp:21</div></div>
-<div class="ttc" id="aBaseDeDatos_8hpp_html_af8cbc28193c6b3d5a62c9f279bd21ca3"><div class="ttname"><a href="BaseDeDatos_8hpp.html#af8cbc28193c6b3d5a62c9f279bd21ca3">llenarDB</a></div><div class="ttdeci">int llenarDB()</div><div class="ttdoc">Llena la base con datos iniciales.</div><div class="ttdef"><b>Definition</b> BaseDeDatos.cpp:96</div></div>
+<a href="BaseDeDatos_8hpp.html">Ir a la documentación de este archivo.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#ifndef BASEDEDATOS_HPP</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#define BASEDEDATOS_HPP</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">using namespace </span>std;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">static</span> <span class="keywordtype">int</span> callback(<span class="keywordtype">void</span> *data, <span class="keywordtype">int</span> argc, <span class="keywordtype">char</span>**argv, <span class="keywordtype">char</span> **azColName);</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keywordtype">int</span> <a class="code" href="BaseDeDatos_8hpp.html#a50c8f1cae699c5680ef1100177c58c86">crearDB</a>();</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keywordtype">int</span> <a class="code" href="BaseDeDatos_8hpp.html#af8cbc28193c6b3d5a62c9f279bd21ca3">llenarDB</a>();</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aBaseDeDatos_8hpp_html_a50c8f1cae699c5680ef1100177c58c86"><div class="ttname"><a href="BaseDeDatos_8hpp.html#a50c8f1cae699c5680ef1100177c58c86">crearDB</a></div><div class="ttdeci">int crearDB()</div><div class="ttdoc">Crea la base de datos con las tablas respectivas.</div><div class="ttdef"><b>Definition:</b> BaseDeDatos.cpp:21</div></div>
+<div class="ttc" id="aBaseDeDatos_8hpp_html_af8cbc28193c6b3d5a62c9f279bd21ca3"><div class="ttname"><a href="BaseDeDatos_8hpp.html#af8cbc28193c6b3d5a62c9f279bd21ca3">llenarDB</a></div><div class="ttdeci">int llenarDB()</div><div class="ttdoc">Llena la base con datos iniciales.</div><div class="ttdef"><b>Definition:</b> BaseDeDatos.cpp:96</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
+Generado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

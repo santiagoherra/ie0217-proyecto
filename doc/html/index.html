@@ -1,16 +1,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=11"/>
-<meta name="generator" content="Doxygen 1.10.0"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Proyecto Final Sistema Bancario: Página principal</title>
+<title>Proyecto Final Sistema Bancario: Proyecto Final</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<script type="text/javascript" src="clipboard.js"></script>
-<script type="text/javascript" src="cookie.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -21,8 +19,8 @@
 <div id="titlearea">
 <table cellspacing="0" cellpadding="0">
  <tbody>
- <tr id="projectrow">
-  <td id="projectalign">
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Proyecto Final Sistema Bancario
    </div>
    <div id="projectbrief">Este proyecto final es del curso Estructuras Abstractas de Datos para ingenieria,</div>
@@ -32,22 +30,21 @@
 </table>
 </div>
 <!-- end header part -->
-<!-- Generado por Doxygen 1.10.0 -->
+<!-- Generado por Doxygen 1.9.1 -->
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Buscar','.html');
 /* @license-end */
 </script>
 <script type="text/javascript" src="menudata.js"></script>
 <script type="text/javascript" src="menu.js"></script>
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
 $(function() {
   initMenu('',true,false,'search.php','Buscar');
-  $(function() { init_search(); });
+  $(document).ready(function() { init_search(); });
 });
-/* @license-end */
-</script>
+/* @license-end */</script>
 <div id="main-nav"></div>
 </div><!-- top -->
 <!-- window showing the filter options -->
@@ -59,27 +56,327 @@ $(function() {
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
-<div id="MSearchResults">
-<div class="SRPage">
-<div id="SRIndex">
-<div id="SRResults"></div>
-<div class="SRStatus" id="Loading">Cargando...</div>
-<div class="SRStatus" id="Searching">Buscando...</div>
-<div class="SRStatus" id="NoMatches">Nada coincide</div>
-</div>
-</div>
-</div>
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
 </div>
 
-<div class="header">
-  <div class="headertitle"><div class="title">Proyecto Final Sistema Bancario documentación</div></div>
+<div class="PageDoc"><div class="header">
+  <div class="headertitle">
+<div class="title">Proyecto Final </div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="doxygen_crawl.html"/>
+<div class="textblock"><p><a class="anchor" id="md__home_santiago_Documents_ie0217_proyecto_README"></a></p>
+<h1><a class="anchor" id="autotoc_md1"></a>
+Curso: Estructuras abstractas de datos y algoritmos para ingenieria 0217.</h1>
+<h1><a class="anchor" id="autotoc_md2"></a>
+Prof. Esteban Badilla</h1>
+<h2><a class="anchor" id="autotoc_md3"></a>
+Integrantes:</h2>
+<ul>
+<li>Santiago Herra Castro C13721</li>
+<li>José Ignacio Sáenz Díaz C27032</li>
+<li>Kevin Jiménez Acuña C13876 </li>
+</ul>
+<h1><a class="anchor" id="autotoc_md4"></a>
+Instrucciones de ejecucion:</h1>
+<p>Para ejecutar el sistema de gestión bancaria se deben tener los siguientes archivos en la carpeta C: de Windows: sqlite3.dll, sqlite3.def y sqlite3.h. Se deben correr los siguientes comandos en una terminal:</p>
+<p>Para compilar: </p><div class="fragment"><div class="line">g++ aplicacion.cpp menus.cpp BaseDeDatos.cpp cdp.cpp CuentaAhorros.cpp funcionesGenerales.cpp Operaciones.cpp prestamos.cpp RegistrosGenerales.cpp -o main -IC:\sqlite -LC:\sqlite -lsqlite3</div>
+</div><!-- fragment --><p> y para ejectuar: </p><div class="fragment"><div class="line">.\main.exe</div>
+</div><!-- fragment --><p>Para compilar el sistema de gestion bancaria en el sistema operativo Linux, se debe de estar en la carpeta src/ ademas de tener la biblioteca sqlite3 en la carpeta linux_gnu o tener agregada la carpeta en las propiedades de C y C++ en VSCode en el archivo .json</p>
+<p>Comando de compilacion:</p>
+<div class="fragment"><div class="line">g++ aplicacion.cpp menus.cpp BaseDeDatos.cpp cdp.cpp CuentaAhorros.cpp funcionesGenerales.cpp Operaciones.cpp prestamos.cpp RegistrosGenerales.cpp -o main -lsqlite3</div>
+</div><!-- fragment --><p>y para ejecutarlo:</p>
+<div class="fragment"><div class="line">./main</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md5"></a>
+Descripción de proyecto.</h1>
+<p>Este proyecto se centra en la investigación, diseño e implementación de un sistema de gestión bancaria. Esta siendo para poder ser utilizado por agentes en ventanillas bancaria, facilitando tanto la atención a clientes como la gestion de información de prestamos bancarios.</p>
+<h2><a class="anchor" id="autotoc_md6"></a>
+Funcionalidad:</h2>
+<ul>
+<li>El sistema inicia preguntando si se va a utilizar para la atención al cliente o para gestionar información de préstamos, asi teniendo una interacción específica según el objetivo del usuario.</li>
+<li>Si la persona desea gestionar información sobre préstamos se generara una tabla de pagos personalizados en base al monto que el usuario ingrese, con esto se generará la tabla con la cantidad de cuotas, tasas de interés y los diferentes plazo a la disposición del banco.</li>
+<li>Los clientes pueden gestionar hasta 2 cuentas bancarias. una en colones y otra en dólares, además de obtener certificados de depósito a plazo.</li>
+<li>El sistema cuenta con diversas operaciones disponibles, como lo son depósitos, retiros, transferencias entre cuentas dirigidas a otros clientes, entre otras.</li>
+<li>El sistema cuenta con un registro de tipo historial de todas las transacciones realizadas en el sistema. Este registro muestra el número identificador del cliente, el tipo de transacción que realizó, el monto implicado en dicha transacción y el número identificador de un segundo cliente en caso de que el tipo de transacción involucre a un segundo.</li>
+<li>Se identifica a los clientes en el sistema, con un número único de identificación, el cual estará limitado a un número entero entre 0 y 999999999.</li>
+<li>Los clientes pueden contar con préstamos asociados en colones o en dólares. Cada uno de estos con características específicas como la tasa de interés, el período en meses y la cuota mensual.</li>
+<li>Los clientes pueden solicitar un reporte de sus préstamos, a lo que el sistema responderá generando un archivo de texto que detalle cada una de las cuotas pagadas, desglose el aporte de capital y los intereses abonados hasta el momento.</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md7"></a>
+Prestamos:</h1>
+<p>Los prestamos se realizarán en base al monto que la persona desee obtener, el salario que la persona posea y moneda que la persona desee. En cuanto se tenga esto se desplegará una tabla con las opciones posibles donde la persona podrá elegir la cuota mensual que deberá pagar en base al lapso de tiempo por el que escoja el préstamos, esto dependiendo del salario que esta persona tenga. Las tasas de interés las dara el banco las cuales varían dependiendo del tipo de préstamo que la persona escoja. Además, se debe de considerar que los préstamos pueden ser en colones o en dólares.</p>
+<p>La fórmula para calcular la cuota mensual es [1]:</p>
+<p>$$ \text{Cuota mensual} = \text{Monto total} \cdot \frac{TEM \cdot (1+TEM)^n}{(1+TEM)^n-1} $$</p>
+<p>Donde,</p>
+<p>-TEM se refiere a la tasa efectiva mensual</p>
+<p>-n se refiere a la cantidad de meses de pago</p>
+<p>-Monto se refiere al monto total del préstamo hipotecario</p>
+<p>Los intereses dados por el banco en las tablas personalizadas son anuales, entonces se necesita convertir los intereses anuales a mensuales. La formula de intereses mensuales es:</p>
+<p>$$ TEM = (1 + r)^{1/12} - 1 $$</p>
+<p>Donde:</p><ul>
+<li>r: Es el interes anual</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md8"></a>
+Pestamos personales:</h2>
+<p>Los prestamos personales es un tipo de credito <b>no asegurado</b> que ofrecen los bacos y otras instituciones financieras a los individuos. Este tipo de prestamo no requiere que la persona ofrazca un objeto colateral para asegurar el prestamo. La tasa de interes que dara el banco para un prestamos personal usualmente es de 18% hasta 26%, segun los dato tomados de la pagina del BAC [2].</p>
+<p>El banco le da al cliente los siguientes requerimientos como:</p><ul>
+<li>Constancia salarial.</li>
+<li>Colilla de pago del ultimo mes</li>
+<li>Orden patronal.</li>
+</ul>
+<p>La colilla de pago del ultimo mes es esencial gracias a que es necesaria para analizar la capacidad de pago del cliente de las cuotas mensuales del prestamo. No se aceptaran clientes los cuales tenga un salario bruto menor a 450.000 o su equivalente en dolares y las cuotas mensuales no pueden ser mayores al 55% del salario bruto [3].</p>
+<p>Tomando en cuenta estos valores, al cliente se le ofreceria una tabla personalizada para sus prestamos: <br  />
+</p>
+<p>Segun el monto de 5000000₡, con una tasa de cambio de 512.33₡ el dolar.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Intereses anuales   </th><th class="markdownTableHeadNone">24 meses   </th><th class="markdownTableHeadNone">60 meses   </th><th class="markdownTableHeadNone">84 meses   </th><th class="markdownTableHeadNone">Tipo de Moneda    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">20%   </td><td class="markdownTableBodyNone">240,519₡   </td><td class="markdownTableBodyNone">127,979₡   </td><td class="markdownTableBodyNone">106,180₡   </td><td class="markdownTableBodyNone">Colones    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">16%   </td><td class="markdownTableBodyNone">473,20$   </td><td class="markdownTableBodyNone">231.9$   </td><td class="markdownTableBodyNone">188.08$   </td><td class="markdownTableBodyNone">Dolares   </td></tr>
+</table>
+<h1><a class="anchor" id="autotoc_md9"></a>
+Préstamos prendarios:</h1>
+<p>Los préstamos prendarios son aquellos en los que la entidad bancaria solicita al cliente que requiere el préstamo, entregarle uno o varios activos físicos o financieros como garantía de que cumplirá con lo acordado según el préstamo [2]. Una forma más sencilla de comprender este tipo de préstamo es visualizarlo como si fuera lo que popularmente se conoce como "empeño", en donde un individuo cede un activo físico de forma temporal a una casa de empeño a cambio de dinero; en el caso del préstamo prendario sucede de forma similar, cediendo bienes como vehículos y acciones que permitirán eventualmente a la entidad bancaria, embargar o vender en caso de que el cliente incumpla con sus acuerdos y de esta forma, recuperar la inversión [4].</p>
+<p>En cuanto a las características generales de este tipo de préstamos, se encuentra una baja considerable en los intereses a comparación de los préstamos personales (estos son más comunes en las entidades bancarias), encontrándose estas entre el 1% y 5% y además, generalmente este tipo de préstamos cuenta con plazos de rembolso menores, siendo estos de entre 1 y 8 años (dependiendo de la cantidad de dinero solicitada por el cliente) [4]. Es necesario destacar que la cantidad de dinero recibida por el cliente puede depender del valor de los bienes que haya entregado, y estos no serán devueltos hasta que se finalice la devolución del dinero prestado [4].</p>
+<p>Por último, el cliente que presenta el préstamo prendario no se ve afectado por comisiones por amortización o cancelación anticipada; esto quiere decir que el cliente que entregó uno o más bienes puede recuperarlo sin tener que realizar ningún tipo de gasto extra como consecuencia [4].</p>
+<p>En este sistema, para solicitar un crédito prendario, es necesario tomar en cuenta que:</p>
+<ul>
+<li>Se financia el 80% del valor del avualuo del colateral ofrecido como garantía.</li>
+<li>Financiación mínima es de cinco millones de colones.</li>
+<li>El cliente solcitante requiere 6 meses de continuidad laboral.</li>
+</ul>
+<p>A continuación, se muestran la tabla de valores con las opciones que puede seleccionar el cliente:</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Tasa de interés anual   </th><th class="markdownTableHeadNone">6 años   </th><th class="markdownTableHeadNone">7 años   </th><th class="markdownTableHeadNone">8 años   </th><th class="markdownTableHeadNone">Tipo de Moneda    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">12%   </td><td class="markdownTableBodyNone">97 750,9₡   </td><td class="markdownTableBodyNone">88 263,6₡   </td><td class="markdownTableBodyNone">81 264,2₡   </td><td class="markdownTableBodyNone">Colones    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">7,25%   </td><td class="markdownTableBodyNone">167,64$   </td><td class="markdownTableBodyNone">148,56$   </td><td class="markdownTableBodyNone">134,33$   </td><td class="markdownTableBodyNone">Dólares   </td></tr>
+</table>
+<p><b>Nota, esto sería para el caso en que se soliciten cinco millones de colones o su equivalente en dólares con una tasa de cambio de 512,33 colones (tasa de cambio del 26 de mayo de 2024). Datos tomados de la página oficial de BAC Credomatic [5].</b></p>
+<h2><a class="anchor" id="autotoc_md10"></a>
+Préstamos Hipotecarios:</h2>
+<p>Un préstamo hipotecario hace referencia a un préstamo que se da con el fin de que se realice una compra de vivienda o de terreno. Debido al monto alto que conlleva este flujo de dinero, el préstamo hipotecario tiene la particularidad de que la garantía de pago es el bien inmueble, es decir, la vivienda o el terreno que se está adquiriendo. Como los demás tipos de préstamo, este se encuentra definidio por una tasa de interés, de la que depende la cantidad adicional de dinero que se debe de pagar por el monto prestado. No obstante, debido a tratarse de montos grandes, los plazos ofrecidos por los bancos son de 36 hasta 360 meses [6]. Por ello, es usual que la tasa de interés varíe. Por ello, las tasas de interés suelen ser variables. Tomando como referencia las condiciones brindadas por el Banco de Costa Rica, se muestra la siguiente tasa variable [7]:</p>
+<p>-Durante los primeros dos años enteros del préstamo, la tasa es fija de un 12%.</p>
+<p>-Durante el resto del plazo, la tasa se calculará según la siguiente ecuación, con piso 12%:</p>
+<p>$$ tasa = TBP + 6,50% $$</p>
+<p>Esto implica, que la tasa variable se calcula según la Tasa Básica Pasiva o TBP, brindada por el Banco Central que varía según las condiciones del mercado. A esta tasa, se le debe de sumar el 6,5%, lo que se conoce como el margen. No obstante por la seguridad del prestamista, se establece un piso, que es que no importa que tanto caiga la TBP, el valor menor que puede tener la tasa es del 12%. Para el proyecto, tomando en cuenta los datos de Costa Rica, brindados por el Banco Central, el valor de la TBP ponderado desde el 2013 es de 5,47% [8]. Por ello, si se toma la fórmula y se calcula la tasa con este valor, se obtiene una tasa menor a la tasa piso. Además, para el año 2024, la tasa se encuentra en una tendencia decreciente, donde el promedio anual es del 5,00%. Por ello, se considerará para el proyecto una tasa fija del 12%, puesto que en promedio, la tasa calculada no supera el piso.</p>
+<p>Se limitarán los plazos al igual que lo realiza el BCR, donde los plazos disponibles se encuentran en múltiplos de 5 años, donde el mínimo son 5 años y el máximo 30. El cliente deberá de ingresar el valor total de la casa y el valor a solicitar, puesto que ningún banco nacional suele financiar más del 80% de la propiedad. Aparte, se tendrá un valor mínimo de 5 millones de colones y un valor máximo de 150 millones de colones.</p>
+<h2><a class="anchor" id="autotoc_md11"></a>
+Cuentas bancarias y gestión de ahorro:</h2>
+<p>La personas pueden tener cuentas bancarias las cuales pueden ser en dólares o colones, dichas pueden poseer un máximo de dos cuentas bancarias. Estas están destinadas a la gestión de sus ahorros, donde que se utilizarán para obtener certificados de depósito a plazo.</p>
+<p>Las cuentas de ahorros pueden ser utilizadas para el pago de prestamos desde la cuenta que el cliente desee, para que esto sea posible se debe de tener tener la tasa de cambio de colones a dolores, para acciones de venta y compra, dichos valores estan dados por el Banco Central de Costa Rica.</p>
+<h1><a class="anchor" id="autotoc_md12"></a>
+Certificados de Depósito a plazos:</h1>
+<p>Los certificados de depositos a plazo (<a class="el" href="classCDP.html">CDP</a>) son certificados que da el banco cuando una persona desee ingresar un capital para poder obtener intereses en un plazo de tiempo determinado. Dicho certificado valida dicho ingreso del capital e indica la tasa de interes que obtendra el cliente por el tiempo en que mantendra el capital dentro del banco[9]. Las ventajas de tener un <a class="el" href="classCDP.html">CDP</a> es tener una inversion respaldada por el banco y posee tasa de interes mas altas. Los interes varian dependiendo de la cantidad del monto que se desee ahorrar, el plazo por el que el cliente ahorre y la moneda del monto, los bancos dan mayores tasas de intereses a ahorros en dolares[10]. La mayoria de bancos utilizan interes simples segun tasa de interes que se le de al cliente. El BCR, acepta valores minimos de 50000₡ y 100$.</p>
+<p>Los interes que se le daran al cliente esta dada por [11]:</p>
+<p>$$ I = P * r * t $$</p>
+<p>Donde:</p><ul>
+<li>I: Son los interes ganados durante un plazo de tiempo.</li>
+<li>P: Es el principal monto ahorrado.</li>
+<li>r: Es la tasa de interes dada por el banco.</li>
+<li>t: Es el tiempo por el cual se acordo guardar el ahorro.</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md13"></a>
+Registros contables</h1>
+<p>Un registro contable descrito en su forma más esencial, es el soporte físico o digital, donde se almacena toda la información financiera de las compañías durante un período de tiempo, este le permite a las compañías obtener un balance general y un estado financiero [12].</p>
+<p>Existen registros contables obligatorios y no obligatorios. Entre los obligatorios se encuentra el Libro Diario, en este se registran diariamente todas las operaciones que la empresa realiza a nivel financiero y consisten en asientos contables que se construyen cronológicamente, también se encuentran los libros de inventarios y balances; estos dan detalles de la actividad empresarial y patrimonio desde el origen de la empresa [12].</p>
+<p>Los registros no obligatorios, son registros no exigidos por la ley pero que la empresa elabora para organizar su estructura financiera y tributaria, entre estos se encuentran: el estado de flujos de efectivo (entrada y salida de dinero en efectivo), estado de resultados (totalidad de ingresos y egresos del negocio) y el balance (registra todos los activos y los pasivos de la empresa) [12].</p>
+<p>En el caso del estado de resultados, encuentra su importancia en que a partir de este la empresa puede desarrollar un análisis de que tan rentable es su empresa y además, da un seguimiento de todos aquellos clientes que aún no han realizado sus pagos y de todos aquellos gastos que se encuentran sin amortizar [12].</p>
+<p>A continuación, se muestran todos aquellos datos que deben estar presentes en un registro de transacciones para que este pueda evidenciar la información necesaria tanto para la entidad financiera, como para los clientes [12]:</p>
+<ul>
+<li>Fecha y hora en la que se realiza la transacción.</li>
+<li>Número de transacción.</li>
+<li>Cuentas que intervienen en el proceso, representadas por su código y denominación.</li>
+<li>Importes registrados a cada una de las cuentas involucradas en la transacción.</li>
+<li>Descripción detallada de la transacción.</li>
+</ul>
+<p>En cuanto a los beneficios más importantes de utilizar registros contables, se encuentran: el monitorear regularmente el crecimiento general del negocio, la facilitación en la elaboración de estrategias políticas y comerciales orientadas al mercado y el aumento de la rapidez y la eficacia para la toma de decisiones de la empresa [13]. Este monitoreo regular del negocio, permite a los accionistas conocer la rentabilidad y la proyección financiera de la entidad y en función de estos, tomar las decisiones que consideren adecuadas para el futuro de dicha entidad, mientras que la elaboración de estrategias políticas y comerciales permite dirigir a una empresa hacia su crecimiento financiero a partir del aumento de sus ingresos generado por una mayor atracción de clientes. Por último, la rapidez y eficacia al tomar decisiones permitirá eventualmente realizar mejores negociaciones con otras compañías y marcas asociadas, lo que implica al igual que en el beneficio anterior, el crecimiento financiero de la empresa.</p>
+<h1><a class="anchor" id="autotoc_md14"></a>
+Base de datos:</h1>
+<p>Para el correcto funcionamiento del programa, es necesario establecer una base de datos robusta y eficiente, que tenga la cantidad justa de tablas relacionadas, para que la posterior inserción, modificación y deleción de información sea de forma sencilla e intuitiva. Por ello, es importante plantear desde etapas tempranas la estructura de dicha base de datos, con el fin de optimizar los algoritmos a implementar. Por ello, se definirán las tablas pertenecientes a la base de datos del sistema bancario, no sin antes resaltar una serie de características claves del sistema a trabajar: -Cada cliente puede tener únicamente una cuenta en colones y una cuenta en dólares, por ello, se prefiere que la llave foránea a la cuenta se encuentre en la tabla de clientes. Esto con el fin de que se puede asociar una cuenta a múltiples clientes.</p><ul>
+<li>Un cliente puede tener múltiples préstamos y CDPs, por lo que los CDPs contendrán el número de cédula del usuario como llave foránea al cliente que pertenecen.</li>
+<li>Un préstamo puede ser caracterizado únicamente por su tasa, su monto total, su plazo en meses y su cantidad de cuotas mensuales pagadas. Si se almacenacen variables como el el total abonado, se estaría siendo redundante.</li>
+<li>Los CDPs se pueden caracterizar por el monto del depósito, el plazo y la tasa de intereses.</li>
+<li>El número de cédula se usará como llave primaria, puesto que es única para cada persona.</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md15"></a>
+Tabla Clientes:</h2>
+<p>La tabla clientes contendrá la información de cada cliente por separado. Esta almacenará el número de cédula que será la llave primaria y el nombre completo del cliente.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone"><b>Columna</b>   </th><th class="markdownTableHeadNone"><b>Tipo de Dato</b>   </th><th class="markdownTableHeadNone"><b>Descripción</b>    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">cedula   </td><td class="markdownTableBodyNone">INT   </td><td class="markdownTableBodyNone">Número de cédula (llave primaria)    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">nombre   </td><td class="markdownTableBodyNone">VARCHAR(50)   </td><td class="markdownTableBodyNone">Nombre del cliente    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">apellido   </td><td class="markdownTableBodyNone">VARCHAR(50)   </td><td class="markdownTableBodyNone">Apellido del cliente    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">cuenta_colones   </td><td class="markdownTableBodyNone">INT   </td><td class="markdownTableBodyNone">Cuenta en colones (llave foránea)    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">cuenta_dolares   </td><td class="markdownTableBodyNone">INT   </td><td class="markdownTableBodyNone">Cuenta en dólares (llave foránea)   </td></tr>
+</table>
+<div class="fragment"><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> clientes (</div>
+<div class="line">    cedula <span class="keywordtype">CHAR</span>(<span class="stringliteral">9</span>) <span class="keyword">PRIMARY</span> KEY,</div>
+<div class="line">    nombre <span class="keywordtype">VARCHAR</span>(<span class="stringliteral">50</span>),</div>
+<div class="line">    apellido <span class="keywordtype">VARCHAR</span>(<span class="stringliteral">50</span>),</div>
+<div class="line">    cuenta_colones <span class="keywordtype">INT</span>,</div>
+<div class="line">    cuenta_dolares <span class="keywordtype">INT</span>,</div>
+<div class="line">    cdp <span class="keywordtype">INT</span>,</div>
+<div class="line">    <span class="keyword">CHECK</span> (cedula <span class="keyword">NOT</span> <span class="keyword">LIKE</span> <span class="stringliteral">&#39;%[^0-9]%&#39;</span>),</div>
+<div class="line">    <span class="keyword">FOREIGN</span> KEY (cuenta_colones) <span class="keyword">REFERENCES</span> cuentas(numero_cuenta)</div>
+<div class="line">    <span class="keyword">FOREIGN</span> KEY (cuenta_dolares) <span class="keyword">REFERENCES</span> cuentas(numero_cuenta)</div>
+<div class="line">);</div>
+</div><!-- fragment --><p>Los enteros de cuenta_colones, cuenta_dolares y cdp hacen referencia al número de cuenta o número de certificado, que es un número único.</p>
+<h2><a class="anchor" id="autotoc_md16"></a>
+Tabla Cuentas:</h2>
+<p>Las cuentas incluirán el número de cuenta que será la llave primaria, el balance de la cuenta, que será un DECIMAL(9,2) para almacenar un máximo de centésimas de colón o de dolar. Por otra parte, tendrá un Tasa decimal(2,2) que contendrá la tasa de interés de ahorro de la cuenta. Se tendrá un varchar que represente la denominación que maneja la cuenta. Por último, se tendrá una llave foránea que apunte al clienteLa tabla se observa a continuación:</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone"><b>Columna</b>   </th><th class="markdownTableHeadNone"><b>Tipo de Dato</b>   </th><th class="markdownTableHeadNone"><b>Descripción</b>    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">numero_cuenta   </td><td class="markdownTableBodyNone">INT   </td><td class="markdownTableBodyNone">Número de cuenta (llave primaria)    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">balance   </td><td class="markdownTableBodyNone">DECIMAL(9, 2)   </td><td class="markdownTableBodyNone">Balance de la cuenta    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">tasa   </td><td class="markdownTableBodyNone">DECIMAL(2, 2)   </td><td class="markdownTableBodyNone">Tasa de interés de ahorro de la cuenta    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">denominacion   </td><td class="markdownTableBodyNone">VARCHAR(10)   </td><td class="markdownTableBodyNone">Denominación de la moneda (colones/dólares)   </td></tr>
+</table>
+<div class="fragment"><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> cuentas (</div>
+<div class="line">    numero_cuenta <span class="keywordtype">INT</span> <span class="keyword">PRIMARY</span> KEY,</div>
+<div class="line">    balance <span class="keywordtype">DECIMAL</span>(<span class="stringliteral">9</span>, <span class="stringliteral">2</span>),</div>
+<div class="line">    tasa <span class="keywordtype">DECIMAL</span>(<span class="stringliteral">2</span>, <span class="stringliteral">2</span>),</div>
+<div class="line">    denominacion <span class="keywordtype">VARCHAR</span>(<span class="stringliteral">10</span>)</div>
+<div class="line">);</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md17"></a>
+Tabla Préstamos:</h2>
+<p>Ahora, se presenta la descripción de la tabla de préstamos. De nuevo, cada préstamo tendrá una id única, siendo un número entero que corresponde al número de préstamo. Existirá una fila que contenga un varchar que hace referencia a la denominación, ya sea colones o dólares. Contendrá un DECIMAL(9,2) que hace referencia al monto total del préstamo. Además, existirá una fila que contengan un INT, que referencien el plazo en meses y un DECIMAL(2,2) que haga referencia a la tasa del descuento. Aparte, es necesario un VARCHAR que referPor último, contendrá un INT que será la llave foránea que referenciará al usuario que solicitó el préstamo, esto puesto que un cliente puede tener varios préstamos asociados.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone"><b>Columna</b>   </th><th class="markdownTableHeadNone"><b>Tipo de Dato</b>   </th><th class="markdownTableHeadNone"><b>Descripción</b>    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">prestamo_id   </td><td class="markdownTableBodyNone">INT   </td><td class="markdownTableBodyNone">Número único que identifica el préstamo (llave primaria)    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">tipo   </td><td class="markdownTableBodyNone">VARCHAR(11)   </td><td class="markdownTableBodyNone">Tipo de préstamo, ya sea prendario, hipotecario o personal    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">denominacion   </td><td class="markdownTableBodyNone">VARCHAR(8)   </td><td class="markdownTableBodyNone">Denominación de la moneda del préstamo (colones/dólares)    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">monto_total   </td><td class="markdownTableBodyNone">DECIMAL(9, 2)   </td><td class="markdownTableBodyNone">Monto total del préstamo    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">plazo_meses   </td><td class="markdownTableBodyNone">INT   </td><td class="markdownTableBodyNone">Plazo del préstamo en meses    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">tasa   </td><td class="markdownTableBodyNone">DECIMAL(2, 2)   </td><td class="markdownTableBodyNone">Tasa de interés de ahorro de la cuenta    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">cliente_id   </td><td class="markdownTableBodyNone">INT   </td><td class="markdownTableBodyNone">Llave foránea que referencia al cliente que solicitó el préstamo   </td></tr>
+</table>
+<div class="fragment"><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> prestamos (</div>
+<div class="line">    prestamo_id <span class="keywordtype">INT</span> <span class="keyword">PRIMARY</span> KEY,</div>
+<div class="line">    denominacion <span class="keywordtype">VARCHAR</span>(<span class="stringliteral">8</span>),</div>
+<div class="line">    tipo <span class="keywordtype">VARCHAR</span>(<span class="stringliteral">10</span>),</div>
+<div class="line">    monto_total <span class="keywordtype">DECIMAL</span>(<span class="stringliteral">9</span>, <span class="stringliteral">2</span>),</div>
+<div class="line">    plazo_meses <span class="keywordtype">INT</span>,</div>
+<div class="line">    cuota_mensual <span class="keywordtype">INT</span>,</div>
+<div class="line">    cliente_id <span class="keywordtype">INT</span>,</div>
+<div class="line">    <span class="keyword">FOREIGN</span> KEY (cliente) <span class="keyword">REFERENCES</span> clientes(cedula)</div>
+<div class="line">);</div>
+</div><!-- fragment --> <h2><a class="anchor" id="autotoc_md18"></a>
+Tabla CDP:</h2>
+<p>Por último, se presenta la descripción de la tabla de certificados de depósito a plazos. Esta tabla contendrá un identificador único siendo la llave primaria de tipo INT. Se necesitará de un VARCHAR que haga referencia a la denominación, ya sea colones o dólares. Posteriormente, se tendrá un decimal(2,2) que haga referencia a la tasa. Además, se tendrá un int que haga referencia al plazo en meses. Por último, es necesario un DECIMAL(9,2) que se refiera al monto del depósito original. Ahora, como cada cliente puede tener varios CDPs de forma simultánea, se necesitará una llave foránea que referencia al número de cédula del cliente que lo solicitó.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone"><b>Columna</b>   </th><th class="markdownTableHeadNone"><b>Tipo de Dato</b>   </th><th class="markdownTableHeadNone"><b>Descripción</b>    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">cdp_id   </td><td class="markdownTableBodyNone">INT   </td><td class="markdownTableBodyNone">Identificador único del <a class="el" href="classCDP.html">CDP</a> (llave primaria)    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">denominacion   </td><td class="markdownTableBodyNone">VARCHAR(8)   </td><td class="markdownTableBodyNone">Denominación de la moneda del <a class="el" href="classCDP.html">CDP</a> (colones/dólares)    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">tasa   </td><td class="markdownTableBodyNone">DECIMAL(2, 2)   </td><td class="markdownTableBodyNone">Tasa de interés del <a class="el" href="classCDP.html">CDP</a>    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">plazo_meses   </td><td class="markdownTableBodyNone">INT   </td><td class="markdownTableBodyNone">Plazo en meses del <a class="el" href="classCDP.html">CDP</a>    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">monto_deposito   </td><td class="markdownTableBodyNone">DECIMAL(9, 2)   </td><td class="markdownTableBodyNone">Monto del depósito original del <a class="el" href="classCDP.html">CDP</a>    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">cliente_cedula   </td><td class="markdownTableBodyNone">CHAR(9)   </td><td class="markdownTableBodyNone">Llave foránea que referencia al cliente que solicitó el <a class="el" href="classCDP.html">CDP</a>   </td></tr>
+</table>
+<div class="fragment"><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> certificados_de_deposito (</div>
+<div class="line">    cdp_id <span class="keywordtype">INT</span> <span class="keyword">PRIMARY</span> KEY,</div>
+<div class="line">    denominacion <span class="keywordtype">VARCHAR</span>(<span class="stringliteral">8</span>),</div>
+<div class="line">    tasa <span class="keywordtype">DECIMAL</span>(<span class="stringliteral">2</span>, <span class="stringliteral">2</span>),</div>
+<div class="line">    plazo_meses <span class="keywordtype">INT</span>,</div>
+<div class="line">    monto_deposito <span class="keywordtype">DECIMAL</span>(<span class="stringliteral">9</span>, <span class="stringliteral">2</span>),</div>
+<div class="line">    cliente_cedula <span class="keywordtype">CHAR</span>(<span class="stringliteral">9</span>),</div>
+<div class="line">    <span class="keyword">FOREIGN</span> KEY (cliente) <span class="keyword">REFERENCES</span> clientes(cedula)</div>
+<div class="line">);</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md19"></a>
+Tabla de registros:</h2>
+<p>Se presenta a continuación la descripción de una tabla para la base de datos, la tabla de registros. Cada registro tendrá un ID único que es un INT, la llave primaria. Este registro almacenará una VARCHAR que hace referencia al tipo de transacción, pudiendo representar, depósitos, retiros, registros, abono a préstamos, solicitud de préstamo, transferencia, apertura de <a class="el" href="classCDP.html">CDP</a> o retiro de <a class="el" href="classCDP.html">CDP</a>. También tendrá un DATE que almacene la fecha de la transacción. Tendrá un VARCHAR que haga referencia a la denominación, ya sea colones o dólares. Además, tendrá un INT cliente que represente el número de cédula del cliente que realiza la transacción y tendrá otro INT cliente que represente el número de cédula del cliente que recibe la transacción (puede ser el mismo cliente). Contendrá un DECIMAL(9,2) que represente el monto base de la transacción, en caso de ser un depósito, retiro, abono o transferencia simplemente se refiere a la cantidad de dinero que participa del trámite. En caso de apertura de <a class="el" href="classCDP.html">CDP</a> o solicitud de préstamo, se refiere al depósito inicial o al monto total del préstamo. Nótese que existen algunas restricciones que se impondrán más adelante, como que en caso de préstamo, un usuario no puede solicitarle un préstamo a otro.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone"><b>Columna</b>   </th><th class="markdownTableHeadNone"><b>Tipo de Datos</b>   </th><th class="markdownTableHeadNone"><b>Descripción</b>    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><b>ID</b>   </td><td class="markdownTableBodyNone">INT   </td><td class="markdownTableBodyNone">Identificador único del registro (Llave primaria)    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><b>tipo_transaccion</b>   </td><td class="markdownTableBodyNone">VARCHAR(50)   </td><td class="markdownTableBodyNone">Tipo de transacción (depósitos, retiros, registros, abono a préstamos, etc.)    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><b>fecha_transaccion</b>   </td><td class="markdownTableBodyNone">DATE   </td><td class="markdownTableBodyNone">Fecha de la transacción    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><b>denominacion</b>   </td><td class="markdownTableBodyNone">VARCHAR(10)   </td><td class="markdownTableBodyNone">Moneda de la transacción (colones o dólares)    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><b>cliente_origen_cedula</b>   </td><td class="markdownTableBodyNone">INT   </td><td class="markdownTableBodyNone">Número de cédula del cliente que realiza la transacción (Llave foránea)    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><b>cliente_destino_cedula</b>   </td><td class="markdownTableBodyNone">INT   </td><td class="markdownTableBodyNone">Número de cédula del cliente que recibe la transacción (Llave foránea)    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><b>monto_base</b>   </td><td class="markdownTableBodyNone">DECIMAL(9,2)   </td><td class="markdownTableBodyNone">Monto de la transacción   </td></tr>
+</table>
+<div class="fragment"><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> registros (</div>
+<div class="line">    ID <span class="keywordtype">INT</span> <span class="keyword">PRIMARY</span> KEY,</div>
+<div class="line">    tipo_transaccion <span class="keywordtype">VARCHAR</span>(<span class="stringliteral">50</span>),</div>
+<div class="line">    fecha_transaccion <span class="keywordtype">DATE</span>,</div>
+<div class="line">    denominacion <span class="keywordtype">VARCHAR</span>(<span class="stringliteral">10</span>),</div>
+<div class="line">    cliente_origen_cedula <span class="keywordtype">INT</span>,</div>
+<div class="line">    cliente_destino_cedula <span class="keywordtype">INT</span>,</div>
+<div class="line">    monto_base <span class="keywordtype">DECIMAL</span>(<span class="stringliteral">9</span>,<span class="stringliteral">2</span>),</div>
+<div class="line">    <span class="keyword">FOREIGN</span> KEY (cliente_origen_cedula) <span class="keyword">REFERENCES</span> clientes(cedula),</div>
+<div class="line">    <span class="keyword">FOREIGN</span> KEY (cliente_destino_cedula) <span class="keyword">REFERENCES</span> clientes(cedula)</div>
+<div class="line">);</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md20"></a>
+Funcionamiento del programa:</h1>
+<p>Se diseño una estructura del programa para poder capturar la esencia y funcionamiento del programa para que sea facil de usar para el encargado, implementando los diferentes propositos y la informacion necesaria para el encargado y el cliente.</p>
+<p><img src="funcionamiento.jpeg" alt="rip" title="Estructura del programa" class="inline"/></p>
+<p>-Utilizando la base de datos, es sencillo poder elaborar tablas que contienen únicamente los registros personales, seleccionando aquellas filas que contenga el número de cédula de la persona que consulta por su registro de transacciones. Si se quisiera el registro de préstamos, se seleccionan únicamente aquellas transacciones relacionadas con un abono o solicitud de préstamos.</p>
+<p>-Para la elaboración del resgistro de préstamos personalizados, se planea utilizar la biblioteca fstream, que permite realizar modificaciones a archivos.txt.</p>
+<p>-Se planea utilizar stdexcept junto con las expresiones de try, catch y throw para el manejo de excepciones, lo que ayudará a brindar robustez, además de hacer el código mantenible y escalable.</p>
+<p>-Se prevee que es necesario la definición de clases que contengan los métodos y atributos necesarios para el manejo de objetos como lo serían los préstamos, los certificados a plazos y las cuentas de ahorro.</p>
+<h1><a class="anchor" id="autotoc_md21"></a>
+Cronograma:</h1>
+<p>Se dividio el trabajo entre los integrante del grupo para medir los avances semanales del proyecto y poder implementar una estrategia de equipo hacia la resolucion de los problemas en el desarrollo del codigo. Se planteo trabajar simulteaneamente para poder ayudarse unos a otros durante el proceso. Ademas se organizaran reuniones de equipo cada 2 semanas para poder ver el progreso del codigo, replantear soluciones y reestructurar el flujo de trabajo por si surgen problemas imprevistos.</p>
+<p><img src="cronograma.jpeg" alt="rip" title="Cronograma del proyecto" class="inline"/></p>
+<h1><a class="anchor" id="autotoc_md22"></a>
+Referencias</h1>
+<p>[1] "¿Cómo calcular la cuota para un préstamo?", BBVA, 2024. <a href="https://www.bbva.pe/blog/mis-finanzas/financiamiento/-como-calcular-la-cuota-para-un-prestamo-.html">https://www.bbva.pe/blog/mis-finanzas/financiamiento/-como-calcular-la-cuota-para-un-prestamo-.html</a> (accedido 26 de mayo de 2024).</p>
+<p>[2] "Prestamo personal". BAC. Accedido el 23 de Mayo de 2024. [En linea]. <a href="https://www.baccredomatic.com/es-cr/personas/prestamos?categoria=personales&nombre=prestamo-personal&id=165901">https://www.baccredomatic.com/es-cr/personas/prestamos?categoria=personales&amp;nombre=prestamo-personal&amp;id=165901</a></p>
+<p>[3] "Creditos Personales para cada necesidad". COOPENAE. Accedido el 26 de Mayo de 2024. [En linea]. <a href="https://www.coopenae.fi.cr/credito-personal">https://www.coopenae.fi.cr/credito-personal</a></p>
+<p>[4] “¿Qué es un préstamo prendario?: Características y ejemplos”. Santander Consumer Finance. Accedido el 24 de mayo de 2024. [En línea]. Disponible: <a href="https://www.santanderconsumer.es/blog/post/que-es-un-prestamo-prendario-caracteristicas-y-ejemplos">https://www.santanderconsumer.es/blog/post/que-es-un-prestamo-prendario-caracteristicas-y-ejemplos</a></p>
+<p>[5] “Préstamos Destacados”. BAC Credomátic. Accedido el 25 de mayo de 2024. [En línea]. Disponible: <a href="https://www.baccredomatic.com/es-cr/personas/prestamos?categoria=destacados&amp;bacid=CRIN-CORE-CPR-000007-GL-AW-PR-GG-B6-SR-00000/SEARCH-VEL-PPRENDARIO-NOBRAND-BROAD&amp;gclid=Cj0KCQjwu8uyBhC6ARIsAKwBGpRBq1byGhW05q1Fy7_K4r_2Sssz97o6e93dUTfRk0nDlo6utAl7pt8aAlw-EALw_wcB&amp;nombre=compra-de-casa&amp;id=165906">https://www.baccredomatic.com/es-cr/personas/prestamos?categoria=destacados&amp;amp;bacid=CRIN-CORE-CPR-000007-GL-AW-PR-GG-B6-SR-00000/SEARCH-VEL-PPRENDARIO-NOBRAND-BROAD&amp;amp;gclid=Cj0KCQjwu8uyBhC6ARIsAKwBGpRBq1byGhW05q1Fy7_K4r_2Sssz97o6e93dUTfRk0nDlo6utAl7pt8aAlw-EALw_wcB&amp;amp;nombre=compra-de-casa&amp;amp;id=165906</a></p>
+<p>[6] "¿Cómo funciona una hipoteca?", Banco Sabadell, 2024. <a href="https://www.bancsabadell.com/bsnacional/es/blog/como-funciona-una-hipoteca/#:~:text=Una%20hipoteca%20es%20un%20pr%C3%A9stamo,pago%20es%20el%20propio%20inmueble">https://www.bancsabadell.com/bsnacional/es/blog/como-funciona-una-hipoteca/#:~:text=Una%20hipoteca%20es%20un%20pr%C3%A9stamo,pago%20es%20el%20propio%20inmueble</a>. (accedido 26 de mayo de 2024).</p>
+<p>[7] "Solicitud de Préstamo Hipotecario", BAC Costa Rica, 2024. <a href="https://www.baccredomatic.com/es-cr/personas/prestamos/vivienda/terminada/solicitud">https://www.baccredomatic.com/es-cr/personas/prestamos/vivienda/terminada/solicitud</a> (accedido 24 de mayo de 2024).</p>
+<p>[8] "Tasa Básica Pasiva (TBP):, Banco Central de Costa Rica, 2024. <a href="https://gee.bccr.fi.cr/indicadoreseconomicos/cuadros/frmvercatcuadro.aspx?idioma=1&codcuadro=%2017">https://gee.bccr.fi.cr/indicadoreseconomicos/cuadros/frmvercatcuadro.aspx?idioma=1&amp;codcuadro=%2017</a> (accedido 26 de mayo de 2024).</p>
+<p>[9] "Que es el Certificado de Deposito de Ahorro o CDA". Rossana Cardozo. Accedido el 23 de Mayo de 2024. [En linea]. <a href="https://www.bbva.com/es/innovacion/doce-consejos-de-seguridad-para-usar-la-banca-digital/">https://www.bbva.com/es/innovacion/doce-consejos-de-seguridad-para-usar-la-banca-digital/</a></p>
+<p>[10] "Tasas de intereses para CDP's". Banco de Costa Rica (BCR). Accedido el 26 de Mayo de 2024. [En linea]. <a href="https://www.bancobcr.com/wps/portal/bcr/bancobcr/personas/inversiones/certificados_de_deposito_a_plazo">https://www.bancobcr.com/wps/portal/bcr/bancobcr/personas/inversiones/certificados_de_deposito_a_plazo</a> tasas_de_interes_para_cdps/</p>
+<p>[11] "Interes simple y compuesto, como calcularlo e implementarlo". GBS Group Staff. Accedido el 26 de Mayo de 2024. [En linea]. <a href="https://blog.gbsgroup.net/blog/interes-simple-y-compuesto-como-calcularlo-e-implementarlo">https://blog.gbsgroup.net/blog/interes-simple-y-compuesto-como-calcularlo-e-implementarlo</a></p>
+<p>[12] “Registros contables, qué són, cómo llevarlos y todo lo que debes saber”. Contífico. Accedido el 26 de mayo de 2024. [En línea]. Disponible: <a href="https://contifico.com/que-son-los-registros-contables/">https://contifico.com/que-son-los-registros-contables/</a></p>
+<p>[13] “Importancia de los registros contables en una empresa”. JLC Auditors. Accedido el 26 de mayo de 2024. [En línea]. Disponible: <a href="https://jlcauditors.com/importancia-registros-contables-empresa/">https://jlcauditors.com/importancia-registros-contables-empresa/</a> </p>
+</div></div><!-- PageDoc -->
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
+Generado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

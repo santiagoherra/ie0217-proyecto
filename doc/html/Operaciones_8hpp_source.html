@@ -1,16 +1,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=11"/>
-<meta name="generator" content="Doxygen 1.10.0"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Proyecto Final Sistema Bancario: Archivo de código fuente /home/kevin/Desktop/ProyectoQuintoClon/ie0217-proyecto/src/Operaciones.hpp</title>
+<title>Proyecto Final Sistema Bancario: Fichero Fuente /home/santiago/Documents/ie0217-proyecto/src/Operaciones.hpp</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<script type="text/javascript" src="clipboard.js"></script>
-<script type="text/javascript" src="cookie.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -21,8 +19,8 @@
 <div id="titlearea">
 <table cellspacing="0" cellpadding="0">
  <tbody>
- <tr id="projectrow">
-  <td id="projectalign">
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Proyecto Final Sistema Bancario
    </div>
    <div id="projectbrief">Este proyecto final es del curso Estructuras Abstractas de Datos para ingenieria,</div>
@@ -32,28 +30,22 @@
 </table>
 </div>
 <!-- end header part -->
-<!-- Generado por Doxygen 1.10.0 -->
+<!-- Generado por Doxygen 1.9.1 -->
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Buscar','.html');
 /* @license-end */
 </script>
 <script type="text/javascript" src="menudata.js"></script>
 <script type="text/javascript" src="menu.js"></script>
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
 $(function() {
   initMenu('',true,false,'search.php','Buscar');
-  $(function() { init_search(); });
+  $(document).ready(function() { init_search(); });
 });
-/* @license-end */
-</script>
+/* @license-end */</script>
 <div id="main-nav"></div>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function() { codefold.init(0); });
-/* @license-end */
-</script>
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -63,16 +55,9 @@ $(function() { codefold.init(0); });
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
-<div id="MSearchResults">
-<div class="SRPage">
-<div id="SRIndex">
-<div id="SRResults"></div>
-<div class="SRStatus" id="Loading">Cargando...</div>
-<div class="SRStatus" id="Searching">Buscando...</div>
-<div class="SRStatus" id="NoMatches">Nada coincide</div>
-</div>
-</div>
-</div>
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
 </div>
 
 <div id="nav-path" class="navpath">
@@ -81,61 +66,60 @@ $(function() { codefold.init(0); });
 </div>
 </div><!-- top -->
 <div class="header">
-  <div class="headertitle"><div class="title">Operaciones.hpp</div></div>
+  <div class="headertitle">
+<div class="title">Operaciones.hpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="Operaciones_8hpp.html">Ir a la documentación de este archivo.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#ifndef OPERACIONES_HPP</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#define OPERACIONES_HPP</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;iostream&gt;</span></div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;stdexcept&gt;</span></div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;limits&gt;</span></div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;sstream&gt;</span></div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;iomanip&gt;</span></div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;sqlite3.h&gt;</span></div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &lt;thread&gt;</span></div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#include &lt;chrono&gt;</span></div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &quot;<a class="code" href="funcionesGenerales_8hpp.html">funcionesGenerales.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
-<div class="foldopen" id="foldopen00033" data-start="{" data-end="};">
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="classOperaciones.html">   33</a></span><span class="keyword">class </span><a class="code hl_class" href="classOperaciones.html">Operaciones</a> {</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        </div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        <span class="keywordtype">int</span> <a class="code hl_function" href="classOperaciones.html#a35a28e2804d2070e3a6394dd149b3bbc">deposito</a>(std::string &amp;denominacion, std::string &amp;clienteOrigenCedula, std::string &amp;clienteDestinoCedula, <span class="keywordtype">float</span> &amp;montoBase);</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        <span class="keywordtype">int</span> <a class="code hl_function" href="classOperaciones.html#af120a5bd99e3ecac99de3ea64b44736e">retiro</a>(std::string &amp;denominacion, std::string &amp;clienteOrigenCedula, std::string &amp;clienteDestinoCedula, <span class="keywordtype">float</span> &amp;montoBase);</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        <span class="keywordtype">int</span> <a class="code hl_function" href="classOperaciones.html#aaa9b8f84c322d1beb5722d8bbdc8a712">transferencias</a>(std::string &amp;denominacion, std::string &amp;clienteOrigenCedula, std::string &amp;clienteDestinoCedula, <span class="keywordtype">float</span> &amp;montoBase);</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        <span class="comment">//Esta es la funcion para poder ver el progreso del cdp</span></div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>        <span class="keywordtype">int</span> <a class="code hl_function" href="classOperaciones.html#a20028803d15f883bd6cebc45bb3a376c">abonosPrestamos</a>(std::string &amp;denominacion, std::string &amp;clienteOrigenCedula, std::string &amp;clienteDestinoCedula, <span class="keywordtype">float</span> &amp;montoBase);</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>        <span class="comment">//Esta es la funcion para poder ver el progreso del cdp</span></div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>        <span class="keywordtype">int</span> <a class="code hl_function" href="classOperaciones.html#abe18229e95d64597bf7c8280944656fd">gestionAhorros</a>();</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>        <span class="comment">//Esta es la solicitud de prestamos</span></div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>        <span class="keywordtype">int</span> <a class="code hl_function" href="classOperaciones.html#aaab303213b327ab3a4229ead271bfac1">solicitudPrestamos</a>();</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>};</div>
-</div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span> </div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span><span class="preprocessor">#endif</span></div>
-<div class="ttc" id="aclassOperaciones_html"><div class="ttname"><a href="classOperaciones.html">Operaciones</a></div><div class="ttdoc">En esta clase se encuentran los métodos que permiten a los clientes realizar acciones.</div><div class="ttdef"><b>Definition</b> Operaciones.hpp:33</div></div>
-<div class="ttc" id="aclassOperaciones_html_a20028803d15f883bd6cebc45bb3a376c"><div class="ttname"><a href="classOperaciones.html#a20028803d15f883bd6cebc45bb3a376c">Operaciones::abonosPrestamos</a></div><div class="ttdeci">int abonosPrestamos(std::string &amp;denominacion, std::string &amp;clienteOrigenCedula, std::string &amp;clienteDestinoCedula, float &amp;montoBase)</div><div class="ttdoc">Este método accede a la base de datos para cancelar cuotas de préstamos registrados en el banco.</div><div class="ttdef"><b>Definition</b> Operaciones.cpp:677</div></div>
-<div class="ttc" id="aclassOperaciones_html_a35a28e2804d2070e3a6394dd149b3bbc"><div class="ttname"><a href="classOperaciones.html#a35a28e2804d2070e3a6394dd149b3bbc">Operaciones::deposito</a></div><div class="ttdeci">int deposito(std::string &amp;denominacion, std::string &amp;clienteOrigenCedula, std::string &amp;clienteDestinoCedula, float &amp;montoBase)</div><div class="ttdoc">Este método interactua con la base de datos para realizar depósitos.</div><div class="ttdef"><b>Definition</b> Operaciones.cpp:30</div></div>
-<div class="ttc" id="aclassOperaciones_html_aaa9b8f84c322d1beb5722d8bbdc8a712"><div class="ttname"><a href="classOperaciones.html#aaa9b8f84c322d1beb5722d8bbdc8a712">Operaciones::transferencias</a></div><div class="ttdeci">int transferencias(std::string &amp;denominacion, std::string &amp;clienteOrigenCedula, std::string &amp;clienteDestinoCedula, float &amp;montoBase)</div><div class="ttdoc">Este método interactua con la base de datos para realizar transferencias bancarias entre clientes.</div><div class="ttdef"><b>Definition</b> Operaciones.cpp:382</div></div>
-<div class="ttc" id="aclassOperaciones_html_aaab303213b327ab3a4229ead271bfac1"><div class="ttname"><a href="classOperaciones.html#aaab303213b327ab3a4229ead271bfac1">Operaciones::solicitudPrestamos</a></div><div class="ttdeci">int solicitudPrestamos()</div><div class="ttdoc">Permite solicitar un préstamo.</div><div class="ttdef"><b>Definition</b> Operaciones2.cpp:22</div></div>
-<div class="ttc" id="aclassOperaciones_html_abe18229e95d64597bf7c8280944656fd"><div class="ttname"><a href="classOperaciones.html#abe18229e95d64597bf7c8280944656fd">Operaciones::gestionAhorros</a></div><div class="ttdeci">int gestionAhorros()</div><div class="ttdoc">Accede a la información para observar el progreso de los cdps.</div><div class="ttdef"><b>Definition</b> Operaciones.cpp:984</div></div>
-<div class="ttc" id="aclassOperaciones_html_af120a5bd99e3ecac99de3ea64b44736e"><div class="ttname"><a href="classOperaciones.html#af120a5bd99e3ecac99de3ea64b44736e">Operaciones::retiro</a></div><div class="ttdeci">int retiro(std::string &amp;denominacion, std::string &amp;clienteOrigenCedula, std::string &amp;clienteDestinoCedula, float &amp;montoBase)</div><div class="ttdoc">Método que interactua con la base de datos para realizar retiros.</div><div class="ttdef"><b>Definition</b> Operaciones.cpp:187</div></div>
+<a href="Operaciones_8hpp.html">Ir a la documentación de este archivo.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#ifndef OPERACIONES_HPP</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#define OPERACIONES_HPP</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;stdexcept&gt;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;limits&gt;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;sstream&gt;</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &lt;iomanip&gt;</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &lt;sqlite3.h&gt;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &lt;thread&gt;</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &lt;chrono&gt;</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="funcionesGenerales_8hpp.html">funcionesGenerales.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="classOperaciones.html">   33</a></span>&#160;<span class="keyword">class </span><a class="code" href="classOperaciones.html">Operaciones</a> {</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        </div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classOperaciones.html#a35a28e2804d2070e3a6394dd149b3bbc">deposito</a>(std::string &amp;denominacion, std::string &amp;clienteOrigenCedula, std::string &amp;clienteDestinoCedula, <span class="keywordtype">float</span> &amp;montoBase);</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classOperaciones.html#af120a5bd99e3ecac99de3ea64b44736e">retiro</a>(std::string &amp;denominacion, std::string &amp;clienteOrigenCedula, std::string &amp;clienteDestinoCedula, <span class="keywordtype">float</span> &amp;montoBase);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classOperaciones.html#aaa9b8f84c322d1beb5722d8bbdc8a712">transferencias</a>(std::string &amp;denominacion, std::string &amp;clienteOrigenCedula, std::string &amp;clienteDestinoCedula, <span class="keywordtype">float</span> &amp;montoBase);</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <span class="comment">//Esta es la funcion para poder ver el progreso del cdp</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="comment"></span>        <span class="keywordtype">int</span> <a class="code" href="classOperaciones.html#a20028803d15f883bd6cebc45bb3a376c">abonosPrestamos</a>(std::string &amp;denominacion, std::string &amp;clienteOrigenCedula, std::string &amp;clienteDestinoCedula, <span class="keywordtype">float</span> &amp;montoBase);</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        <span class="comment">//Esta es la funcion para poder ver el progreso del cdp</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="comment"></span>        <span class="keywordtype">int</span> <a class="code" href="classOperaciones.html#abe18229e95d64597bf7c8280944656fd">gestionAhorros</a>();</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        <span class="comment">//Esta es la solicitud de prestamos</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="comment"></span>        <span class="keywordtype">int</span> <a class="code" href="classOperaciones.html#aaab303213b327ab3a4229ead271bfac1">solicitudPrestamos</a>();</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160; </div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160; </div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;};</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160; </div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassOperaciones_html"><div class="ttname"><a href="classOperaciones.html">Operaciones</a></div><div class="ttdoc">En esta clase se encuentran los métodos que permiten a los clientes realizar acciones.</div><div class="ttdef"><b>Definition:</b> Operaciones.hpp:33</div></div>
+<div class="ttc" id="aclassOperaciones_html_a20028803d15f883bd6cebc45bb3a376c"><div class="ttname"><a href="classOperaciones.html#a20028803d15f883bd6cebc45bb3a376c">Operaciones::abonosPrestamos</a></div><div class="ttdeci">int abonosPrestamos(std::string &amp;denominacion, std::string &amp;clienteOrigenCedula, std::string &amp;clienteDestinoCedula, float &amp;montoBase)</div><div class="ttdoc">Este método accede a la base de datos para cancelar cuotas de préstamos registrados en el banco.</div><div class="ttdef"><b>Definition:</b> Operaciones.cpp:677</div></div>
+<div class="ttc" id="aclassOperaciones_html_a35a28e2804d2070e3a6394dd149b3bbc"><div class="ttname"><a href="classOperaciones.html#a35a28e2804d2070e3a6394dd149b3bbc">Operaciones::deposito</a></div><div class="ttdeci">int deposito(std::string &amp;denominacion, std::string &amp;clienteOrigenCedula, std::string &amp;clienteDestinoCedula, float &amp;montoBase)</div><div class="ttdoc">Este método interactua con la base de datos para realizar depósitos.</div><div class="ttdef"><b>Definition:</b> Operaciones.cpp:30</div></div>
+<div class="ttc" id="aclassOperaciones_html_aaa9b8f84c322d1beb5722d8bbdc8a712"><div class="ttname"><a href="classOperaciones.html#aaa9b8f84c322d1beb5722d8bbdc8a712">Operaciones::transferencias</a></div><div class="ttdeci">int transferencias(std::string &amp;denominacion, std::string &amp;clienteOrigenCedula, std::string &amp;clienteDestinoCedula, float &amp;montoBase)</div><div class="ttdoc">Este método interactua con la base de datos para realizar transferencias bancarias entre clientes.</div><div class="ttdef"><b>Definition:</b> Operaciones.cpp:382</div></div>
+<div class="ttc" id="aclassOperaciones_html_aaab303213b327ab3a4229ead271bfac1"><div class="ttname"><a href="classOperaciones.html#aaab303213b327ab3a4229ead271bfac1">Operaciones::solicitudPrestamos</a></div><div class="ttdeci">int solicitudPrestamos()</div><div class="ttdoc">Permite solicitar un préstamo.</div><div class="ttdef"><b>Definition:</b> Operaciones2.cpp:22</div></div>
+<div class="ttc" id="aclassOperaciones_html_abe18229e95d64597bf7c8280944656fd"><div class="ttname"><a href="classOperaciones.html#abe18229e95d64597bf7c8280944656fd">Operaciones::gestionAhorros</a></div><div class="ttdeci">int gestionAhorros()</div><div class="ttdoc">Accede a la información para observar el progreso de los cdps.</div><div class="ttdef"><b>Definition:</b> Operaciones.cpp:984</div></div>
+<div class="ttc" id="aclassOperaciones_html_af120a5bd99e3ecac99de3ea64b44736e"><div class="ttname"><a href="classOperaciones.html#af120a5bd99e3ecac99de3ea64b44736e">Operaciones::retiro</a></div><div class="ttdeci">int retiro(std::string &amp;denominacion, std::string &amp;clienteOrigenCedula, std::string &amp;clienteDestinoCedula, float &amp;montoBase)</div><div class="ttdoc">Método que interactua con la base de datos para realizar retiros.</div><div class="ttdef"><b>Definition:</b> Operaciones.cpp:187</div></div>
 <div class="ttc" id="afuncionesGenerales_8hpp_html"><div class="ttname"><a href="funcionesGenerales_8hpp.html">funcionesGenerales.hpp</a></div><div class="ttdoc">Métodos utilidad para otros métodos, asociados al manejo y comprobación de errores.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
+Generado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

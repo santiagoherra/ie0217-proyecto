@@ -1,15 +1,8 @@
-<map id="/home/kevin/Desktop/ProyectoQuintoClon/ie0217&#45;proyecto/src/prestamos.hpp" name="/home/kevin/Desktop/ProyectoQuintoClon/ie0217&#45;proyecto/src/prestamos.hpp">
-<area shape="rect" id="Node000001" title="Clase préstamo y métodos para añadir, calcular tasas, desplegar info y validarlos." alt="" coords="240,5,400,75"/>
-<area shape="rect" id="Node000002" href="$Operaciones2_8cpp.html" title="Implementación: Retiro, depósito, abono, transferencia y ahorros." alt="" coords="5,123,165,192"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="241,83,155,125,153,120,238,78"/>
-<area shape="rect" id="Node000003" href="$aplicacion_8cpp.html" title="Main del sistema de gestión bancario." alt="" coords="135,240,295,309"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="261,86,244,104,230,124,220,153,214,183,213,240,208,240,209,183,215,151,226,121,239,100,257,82"/>
-<area shape="rect" id="Node000004" href="$menus_8cpp.html" title="Implementación: menus para el funcionamineto del programa." alt="" coords="344,240,504,309"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="383,82,401,100,414,121,425,151,431,183,431,240,426,240,425,183,420,153,410,124,396,104,380,85"/>
-<area shape="rect" id="Node000005" href="$menus_8hpp.html" title="Implementación por menus del programa." alt="" coords="240,123,400,192"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="323,89,323,122,317,122,317,89"/>
-<area shape="rect" id="Node000006" href="$prestamos_8cpp.html" title="Implementación de la clase préstamo." alt="" coords="475,123,635,192"/>
-<area shape="poly" id="edge7_Node000001_Node000006" title=" " alt="" coords="402,78,487,120,485,125,399,83"/>
-<area shape="poly" id="edge5_Node000005_Node000003" title=" " alt="" coords="282,204,247,242,244,238,278,201"/>
-<area shape="poly" id="edge6_Node000005_Node000004" title=" " alt="" coords="362,201,396,238,392,242,358,204"/>
+<map id="/home/santiago/Documents/ie0217&#45;proyecto/src/prestamos.hpp" name="/home/santiago/Documents/ie0217&#45;proyecto/src/prestamos.hpp">
+<area shape="rect" id="node1" title="Clase préstamo y métodos para añadir, calcular tasas, desplegar info y validarlos." alt="" coords="290,5,546,47"/>
+<area shape="rect" id="node2" href="$aplicacion_8cpp.html" title="Main del sistema de gestión bancario." alt="" coords="5,184,257,225"/>
+<area shape="rect" id="node3" href="$menus_8cpp.html" title="Implementación: menus para el funcionamineto del programa." alt="" coords="292,184,523,225"/>
+<area shape="rect" id="node4" href="$menus_8hpp.html" title="Implementación por menus del programa." alt="" coords="149,95,380,136"/>
+<area shape="rect" id="node5" href="$Operaciones2_8cpp.html" title="Implementación: Retiro, depósito, abono, transferencia y ahorros." alt="" coords="455,95,730,136"/>
+<area shape="rect" id="node6" href="$prestamos_8cpp.html" title="Implementación de la clase préstamo." alt="" coords="755,95,1009,136"/>
 </map>

@@ -1,0 +1,164 @@
+\hypertarget{funcionesGenerales_8cpp}{}\doxysection{Referencia del Archivo /home/santiago/\+Documents/ie0217-\/proyecto/src/funciones\+Generales.cpp}
+\label{funcionesGenerales_8cpp}\index{/home/santiago/Documents/ie0217-\/proyecto/src/funcionesGenerales.cpp@{/home/santiago/Documents/ie0217-\/proyecto/src/funcionesGenerales.cpp}}
+
+
+Implementación\+: Métodos utilidad para otros métodos, asociados al manejo y comprobación de errores.  
+
+
+{\ttfamily \#include \char`\"{}funciones\+Generales.\+hpp\char`\"{}}\newline
+Dependencia gráfica adjunta para funciones\+Generales.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{funcionesGenerales_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Funciones}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{funcionesGenerales_8cpp_a974f0277e79d9edd815f9fc731005717}{existe\+Cliente}} (const std\+::string \&cliente\+ID)
+\begin{DoxyCompactList}\small\item\em Esta funcion devuelve un booleano si el cliente ya esta en la base de datos. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{funcionesGenerales_8cpp_a60bd9399e165a37366e817bcd24099b1}{agregar\+Cliente}} (const std\+::string cliente\+ID, std\+::string nombre, std\+::string apellido, long int cuentacolones, long int cuentadolares)
+\begin{DoxyCompactList}\small\item\em Esta funcion esta hecha para agregar un cliente a la base de datos si no existe. \end{DoxyCompactList}\item 
+std\+::tm \mbox{\hyperlink{funcionesGenerales_8cpp_acf26c4743f5b067f6ad4c0f559e8048c}{string\+\_\+a\+\_\+fecha}} (const std\+::string \&fecha\+\_\+string)
+\begin{DoxyCompactList}\small\item\em Esta funcion para un string a una fecha usando la biblioteca Ctime para poder realizar calculos de tiempo con la fecha que da la base de dato. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{funcionesGenerales_8cpp_a80cd2a549d3ab98b2cb810f33f8b39ed}\label{funcionesGenerales_8cpp_a80cd2a549d3ab98b2cb810f33f8b39ed}} 
+std\+::string {\bfseries obtener\+Fecha\+String} ()
+\item 
+void \mbox{\hyperlink{funcionesGenerales_8cpp_a76b93430a73b21a8bef8b2f8d2f840ad}{leer\+Int}} (int num, int op1, int op2, int op3, int op4, int op5)
+\begin{DoxyCompactList}\small\item\em Esta funcion esta hecha para validar numeros ints ademas tambien tira error si una de las opciones dadas en op1, 2, 3, 4, 5 no es int num para que el usuario tenga que dar las opciones que se piden. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{funcionesGenerales_8cpp_ae9c2519a3773376e18f701c8b0a0da28}{leer\+Cedula}} (std\+::string cedula)
+\begin{DoxyCompactList}\small\item\em Esta funcion leer la cedula del usuario y si no se parece a una cedula tira un error. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{funcionesGenerales_8cpp_a21ef9bd8dd723dd8e56e2ece82b84972}\label{funcionesGenerales_8cpp_a21ef9bd8dd723dd8e56e2ece82b84972}} 
+bool {\bfseries validar\+Nombre\+Apellido} (const std\+::string \&nombre)
+\item 
+\mbox{\Hypertarget{funcionesGenerales_8cpp_a2e20ed8dcdf527e5eb6d3d03003999dc}\label{funcionesGenerales_8cpp_a2e20ed8dcdf527e5eb6d3d03003999dc}} 
+void {\bfseries insertar\+Cuentas\+YClientes} ()
+\item 
+\mbox{\Hypertarget{funcionesGenerales_8cpp_a8e1056be88a76b5f5b5f629f0437cd80}\label{funcionesGenerales_8cpp_a8e1056be88a76b5f5b5f629f0437cd80}} 
+bool {\bfseries existe\+Cuenta} (int numero\+\_\+cuenta)
+\item 
+\mbox{\Hypertarget{funcionesGenerales_8cpp_a1e558ec9700721aafba83d361c250b1a}\label{funcionesGenerales_8cpp_a1e558ec9700721aafba83d361c250b1a}} 
+bool {\bfseries leer\+Cedula2} (const std\+::string \&cedula)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+Implementación\+: Métodos utilidad para otros métodos, asociados al manejo y comprobación de errores. 
+
+\begin{DoxyVersion}{Versión}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Fecha}
+6/2024 
+\end{DoxyDate}
+\begin{DoxyAuthor}{Autores}
+José\+Ignacio\+Sáenz\+Díaz, Santiago\+Herra\+Castro, Kevin\+Jiménez\+Acuña 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Documentación de las funciones}
+\mbox{\Hypertarget{funcionesGenerales_8cpp_a60bd9399e165a37366e817bcd24099b1}\label{funcionesGenerales_8cpp_a60bd9399e165a37366e817bcd24099b1}} 
+\index{funcionesGenerales.cpp@{funcionesGenerales.cpp}!agregarCliente@{agregarCliente}}
+\index{agregarCliente@{agregarCliente}!funcionesGenerales.cpp@{funcionesGenerales.cpp}}
+\doxysubsubsection{\texorpdfstring{agregarCliente()}{agregarCliente()}}
+{\footnotesize\ttfamily int agregar\+Cliente (\begin{DoxyParamCaption}\item[{const std\+::string}]{cliente\+ID,  }\item[{std\+::string}]{nombre,  }\item[{std\+::string}]{apellido,  }\item[{long int}]{cuentacolones,  }\item[{long int}]{cuentadolares }\end{DoxyParamCaption})}
+
+
+
+Esta funcion esta hecha para agregar un cliente a la base de datos si no existe. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em cliente\+ID} & \\
+\hline
+{\em nombre} & \\
+\hline
+{\em apellido} & \\
+\hline
+{\em cuentacolones} & \\
+\hline
+{\em cuentadolares} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+int Devuelve un 0 si se realiza con exito, un 1 si fallo. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{funcionesGenerales_8cpp_a974f0277e79d9edd815f9fc731005717}\label{funcionesGenerales_8cpp_a974f0277e79d9edd815f9fc731005717}} 
+\index{funcionesGenerales.cpp@{funcionesGenerales.cpp}!existeCliente@{existeCliente}}
+\index{existeCliente@{existeCliente}!funcionesGenerales.cpp@{funcionesGenerales.cpp}}
+\doxysubsubsection{\texorpdfstring{existeCliente()}{existeCliente()}}
+{\footnotesize\ttfamily bool existe\+Cliente (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{cliente\+ID }\end{DoxyParamCaption})}
+
+
+
+Esta funcion devuelve un booleano si el cliente ya esta en la base de datos. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em cliente\+ID} & se hace con la cedula \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+true 
+
+false 
+\end{DoxyReturn}
+\mbox{\Hypertarget{funcionesGenerales_8cpp_ae9c2519a3773376e18f701c8b0a0da28}\label{funcionesGenerales_8cpp_ae9c2519a3773376e18f701c8b0a0da28}} 
+\index{funcionesGenerales.cpp@{funcionesGenerales.cpp}!leerCedula@{leerCedula}}
+\index{leerCedula@{leerCedula}!funcionesGenerales.cpp@{funcionesGenerales.cpp}}
+\doxysubsubsection{\texorpdfstring{leerCedula()}{leerCedula()}}
+{\footnotesize\ttfamily void leer\+Cedula (\begin{DoxyParamCaption}\item[{std\+::string}]{cedula }\end{DoxyParamCaption})}
+
+
+
+Esta funcion leer la cedula del usuario y si no se parece a una cedula tira un error. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em cedula} & cedula que da el usuario \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{funcionesGenerales_8cpp_a76b93430a73b21a8bef8b2f8d2f840ad}\label{funcionesGenerales_8cpp_a76b93430a73b21a8bef8b2f8d2f840ad}} 
+\index{funcionesGenerales.cpp@{funcionesGenerales.cpp}!leerInt@{leerInt}}
+\index{leerInt@{leerInt}!funcionesGenerales.cpp@{funcionesGenerales.cpp}}
+\doxysubsubsection{\texorpdfstring{leerInt()}{leerInt()}}
+{\footnotesize\ttfamily void leer\+Int (\begin{DoxyParamCaption}\item[{int}]{num,  }\item[{int}]{op1,  }\item[{int}]{op2,  }\item[{int}]{op3,  }\item[{int}]{op4,  }\item[{int}]{op5 }\end{DoxyParamCaption})}
+
+
+
+Esta funcion esta hecha para validar numeros ints ademas tambien tira error si una de las opciones dadas en op1, 2, 3, 4, 5 no es int num para que el usuario tenga que dar las opciones que se piden. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em num} & este es el numero que se valida \\
+\hline
+{\em op1} & esta es una opcion de entrada \\
+\hline
+{\em op2} & esta es una opcion de entrada \\
+\hline
+{\em op3} & esta es una opcion de entrada \\
+\hline
+{\em op4} & esta es una opcion de entrada \\
+\hline
+{\em op5} & esta es una opcion de entrada \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{funcionesGenerales_8cpp_acf26c4743f5b067f6ad4c0f559e8048c}\label{funcionesGenerales_8cpp_acf26c4743f5b067f6ad4c0f559e8048c}} 
+\index{funcionesGenerales.cpp@{funcionesGenerales.cpp}!string\_a\_fecha@{string\_a\_fecha}}
+\index{string\_a\_fecha@{string\_a\_fecha}!funcionesGenerales.cpp@{funcionesGenerales.cpp}}
+\doxysubsubsection{\texorpdfstring{string\_a\_fecha()}{string\_a\_fecha()}}
+{\footnotesize\ttfamily std\+::tm string\+\_\+a\+\_\+fecha (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{fecha\+\_\+string }\end{DoxyParamCaption})}
+
+
+
+Esta funcion para un string a una fecha usando la biblioteca Ctime para poder realizar calculos de tiempo con la fecha que da la base de dato. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em fecha\+\_\+string} & fecha en string que se da \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+tm devuelve el tiempo del string 
+\end{DoxyReturn}

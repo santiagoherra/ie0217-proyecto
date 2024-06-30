@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['verificarsaldosuficiente_0',['verificarSaldoSuficiente',['../classCDP.html#a4d3551887bc1bc9506c3219cced0e58e',1,'CDP']]],
-  ['verregistro_1',['verRegistro',['../classRegistrosGenerales.html#a2d69c02f6bf8fc31f514aa4f9ae473c8',1,'RegistrosGenerales']]]
+  ['tasacompradolarcolones_60',['tasaCompraDolarColones',['../classPrestamos.html#a64f494543f750dea927741cfcbbb9540',1,'Prestamos']]],
+  ['transferencias_61',['transferencias',['../classOperaciones.html#aaa9b8f84c322d1beb5722d8bbdc8a712',1,'Operaciones']]]
 ];

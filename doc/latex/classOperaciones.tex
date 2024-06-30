@@ -1,0 +1,163 @@
+\hypertarget{classOperaciones}{}\doxysection{Referencia de la Clase Operaciones}
+\label{classOperaciones}\index{Operaciones@{Operaciones}}
+
+
+En esta clase se encuentran los métodos que permiten a los clientes realizar acciones.  
+
+
+
+
+{\ttfamily \#include $<$Operaciones.\+hpp$>$}
+
+\doxysubsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classOperaciones_a35a28e2804d2070e3a6394dd149b3bbc}{deposito}} (std\+::string \&denominacion, std\+::string \&cliente\+Origen\+Cedula, std\+::string \&cliente\+Destino\+Cedula, float \&monto\+Base)
+\begin{DoxyCompactList}\small\item\em Este método interactua con la base de datos para realizar depósitos. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classOperaciones_af120a5bd99e3ecac99de3ea64b44736e}{retiro}} (std\+::string \&denominacion, std\+::string \&cliente\+Origen\+Cedula, std\+::string \&cliente\+Destino\+Cedula, float \&monto\+Base)
+\begin{DoxyCompactList}\small\item\em Método que interactua con la base de datos para realizar retiros. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classOperaciones_aaa9b8f84c322d1beb5722d8bbdc8a712}{transferencias}} (std\+::string \&denominacion, std\+::string \&cliente\+Origen\+Cedula, std\+::string \&cliente\+Destino\+Cedula, float \&monto\+Base)
+\begin{DoxyCompactList}\small\item\em Este método interactua con la base de datos para realizar transferencias bancarias entre clientes. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classOperaciones_a20028803d15f883bd6cebc45bb3a376c}{abonos\+Prestamos}} (std\+::string \&denominacion, std\+::string \&cliente\+Origen\+Cedula, std\+::string \&cliente\+Destino\+Cedula, float \&monto\+Base)
+\begin{DoxyCompactList}\small\item\em Este método accede a la base de datos para cancelar cuotas de préstamos registrados en el banco. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classOperaciones_abe18229e95d64597bf7c8280944656fd}{gestion\+Ahorros}} ()
+\begin{DoxyCompactList}\small\item\em Accede a la información para observar el progreso de los cdps. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classOperaciones_aaab303213b327ab3a4229ead271bfac1}{solicitud\+Prestamos}} ()
+\begin{DoxyCompactList}\small\item\em Permite solicitar un préstamo. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+En esta clase se encuentran los métodos que permiten a los clientes realizar acciones. 
+
+Cada uno de estos métodos, acceden a la base de datos para obtener información y en algunos casos modificar los registros para de esta forma, realizar las operaciones deseadas por el cliente. Es necesario mencionar que algunos de estos métodos reciben parámetros por referencia, esto resulta útil ya que de esta forma es posible modificar ciertas variables que después serán utilizadas para actualizar la tabla de registros de la base de datos. 
+
+\doxysubsection{Documentación de las funciones miembro}
+\mbox{\Hypertarget{classOperaciones_a20028803d15f883bd6cebc45bb3a376c}\label{classOperaciones_a20028803d15f883bd6cebc45bb3a376c}} 
+\index{Operaciones@{Operaciones}!abonosPrestamos@{abonosPrestamos}}
+\index{abonosPrestamos@{abonosPrestamos}!Operaciones@{Operaciones}}
+\doxysubsubsection{\texorpdfstring{abonosPrestamos()}{abonosPrestamos()}}
+{\footnotesize\ttfamily int Operaciones\+::abonos\+Prestamos (\begin{DoxyParamCaption}\item[{std\+::string \&}]{denominacion,  }\item[{std\+::string \&}]{cliente\+Origen\+Cedula,  }\item[{std\+::string \&}]{cliente\+Destino\+Cedula,  }\item[{float \&}]{monto\+Base }\end{DoxyParamCaption})}
+
+
+
+Este método accede a la base de datos para cancelar cuotas de préstamos registrados en el banco. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em denominacion} & Registra el tipo de denominación que se utilizó para realizar la transacción \\
+\hline
+{\em cliente\+Origen\+Cedula} & Registra el número de cédula del cliente que emite la transacción (cliente que realiza el abono) \\
+\hline
+{\em cliente\+Destino\+Cedula} & Registra el número de cédula del cliente que recibe la transacción (en el caso de préstamo, es el mismo que realiza el abono) \\
+\hline
+{\em monto\+Base} & Registra el monto involucrado en la transacción \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+Este entero determina si la transacción fue exitosa o no 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classOperaciones_a35a28e2804d2070e3a6394dd149b3bbc}\label{classOperaciones_a35a28e2804d2070e3a6394dd149b3bbc}} 
+\index{Operaciones@{Operaciones}!deposito@{deposito}}
+\index{deposito@{deposito}!Operaciones@{Operaciones}}
+\doxysubsubsection{\texorpdfstring{deposito()}{deposito()}}
+{\footnotesize\ttfamily int Operaciones\+::deposito (\begin{DoxyParamCaption}\item[{std\+::string \&}]{denominacion,  }\item[{std\+::string \&}]{cliente\+Origen\+Cedula,  }\item[{std\+::string \&}]{cliente\+Destino\+Cedula,  }\item[{float \&}]{monto\+Base }\end{DoxyParamCaption})}
+
+
+
+Este método interactua con la base de datos para realizar depósitos. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em denominacion} & Registra el tipo de denominación que se utilizó para realizar la transacción \\
+\hline
+{\em cliente\+Origen\+Cedula} & Registra el número de cédula del cliente que emite la transacción (el cliente que deposita) \\
+\hline
+{\em cliente\+Destino\+Cedula} & Registra el número de cédula del cliente que recibe la transacción (en el caso de depósito, es el mismo que la emite) \\
+\hline
+{\em monto\+Base} & Registra el monto involucrado en la transacción \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+Este entero determina si la transacción fue exitosa o no 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classOperaciones_abe18229e95d64597bf7c8280944656fd}\label{classOperaciones_abe18229e95d64597bf7c8280944656fd}} 
+\index{Operaciones@{Operaciones}!gestionAhorros@{gestionAhorros}}
+\index{gestionAhorros@{gestionAhorros}!Operaciones@{Operaciones}}
+\doxysubsubsection{\texorpdfstring{gestionAhorros()}{gestionAhorros()}}
+{\footnotesize\ttfamily int Operaciones\+::gestion\+Ahorros (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Accede a la información para observar el progreso de los cdps. 
+
+\begin{DoxyReturn}{Devuelve}
+Int que determina el funcionamiento de la función 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classOperaciones_af120a5bd99e3ecac99de3ea64b44736e}\label{classOperaciones_af120a5bd99e3ecac99de3ea64b44736e}} 
+\index{Operaciones@{Operaciones}!retiro@{retiro}}
+\index{retiro@{retiro}!Operaciones@{Operaciones}}
+\doxysubsubsection{\texorpdfstring{retiro()}{retiro()}}
+{\footnotesize\ttfamily int Operaciones\+::retiro (\begin{DoxyParamCaption}\item[{std\+::string \&}]{denominacion,  }\item[{std\+::string \&}]{cliente\+Origen\+Cedula,  }\item[{std\+::string \&}]{cliente\+Destino\+Cedula,  }\item[{float \&}]{monto\+Base }\end{DoxyParamCaption})}
+
+
+
+Método que interactua con la base de datos para realizar retiros. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em denominacion} & Registra el tipo de denominación que se utilizó para realizar la transacción \\
+\hline
+{\em cliente\+Origen\+Cedula} & Registra el número de cédula del cliente que emite la transacción (el cliente que retira) \\
+\hline
+{\em cliente\+Destino\+Cedula} & Registra el número de cédula del cliente que recibe la transacción (en el caso de retiro, es el mismo que la emite) \\
+\hline
+{\em monto\+Base} & Registra el monto involucrado en la transacción \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+Este entero determina si la transacción fue exitosa o no 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classOperaciones_aaab303213b327ab3a4229ead271bfac1}\label{classOperaciones_aaab303213b327ab3a4229ead271bfac1}} 
+\index{Operaciones@{Operaciones}!solicitudPrestamos@{solicitudPrestamos}}
+\index{solicitudPrestamos@{solicitudPrestamos}!Operaciones@{Operaciones}}
+\doxysubsubsection{\texorpdfstring{solicitudPrestamos()}{solicitudPrestamos()}}
+{\footnotesize\ttfamily int Operaciones\+::solicitud\+Prestamos (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Permite solicitar un préstamo. 
+
+\begin{DoxyReturn}{Devuelve}
+Int que determina el funcionamiento de la función 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classOperaciones_aaa9b8f84c322d1beb5722d8bbdc8a712}\label{classOperaciones_aaa9b8f84c322d1beb5722d8bbdc8a712}} 
+\index{Operaciones@{Operaciones}!transferencias@{transferencias}}
+\index{transferencias@{transferencias}!Operaciones@{Operaciones}}
+\doxysubsubsection{\texorpdfstring{transferencias()}{transferencias()}}
+{\footnotesize\ttfamily int Operaciones\+::transferencias (\begin{DoxyParamCaption}\item[{std\+::string \&}]{denominacion,  }\item[{std\+::string \&}]{cliente\+Origen\+Cedula,  }\item[{std\+::string \&}]{cliente\+Destino\+Cedula,  }\item[{float \&}]{monto\+Base }\end{DoxyParamCaption})}
+
+
+
+Este método interactua con la base de datos para realizar transferencias bancarias entre clientes. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em denominacion} & Registra el tipo de denominación que se utilizó para realizar la transacción \\
+\hline
+{\em cliente\+Origen\+Cedula} & Registra el número de cédula del cliente que emite la transferencia \\
+\hline
+{\em cliente\+Destino\+Cedula} & Registra el número de cédula del cliente que recibe la transferencia \\
+\hline
+{\em monto\+Base} & Registra el monto involucrado en la transacción \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+Este entero determina si la transacción fue exitosa o no 
+\end{DoxyReturn}
+
+
+La documentación para esta clase fue generada a partir de los siguientes ficheros\+:\begin{DoxyCompactItemize}
+\item 
+/home/santiago/\+Documents/ie0217-\/proyecto/src/\mbox{\hyperlink{Operaciones_8hpp}{Operaciones.\+hpp}}\item 
+/home/santiago/\+Documents/ie0217-\/proyecto/src/\mbox{\hyperlink{Operaciones_8cpp}{Operaciones.\+cpp}}\item 
+/home/santiago/\+Documents/ie0217-\/proyecto/src/\mbox{\hyperlink{Operaciones2_8cpp}{Operaciones2.\+cpp}}\end{DoxyCompactItemize}

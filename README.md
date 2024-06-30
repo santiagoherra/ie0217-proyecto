@@ -2,9 +2,13 @@
 ## Curso: Estructuras abstractas de datos y algoritmos para ingenieria 0217.
 ## Prof. Esteban Badilla
 ### Integrantes:
-* Santiago Herra Castro C1721
+* Santiago Herra Castro C13721
 * José Ignacio Sáenz Díaz C27032
 * Kevin Jiménez Acuña C13876
+
+## Link de Netlify
+https://6681e6e9ca7a2bb21b96261b--dancing-sprinkles-d4e385.netlify.app/
+
 ## Instrucciones de ejecucion:
 Para ejecutar el sistema de gestión bancaria se deben tener los siguientes archivos en la carpeta C: de Windows: sqlite3.dll, sqlite3.def y sqlite3.h. Se deben correr los siguientes comandos en una terminal:
 
@@ -15,6 +19,20 @@ g++ aplicacion.cpp menus.cpp BaseDeDatos.cpp cdp.cpp CuentaAhorros.cpp funciones
 y para ejectuar:
 ```
 .\main.exe
+```
+
+Para compilar el sistema de gestion bancaria en el sistema operativo Linux, se debe de estar en la carpeta src/ ademas de tener la biblioteca sqlite3 en la carpeta linux_gnu o tener agregada la carpeta en las propiedades de C y C++ en VSCode en el archivo .json
+
+Comando de compilacion:
+
+```
+g++ aplicacion.cpp menus.cpp BaseDeDatos.cpp cdp.cpp CuentaAhorros.cpp funcionesGenerales.cpp Operaciones.cpp prestamos.cpp RegistrosGenerales.cpp -o main -lsqlite3
+```
+
+y para ejecutarlo:
+
+```
+./main
 ```
 
 ## Descripción de proyecto.

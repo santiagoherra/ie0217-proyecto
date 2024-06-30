@@ -1,8 +1,6 @@
 var searchData=
 [
-  ['menu_5fatencion_0',['menu_atencion',['../menus_8cpp.html#a725136d6a62f99655afdefeed1253c53',1,'menu_atencion():&#160;menus.cpp'],['../menus_8hpp.html#a725136d6a62f99655afdefeed1253c53',1,'menu_atencion():&#160;menus.cpp']]],
-  ['menu_5fcdp_1',['menu_CDP',['../menus_8cpp.html#a67c5428415432cfeb1252d3cb8bfce44',1,'menu_CDP():&#160;menus.cpp'],['../menus_8hpp.html#a67c5428415432cfeb1252d3cb8bfce44',1,'menu_CDP():&#160;menus.cpp']]],
-  ['menu_5finformacion_2',['menu_informacion',['../menus_8cpp.html#ab5dc69df949124dc3b1b8bf2f3d517be',1,'menu_informacion():&#160;menus.cpp'],['../menus_8hpp.html#ab5dc69df949124dc3b1b8bf2f3d517be',1,'menu_informacion():&#160;menus.cpp']]],
-  ['menu_5foperaciones_3',['menu_operaciones',['../menus_8cpp.html#a587c607a1198bce27f749e9bb8d99153',1,'menu_operaciones():&#160;menus.cpp'],['../menus_8hpp.html#a587c607a1198bce27f749e9bb8d99153',1,'menu_operaciones():&#160;menus.cpp']]],
-  ['menu_5fprestamos_4',['menu_prestamos',['../menus_8cpp.html#aa3f39b4f28bb8acd7f1870780b8066de',1,'menu_prestamos():&#160;menus.cpp'],['../menus_8hpp.html#aa3f39b4f28bb8acd7f1870780b8066de',1,'menu_prestamos():&#160;menus.cpp']]]
+  ['leercedula_102',['leerCedula',['../funcionesGenerales_8cpp.html#ae9c2519a3773376e18f701c8b0a0da28',1,'leerCedula(std::string cedula):&#160;funcionesGenerales.cpp'],['../funcionesGenerales_8hpp.html#ad98dcf2e482dd094b025aac38cd14d7a',1,'leerCedula(const std::string cedula):&#160;funcionesGenerales.cpp']]],
+  ['leerint_103',['leerInt',['../funcionesGenerales_8cpp.html#a76b93430a73b21a8bef8b2f8d2f840ad',1,'leerInt(int num, int op1, int op2, int op3, int op4, int op5):&#160;funcionesGenerales.cpp'],['../funcionesGenerales_8hpp.html#a37b7a5549288f4da315a927bfbd787c5',1,'leerInt(int num, int op1=0, int op2=0, int op3=0, int op4=0, int op5=0):&#160;funcionesGenerales.cpp']]],
+  ['llenardb_104',['llenarDB',['../BaseDeDatos_8cpp.html#af8cbc28193c6b3d5a62c9f279bd21ca3',1,'llenarDB():&#160;BaseDeDatos.cpp'],['../BaseDeDatos_8hpp.html#af8cbc28193c6b3d5a62c9f279bd21ca3',1,'llenarDB():&#160;BaseDeDatos.cpp']]]
 ];

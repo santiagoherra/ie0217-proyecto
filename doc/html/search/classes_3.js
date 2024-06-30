@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['registrosgenerales_0',['RegistrosGenerales',['../classRegistrosGenerales.html',1,'']]]
+  ['registrosgenerales_69',['RegistrosGenerales',['../classRegistrosGenerales.html',1,'']]]
 ];

@@ -1,0 +1,186 @@
+\hypertarget{menus_8cpp}{}\doxysection{Referencia del Archivo /home/santiago/\+Documents/ie0217-\/proyecto/src/menus.cpp}
+\label{menus_8cpp}\index{/home/santiago/Documents/ie0217-\/proyecto/src/menus.cpp@{/home/santiago/Documents/ie0217-\/proyecto/src/menus.cpp}}
+
+
+Implementación\+: menus para el funcionamineto del programa.  
+
+
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$sqlite3.\+h$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$limits$>$}\newline
+{\ttfamily \#include $<$cctype$>$}\newline
+{\ttfamily \#include $<$chrono$>$}\newline
+{\ttfamily \#include $<$ctime$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$cstdlib$>$}\newline
+{\ttfamily \#include \char`\"{}Base\+De\+Datos.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Registros\+Generales.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Operaciones.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}prestamos.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}funciones\+Generales.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}cdp.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Cuenta\+Ahorros.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}menus.\+hpp\char`\"{}}\newline
+Dependencia gráfica adjunta para menus.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{menus_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Enumeraciones}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{menus_8cpp_a51895b572f6326a7f2db364ea2fa886f}\label{menus_8cpp_a51895b572f6326a7f2db364ea2fa886f}} 
+enum {\bfseries Opciones} \{ \newline
+{\bfseries INFORMACION} = 1
+, {\bfseries ATENCION}
+, {\bfseries SALIR}
+, {\bfseries INFORMACION} = 1
+, \newline
+{\bfseries DEPOSITO}
+, {\bfseries RETIRO}
+, {\bfseries TRANSFERENCIA}
+, {\bfseries ABONO}
+, \newline
+{\bfseries REGISTRO\+\_\+\+PERSONAL}
+, {\bfseries REGISTRO\+\_\+\+GENERAL}
+, {\bfseries SALIR}
+, {\bfseries OPERACIONES} = 1
+, \newline
+{\bfseries PRESTAMO}
+, {\bfseries CDPS}
+, {\bfseries ANADIR}
+, {\bfseries SALIR}
+ \}
+\item 
+\mbox{\Hypertarget{menus_8cpp_a95d8a8243d8e3fd38e611a2da494b4ee}\label{menus_8cpp_a95d8a8243d8e3fd38e611a2da494b4ee}} 
+enum {\bfseries Opciones2} \{ \newline
+{\bfseries INFORMACION\+\_\+\+PRESTAMOS} = 1
+, {\bfseries CALCULADORA\+\_\+\+INTERESES}
+, {\bfseries INFORMACION\+\_\+\+CDP}
+, {\bfseries INFORMACION\+\_\+\+CUENTAS}
+, \newline
+{\bfseries SALIR2}
+ \}
+\item 
+\mbox{\Hypertarget{menus_8cpp_a338b025c6f1785453a6f18c72929cf11}\label{menus_8cpp_a338b025c6f1785453a6f18c72929cf11}} 
+enum {\bfseries Opciones3} \{ {\bfseries SOLICITAR} = 1
+, {\bfseries ABONAR}
+, {\bfseries IMPRIMIR}
+, {\bfseries SALIR\+\_\+\+PRESTAMO}
+ \}
+\item 
+\mbox{\Hypertarget{menus_8cpp_a0ac58e9d8a976da96e432c46a6a725c9}\label{menus_8cpp_a0ac58e9d8a976da96e432c46a6a725c9}} 
+enum {\bfseries Opciones4} \{ \newline
+{\bfseries DEPOSITO} = 1
+, {\bfseries RETIRO}
+, {\bfseries TRANSFERENCIA}
+, {\bfseries REGISTRO\+\_\+\+PERSONAL}
+, \newline
+{\bfseries REGISTRO\+\_\+\+GENERAL}
+, {\bfseries SALIR\+\_\+\+OPERACIONES}
+ \}
+\item 
+\mbox{\Hypertarget{menus_8cpp_a8b98f7ee5cf3a86451fe396e6aad27f7}\label{menus_8cpp_a8b98f7ee5cf3a86451fe396e6aad27f7}} 
+enum {\bfseries Opciones5} \{ {\bfseries PEDIR} = 1
+, {\bfseries GESTION}
+, {\bfseries SALIR\+\_\+\+CDP}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Funciones}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{menus_8cpp_a725136d6a62f99655afdefeed1253c53}{menu\+\_\+atencion}} ()
+\begin{DoxyCompactList}\small\item\em Menu de atencion al cliente. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{menus_8cpp_ab5dc69df949124dc3b1b8bf2f3d517be}{menu\+\_\+informacion}} ()
+\begin{DoxyCompactList}\small\item\em Menu de información. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{menus_8cpp_aa3f39b4f28bb8acd7f1870780b8066de}{menu\+\_\+prestamos}} ()
+\begin{DoxyCompactList}\small\item\em Menu de préstamos. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{menus_8cpp_a587c607a1198bce27f749e9bb8d99153}{menu\+\_\+operaciones}} ()
+\begin{DoxyCompactList}\small\item\em Menu de operaciones. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{menus_8cpp_a67c5428415432cfeb1252d3cb8bfce44}{menu\+\_\+\+CDP}} ()
+\begin{DoxyCompactList}\small\item\em Menu de CDPs. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+Implementación\+: menus para el funcionamineto del programa. 
+
+\begin{DoxyVersion}{Versión}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Fecha}
+6/2024 
+\end{DoxyDate}
+\begin{DoxyAuthor}{Autores}
+José\+Ignacio\+Sáenz\+Díaz, Santiago\+Herra\+Castro, Kevin\+Jiménez\+Acuña 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Documentación de las funciones}
+\mbox{\Hypertarget{menus_8cpp_a725136d6a62f99655afdefeed1253c53}\label{menus_8cpp_a725136d6a62f99655afdefeed1253c53}} 
+\index{menus.cpp@{menus.cpp}!menu\_atencion@{menu\_atencion}}
+\index{menu\_atencion@{menu\_atencion}!menus.cpp@{menus.cpp}}
+\doxysubsubsection{\texorpdfstring{menu\_atencion()}{menu\_atencion()}}
+{\footnotesize\ttfamily int menu\+\_\+atencion (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Menu de atencion al cliente. 
+
+\begin{DoxyReturn}{Devuelve}
+Int que determina el funcionamiento del menú 
+\end{DoxyReturn}
+\mbox{\Hypertarget{menus_8cpp_a67c5428415432cfeb1252d3cb8bfce44}\label{menus_8cpp_a67c5428415432cfeb1252d3cb8bfce44}} 
+\index{menus.cpp@{menus.cpp}!menu\_CDP@{menu\_CDP}}
+\index{menu\_CDP@{menu\_CDP}!menus.cpp@{menus.cpp}}
+\doxysubsubsection{\texorpdfstring{menu\_CDP()}{menu\_CDP()}}
+{\footnotesize\ttfamily int menu\+\_\+\+CDP (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Menu de CDPs. 
+
+\begin{DoxyReturn}{Devuelve}
+Int que determina el funcionamiento del menú 
+\end{DoxyReturn}
+\mbox{\Hypertarget{menus_8cpp_ab5dc69df949124dc3b1b8bf2f3d517be}\label{menus_8cpp_ab5dc69df949124dc3b1b8bf2f3d517be}} 
+\index{menus.cpp@{menus.cpp}!menu\_informacion@{menu\_informacion}}
+\index{menu\_informacion@{menu\_informacion}!menus.cpp@{menus.cpp}}
+\doxysubsubsection{\texorpdfstring{menu\_informacion()}{menu\_informacion()}}
+{\footnotesize\ttfamily int menu\+\_\+informacion (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Menu de información. 
+
+\begin{DoxyReturn}{Devuelve}
+Int que determina el funcionamiento del menú 
+\end{DoxyReturn}
+\mbox{\Hypertarget{menus_8cpp_a587c607a1198bce27f749e9bb8d99153}\label{menus_8cpp_a587c607a1198bce27f749e9bb8d99153}} 
+\index{menus.cpp@{menus.cpp}!menu\_operaciones@{menu\_operaciones}}
+\index{menu\_operaciones@{menu\_operaciones}!menus.cpp@{menus.cpp}}
+\doxysubsubsection{\texorpdfstring{menu\_operaciones()}{menu\_operaciones()}}
+{\footnotesize\ttfamily int menu\+\_\+operaciones (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Menu de operaciones. 
+
+\begin{DoxyReturn}{Devuelve}
+Int que determina el funcionamiento del menú 
+\end{DoxyReturn}
+\mbox{\Hypertarget{menus_8cpp_aa3f39b4f28bb8acd7f1870780b8066de}\label{menus_8cpp_aa3f39b4f28bb8acd7f1870780b8066de}} 
+\index{menus.cpp@{menus.cpp}!menu\_prestamos@{menu\_prestamos}}
+\index{menu\_prestamos@{menu\_prestamos}!menus.cpp@{menus.cpp}}
+\doxysubsubsection{\texorpdfstring{menu\_prestamos()}{menu\_prestamos()}}
+{\footnotesize\ttfamily int menu\+\_\+prestamos (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Menu de préstamos. 
+
+\begin{DoxyReturn}{Devuelve}
+Int que determina el funcionamiento del menú 
+\end{DoxyReturn}

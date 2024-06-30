@@ -1,0 +1,53 @@
+\hypertarget{prestamos_8cpp}{}\doxysection{Referencia del Archivo /home/santiago/\+Documents/ie0217-\/proyecto/src/prestamos.cpp}
+\label{prestamos_8cpp}\index{/home/santiago/Documents/ie0217-\/proyecto/src/prestamos.cpp@{/home/santiago/Documents/ie0217-\/proyecto/src/prestamos.cpp}}
+
+
+Implementación de la clase préstamo.  
+
+
+{\ttfamily \#include \char`\"{}prestamos.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}funciones\+Generales.\+hpp\char`\"{}}\newline
+{\ttfamily \#include $<$cmath$>$}\newline
+{\ttfamily \#include $<$sqlite3.\+h$>$}\newline
+{\ttfamily \#include $<$stdexcept$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$sstream$>$}\newline
+{\ttfamily \#include $<$iomanip$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+Dependencia gráfica adjunta para prestamos.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{prestamos_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Enumeraciones}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{prestamos_8cpp_ad5d4702a4f274aa3ead320182a11de62}\label{prestamos_8cpp_ad5d4702a4f274aa3ead320182a11de62}} 
+enum {\bfseries Opciones\+Prestamos} \{ {\bfseries PERSONAL} = 1
+, {\bfseries PRENDARIO}
+, {\bfseries HIPOTECARIO}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Funciones}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{prestamos_8cpp_ad808426de831c18448170bb1a6362bd4}\label{prestamos_8cpp_ad808426de831c18448170bb1a6362bd4}} 
+void {\bfseries execute\+SQL} (sqlite3 $\ast$db, const char $\ast$sql, int($\ast$callback)(void $\ast$, int, char $\ast$$\ast$, char $\ast$$\ast$), void $\ast$data)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+Implementación de la clase préstamo. 
+
+\begin{DoxyVersion}{Versión}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Fecha}
+6/2024 
+\end{DoxyDate}
+\begin{DoxyAuthor}{Autores}
+José\+Ignacio\+Sáenz\+Díaz, Santiago\+Herra\+Castro, Kevin\+Jiménez\+Acuña 
+\end{DoxyAuthor}
