@@ -112,7 +112,6 @@ void CDP::agregarCDP() {
 
     bool saldoSuficiente = verificarSaldoSuficiente(db, cedula, denominacion, monto);
     if (!saldoSuficiente) {
-        std::cout << "No se pueden agregar el CDP debido a fondos insuficientes." << std::endl;
         sqlite3_close(db);
         return;
     }

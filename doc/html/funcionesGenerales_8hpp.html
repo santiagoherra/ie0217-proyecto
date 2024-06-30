@@ -1,0 +1,405 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.10.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Proyecto Final Sistema Bancario: Referencia del archivo /home/kevin/Desktop/ProyectoQuintoClon/ie0217-proyecto/src/funcionesGenerales.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Proyecto Final Sistema Bancario
+   </div>
+   <div id="projectbrief">Este proyecto final es del curso Estructuras Abstractas de Datos para ingenieria,</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.10.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Buscar');
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Cargando...</div>
+<div class="SRStatus" id="Searching">Buscando...</div>
+<div class="SRStatus" id="NoMatches">Nada coincide</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Funciones</a>  </div>
+  <div class="headertitle"><div class="title">Referencia del archivo funcionesGenerales.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Métodos utilidad para otros métodos, asociados al manejo y comprobación de errores.  
+<a href="#details">Más...</a></p>
+<div class="textblock"><code>#include &lt;iostream&gt;</code><br />
+<code>#include &lt;string&gt;</code><br />
+<code>#include &lt;sqlite3.h&gt;</code><br />
+<code>#include &lt;ctime&gt;</code><br />
+<code>#include &lt;chrono&gt;</code><br />
+<code>#include &lt;sstream&gt;</code><br />
+<code>#include &lt;iomanip&gt;</code><br />
+<code>#include &lt;limits&gt;</code><br />
+<code>#include &lt;stdexcept&gt;</code><br />
+<code>#include &lt;regex&gt;</code><br />
+<code>#include &lt;cstdlib&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Gráfico de dependencias incluidas en funcionesGenerales.hpp:</div>
+<div class="dyncontent">
+<div class="center"><img src="funcionesGenerales_8hpp__incl.png" border="0" usemap="#a_2home_2kevin_2Desktop_2ProyectoQuintoClon_2ie0217-proyecto_2src_2funcionesGenerales_8hpp" alt=""/></div>
+<map name="a_2home_2kevin_2Desktop_2ProyectoQuintoClon_2ie0217-proyecto_2src_2funcionesGenerales_8hpp" id="a_2home_2kevin_2Desktop_2ProyectoQuintoClon_2ie0217-proyecto_2src_2funcionesGenerales_8hpp">
+<area shape="rect" title="Métodos utilidad para otros métodos, asociados al manejo y comprobación de errores." alt="" coords="415,5,598,75"/>
+<area shape="rect" title=" " alt="" coords="5,123,85,148"/>
+<area shape="poly" title=" " alt="" coords="416,62,99,125,98,120,415,56"/>
+<area shape="rect" title=" " alt="" coords="109,123,168,148"/>
+<area shape="poly" title=" " alt="" coords="416,66,182,125,181,120,414,61"/>
+<area shape="rect" title=" " alt="" coords="193,123,271,148"/>
+<area shape="poly" title=" " alt="" coords="416,75,280,121,278,116,414,70"/>
+<area shape="rect" title=" " alt="" coords="296,123,355,148"/>
+<area shape="poly" title=" " alt="" coords="442,77,362,118,359,114,440,72"/>
+<area shape="rect" title=" " alt="" coords="379,123,445,148"/>
+<area shape="poly" title=" " alt="" coords="474,77,435,115,432,111,471,73"/>
+<area shape="rect" title=" " alt="" coords="469,123,544,148"/>
+<area shape="poly" title=" " alt="" coords="509,75,509,109,504,109,504,75"/>
+<area shape="rect" title=" " alt="" coords="568,123,643,148"/>
+<area shape="poly" title=" " alt="" coords="544,73,585,111,581,115,540,77"/>
+<area shape="rect" title=" " alt="" coords="667,123,725,148"/>
+<area shape="poly" title=" " alt="" coords="576,72,661,114,659,119,574,77"/>
+<area shape="rect" title=" " alt="" coords="750,123,837,148"/>
+<area shape="poly" title=" " alt="" coords="599,68,746,116,744,121,597,73"/>
+<area shape="rect" title=" " alt="" coords="861,123,920,148"/>
+<area shape="poly" title=" " alt="" coords="599,60,849,120,847,125,598,65"/>
+<area shape="rect" title=" " alt="" coords="945,123,1010,148"/>
+<area shape="poly" title=" " alt="" coords="599,55,750,83,931,120,930,125,749,88,598,60"/>
+</map>
+</div>
+</div><div class="textblock"><div class="dynheader">
+Gráfico de los archivos que directa o indirectamente incluyen a este archivo:</div>
+<div class="dyncontent">
+<div class="center"><img src="funcionesGenerales_8hpp__dep__incl.png" border="0" usemap="#a_2home_2kevin_2Desktop_2ProyectoQuintoClon_2ie0217-proyecto_2src_2funcionesGenerales_8hppdep" alt=""/></div>
+<map name="a_2home_2kevin_2Desktop_2ProyectoQuintoClon_2ie0217-proyecto_2src_2funcionesGenerales_8hppdep" id="a_2home_2kevin_2Desktop_2ProyectoQuintoClon_2ie0217-proyecto_2src_2funcionesGenerales_8hppdep">
+<area shape="rect" title="Métodos utilidad para otros métodos, asociados al manejo y comprobación de errores." alt="" coords="597,5,779,75"/>
+<area shape="rect" href="Operaciones_8cpp.html" title="Implementación: Retiro, depósito, abono, transferencia y ahorros parte 2." alt="" coords="31,240,191,309"/>
+<area shape="poly" title=" " alt="" coords="584,55,453,80,384,99,317,125,269,151,223,182,148,242,145,238,220,177,266,146,315,120,382,94,452,75,583,50"/>
+<area shape="rect" href="Operaciones_8hpp.html" title="Retiro, depósito, abono, transferencia y ahorros." alt="" coords="383,123,543,192"/>
+<area shape="poly" title=" " alt="" coords="612,83,530,125,527,120,609,79"/>
+<area shape="rect" href="Operaciones2_8cpp.html" title="Implementación: Retiro, depósito, abono, transferencia y ahorros." alt="" coords="215,240,375,309"/>
+<area shape="poly" title=" " alt="" coords="584,49,531,58,475,72,421,94,373,125,348,150,329,181,305,241,300,239,324,178,344,147,369,121,419,89,474,67,530,52,583,44"/>
+<area shape="rect" href="aplicacion_8cpp.html" title="Main del sistema de gestión bancario." alt="" coords="549,357,709,427"/>
+<area shape="poly" title=" " alt="" coords="583,49,498,57,401,72,300,94,201,125,141,146,94,165,74,177,56,193,38,214,21,241,12,260,8,276,11,292,21,307,46,321,95,334,238,356,405,372,549,383,549,388,404,378,237,361,93,339,44,326,17,311,6,293,3,276,7,258,16,239,34,211,52,189,71,173,92,160,140,141,199,120,298,89,400,67,498,52,582,44"/>
+<area shape="rect" href="cdp_8cpp.html" title="Implementación: Funciones asociadas a la posibilidad de añadir CDPs y verificar que el cliente saldo ..." alt="" coords="500,240,660,309"/>
+<area shape="poly" title=" " alt="" coords="669,89,598,241,593,239,664,87"/>
+<area shape="rect" href="menus_8cpp.html" title="Implementación: menus para el funcionamineto del programa." alt="" coords="817,357,977,427"/>
+<area shape="poly" title=" " alt="" coords="794,48,886,67,935,82,984,102,1031,127,1074,157,1110,195,1139,239,1147,258,1151,276,1148,293,1138,311,1106,344,1065,366,1021,381,978,389,977,384,1020,376,1063,361,1102,339,1134,308,1143,291,1145,276,1142,260,1134,241,1106,198,1070,162,1028,131,982,107,934,87,885,72,793,53"/>
+<area shape="rect" href="menus_8hpp.html" title="Implementación por menus del programa." alt="" coords="684,240,844,309"/>
+<area shape="poly" title=" " alt="" coords="706,87,756,239,751,241,701,89"/>
+<area shape="rect" href="RegistrosGenerales_8hpp_source.html" title=" " alt="" coords="791,123,972,192"/>
+<area shape="poly" title=" " alt="" coords="757,79,826,120,824,125,755,84"/>
+<area shape="rect" href="funcionesGenerales_8cpp.html" title="Implementación: Métodos utilidad para otros métodos, asociados al manejo y comprobación de errores." alt="" coords="1226,123,1409,192"/>
+<area shape="poly" title=" " alt="" coords="794,51,987,78,1098,97,1207,120,1227,125,1225,130,1206,125,1097,103,986,84,793,56"/>
+<area shape="rect" href="prestamos_8cpp.html" title="Implementación de la clase préstamo." alt="" coords="1433,123,1593,192"/>
+<area shape="poly" title=" " alt="" coords="793,43,921,50,1079,65,1251,87,1422,120,1434,123,1432,128,1421,125,1250,93,1078,70,921,56,793,48"/>
+<area shape="poly" title=" " alt="" coords="370,189,204,243,192,247,190,242,202,237,368,184"/>
+<area shape="poly" title=" " alt="" coords="404,202,346,242,343,237,401,197"/>
+<area shape="poly" title=" " alt="" coords="445,205,438,231,434,257,436,284,446,308,467,331,492,350,521,364,550,374,548,379,519,369,490,354,463,335,442,311,431,285,429,257,433,230,440,204"/>
+<area shape="poly" title=" " alt="" coords="509,200,548,238,544,242,505,204"/>
+<area shape="poly" title=" " alt="" coords="460,206,461,232,465,259,475,285,490,307,818,373,817,378,487,312,470,288,460,261,456,232,455,206"/>
+<area shape="poly" title=" " alt="" coords="557,192,685,240,683,245,555,196"/>
+<area shape="poly" title=" " alt="" coords="716,320,671,359,667,355,713,316"/>
+<area shape="poly" title=" " alt="" coords="815,316,860,355,857,359,812,321"/>
+<area shape="poly" title=" " alt="" coords="888,207,882,260,873,287,858,311,827,340,789,361,749,375,710,385,709,380,748,370,787,356,823,335,854,308,868,285,877,259,883,206"/>
+<area shape="poly" title=" " alt="" coords="987,166,1022,176,1057,191,1089,211,1114,238,1125,257,1128,275,1125,292,1114,311,1087,340,1053,361,1015,376,978,385,977,380,1014,371,1050,356,1083,336,1110,308,1120,290,1123,275,1120,259,1110,242,1085,215,1055,195,1021,181,986,171"/>
+<area shape="poly" title=" " alt="" coords="839,204,800,242,797,238,835,200"/>
+<area shape="rect" href="RegistrosGenerales_8cpp.html" title="Implementación: Clase registro, manejo y despliegue de estos." alt="" coords="919,240,1099,309"/>
+<area shape="poly" title=" " alt="" coords="931,199,974,238,970,242,927,203"/>
+</map>
+</div>
+</div>
+<p><a href="funcionesGenerales_8hpp_source.html">Ir al código fuente de este archivo.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Funciones</h2></td></tr>
+<tr class="memitem:ab8e46c677a8c3253ac1f23ee4ed34fbc" id="r_ab8e46c677a8c3253ac1f23ee4ed34fbc"><td class="memItemLeft" align="right" valign="top"><a id="ab8e46c677a8c3253ac1f23ee4ed34fbc" name="ab8e46c677a8c3253ac1f23ee4ed34fbc"></a>
+long long int&#160;</td><td class="memItemRight" valign="bottom"><b>generarNumeroCuentaColon</b> ()</td></tr>
+<tr class="separator:ab8e46c677a8c3253ac1f23ee4ed34fbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af707cbbfcbce049721ba70ef34cb5339" id="r_af707cbbfcbce049721ba70ef34cb5339"><td class="memItemLeft" align="right" valign="top"><a id="af707cbbfcbce049721ba70ef34cb5339" name="af707cbbfcbce049721ba70ef34cb5339"></a>
+long long int&#160;</td><td class="memItemRight" valign="bottom"><b>generarNumeroCuentaDolar</b> ()</td></tr>
+<tr class="separator:af707cbbfcbce049721ba70ef34cb5339"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60bd9399e165a37366e817bcd24099b1" id="r_a60bd9399e165a37366e817bcd24099b1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a60bd9399e165a37366e817bcd24099b1">agregarCliente</a> (const std::string clienteID, std::string nombre, std::string apellido, long int cuentacolones, long int cuentadolares)</td></tr>
+<tr class="memdesc:a60bd9399e165a37366e817bcd24099b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Esta funcion esta hecha para agregar un cliente a la base de datos si no existe.  <br /></td></tr>
+<tr class="separator:a60bd9399e165a37366e817bcd24099b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a974f0277e79d9edd815f9fc731005717" id="r_a974f0277e79d9edd815f9fc731005717"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a974f0277e79d9edd815f9fc731005717">existeCliente</a> (const std::string &amp;clienteID)</td></tr>
+<tr class="memdesc:a974f0277e79d9edd815f9fc731005717"><td class="mdescLeft">&#160;</td><td class="mdescRight">Esta funcion devuelve un booleano si el cliente ya esta en la base de datos.  <br /></td></tr>
+<tr class="separator:a974f0277e79d9edd815f9fc731005717"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aefd87a72d46f5bd3d154df20d8ca5e6a" id="r_aefd87a72d46f5bd3d154df20d8ca5e6a"><td class="memItemLeft" align="right" valign="top">std::tm&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aefd87a72d46f5bd3d154df20d8ca5e6a">string_a_fecha</a> (const std::string &amp;dateStr)</td></tr>
+<tr class="memdesc:aefd87a72d46f5bd3d154df20d8ca5e6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Esta funcion para un string a una fecha usando la biblioteca Ctime para poder realizar calculos de tiempo con la fecha que da la base de dato.  <br /></td></tr>
+<tr class="separator:aefd87a72d46f5bd3d154df20d8ca5e6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80cd2a549d3ab98b2cb810f33f8b39ed" id="r_a80cd2a549d3ab98b2cb810f33f8b39ed"><td class="memItemLeft" align="right" valign="top"><a id="a80cd2a549d3ab98b2cb810f33f8b39ed" name="a80cd2a549d3ab98b2cb810f33f8b39ed"></a>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><b>obtenerFechaString</b> ()</td></tr>
+<tr class="separator:a80cd2a549d3ab98b2cb810f33f8b39ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37b7a5549288f4da315a927bfbd787c5" id="r_a37b7a5549288f4da315a927bfbd787c5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a37b7a5549288f4da315a927bfbd787c5">leerInt</a> (int num, int op1=0, int op2=0, int op3=0, int op4=0, int op5=0)</td></tr>
+<tr class="memdesc:a37b7a5549288f4da315a927bfbd787c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Esta funcion esta hecha para validar numeros ints ademas tambien tira error si una de las opciones dadas en op1, 2, 3, 4, 5 no es int num para que el usuario tenga que dar las opciones que se piden.  <br /></td></tr>
+<tr class="separator:a37b7a5549288f4da315a927bfbd787c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad98dcf2e482dd094b025aac38cd14d7a" id="r_ad98dcf2e482dd094b025aac38cd14d7a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad98dcf2e482dd094b025aac38cd14d7a">leerCedula</a> (const std::string cedula)</td></tr>
+<tr class="memdesc:ad98dcf2e482dd094b025aac38cd14d7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Esta funcion leer la cedula del usuario y si no se parece a una cedula tira un error.  <br /></td></tr>
+<tr class="separator:ad98dcf2e482dd094b025aac38cd14d7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e20ed8dcdf527e5eb6d3d03003999dc" id="r_a2e20ed8dcdf527e5eb6d3d03003999dc"><td class="memItemLeft" align="right" valign="top"><a id="a2e20ed8dcdf527e5eb6d3d03003999dc" name="a2e20ed8dcdf527e5eb6d3d03003999dc"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>insertarCuentasYClientes</b> ()</td></tr>
+<tr class="separator:a2e20ed8dcdf527e5eb6d3d03003999dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21ef9bd8dd723dd8e56e2ece82b84972" id="r_a21ef9bd8dd723dd8e56e2ece82b84972"><td class="memItemLeft" align="right" valign="top"><a id="a21ef9bd8dd723dd8e56e2ece82b84972" name="a21ef9bd8dd723dd8e56e2ece82b84972"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>validarNombreApellido</b> (const std::string &amp;nombre)</td></tr>
+<tr class="separator:a21ef9bd8dd723dd8e56e2ece82b84972"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e1056be88a76b5f5b5f629f0437cd80" id="r_a8e1056be88a76b5f5b5f629f0437cd80"><td class="memItemLeft" align="right" valign="top"><a id="a8e1056be88a76b5f5b5f629f0437cd80" name="a8e1056be88a76b5f5b5f629f0437cd80"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>existeCuenta</b> (int numero_cuenta)</td></tr>
+<tr class="separator:a8e1056be88a76b5f5b5f629f0437cd80"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e558ec9700721aafba83d361c250b1a" id="r_a1e558ec9700721aafba83d361c250b1a"><td class="memItemLeft" align="right" valign="top"><a id="a1e558ec9700721aafba83d361c250b1a" name="a1e558ec9700721aafba83d361c250b1a"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>leerCedula2</b> (const std::string &amp;cedula)</td></tr>
+<tr class="separator:a1e558ec9700721aafba83d361c250b1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Descripción detallada</h2>
+<div class="textblock"><p>Métodos utilidad para otros métodos, asociados al manejo y comprobación de errores. </p>
+<dl class="section version"><dt>Versión</dt><dd>1.0 </dd></dl>
+<dl class="section date"><dt>Fecha</dt><dd>6/2024 </dd></dl>
+<dl class="section author"><dt>Autores</dt><dd>JoséIgnacioSáenzDíaz, SantiagoHerraCastro, KevinJiménezAcuña </dd></dl>
+</div><h2 class="groupheader">Documentación de funciones</h2>
+<a id="a60bd9399e165a37366e817bcd24099b1" name="a60bd9399e165a37366e817bcd24099b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60bd9399e165a37366e817bcd24099b1">&#9670;&#160;</a></span>agregarCliente()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int agregarCliente </td>
+          <td>(</td>
+          <td class="paramtype">const std::string</td>          <td class="paramname"><span class="paramname"><em>clienteID</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>nombre</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>apellido</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long int</td>          <td class="paramname"><span class="paramname"><em>cuentacolones</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long int</td>          <td class="paramname"><span class="paramname"><em>cuentadolares</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Esta funcion esta hecha para agregar un cliente a la base de datos si no existe. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">clienteID</td><td></td></tr>
+    <tr><td class="paramname">nombre</td><td></td></tr>
+    <tr><td class="paramname">apellido</td><td></td></tr>
+    <tr><td class="paramname">cuentacolones</td><td></td></tr>
+    <tr><td class="paramname">cuentadolares</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Devuelve</dt><dd>int Devuelve un 0 si se realiza con exito, un 1 si fallo. </dd></dl>
+
+</div>
+</div>
+<a id="a974f0277e79d9edd815f9fc731005717" name="a974f0277e79d9edd815f9fc731005717"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a974f0277e79d9edd815f9fc731005717">&#9670;&#160;</a></span>existeCliente()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool existeCliente </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>clienteID</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Esta funcion devuelve un booleano si el cliente ya esta en la base de datos. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">clienteID</td><td>se hace con la cedula </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Devuelve</dt><dd>true </dd>
+<dd>
+false </dd></dl>
+
+</div>
+</div>
+<a id="ad98dcf2e482dd094b025aac38cd14d7a" name="ad98dcf2e482dd094b025aac38cd14d7a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad98dcf2e482dd094b025aac38cd14d7a">&#9670;&#160;</a></span>leerCedula()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void leerCedula </td>
+          <td>(</td>
+          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>cedula</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Esta funcion leer la cedula del usuario y si no se parece a una cedula tira un error. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cedula</td><td>cedula que da el usuario </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a37b7a5549288f4da315a927bfbd787c5" name="a37b7a5549288f4da315a927bfbd787c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37b7a5549288f4da315a927bfbd787c5">&#9670;&#160;</a></span>leerInt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void leerInt </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>num</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>op1</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>op2</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>op3</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>op4</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>op5</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Esta funcion esta hecha para validar numeros ints ademas tambien tira error si una de las opciones dadas en op1, 2, 3, 4, 5 no es int num para que el usuario tenga que dar las opciones que se piden. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">num</td><td>este es el numero que se valida </td></tr>
+    <tr><td class="paramname">op1</td><td>esta es una opcion de entrada </td></tr>
+    <tr><td class="paramname">op2</td><td>esta es una opcion de entrada </td></tr>
+    <tr><td class="paramname">op3</td><td>esta es una opcion de entrada </td></tr>
+    <tr><td class="paramname">op4</td><td>esta es una opcion de entrada </td></tr>
+    <tr><td class="paramname">op5</td><td>esta es una opcion de entrada </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aefd87a72d46f5bd3d154df20d8ca5e6a" name="aefd87a72d46f5bd3d154df20d8ca5e6a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aefd87a72d46f5bd3d154df20d8ca5e6a">&#9670;&#160;</a></span>string_a_fecha()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::tm string_a_fecha </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>fecha_string</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Esta funcion para un string a una fecha usando la biblioteca Ctime para poder realizar calculos de tiempo con la fecha que da la base de dato. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fecha_string</td><td>fecha en string que se da </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Devuelve</dt><dd>tm devuelve el tiempo del string </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
+</small></address>
+</body>
+</html>

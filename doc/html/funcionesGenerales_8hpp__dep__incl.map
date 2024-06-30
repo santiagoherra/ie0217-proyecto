@@ -1,0 +1,36 @@
+<map id="/home/kevin/Desktop/ProyectoQuintoClon/ie0217&#45;proyecto/src/funcionesGenerales.hpp" name="/home/kevin/Desktop/ProyectoQuintoClon/ie0217&#45;proyecto/src/funcionesGenerales.hpp">
+<area shape="rect" id="Node000001" title="Métodos utilidad para otros métodos, asociados al manejo y comprobación de errores." alt="" coords="597,5,779,75"/>
+<area shape="rect" id="Node000002" href="$Operaciones_8cpp.html" title="Implementación: Retiro, depósito, abono, transferencia y ahorros parte 2." alt="" coords="31,240,191,309"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="584,55,453,80,384,99,317,125,269,151,223,182,148,242,145,238,220,177,266,146,315,120,382,94,452,75,583,50"/>
+<area shape="rect" id="Node000003" href="$Operaciones_8hpp.html" title="Retiro, depósito, abono, transferencia y ahorros." alt="" coords="383,123,543,192"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="612,83,530,125,527,120,609,79"/>
+<area shape="rect" id="Node000004" href="$Operaciones2_8cpp.html" title="Implementación: Retiro, depósito, abono, transferencia y ahorros." alt="" coords="215,240,375,309"/>
+<area shape="poly" id="edge11_Node000001_Node000004" title=" " alt="" coords="584,49,531,58,475,72,421,94,373,125,348,150,329,181,305,241,300,239,324,178,344,147,369,121,419,89,474,67,530,52,583,44"/>
+<area shape="rect" id="Node000005" href="$aplicacion_8cpp.html" title="Main del sistema de gestión bancario." alt="" coords="549,357,709,427"/>
+<area shape="poly" id="edge17_Node000001_Node000005" title=" " alt="" coords="583,49,498,57,401,72,300,94,201,125,141,146,94,165,74,177,56,193,38,214,21,241,12,260,8,276,11,292,21,307,46,321,95,334,238,356,405,372,549,383,549,388,404,378,237,361,93,339,44,326,17,311,6,293,3,276,7,258,16,239,34,211,52,189,71,173,92,160,140,141,199,120,298,89,400,67,498,52,582,44"/>
+<area shape="rect" id="Node000006" href="$cdp_8cpp.html" title="Implementación: Funciones asociadas a la posibilidad de añadir CDPs y verificar que el cliente saldo ..." alt="" coords="500,240,660,309"/>
+<area shape="poly" id="edge18_Node000001_Node000006" title=" " alt="" coords="669,89,598,241,593,239,664,87"/>
+<area shape="rect" id="Node000007" href="$menus_8cpp.html" title="Implementación: menus para el funcionamineto del programa." alt="" coords="817,357,977,427"/>
+<area shape="poly" id="edge20_Node000001_Node000007" title=" " alt="" coords="794,48,886,67,935,82,984,102,1031,127,1074,157,1110,195,1139,239,1147,258,1151,276,1148,293,1138,311,1106,344,1065,366,1021,381,978,389,977,384,1020,376,1063,361,1102,339,1134,308,1143,291,1145,276,1142,260,1134,241,1106,198,1070,162,1028,131,982,107,934,87,885,72,793,53"/>
+<area shape="rect" id="Node000008" href="$menus_8hpp.html" title="Implementación por menus del programa." alt="" coords="684,240,844,309"/>
+<area shape="poly" id="edge21_Node000001_Node000008" title=" " alt="" coords="706,87,756,239,751,241,701,89"/>
+<area shape="rect" id="Node000009" href="$RegistrosGenerales_8hpp_source.html" title=" " alt="" coords="791,123,972,192"/>
+<area shape="poly" id="edge12_Node000001_Node000009" title=" " alt="" coords="757,79,826,120,824,125,755,84"/>
+<area shape="rect" id="Node000011" href="$funcionesGenerales_8cpp.html" title="Implementación: Métodos utilidad para otros métodos, asociados al manejo y comprobación de errores." alt="" coords="1226,123,1409,192"/>
+<area shape="poly" id="edge19_Node000001_Node000011" title=" " alt="" coords="794,51,987,78,1098,97,1207,120,1227,125,1225,130,1206,125,1097,103,986,84,793,56"/>
+<area shape="rect" id="Node000012" href="$prestamos_8cpp.html" title="Implementación de la clase préstamo." alt="" coords="1433,123,1593,192"/>
+<area shape="poly" id="edge22_Node000001_Node000012" title=" " alt="" coords="793,43,921,50,1079,65,1251,87,1422,120,1434,123,1432,128,1421,125,1250,93,1078,70,921,56,793,48"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="370,189,204,243,192,247,190,242,202,237,368,184"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="404,202,346,242,343,237,401,197"/>
+<area shape="poly" id="edge5_Node000003_Node000005" title=" " alt="" coords="445,205,438,231,434,257,436,284,446,308,467,331,492,350,521,364,550,374,548,379,519,369,490,354,463,335,442,311,431,285,429,257,433,230,440,204"/>
+<area shape="poly" id="edge6_Node000003_Node000006" title=" " alt="" coords="509,200,548,238,544,242,505,204"/>
+<area shape="poly" id="edge7_Node000003_Node000007" title=" " alt="" coords="460,206,461,232,465,259,475,285,490,307,818,373,817,378,487,312,470,288,460,261,456,232,455,206"/>
+<area shape="poly" id="edge8_Node000003_Node000008" title=" " alt="" coords="557,192,685,240,683,245,555,196"/>
+<area shape="poly" id="edge9_Node000008_Node000005" title=" " alt="" coords="716,320,671,359,667,355,713,316"/>
+<area shape="poly" id="edge10_Node000008_Node000007" title=" " alt="" coords="815,316,860,355,857,359,812,321"/>
+<area shape="poly" id="edge14_Node000009_Node000005" title=" " alt="" coords="888,207,882,260,873,287,858,311,827,340,789,361,749,375,710,385,709,380,748,370,787,356,823,335,854,308,868,285,877,259,883,206"/>
+<area shape="poly" id="edge15_Node000009_Node000007" title=" " alt="" coords="987,166,1022,176,1057,191,1089,211,1114,238,1125,257,1128,275,1125,292,1114,311,1087,340,1053,361,1015,376,978,385,977,380,1014,371,1050,356,1083,336,1110,308,1120,290,1123,275,1120,259,1110,242,1085,215,1055,195,1021,181,986,171"/>
+<area shape="poly" id="edge16_Node000009_Node000008" title=" " alt="" coords="839,204,800,242,797,238,835,200"/>
+<area shape="rect" id="Node000010" href="$RegistrosGenerales_8cpp.html" title="Implementación: Clase registro, manejo y despliegue de estos." alt="" coords="919,240,1099,309"/>
+<area shape="poly" id="edge13_Node000009_Node000010" title=" " alt="" coords="931,199,974,238,970,242,927,203"/>
+</map>
