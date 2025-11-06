@@ -179,10 +179,9 @@ int Prestamos::agregarPrestamoBaseDatos(){
 
     // Insertar un nuevo préstamo y asociarlo a un cliente existente
     std::ostringstream oss;
-    oss << "INSERT INTO prestamos (prestamo_id, denominacion, tipo, monto_total, plazo_meses, plazo_restante, cuota_mensual, tasa, cliente_id) "
+    oss << "INSERT INTO prestamos (denominacion, tipo, monto_total, plazo_meses, plazo_restante, cuota_mensual, tasa, cliente_id) "
     << "VALUES ("
-    << nuevoIdPrestamo << ", " // Asume que nuevoIdPrestamo es un número
-    << "'" << denominacion_agregar << "', " // Asume que denominacion_agregar es un string
+    << denominacion_agregar << "', " // Asume que denominacion_agregar es un string
     << "'" << tipo_agregar << "', " // Asume que tipo_agregar es un string
     << std::fixed << std::setprecision(2) << monto_agregar << ", " // Asume que monto_agregar es un número
     << plazo_meses_agregar << ", " // Asume que plazo_meses_agregar es un número
