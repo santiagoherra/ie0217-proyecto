@@ -170,32 +170,44 @@ int Prestamos::agregarPrestamoBaseDatos(){
 
     cedula_agregar = cedula;
 
-    int lastPrestamoId = 0;
-    const char* sqlGetLastPrestamoId = "SELECT MAX(prestamo_id) FROM prestamos;";
-    executeSQL(db, sqlGetLastPrestamoId, getLastPrestamoId, &lastPrestamoId);
+    // Preparar el query para la inyeccion del prestamo
+    const char *sql = R"(
+        INSERT INTO prestamos 
+        (denominacion, tipo, monto_total, plazo_meses, plazo_restante, cuota_mensual, tasa, cliente_id)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?);
+    )";
+    
+    sqlite3_stmt *stmt;
+    rc = sqlite3_prepare_v2(db, sql, -1, &stmt, nullptr);
+    if (rc != SQLITE_OK) {
+        std::cerr << "Error preparando la consulta: " << sqlite3_errmsg(db) << std::endl;
+        sqlite3_close(db);
+        return 0;
+    }
 
-    int nuevoIdPrestamo = lastPrestamoId + 1;
 
+    // Insertar un nuevo préstamo y asociarlo a un cliente existente vinculando los parametros
+    sqlite3_bind_text(stmt, 1, denominacion_agregar.c_str(), -1, SQLITE_STATIC);
+    sqlite3_bind_text(stmt, 2, tipo_agregar.c_str(), -1, SQLITE_STATIC);
+    sqlite3_bind_double(stmt, 3, monto_agregar);
+    sqlite3_bind_int(stmt, 4, plazo_meses_agregar);
+    sqlite3_bind_int(stmt, 5, plazo_meses_agregar); // Plazos restantes del prestamo
+    sqlite3_bind_int(stmt, 6, cuotas_agregar);
+    sqlite3_bind_double(stmt, 7, tasa_agregar);
+    sqlite3_bind_text(stmt, 8, cedula_agregar.c_str(), -1, SQLITE_STATIC);
 
-    // Insertar un nuevo préstamo y asociarlo a un cliente existente
-    std::ostringstream oss;
-    oss << "INSERT INTO prestamos (denominacion, tipo, monto_total, plazo_meses, plazo_restante, cuota_mensual, tasa, cliente_id) "
-    << "VALUES ("
-    << denominacion_agregar << "', " // Asume que denominacion_agregar es un string
-    << "'" << tipo_agregar << "', " // Asume que tipo_agregar es un string
-    << std::fixed << std::setprecision(2) << monto_agregar << ", " // Asume que monto_agregar es un número
-    << plazo_meses_agregar << ", " // Asume que plazo_meses_agregar es un número
-    << plazo_meses_agregar << ", " //se agrega el mismo numero de meses
-    << std::fixed << std::setprecision(2) << cuotas_agregar << ", " // Asume que cuotas_agregar es un número
-    << std::fixed << std::setprecision(3) << tasa_agregar << ", " 
-    << "'" << cedula_agregar << "');"; // Asume que cedula_agregar es un string
+    rc = sqlite3_step(stmt);
+    if (rc != SQLITE_DONE) {
+        std::cerr << "Error al insertar el prestamo: " << sqlite3_errmsg(db) << std::endl;
+    } else {
+        std::cout << "Prestamo agregado exitosamente." << std::endl;
 
-    std::string sqlInsertPrestamo = oss.str();
+        //Imprimir el ID del prestamo agregado
+        int IdPrestamo = (int)sqlite3_last_insert_rowid(db); 
+        std::cout << "El ID de su prestamo es: " << IdPrestamo << std::endl;
+    }
 
-    executeSQL(db, sqlInsertPrestamo.c_str(), nullptr, nullptr);
-
-    // Cerrar la base de datos
-
+    sqlite3_finalize(stmt);
     sqlite3_close(db);
     return 0;
     
