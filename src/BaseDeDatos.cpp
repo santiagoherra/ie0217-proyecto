@@ -40,7 +40,7 @@ int crearDB(){
         "FOREIGN KEY (cuenta_dolares) REFERENCES cuentas(numero_cuenta));"
         
         "CREATE TABLE prestamos ("
-        "prestamo_id INT PRIMARY KEY,"
+        "prestamo_id INTEGER PRIMARY KEY AUTOINCREMENT,"
         "denominacion VARCHAR(8),"
         "tipo VARCHAR(10),"
         "monto_total DECIMAL(11, 2),"
